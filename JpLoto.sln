@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JpLoto.Domain", "JpLoto.Dom
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Globalization", "Globalization\Globalization.csproj", "{22DFBC98-F4FF-4C29-88B6-24DBD55DDF7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JpLoto.Api", "JpLoto.Api\JpLoto.Api.csproj", "{FDEFF4D9-CEF0-4B36-87F6-67D28135D30B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JpLoto.Api", "JpLoto.Api\JpLoto.Api.csproj", "{FDEFF4D9-CEF0-4B36-87F6-67D28135D30B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JpLoto.Site", "JpLoto.Site\JpLoto.Site.csproj", "{6089E7C3-592F-4CE2-8DF4-AFD94B749234}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{FDEFF4D9-CEF0-4B36-87F6-67D28135D30B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDEFF4D9-CEF0-4B36-87F6-67D28135D30B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FDEFF4D9-CEF0-4B36-87F6-67D28135D30B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6089E7C3-592F-4CE2-8DF4-AFD94B749234}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6089E7C3-592F-4CE2-8DF4-AFD94B749234}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6089E7C3-592F-4CE2-8DF4-AFD94B749234}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6089E7C3-592F-4CE2-8DF4-AFD94B749234}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
