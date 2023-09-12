@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Hellang.Middleware.ProblemDetails" Version="6.5.1" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Globalization\Globalization.csproj" />
+    <ProjectReference Include="..\JpLoto.Application\JpLoto.Application.csproj" />
+    <ProjectReference Include="..\JpLoto.Data\JpLoto.Data.csproj" />
+    <ProjectReference Include="..\JpLoto.Domain\JpLoto.Domain.csproj" />
+    <ProjectReference Include="..\JpLoto.Identity\JpLoto.Identity.csproj" />
+  </ItemGroup>
+
+</Project>

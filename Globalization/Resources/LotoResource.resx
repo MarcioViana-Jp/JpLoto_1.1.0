@@ -1,0 +1,369 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddSuccess" xml:space="preserve">
+    <value>項目正常に追加されました</value>
+  </data>
+  <data name="AlreadyExists" xml:space="preserve">
+    <value>項目はすでに存在します</value>
+  </data>
+  <data name="ApplyFilters" xml:space="preserve">
+    <value>フィルターを適用する</value>
+  </data>
+  <data name="ApplySuggestions" xml:space="preserve">
+    <value>提案適用</value>
+  </data>
+  <data name="Bonus" xml:space="preserve">
+    <value>ボーナス数字</value>
+  </data>
+  <data name="BonusLoto6" xml:space="preserve">
+    <value>01 から 43 までの 1 つの数字をカンマで区切って入力してください</value>
+  </data>
+  <data name="BonusLoto7" xml:space="preserve">
+    <value>01 から 37 までの 2 つの数字をカンマで区切って入力してください</value>
+  </data>
+  <data name="BonusMiniLoto" xml:space="preserve">
+    <value>01 から 37 までの 1 つの数字をカンマで区切って入力してください</value>
+  </data>
+  <data name="CancelEditing" xml:space="preserve">
+    <value>編集をキャンセル</value>
+  </data>
+  <data name="CheckResult" xml:space="preserve">
+    <value>結果確認</value>
+  </data>
+  <data name="ClearAll" xml:space="preserve">
+    <value>すべて削除</value>
+  </data>
+  <data name="ClearSuggestions" xml:space="preserve">
+    <value>提案削除</value>
+  </data>
+  <data name="Combinations" xml:space="preserve">
+    <value>組み合わせ</value>
+  </data>
+  <data name="ConfigurePrinting" xml:space="preserve">
+    <value>印刷設定</value>
+  </data>
+  <data name="ConfirmDelete" xml:space="preserve">
+    <value>項目削除</value>
+  </data>
+  <data name="cr_BonusError" xml:space="preserve">
+    <value>ボーナス番号は、抽選された数十とは異なる必要があります</value>
+  </data>
+  <data name="cr_DuplicateNumberError" xml:space="preserve">
+    <value>等しい数字があります</value>
+  </data>
+  <data name="cr_InputError" xml:space="preserve">
+    <value>入力された情報が無効です</value>
+  </data>
+  <data name="cr_InvalidBonusLenght" xml:space="preserve">
+    <value>ボーナス数字が無効です</value>
+  </data>
+  <data name="cr_InvalidNumbersLenght" xml:space="preserve">
+    <value>数字の数が無効です</value>
+  </data>
+  <data name="cr_MissingParametersError" xml:space="preserve">
+    <value>数字は入力されていません</value>
+  </data>
+  <data name="cr_Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="cr_OutOfRangeError" xml:space="preserve">
+    <value>数値が範囲外です。 この宝くじの有効な数字を確認してください</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>日にち</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="DeletePermanent" xml:space="preserve">
+    <value>完全に削除</value>
+  </data>
+  <data name="DeleteSuccess" xml:space="preserve">
+    <value>項目正常に削除されました</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>編集</value>
+  </data>
+  <data name="Edition" xml:space="preserve">
+    <value>回号</value>
+  </data>
+  <data name="Error_InvalidMaxCombinations" xml:space="preserve">
+    <value>組み合わせ数が無効です</value>
+  </data>
+  <data name="EvenNumbers" xml:space="preserve">
+    <value>偶数</value>
+  </data>
+  <data name="FilterCombinations" xml:space="preserve">
+    <value>組み合わせのフィルター</value>
+  </data>
+  <data name="Filters" xml:space="preserve">
+    <value>フィルター定義</value>
+  </data>
+  <data name="GenerateRandom" xml:space="preserve">
+    <value>チェックすると、ランダムな組み合わせが生成されます</value>
+  </data>
+  <data name="InvalidBonus" xml:space="preserve">
+    <value>無効なボーナス</value>
+  </data>
+  <data name="InvalidNumbers" xml:space="preserve">
+    <value>番号が無効です</value>
+  </data>
+  <data name="KeepPrevious" xml:space="preserve">
+    <value>チェックを入れると以前の組み合わせが保持されます</value>
+  </data>
+  <data name="LimitCombinations" xml:space="preserve">
+    <value>組み合わせを制限する</value>
+  </data>
+  <data name="LimitNumbers" xml:space="preserve">
+    <value>数字の制限数</value>
+  </data>
+  <data name="Load" xml:space="preserve">
+    <value>ファイルを開く</value>
+  </data>
+  <data name="Loto6" xml:space="preserve">
+    <value>ロト6</value>
+  </data>
+  <data name="Loto7" xml:space="preserve">
+    <value>ロト７</value>
+  </data>
+  <data name="Maximum" xml:space="preserve">
+    <value>Max: </value>
+  </data>
+  <data name="MaxValue" xml:space="preserve">
+    <value>最大</value>
+  </data>
+  <data name="MiniLoto" xml:space="preserve">
+    <value>Mini Loto</value>
+  </data>
+  <data name="MinValue" xml:space="preserve">
+    <value>最小</value>
+  </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>項目見つかりませんでした</value>
+  </data>
+  <data name="Numbers" xml:space="preserve">
+    <value>数字</value>
+  </data>
+  <data name="NumbersInSequence" xml:space="preserve">
+    <value>順番に数字</value>
+  </data>
+  <data name="NumbersLoto6" xml:space="preserve">
+    <value>カンマで区切られた 01 から 43 までの 6 つの数字のリストを入力してください</value>
+  </data>
+  <data name="NumbersLoto7" xml:space="preserve">
+    <value>カンマで区切られた 01 から 37 までの 7 つの数字のリストを入力してください</value>
+  </data>
+  <data name="NumbersMiniLoto" xml:space="preserve">
+    <value>カンマで区切られた 01 から 31 までの 5 つの数字のリストを入力してください</value>
+  </data>
+  <data name="NumbersPerColumn" xml:space="preserve">
+    <value>列ごとの数値</value>
+  </data>
+  <data name="NumbersPerLine" xml:space="preserve">
+    <value>行あたりの数字</value>
+  </data>
+  <data name="OddNumbers" xml:space="preserve">
+    <value>奇数</value>
+  </data>
+  <data name="OperationError" xml:space="preserve">
+    <value>操作でエラーが発生しました</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>＃順序</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>ページ:</value>
+  </data>
+  <data name="PageFirst" xml:space="preserve">
+    <value>一ページ目</value>
+  </data>
+  <data name="PageLast" xml:space="preserve">
+    <value>最後のページ</value>
+  </data>
+  <data name="PageNext" xml:space="preserve">
+    <value>次のページ</value>
+  </data>
+  <data name="PagePrevious" xml:space="preserve">
+    <value>前のページ</value>
+  </data>
+  <data name="PreviousCombinations" xml:space="preserve">
+    <value>以前の組み合わせ</value>
+  </data>
+  <data name="PrimeNumbers" xml:space="preserve">
+    <value>素数 </value>
+  </data>
+  <data name="Print" xml:space="preserve">
+    <value>印刷</value>
+  </data>
+  <data name="RandomCombinations" xml:space="preserve">
+    <value>ランダムな組み合わせ</value>
+  </data>
+  <data name="Recycle" xml:space="preserve">
+    <value>リサイクル</value>
+  </data>
+  <data name="RecycleItem" xml:space="preserve">
+    <value>リサイクルに移動</value>
+  </data>
+  <data name="Restore" xml:space="preserve">
+    <value>戻す</value>
+  </data>
+  <data name="RestoreItem" xml:space="preserve">
+    <value>項目戻す</value>
+  </data>
+  <data name="Results" xml:space="preserve">
+    <value>抽せん結果</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="SelectDiretory" xml:space="preserve">
+    <value>フォルダーを選択</value>
+  </data>
+  <data name="Suggestions" xml:space="preserve">
+    <value>提案</value>
+  </data>
+  <data name="TITLE_COMBINATIONS" xml:space="preserve">
+    <value>組み合わせを生成する</value>
+  </data>
+  <data name="TITLE_CONFIGURE_PRINTING" xml:space="preserve">
+    <value>印刷設定</value>
+  </data>
+  <data name="TITLE_FILTERS" xml:space="preserve">
+    <value>フィルター設定</value>
+  </data>
+  <data name="TITLE_LOTO6" xml:space="preserve">
+    <value>ロト6</value>
+  </data>
+  <data name="TITLE_LOTO7" xml:space="preserve">
+    <value>ロト７</value>
+  </data>
+  <data name="TITLE_MINILOTO" xml:space="preserve">
+    <value>Mini Loto</value>
+  </data>
+  <data name="TITLE_RESULTS" xml:space="preserve">
+    <value>結果</value>
+  </data>
+  <data name="TITLE_SELECTNUMBERS" xml:space="preserve">
+    <value>数字を選択</value>
+  </data>
+  <data name="UpdateSuccess" xml:space="preserve">
+    <value>項目正常に変更されました</value>
+  </data>
+</root>

@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34024.191
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JpLoto.Application", "JpLoto.Application\JpLoto.Application.csproj", "{E3A610DC-47EE-4B6B-942F-44280D808B7F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JpLoto.Data", "JpLoto.Data\JpLoto.Data.csproj", "{4EA2F416-4BD3-49C0-AE8F-4F6D9B95262B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JpLoto.Identity", "JpLoto.Identity\JpLoto.Identity.csproj", "{97116C39-BD7D-4464-BB9C-84BFA4C5B519}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JpLoto.Domain", "JpLoto.Domain\JpLoto.Domain.csproj", "{BAC0D198-1EBB-4B92-B363-E3039F758369}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Globalization", "Globalization\Globalization.csproj", "{22DFBC98-F4FF-4C29-88B6-24DBD55DDF7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JpLoto.Api", "JpLoto.Api\JpLoto.Api.csproj", "{FDEFF4D9-CEF0-4B36-87F6-67D28135D30B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E3A610DC-47EE-4B6B-942F-44280D808B7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3A610DC-47EE-4B6B-942F-44280D808B7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3A610DC-47EE-4B6B-942F-44280D808B7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3A610DC-47EE-4B6B-942F-44280D808B7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EA2F416-4BD3-49C0-AE8F-4F6D9B95262B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EA2F416-4BD3-49C0-AE8F-4F6D9B95262B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EA2F416-4BD3-49C0-AE8F-4F6D9B95262B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EA2F416-4BD3-49C0-AE8F-4F6D9B95262B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97116C39-BD7D-4464-BB9C-84BFA4C5B519}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97116C39-BD7D-4464-BB9C-84BFA4C5B519}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97116C39-BD7D-4464-BB9C-84BFA4C5B519}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97116C39-BD7D-4464-BB9C-84BFA4C5B519}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAC0D198-1EBB-4B92-B363-E3039F758369}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAC0D198-1EBB-4B92-B363-E3039F758369}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAC0D198-1EBB-4B92-B363-E3039F758369}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAC0D198-1EBB-4B92-B363-E3039F758369}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22DFBC98-F4FF-4C29-88B6-24DBD55DDF7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22DFBC98-F4FF-4C29-88B6-24DBD55DDF7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22DFBC98-F4FF-4C29-88B6-24DBD55DDF7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22DFBC98-F4FF-4C29-88B6-24DBD55DDF7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDEFF4D9-CEF0-4B36-87F6-67D28135D30B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDEFF4D9-CEF0-4B36-87F6-67D28135D30B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDEFF4D9-CEF0-4B36-87F6-67D28135D30B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDEFF4D9-CEF0-4B36-87F6-67D28135D30B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FDB0F71B-9D52-45EF-BAB5-2478C292F447}
+	EndGlobalSection
+EndGlobal
