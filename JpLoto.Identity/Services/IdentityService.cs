@@ -6,6 +6,7 @@ using JpLoto.Application.DTOs.Request;
 using JpLoto.Application.DTOs.Response;
 using JpLoto.Application.Interfaces.Services;
 using JpLoto.Identity.Configurations;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace JpLoto.Identity.Services
 {
@@ -64,6 +65,12 @@ namespace JpLoto.Identity.Services
             }
 
             return usuarioLoginResponse;
+        }
+        
+        public async Task Logout()
+        {
+            // Logoff direto, sem confirmacao
+            await _signInManager.SignOutAsync();
         }
 
         public async Task<LoginResponse> RefreshToken(string usuarioId)

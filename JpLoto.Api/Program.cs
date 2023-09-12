@@ -1,9 +1,13 @@
 using Hellang.Middleware.ProblemDetails;
 using JpLoto.Api.Extensions;
 using JpLoto.Api.IoC;
+using JpLoto.EmailServices.Settings;
 using Way2Commerce.Api.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Configure EmailServices
+builder.Services.Configure<SmtpSetting>(builder.Configuration.GetSection("SMTP"));
 
 // Add services to the container.
 builder.Services.AddCors();

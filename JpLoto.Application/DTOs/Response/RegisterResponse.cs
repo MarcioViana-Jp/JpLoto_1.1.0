@@ -11,6 +11,9 @@ namespace JpLoto.Application.DTOs.Response
         public RegisterResponse(bool sucesso = true) : this() =>
             Sucesso = sucesso;
 
+        public void AdicionarErro(string erro) =>
+            Erros.Add(erro);
+
         public void AdicionarErros(IEnumerable<string> erros) =>
             Erros.AddRange(erros);
     }

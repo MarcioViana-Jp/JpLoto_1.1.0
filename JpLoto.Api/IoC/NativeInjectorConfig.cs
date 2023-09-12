@@ -2,6 +2,7 @@ using JpLoto.Application.Interfaces.Services;
 using JpLoto.Data.Context;
 using JpLoto.Data.Repositories;
 using JpLoto.Domain.Interfaces.Repositories;
+using JpLoto.EmailServices;
 using JpLoto.Identity.Data;
 using JpLoto.Identity.Services;
 using Microsoft.AspNetCore.Identity;
@@ -28,6 +29,9 @@ namespace JpLoto.Api.IoC
             services.AddScoped<ILoto6ResultRepository, Loto6ResultRepository>();
             services.AddScoped<ILoto7ResultRepository, Loto7ResultRepository>();
             services.AddScoped<IMiniLotoResultRepository, MiniLotoResultRepository>();
+
+            services.AddSingleton<IEmailService, EmailService>();
+
         }
     }
 }
