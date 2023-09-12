@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace JpLoto.Application.DTOs.Response
 {
-    public class LoginResponse
+    public class LoginResponseApplication
     {
         public bool Sucesso  => Erros.Count == 0;
         
@@ -13,10 +13,10 @@ namespace JpLoto.Application.DTOs.Response
         
         public List<string> Erros { get; private set; }
 
-        public LoginResponse() =>
+        public LoginResponseApplication() =>
             Erros = new List<string>();
 
-        public LoginResponse(bool sucesso, string accessToken, string refreshToken) : this()
+        public LoginResponseApplication(bool sucesso, string accessToken, string refreshToken) : this()
         {
             AccessToken = accessToken;
             RefreshToken = refreshToken;

@@ -26,11 +26,12 @@ public class AccountController : ControllerBase
         _userManager = userManager;
     }
 
-    [ProducesResponseType(typeof(RegisterResponse), StatusCodes.Status200OK)]
+
+    [ProducesResponseType(typeof(RegisterResponseApplication), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     [HttpPost("register")]
-    public async Task<IActionResult> Register(RegisterRequest registerRequest)
+    public async Task<IActionResult> Register(RegisterRequestApplication registerRequest)
     {
         if (!ModelState.IsValid)
             return BadRequest();
@@ -38,23 +39,11 @@ public class AccountController : ControllerBase
         var resultado = await _identityService.RegisterNewUser(registerRequest);
         if (resultado.Sucesso)
         {
-            var user = await _userManager.FindByEmailAsync(registerRequest.Email);
-            if(user == null)
+            if (await SendEmailAsync(registerRequest.Email))
             {
                 resultado.AdicionarErro("Usuario adicionado, mas nao foi possivel enviar o e-mail de confirmacao.");
                 return Ok(resultado);
             }
-
-            var confirmationToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-            var confirmationLink = Url.Action(action: "confirmemail", controller: "Account",
-                                   values: new {userId = user.Id, token = confirmationToken},
-                                   protocol: "https", host: "localhost:7125") ?? "/";
-
-            string msgBody = $"Clique no link abaixo para confirmar seu endereço de e-mail: \n\n {confirmationLink}";
-
-            await _emailService.SendAsync(registerRequest.Email, "Confirme seu e-mail.", msgBody);
-
-            return Ok(resultado);
         }
         else if (resultado.Erros.Count > 0)
         {
@@ -65,12 +54,30 @@ public class AccountController : ControllerBase
         return StatusCode(StatusCodes.Status500InternalServerError);
     }
 
-    [ProducesResponseType(typeof(RegisterResponse), StatusCodes.Status200OK)]
+
+    [ProducesResponseType(typeof(RegisterResponseApplication), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+    [HttpPost("resendemail")]
+    public async Task<IActionResult> ResendEmail(EmailRequestApplication emailRequest)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest();
+
+            if (await SendEmailAsync(emailRequest.Email))
+            {
+                return Ok("E-mail de confirmação reenviado com sucesso.");
+            }
+
+        return StatusCode(StatusCodes.Status500InternalServerError);
+    }
+
+    [ProducesResponseType(typeof(RegisterResponseApplication), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     [HttpPost("login")]
-    public async Task<ActionResult<RegisterResponse>> Login(LoginRequest usuarioLogin)
+    public async Task<ActionResult<RegisterResponseApplication>> Login(LoginRequestApplication usuarioLogin)
     {
         if (!ModelState.IsValid)
             return BadRequest();
@@ -82,13 +89,14 @@ public class AccountController : ControllerBase
         return Unauthorized();
     }
 
-    [ProducesResponseType(typeof(RegisterResponse), StatusCodes.Status200OK)]
+
+    [ProducesResponseType(typeof(RegisterResponseApplication), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     [Authorize]
     [HttpPost("refresh-login")]
-    public async Task<ActionResult<RegisterResponse>> RefreshLogin()
+    public async Task<ActionResult<RegisterResponseApplication>> RefreshLogin()
     {
         var identity = HttpContext.User.Identity as ClaimsIdentity;
         var usuarioId = identity?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -102,26 +110,58 @@ public class AccountController : ControllerBase
         return Unauthorized();
     }
 
-    [ProducesResponseType(typeof(RegisterResponse), StatusCodes.Status200OK)]
+
+    [ProducesResponseType(typeof(RegisterResponseApplication), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     [HttpGet("logout")]
-    public async Task<ActionResult<RegisterResponse>> Logout()
+    public async Task<ActionResult<RegisterResponseApplication>> Logout()
     {
         await _identityService.Logout();
         
-        return Ok("Usuários desconectado com sucesso!");
+        return Ok("Usuário desconectado com sucesso!");
     }
     
-    [ProducesResponseType(typeof(RegisterResponse), StatusCodes.Status200OK)]
+
+    [ProducesResponseType(typeof(RegisterResponseApplication), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     [HttpGet("confirmemail")]
-    public async Task<ActionResult<RegisterResponse>> ConfirmEmail(string userId, string token)
-    {     
-        return Ok("Usuários criado e e-mail enviado com sucesso!");
+    public async Task<ActionResult<RegisterResponseApplication>> ConfirmEmail(string userId, string token)
+    {
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user != null)
+        {
+            var result = await _userManager.ConfirmEmailAsync(user, token);
+            if (result.Succeeded)
+            {
+                return Ok("Usuário criado e e-mail enviado com sucesso!");
+            }
+        }
+
+        return BadRequest("Falha ao confirmar e-mail. Solicite o reenvio do e-mail de confirmação.");        
+    }
+
+    private async Task<bool> SendEmailAsync(string email)
+    {
+        var user = await _userManager.FindByEmailAsync(email);
+        if (user == null)
+        {
+            return false;
+        }
+
+        var confirmationToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+        var confirmationLink = Url.Action(action: "confirmemail", controller: "Account",
+                               values: new { userId = user.Id, token = confirmationToken },
+                               protocol: "https", host: "localhost:7125") ?? "/";
+
+        string msgBody = $"Clique no link abaixo para confirmar seu endereço de e-mail: \n\n {confirmationLink}";
+
+        await _emailService.SendAsync(email, "Confirme seu e-mail.", msgBody);
+
+        return true;
     }
 
 }

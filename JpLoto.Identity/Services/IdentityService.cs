@@ -1,12 +1,11 @@
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Options;
 using JpLoto.Application.DTOs.Request;
 using JpLoto.Application.DTOs.Response;
 using JpLoto.Application.Interfaces.Services;
 using JpLoto.Identity.Configurations;
-using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace JpLoto.Identity.Services
 {
@@ -25,33 +24,34 @@ namespace JpLoto.Identity.Services
             _jwtOptions = jwtOptions.Value;
         }
 
-        public async Task<RegisterResponse> RegisterNewUser(RegisterRequest usuarioCadastro)
+        public async Task<RegisterResponseApplication> RegisterNewUser(RegisterRequestApplication usuarioCadastro)
         {
             var identityUser = new IdentityUser
             {
                 UserName = usuarioCadastro.Email,
                 Email = usuarioCadastro.Email,
-                EmailConfirmed = true
+                EmailConfirmed = false,             // User can do it by checking the 'Email confirmation link' sent on Register
+                TwoFactorEnabled = false            // User can do it on 'UserProfile/SecuritySettings'
             };
 
             var result = await _userManager.CreateAsync(identityUser, usuarioCadastro.Senha);
             if (result.Succeeded)
                 await _userManager.SetLockoutEnabledAsync(identityUser, false);
 
-            var usuarioCadastroResponse = new RegisterResponse(result.Succeeded);
+            var usuarioCadastroResponse = new RegisterResponseApplication(result.Succeeded);
             if (!result.Succeeded && result.Errors.Count() > 0)
                 usuarioCadastroResponse.AdicionarErros(result.Errors.Select(r => r.Description));
 
             return usuarioCadastroResponse;
         }
 
-        public async Task<LoginResponse> Login(LoginRequest usuarioLogin)
+        public async Task<LoginResponseApplication> Login(LoginRequestApplication usuarioLogin)
         {
             var result = await _signInManager.PasswordSignInAsync(usuarioLogin.Email, usuarioLogin.Senha, false, true);
             if (result.Succeeded)
                 return await GenerateCredentials(usuarioLogin.Email);
 
-            var usuarioLoginResponse = new LoginResponse();
+            var usuarioLoginResponse = new LoginResponseApplication();
             if (!result.Succeeded)
             {
                 if (result.IsLockedOut)
@@ -66,30 +66,30 @@ namespace JpLoto.Identity.Services
 
             return usuarioLoginResponse;
         }
-        
+
         public async Task Logout()
         {
             // Logoff direto, sem confirmacao
             await _signInManager.SignOutAsync();
         }
 
-        public async Task<LoginResponse> RefreshToken(string usuarioId)
+        public async Task<LoginResponseApplication> RefreshToken(string usuarioId)
         {
-            var usuarioLoginResponse = new LoginResponse();
+            var usuarioLoginResponse = new LoginResponseApplication();
             var usuario = await _userManager.FindByIdAsync(usuarioId);
-            
+
             if (await _userManager.IsLockedOutAsync(usuario))
                 usuarioLoginResponse.AdicionarErro("Essa conta está bloqueada");
             else if (!await _userManager.IsEmailConfirmedAsync(usuario))
                 usuarioLoginResponse.AdicionarErro("Essa conta precisa confirmar seu e-mail antes de realizar o login");
-            
+
             if (usuarioLoginResponse.Sucesso)
                 return await GenerateCredentials(usuario.Email);
 
             return usuarioLoginResponse;
         }
 
-        private async Task<LoginResponse> GenerateCredentials(string email)
+        private async Task<LoginResponseApplication> GenerateCredentials(string email)
         {
             var user = await _userManager.FindByEmailAsync(email);
             var accessTokenClaims = await TakeClaims(user, adicionarClaimsUsuario: true);
@@ -101,7 +101,7 @@ namespace JpLoto.Identity.Services
             var accessToken = GerarToken(accessTokenClaims, dataExpiracaoAccessToken);
             var refreshToken = GerarToken(refreshTokenClaims, dataExpiracaoRefreshToken);
 
-            return new LoginResponse
+            return new LoginResponseApplication
             (
                 sucesso: true,
                 accessToken: accessToken,
