@@ -1,14 +1,14 @@
-﻿using JPLoto.Domain.Dto.Request;
-using JPLoto.Domain.Dto.Response;
+﻿using JpLoto.Application.Dto.Request;
+using JpLoto.Application.Dto.Response;
 
 namespace JpLoto.Site.Services.Account
 {
     public interface IAccountService
     {
-        Task<LoginResponse> Login(LoginRequest request);
-        Task<RegisterResponse> Register(RegisterRequest request);
-        Task<RegisterResponse> ChangePassword(ChangePasswordRequest request);
-        //Task<bool> IsUserAuthenticated();
-        bool IsUserAuthenticated();
+        Task<LoginResponseData> Login(LoginRequestApplication request);
+        Task Logout();
+        Task<RegisterResponseData> Register(RegisterRequestApplication request);
+        Task<RegisterResponseData> ChangePassword(ChangePasswordRequestApplication request);
+        Task<bool> IsUserAuthenticated();
     }
 }

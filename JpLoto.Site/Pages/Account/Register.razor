@@ -1,0 +1,65 @@
+﻿@page "/register"
+@inject IAccountService accountService
+@inject NavigationManager navigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+<PageTitle>Register</PageTitle>
+
+<h3>Login</h3>
+
+<EditForm Model="registerRequest" OnValidSubmit="HandleRegister">
+    <DataAnnotationsValidator />
+    <div class="mb-3">
+        <label for="email">Email</label>
+        <InputText id="email" @bind-Value="registerRequest.Email" class="form-control" type="email" />
+        <ValidationMessage For="@(() => registerRequest.Email)" />
+    </div>
+    <div class="mb-3">
+        <label for="senha">Password</label>
+        <InputText id="senha" @bind-Value="registerRequest.Senha" class="form-control" type="password" />
+        <ValidationMessage For="@(() => registerRequest.Senha)" />
+    </div>
+    <div class="mb-3">
+        <label for="senhaConfirmacao">Confirm password</label>
+        <InputText id="senhaConfirmacao" @bind-Value="registerRequest.SenhaConfirmacao" class="form-control" type="password" />
+        <ValidationMessage For="@(() => registerRequest.SenhaConfirmacao)" />
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+    <p><a class="btn btn-link" href="login">Arealdy registered? Click here to sing in.</a></p>
+</EditForm>
+<div class="mt-2 text-danger">    
+    @if(errorMessages.Count > 0)
+    {
+        foreach(var msg in errorMessages)
+        {
+            <label>@msg</label>
+            <br />
+        }
+    }
+</div>
+
+@code {
+    private RegisterRequestApplication registerRequest = new();
+    private List<string> errorMessages = new();
+    private string returnUrl = string.Empty;
+
+    protected override void OnInitialized()
+    {
+        var uri = navigationManager.ToAbsoluteUri(navigationManager.Uri);
+        if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("returnUrl", out var url))
+        {
+            returnUrl = url;
+        }
+    }
+
+    private async Task HandleRegister()
+    {
+        errorMessages = new();
+
+        var response = await accountService.Register(registerRequest);
+        if (response.Sucesso)
+            navigationManager.NavigateTo(returnUrl);
+
+        errorMessages = response.Erros;
+    }
+
+}

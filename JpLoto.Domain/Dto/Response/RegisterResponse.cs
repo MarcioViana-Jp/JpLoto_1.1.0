@@ -1,4 +1,4 @@
-﻿namespace JPLoto.Domain.Dto.Response;
+﻿namespace JpLoto.Domain.Dto.Response;
 
 public class RegisterResponse
 {

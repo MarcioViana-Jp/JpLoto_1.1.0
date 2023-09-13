@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace JpLoto.Application.DTOs.Request;
+namespace JpLoto.Application.Dto.Request;
 
 public class LoginRequestApplication
 {
@@ -12,4 +12,5 @@ public class LoginRequestApplication
 
     [Required(ErrorMessage = "O campo {0} é obrigatório")]
     public string Senha { get; set; } = string.Empty;
+    public bool IsPersistent { get; set; } = false;
 }

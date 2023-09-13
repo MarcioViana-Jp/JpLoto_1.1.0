@@ -1,12 +1,10 @@
-﻿using JpLoto.Api.Extensions;
-using JpLoto.Application.DTOs.Request;
-using JpLoto.Application.DTOs.Response;
+﻿using JpLoto.Application.Dto.Request;
+using JpLoto.Application.Dto.Response;
 using JpLoto.Application.Interfaces.Services;
 using JpLoto.EmailServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
 using System.Security.Claims;
 
 namespace JpLoto.Api.Controllers;
@@ -36,19 +34,18 @@ public class AccountController : ControllerBase
         if (!ModelState.IsValid)
             return BadRequest();
 
-        var resultado = await _identityService.RegisterNewUser(registerRequest);
-        if (resultado.Sucesso)
+        var response = await _identityService.RegisterNewUser(registerRequest);
+        if (response.Sucesso)
         {
-            if (await SendEmailAsync(registerRequest.Email))
-            {
-                resultado.AdicionarErro("Usuario adicionado, mas nao foi possivel enviar o e-mail de confirmacao.");
-                return Ok(resultado);
-            }
+            await SendEmailAsync(registerRequest.Email);
+            return Ok(response);
+
         }
-        else if (resultado.Erros.Count > 0)
+        else if (response.Erros.Count > 0)
         {
-            var problemDetails = new CustomProblemDetails(HttpStatusCode.BadRequest, Request, errors: resultado.Erros);
-            return BadRequest(problemDetails);
+            //var problemDetails = new CustomProblemDetails(HttpStatusCode.BadRequest, Request, errors: response.Erros);
+            //return BadRequest(problemDetails);
+            return BadRequest(response);
         }
 
         return StatusCode(StatusCodes.Status500InternalServerError);
@@ -64,29 +61,32 @@ public class AccountController : ControllerBase
         if (!ModelState.IsValid)
             return BadRequest();
 
-            if (await SendEmailAsync(emailRequest.Email))
-            {
-                return Ok("E-mail de confirmação reenviado com sucesso.");
-            }
+        if (await SendEmailAsync(emailRequest.Email))
+        {
+            return Ok("E-mail de confirmação reenviado com sucesso.");
+        }
 
         return StatusCode(StatusCodes.Status500InternalServerError);
     }
+
 
     [ProducesResponseType(typeof(RegisterResponseApplication), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     [HttpPost("login")]
-    public async Task<ActionResult<RegisterResponseApplication>> Login(LoginRequestApplication usuarioLogin)
+    public async Task<ActionResult<LoginResponseApplication>> Login(LoginRequestApplication usuarioLogin)
     {
         if (!ModelState.IsValid)
             return BadRequest();
 
         var resultado = await _identityService.Login(usuarioLogin);
         if (resultado.Sucesso)
+        {
             return Ok(resultado);
+        }
 
-        return Unauthorized();
+        return Unauthorized(resultado);
     }
 
 
@@ -107,7 +107,7 @@ public class AccountController : ControllerBase
         if (resultado.Sucesso)
             return Ok(resultado);
 
-        return Unauthorized();
+        return Unauthorized(resultado);
     }
 
 
@@ -116,13 +116,13 @@ public class AccountController : ControllerBase
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     [HttpGet("logout")]
-    public async Task<ActionResult<RegisterResponseApplication>> Logout()
+    public async Task<ActionResult> Logout()
     {
         await _identityService.Logout();
-        
-        return Ok("Usuário desconectado com sucesso!");
+
+        return Ok("Usuário desconectado do servidor com sucesso!");
     }
-    
+
 
     [ProducesResponseType(typeof(RegisterResponseApplication), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -141,8 +141,33 @@ public class AccountController : ControllerBase
             }
         }
 
-        return BadRequest("Falha ao confirmar e-mail. Solicite o reenvio do e-mail de confirmação.");        
+        return BadRequest("Falha ao confirmar e-mail. Solicite o reenvio do e-mail de confirmação.");
     }
+
+
+    [ProducesResponseType(typeof(RegisterResponseApplication), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+    [HttpPost("changepassword")]
+    public async Task<IActionResult> ChangePassword(ChangePasswordRequestApplication changePswRequest)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest();
+
+        var response = await _identityService.ChangePassword(changePswRequest);
+        if (response.Sucesso)
+            return Ok(response);
+        else if (response.Erros.Count > 0)
+        {
+            //var problemDetails = new CustomProblemDetails(HttpStatusCode.BadRequest, Request, errors: response.Erros);
+            //return BadRequest(problemDetails);
+            return BadRequest(response);
+        }
+
+        return StatusCode(StatusCodes.Status500InternalServerError);
+    }
+
+
 
     private async Task<bool> SendEmailAsync(string email)
     {

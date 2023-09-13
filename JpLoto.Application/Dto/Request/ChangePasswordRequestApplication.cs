@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace JpLoto.Application.DTOs.Request;
+namespace JpLoto.Application.Dto.Request;
 
 public class ChangePasswordRequestApplication
 {
@@ -14,4 +14,5 @@ public class ChangePasswordRequestApplication
 
     [Compare(nameof(NovaSenha), ErrorMessage = "As senhas devem ser iguais")]
     public string SenhaConfirmacao { get; set; } = string.Empty;
+    public string UserName { get; set; } = string.Empty;
 }

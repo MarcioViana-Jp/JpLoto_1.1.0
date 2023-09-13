@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace JPLoto.Domain.Dto.Request;
+namespace JpLoto.Domain.Dto.Request;
 
 public class RegisterRequest
 {

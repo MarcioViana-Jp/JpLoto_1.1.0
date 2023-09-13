@@ -1,0 +1,76 @@
+﻿@page "/logout"
+@using System.Security.Claims
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IAccountService accountService
+@inject ILocalStorageService localStorage
+@inject NavigationManager navigationManager
+
+<PageTitle>Logout</PageTitle>
+
+<h3>Logout</h3>
+
+@if (claims.Count() > 0)
+{
+    <h5>Hi @currentUserName, You're about to leave...</h5>
+    <button class="btn btn-link" @onclick="HandleLogout">Click here to logoff.</button>
+}
+else
+{
+    <h5>Hi Dude, You're not logged...</h5>
+    <button class="btn btn-link" @onclick="() => navigationManager.NavigateTo(returnUrl)">Click here to return.</button>
+}
+
+@code {
+    private string? currentUserName;
+    private IEnumerable<Claim> claims = Enumerable.Empty<Claim>();
+    private string returnUrl = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetClaimsPrincipalData();
+
+        var uri = navigationManager.ToAbsoluteUri(navigationManager.Uri);
+        if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("returnUrl", out var url))
+        {
+            returnUrl = url;
+        }
+
+    }
+
+
+    private async Task<string> GetClaimsPrincipalData()
+    {
+        var authState = await AuthenticationStateProvider
+            .GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity is not null && user.Identity.IsAuthenticated)
+        {
+            claims = user.Claims;
+            currentUserName = user.FindFirst(c => c.Type == "name")?.Value;
+        }
+        else
+        {
+            currentUserName = "The user is NOT authenticated.";
+        }
+
+        return currentUserName;
+    }
+
+
+    private async Task HandleLogout()
+    {
+        await accountService.Logout();
+        try
+        {
+            await localStorage.RemoveItemAsync("authToken");        // Stores credentials of the current logged User (it can be Company or Shain)
+        }
+        catch
+        {
+            // Nothing to do
+        }
+        navigationManager.NavigateTo(returnUrl, true);
+    }
+
+
+}

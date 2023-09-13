@@ -1,0 +1,75 @@
+﻿@page "/login"
+@inject IAccountService accountService
+@inject NavigationManager navigationManager
+@inject ILocalStorageService LocalStorage
+@inject AuthenticationStateProvider AuthenticationStateProvider
+<PageTitle>Login</PageTitle>
+
+<h3>Login</h3>
+
+<EditForm Model="loginRequest" OnValidSubmit="HandleLogin">
+    <DataAnnotationsValidator />
+    <div class="mb-3">
+        <label for="email">Email</label>
+        <InputText id="email" @bind-Value="loginRequest.Email" class="form-control" type="email" />
+        <ValidationMessage For="@(() => loginRequest.Email)" />
+    </div>
+    <div class="mb-3">
+        <label for="senha">Password</label>
+        <InputText id="senha" @bind-Value="loginRequest.Senha" class="form-control" type="password" />
+        <ValidationMessage For="@(() => loginRequest.Senha)" />
+    </div>
+    <div class="mb-3">
+        <label>
+            Manter logado?
+            <InputCheckbox @bind-Value="loginRequest.IsPersistent" />
+        </label>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</EditForm>
+<div class="mt-2 text-danger">
+    @if (errorMessages.Count > 0)
+    {
+        foreach (var msg in errorMessages)
+        {
+            <label>@msg</label>
+            <br />
+        }
+    }
+</div>
+
+@code {
+    private LoginRequestApplication loginRequest = new();
+    private List<string> errorMessages = new();
+    private string returnUrl = string.Empty;
+
+    protected override void OnInitialized()
+    {
+        var uri = navigationManager.ToAbsoluteUri(navigationManager.Uri);
+        if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("returnUrl", out var url))
+        {
+            returnUrl = url;
+        }
+    }
+
+    private async Task HandleLogin()
+    {
+        errorMessages = new();
+
+        var response = await accountService.Login(loginRequest);
+        if (response.Sucesso)
+        {
+            await LocalStorage.SetItemAsync("authToken", response.AccessToken);
+            await AuthenticationStateProvider.GetAuthenticationStateAsync();
+           
+            if (await accountService.IsUserAuthenticated())
+                errorMessages = new() { "Usuário não logado no momento.- 1o IF" };
+            navigationManager.NavigateTo(returnUrl);
+        }
+        else
+        {
+            errorMessages = response.Erros;
+        }
+    }
+
+}

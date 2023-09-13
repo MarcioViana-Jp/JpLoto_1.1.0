@@ -10,7 +10,26 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<SmtpSetting>(builder.Configuration.GetSection("SMTP"));
 
 // Add services to the container.
-builder.Services.AddCors();
+//builder.Services.AddCors();
+
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy(name: "cors_policy",
+//                      policy =>
+//                      {
+//                          policy.WithOrigins("https://localhost:7129", "http://localhost:5094")
+//                          .AllowAnyMethod()
+//                          .AllowAnyHeader();
+//                      });
+//});
+
+builder.Services.AddCors(p => p.AddPolicy("cors_policy", policy =>
+{
+    policy.WithOrigins("https://localhost:7219")
+    .AllowAnyMethod()
+    .AllowAnyHeader();
+}));
+
 builder.Services.AddApiProblemDetails();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -37,11 +56,14 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseCors(builder => builder
-    .SetIsOriginAllowed(orign => true)
-    .AllowAnyMethod()
-    .AllowAnyHeader()
-    .AllowCredentials());
+app.UseCors("cors_policy");
+
+//app.UseCors(builder => builder
+//    .SetIsOriginAllowed(orign => true)
+//    .AllowAnyMethod()
+//    .AllowAnyHeader()
+//    .AllowAnyMethod()
+//    .AllowCredentials());
 
 app.MapControllers();
 

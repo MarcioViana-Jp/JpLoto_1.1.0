@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace JPLoto.Domain.Dto.Response;
+namespace JpLoto.Domain.Dto.Response;
 
 public class LoginResponse
 {

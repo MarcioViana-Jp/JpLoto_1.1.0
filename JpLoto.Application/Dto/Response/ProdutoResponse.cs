@@ -1,4 +1,4 @@
-namespace JpLoto.Application.DTOs.Response;
+namespace JpLoto.Application.Dto.Response;
 
 public class ProdutoResponse
 {

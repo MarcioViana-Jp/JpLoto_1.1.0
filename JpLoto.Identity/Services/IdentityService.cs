@@ -1,5 +1,5 @@
-using JpLoto.Application.DTOs.Request;
-using JpLoto.Application.DTOs.Response;
+using JpLoto.Application.Dto.Request;
+using JpLoto.Application.Dto.Response;
 using JpLoto.Application.Interfaces.Services;
 using JpLoto.Identity.Configurations;
 using Microsoft.AspNetCore.Identity;
@@ -44,10 +44,24 @@ namespace JpLoto.Identity.Services
 
             return usuarioCadastroResponse;
         }
+        
+        public async Task<RegisterResponseApplication> ChangePassword(ChangePasswordRequestApplication changePswRequest)
+        {
+            var response = new RegisterResponseApplication(true);
+            var identityUser = await _userManager.FindByEmailAsync(changePswRequest.UserName); // TODO - Para ajustar depois
+            var result = await _userManager.ChangePasswordAsync(identityUser, changePswRequest.SenhaAtual, changePswRequest.NovaSenha);
+
+            if (result.Succeeded)
+                await _userManager.SetLockoutEnabledAsync(identityUser, false);
+            else if (!result.Succeeded && result.Errors.Count() > 0)
+                response.AdicionarErros(result.Errors.Select(r => r.Description));
+
+            return response;
+        }
 
         public async Task<LoginResponseApplication> Login(LoginRequestApplication usuarioLogin)
         {
-            var result = await _signInManager.PasswordSignInAsync(usuarioLogin.Email, usuarioLogin.Senha, false, true);
+            var result = await _signInManager.PasswordSignInAsync(usuarioLogin.Email, usuarioLogin.Senha, usuarioLogin.IsPersistent, true);
             if (result.Succeeded)
                 return await GenerateCredentials(usuarioLogin.Email);
 
@@ -128,6 +142,7 @@ namespace JpLoto.Identity.Services
 
             claims.Add(new Claim(JwtRegisteredClaimNames.Sub, user.Id));
             claims.Add(new Claim(JwtRegisteredClaimNames.Email, user.Email));
+            claims.Add(new Claim(JwtRegisteredClaimNames.Name, user.UserName));
             claims.Add(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()));
             claims.Add(new Claim(JwtRegisteredClaimNames.Nbf, DateTime.Now.ToString()));
             claims.Add(new Claim(JwtRegisteredClaimNames.Iat, DateTime.Now.ToString()));
