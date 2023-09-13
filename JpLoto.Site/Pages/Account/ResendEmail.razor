@@ -1,22 +1,33 @@
-﻿@page "/logout"
+﻿@page "/resendemail"
 @using System.Security.Claims
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject IAccountService accountService
 @inject ILocalStorageService localStorage
 @inject NavigationManager navigationManager
 
-<PageTitle>Logout</PageTitle>
+<PageTitle>Resend Confirmation Email</PageTitle>
 
-<h3>Logout</h3>
+<h3>Resend Confirmation Email</h3>
 
 @if (claims.Count() > 0)
 {
-    <h5>Hi @currentUserName, You're about to leave...</h5>
-    <p>
-        <button class="btn btn-link" @onclick="HandleLogout">Click here to logoff.</button>
-        <br />
-        <button class="btn btn-link" @onclick="() => navigationManager.NavigateTo(returnUrl)">Click here to return.</button>
-    </p>
+    if (!isSent)
+    {
+        <h5>Hi @currentUserName, please click on link below to receive a new confirmation email:</h5>
+        <p> 
+            <button class="btn btn-link" @onclick="HandleResendConfirmationEmail">Click here to resend confirmation email.</button> 
+            <br />
+            <button class="btn btn-link" @onclick="() => navigationManager.NavigateTo(returnUrl)">Click here to return.</button> 
+        </p>
+
+    }
+    else
+    {
+        <h5>Hi @currentUserName, a new confirmation was sent to your registered email:</h5>
+        <p>>
+            <button class="btn btn-link" @onclick="() => navigationManager.NavigateTo(returnUrl)">Click here to return.</button>
+        </p>
+    }
 }
 else
 {
@@ -30,6 +41,7 @@ else
     private string? currentUserName;
     private IEnumerable<Claim> claims = Enumerable.Empty<Claim>();
     private string returnUrl = string.Empty;
+    private bool isSent = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -64,18 +76,11 @@ else
     }
 
 
-    private async Task HandleLogout()
+    private async Task HandleResendConfirmationEmail()
     {
-        await accountService.Logout();
-        try
-        {
-            await localStorage.RemoveItemAsync("authToken");        // Stores credentials of the current logged User (it can be Company or Shain)
-        }
-        catch
-        {
-            // Nothing to do
-        }
-        navigationManager.NavigateTo(returnUrl, true);
+        await accountService.ResendConfirmationEmail(new EmailRequestApplication { Email = currentUserName });
+        isSent = true;
+        //navigationManager.NavigateTo(returnUrl, true);
     }
 
 

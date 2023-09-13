@@ -160,5 +160,6 @@ namespace JpLoto.Identity.Services
 
             return claims;
         }
+
     }
 }

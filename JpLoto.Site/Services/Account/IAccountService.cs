@@ -10,5 +10,6 @@ namespace JpLoto.Site.Services.Account
         Task<RegisterResponseData> Register(RegisterRequestApplication request);
         Task<RegisterResponseData> ChangePassword(ChangePasswordRequestApplication request);
         Task<bool> IsUserAuthenticated();
+        Task<bool> ResendConfirmationEmail(EmailRequestApplication emailRequest);
     }
 }

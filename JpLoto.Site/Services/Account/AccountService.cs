@@ -41,10 +41,10 @@ public class AccountService : IAccountService
         return await result.Content.ReadFromJsonAsync<RegisterResponseData>();
     }
     
-    public async Task<RegisterResponseData> ResendConfirmationEmail(RegisterRequestApplication request)
+    public async Task<bool> ResendConfirmationEmail(EmailRequestApplication request)
     {
-        var result = await _http.PostAsJsonAsync("https://localhost:7125/api/account/resendemail", request);
-        return await result.Content.ReadFromJsonAsync<RegisterResponseData>();
+        await _http.PostAsJsonAsync("https://localhost:7125/api/account/resendemail", request);
+        return true;
     }
 
     public string GetCurrentUser()

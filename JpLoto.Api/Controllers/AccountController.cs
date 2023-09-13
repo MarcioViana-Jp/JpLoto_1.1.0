@@ -56,8 +56,9 @@ public class AccountController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     [HttpPost("resendemail")]
-    public async Task<IActionResult> ResendEmail(EmailRequestApplication emailRequest)
+    public async Task<IActionResult> ResendConfirmationEmail(EmailRequestApplication emailRequest)
     {
+        // Sending errors are not proccessed. Users might procceed resending email again, instead.
         if (!ModelState.IsValid)
             return BadRequest();
 
