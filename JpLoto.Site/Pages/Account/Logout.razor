@@ -7,24 +7,27 @@
 
 <PageTitle>Logout</PageTitle>
 
-<h3>Logout</h3>
+<div class="container-fluid p-5 m-0 bg-white">
+    <h5>Logout</h5>
+    @if (claims.Count() > 0)
+    {
+        <h6>Hi @currentUserName, You're about to leave...</h6>
 
-@if (claims.Count() > 0)
-{
-    <h5>Hi @currentUserName, You're about to leave...</h5>
-    <p>
-        <button class="btn btn-link" @onclick="HandleLogout">Click here to logoff.</button>
-        <br />
-        <button class="btn btn-link" @onclick="() => navigationManager.NavigateTo(returnUrl)">Click here to return.</button>
-    </p>
-}
-else
-{
-    <h5>Hi Dude, You're not logged in...</h5>
-    <p>
-        <button class="btn btn-link" @onclick="() => navigationManager.NavigateTo(returnUrl)">Click here to return.</button>
-    </p>
-}
+        <p class="mt-4 text-sm">
+            <button class="btn btn-link" style="padding: 0; margin: 0;" @onclick="HandleLogout">Click here to logoff.</button>
+            <br />
+            Or <a href="@returnUrl" class="text-primary text-gradient font-weight-bold">click here</a> to return
+        </p>
+
+    }
+    else
+    {
+        <h6>Hi Dude, You're not logged in...</h6>
+        <p>
+            <button class="btn btn-link" @onclick="() => navigationManager.NavigateTo(returnUrl)">Click here to return.</button>
+        </p>
+    }
+</div>
 
 @code {
     private string? currentUserName;
