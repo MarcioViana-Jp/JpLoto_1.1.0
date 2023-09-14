@@ -7,6 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\assets\img\logo-ct.png" />
+    <Content Remove="wwwroot\site_icons\flag-pt-BR.png" />
+    <Content Remove="wwwroot\site_icons\logo-ct.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="wwwroot\assets\img\logo-ct.png" />
+    <EmbeddedResource Include="wwwroot\site_icons\flag-pt-BR.png" />
+    <EmbeddedResource Include="wwwroot\site_icons\logo-ct.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Blazored.LocalStorage" Version="4.4.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="7.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.10" />
@@ -19,6 +31,10 @@
   <ItemGroup>
     <ProjectReference Include="..\JpLoto.Application\JpLoto.Application.csproj" />
     <ProjectReference Include="..\JpLoto.Domain\JpLoto.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages\Components\" />
   </ItemGroup>
 
 </Project>
