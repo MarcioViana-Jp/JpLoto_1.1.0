@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Localization;
 using System.Reflection;
 
-namespace JPLoto.Globalization.Localization;
+namespace JpLoto.Globalization.Localization;
 
 public class CommonLocalizationService
 {

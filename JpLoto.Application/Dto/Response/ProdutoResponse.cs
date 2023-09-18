@@ -4,17 +4,17 @@ public class ProdutoResponse
 {
     public int Id { get; set; }
     public string Codigo { get; set; }
-    public string Nome { get; set; }
+    public string Name { get; set; }
     public string Descricao { get; set; }
     public decimal Preco { get; set; }
     public DateTime DataCadastro { get; set; }
     public CategoriaResponse Categoria { get; set; }
 
-    public ProdutoResponse(int id, string codigo, string nome, string descricao, decimal preco, DateTime dataCadastro, CategoriaResponse categoria)
+    public ProdutoResponse(int id, string codigo, string name, string descricao, decimal preco, DateTime dataCadastro, CategoriaResponse categoria)
     {
         Id = id;
         Codigo = codigo;
-        Nome = nome;
+        Name = name;
         Descricao = descricao;
         Preco = preco;
         DataCadastro = dataCadastro;
@@ -27,11 +27,11 @@ public class ProdutoResponse
         (
             produto.Id,
             produto.Codigo,
-            produto.Nome,
+            produto.Name,
             produto.Descricao,
             produto.Preco,
             produto.DataCadastro,
-            new CategoriaResponse(produto.Categoria.Id, produto.Categoria.Nome)
+            new CategoriaResponse(produto.Categoria.Id, produto.Categoria.Name)
         );
     } */
 }

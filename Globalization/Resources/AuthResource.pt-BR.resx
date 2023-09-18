@@ -136,19 +136,19 @@
     <value>Usuário já existe.</value>
   </data>
   <data name="AccountUserOrPasswordInvalid" xml:space="preserve">
-    <value>Usuário e/ou senha inválidos.</value>
+    <value>Usuário e/ou Password inválidos.</value>
   </data>
   <data name="ConfirmNewPassword" xml:space="preserve">
-    <value>Confirme nova senha</value>
+    <value>Confirme nova Password</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
-    <value>Confirme senha</value>
+    <value>Confirme Password</value>
   </data>
   <data name="Email" xml:space="preserve">
     <value>E-mail</value>
   </data>
   <data name="ForgotPassword" xml:space="preserve">
-    <value>Esqueceu a senha?</value>
+    <value>Esqueceu a Password?</value>
   </data>
   <data name="IsPersistent" xml:space="preserve">
     <value>Manter logado</value>
@@ -178,7 +178,7 @@
     <value>Logout</value>
   </data>
   <data name="NewPassword" xml:space="preserve">
-    <value>Nova senha</value>
+    <value>Nova Password</value>
   </data>
   <data name="NoRecordsFound" xml:space="preserve">
     <value>Nenhum registro encontrado.</value>
@@ -187,22 +187,22 @@
     <value>Não há usuário logado.</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Senha</value>
+    <value>Password</value>
   </data>
   <data name="PasswordChangeOk" xml:space="preserve">
-    <value>Senha alterada com sucesso.</value>
+    <value>Password alterada com success.</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>Novo usuário</value>
   </data>
   <data name="RegistrationOk" xml:space="preserve">
-    <value>Registrado com sucesso.</value>
+    <value>Registrado com success.</value>
   </data>
   <data name="ServerError" xml:space="preserve">
     <value>Erro de servidor. Por favor, tente novamente mais tarde.</value>
   </data>
   <data name="UpdateOk" xml:space="preserve">
-    <value>Alterações efetuadas com sucesso.</value>
+    <value>Alterações efetuadas com success.</value>
   </data>
   <data name="UserNotFound" xml:space="preserve">
     <value>Usuário não encontrado.</value>
@@ -229,7 +229,7 @@
     <value>Essas combinações poderão ser filtradas, salvas em disco e também poderão ser impressas.</value>
   </data>
   <data name="WrongPassword" xml:space="preserve">
-    <value>Senha inválida.</value>
+    <value>Password inválida.</value>
   </data>
   <data name="_LOGIN_TITLE" xml:space="preserve">
     <value>Login</value>

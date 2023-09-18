@@ -26,7 +26,6 @@
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <link href="css/app.css" rel="stylesheet" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <link href="JpLoto.Site.styles.css" rel="stylesheet" />
 
     <!-- Material Dashboard 2 - v3.1.0 -->
     <!--     Fonts and icons     -->
@@ -141,7 +140,6 @@
         </div>
     </div>
     <!-- ************************************************************************************************** -->
-
     <!--   Core JS Files   -->
     <script src="assets/js/core/popper.min.js"></script>
     <script src="assets/js/core/bootstrap.min.js"></script>
@@ -166,6 +164,47 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="assets/js/material-dashboard.min.js?v=3.1.0"></script>
+
+    <script>
+        window.blazorCulture = {
+            get: () => localStorage["BlazorCulture"],
+            set: (value) => localStorage["BlazorCulture"] = value
+        }
+        window.Confirm = function (title) {
+            return confirm(title);
+        }
+        window.Alert = function (title) {
+            return alert(title);
+        }
+        function SaveFile(fileName, content) {
+            const anchorElement = document.createElement('a');
+            anchorElement.download = fileName;
+            anchorElement.href = "data:text/plain;charset=utf-8," + encodeURIComponent(content);
+            document.body.appendChild(anchorElement);
+            anchorElement.click();
+            document.body.removeChild(anchorElement);
+        }
+        async function saveFileAs(_suggestedName, _description, _extension) {
+            let fileName;
+            try {
+                const fileHandle = await self.showSaveFilePicker({
+                    suggestedName: _suggestedName,
+                    startIn: 'downloads',
+                    types: [{
+                        description: _description,
+                        accept: { 'text/loto': [_extension] }
+                    }],
+                    multiple: false
+                });
+                fileName = fileHandle.name;
+                if (fileHandle != null)
+                    fileHandle.remove()
+            }
+            catch { fileName = ""; }
+
+            return fileName;
+        }
+    </script>
 
 </body>
 

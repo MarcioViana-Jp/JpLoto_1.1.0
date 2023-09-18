@@ -3,12 +3,12 @@ namespace JpLoto.Application.Dto.Response;
 public class CategoriaResponse
 {
     public int Id { get; set; }
-    public string Nome { get; set; }
+    public string Name { get; set; }
 
-    public CategoriaResponse(int id, string nome)
+    public CategoriaResponse(int id, string name)
     {
         Id = id;
-        Nome = nome;
+        Name = name;
     }
     /*
     public static CategoriaResponse ConverterParaResponse(Categoria categoria)
@@ -16,7 +16,7 @@ public class CategoriaResponse
         return new CategoriaResponse
         (
             categoria.Id,
-            categoria.Nome
+            categoria.Name
         );
     } */
 }

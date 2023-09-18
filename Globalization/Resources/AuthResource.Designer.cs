@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace JPLoto.Globalization.Resources {
+namespace JpLoto.Globalization.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace JPLoto.Globalization.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JPLoto.Shared.Resources.AuthResource", typeof(AuthResource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JpLoto.Shared.Resources.AuthResource", typeof(AuthResource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

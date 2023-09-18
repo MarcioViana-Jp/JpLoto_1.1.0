@@ -2,8 +2,8 @@
 {
     public class RegisterResponseData
     {
-        public bool Sucesso { get; set; }
-        public List<string> Erros { get; set; }
+        public bool Success { get; set; }
+        public List<string> Errors { get; set; }
 
     }
 }

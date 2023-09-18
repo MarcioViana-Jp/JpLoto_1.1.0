@@ -16,7 +16,7 @@ public class AccountService : IAccountService
         _authStateProvider = authStateProvider;
     }
 
-    public async Task<RegisterResponseData> ChangePassword(ChangePasswordRequestApplication request)
+    public async Task<RegisterResponseData> ChangePassword(ChangePasswordRequest request)
     {
         var result = await _http.PostAsJsonAsync("https://localhost:7125/api/account/changepassword", request);
         var response = await result.Content.ReadFromJsonAsync<RegisterResponseData>();
@@ -29,19 +29,19 @@ public class AccountService : IAccountService
         return isAuthenticated;
     }
 
-    public async Task<LoginResponseData> Login(LoginRequestApplication request)
+    public async Task<LoginResponseData> Login(LoginRequest request)
     {
         var result = await _http.PostAsJsonAsync("https://localhost:7125/api/account/login", request);
         return await result.Content.ReadFromJsonAsync<LoginResponseData>();
     }
 
-    public async Task<RegisterResponseData> Register(RegisterRequestApplication request)
+    public async Task<RegisterResponseData> Register(RegisterRequest request)
     {
         var result = await _http.PostAsJsonAsync("https://localhost:7125/api/account/register", request);
         return await result.Content.ReadFromJsonAsync<RegisterResponseData>();
     }
     
-    public async Task<bool> ResendConfirmationEmail(EmailRequestApplication request)
+    public async Task<bool> ResendConfirmationEmail(EmailRequest request)
     {
         await _http.PostAsJsonAsync("https://localhost:7125/api/account/resendemail", request);
         return true;

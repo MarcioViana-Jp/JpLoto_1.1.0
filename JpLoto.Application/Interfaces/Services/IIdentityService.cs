@@ -5,9 +5,9 @@ namespace JpLoto.Application.Interfaces.Services;
 
 public interface IIdentityService
 {
-    Task<RegisterResponseApplication> RegisterNewUser(RegisterRequestApplication usuarioCadastro);
-    Task<RegisterResponseApplication> ChangePassword(ChangePasswordRequestApplication changePswRequest);
-    Task<LoginResponseApplication> Login(LoginRequestApplication usuarioLogin);
+    Task<RegisterResponse> RegisterNewUser(RegisterRequest usuarioCadastro);
+    Task<RegisterResponse> ChangePassword(ChangePasswordRequest changePswRequest);
+    Task<LoginResponse> Login(LoginRequest usuarioLogin);
     Task Logout();
-    Task<LoginResponseApplication> RefreshToken(string usuarioId);
+    Task<LoginResponse> RefreshToken(string usuarioId);
 }

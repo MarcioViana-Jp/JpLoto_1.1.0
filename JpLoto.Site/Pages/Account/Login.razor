@@ -45,10 +45,10 @@
                                 </div>
                                 <ValidationMessage For="@(() => loginRequest.Email)" class="text-xs text-danger" />
                                 <div class="input-group input-group-outline mt-3">
-                                    <label for="senha" class="form-label text-xs">Password</label>
-                                    <InputText id="senha" type="password" style="text-align:center;" @bind-Value="loginRequest.Senha" class="form-control my-2" />
+                                    <label for="Password" class="form-label text-xs">Password</label>
+                                    <InputText id="Password" type="password" style="text-align:center;" @bind-Value="loginRequest.Password" class="form-control my-2" />
                                 </div>
-                                <ValidationMessage For="@(() => loginRequest.Senha)" class="text-xs text-danger" />
+                                <ValidationMessage For="@(() => loginRequest.Password)" class="text-xs text-danger" />
                                 <div class="form-check form-switch d-flex align-items-center mt-3">
                                     <InputCheckbox @bind-Value="loginRequest.IsPersistent" 
                                            class="form-check-input" type="checkbox" id="rememberMe" checked />                                    
@@ -86,7 +86,7 @@
 </main>
 
 @code {
-    private LoginRequestApplication loginRequest = new();
+    private LoginRequest loginRequest = new();
     private List<string> errorMessages = new();
     private string returnUrl = string.Empty;
 
@@ -104,7 +104,7 @@
         errorMessages = new();
 
         var response = await accountService.Login(loginRequest);
-        if (response.Sucesso)
+        if (response.Success)
         {
             await LocalStorage.SetItemAsync("authToken", response.AccessToken);
             await AuthenticationStateProvider.GetAuthenticationStateAsync();
@@ -115,7 +115,7 @@
         }
         else
         {
-            errorMessages = response.Erros;
+            errorMessages = response.Errors;
         }
     }
 

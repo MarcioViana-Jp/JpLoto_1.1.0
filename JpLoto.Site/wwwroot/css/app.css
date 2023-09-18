@@ -1,5 +1,13 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+}
+
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
@@ -12,15 +20,62 @@ a, .btn-link {
     color: #0071c1;
 }
 
-.btn-primary {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
+.btn2 {
+    margin: 0.5rem !important;
+    padding: 0.25rem !important;
+    height: 1.5rem !important;
+    width: fit-content !important;
+    min-width: 7rem !important;
+    font-size: 0.75rem;
 }
+
+.btn-primary {
+    /*color: #0060e5 !important;*/
+    color: white !important;
+    background-color: #1b6ec2 !important;
+    border-color: #1861ac !important;
+    transition: background-color 0.5s ease, color 0.5s ease, transform 0.5s
+}
+
+    .btn-primary:hover {
+        /*color: #5da8e0 !important;*/
+        color: ghostwhite !important;
+        background-color: #0060e5 !important;
+        transform: scale(1.1)
+        /*border-color: #1861ac!important;*/
+    }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
+
+.btn-delete, .btn-edit, .btn-new, .btn-recycle, .btn-restore, btn-stop {
+    margin: 0 1.25rem 0 0 !important;
+    display: inline;
+}
+
+    .btn-delete > *, .btn-edit > *, .btn-new > *, .btn-recycle > *, .btn-restore > *, btn-stop > * {
+        font-size: 1rem !important;
+    }
+
+    .btn-delete > *, .btn-edit > *, .btn-new > *, .btn-recycle > *, .btn-restore > *, btn-stop > * :hover{
+        cursor: pointer;
+    }
+
+.btn-page {
+    height: 2.0vh !important;
+    width: 2.0vh !important;
+    background-color: transparent;
+    color: dimgray;
+    padding: 0;
+    margin: 0.35vh 0.35vh 0 0.35vh;
+    border: solid thin transparent;
+    border-radius: 1px;
+}
+
+    .btn-page:hover {
+        border: solid thin gray;
+    }
 
 .content {
     padding-top: 1.1rem;
@@ -98,4 +153,462 @@ a, .btn-link {
 
     .loading-progress-text:after {
         content: var(--blazor-load-percentage-text, "Loading");
+    }
+
+/*
+ * Styles for JpLoto
+*/
+
+.inputGroup {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.inputGroupField {
+    width: 7rem;
+    background-color: rosybrown;
+    margin: 15px;
+}
+
+/* Text Colors */
+.text-blue       { color: #0060e5 !important; }
+.text-lightblue  { color: #4d9dee !important; }
+.text-red        { color: red !important; }
+.text-darkred    { color: darkred !important; }
+.text-orange     { color: orange !important; }
+.text-green      { color: green !important; }
+.text-darkgreen  { color: darkgreen !important; }
+.text-palegreen  { color: #dbeadd !important; }
+.text-lightgreen { color: #17b729 !important; }
+.text-gray       { color: gray !important; }
+.text-dimgray    { color: dimgray !important; }
+.text-lightgray  { color: lightgray !important; }
+
+/* Background Colors */
+.bg-blue      { background-color: #0060e5 !important; }
+.bg-lightblue { background-color: #4d9dee !important; }
+.bg-red       { background-color: red !important; }
+.bg-darkred   { background-color: darkred !important; }
+.bg-orange    { background-color: orange !important; }
+.bg-green     { background-color: green !important; }
+.bg-darkgreen { background-color: darkgreen !important; }
+.bg-palegreen { background-color: #dbeadd !important; }
+.bg-lightgreen{ background-color: #17b729 !important; }
+.bg-gray      { background-color: gray !important; }
+.bg-dimgray   { background-color: dimgray !important; }
+.bg-lightgray { background-color: lightgray !important; }
+
+/* Border Colors */
+.bc-blue       { border-color: #0060e5 !important; }
+.bc-lightblue  { border-color: #4d9dee !important; }
+.bc-red        { border-color: red !important; }
+.bc-darkred    { border-color: darkred !important; }
+.bc-orange     { border-color: orange !important; }
+.bc-green      { border-color: green !important; }
+.bc-darkgreen  { border-color: darkgreen !important; }
+.bc-palegreen  { border-color: #dbeadd !important; }
+.bc-lightgreen { border-color: #17b729 !important; }
+.bc-gray       { border-color: gray !important; }
+.bc-dimgray    { border-color: dimgray !important; }
+.bc-lightgray  { border-color: lightgray !important; }
+
+/* Text-bloc widh*/
+.txt-50  { min-width: 50px; }
+.txt-100 { min-width: 100px; }
+.txt-120 { min-width: 120px; }
+.txt-150 { min-width: 150px; }
+.txt-200 { min-width: 200px; } 
+.txt-300 { min-width: 300px; }
+
+.font-6  { font-size: 0.30rem; }
+.font-7  { font-size: 0.50rem; }
+.font-8  { font-size: 0.60rem; }
+.font-9  { font-size: 0.70rem; }
+.font-10 { font-size: 0.75rem; }
+.font-12 { font-size: 0.9rem; }
+.font-14 { font-size: 1rem; }
+.font-16 { font-size: 1.25rem; }
+
+.display-none {
+    display: none;
+}
+
+.display-inline {
+    display: none;
+}
+
+.ctn-loto {
+    margin: 0!important;
+    padding: 0!important;
+    border-radius: 5px;
+}
+
+.ctn-loto-title {
+    margin: 0;
+    padding: 0 40px!important;
+    width: 100%;
+    height: 4vh;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    border-radius: 5px 5px 0 0;
+}
+
+.ctn-numbers {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0px !important;
+    padding: 5px !important;
+    border-radius: 0 0 5px 5px;
+}
+
+.numbers-card {
+    color: dimgray;
+    background-color: antiquewhite;
+    margin: 0;
+    padding: 0;
+}
+
+.numbers-zone {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 0px!important;
+    padding: 10px 0px!important;
+}
+
+.bg-gradient-loto6 {
+    background-image: linear-gradient(antiquewhite, red);
+}
+.bg-gradient-loto7 {
+    background-image: linear-gradient(antiquewhite, mediumvioletred);
+}
+.bg-gradient-miniloto {
+    background-image: linear-gradient(antiquewhite, cornflowerblue);
+}
+.bg-gradient-recycling {
+    background-image: linear-gradient(antiquewhite, antiquewhite);
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+/*
+    Style for Numbers
+*/
+
+.btn-numbers {
+    align-items: center;
+    justify-content: center;
+    width: 40px !important;
+    height: 40px !important;
+    font-family: 'Roboto';
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 4px!important;
+    padding: 0px!important;
+    border-radius: 25%;
+}
+
+.btn-numbers-free {
+    background-color: white;
+    color: #e92443;
+    border: thin solid #e92440;
+}
+.btn-numbers-selected {
+    background-color: royalblue;
+    color: white;
+    border: thin solid cornflowerblue;
+}
+.btn-numbers-fixed {
+    background-color: orange;
+    color: white;
+    border: thin solid darkorange;
+}
+.btn-numbers-suggested {
+    background-color: lightpink;
+    color: #e92440;
+    border: thin solid #e92440;
+}
+
+/*
+    Style for Combinations & Recycling
+*/
+.ctn-recycling {
+    width: 100%;
+    height: 70vh;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+}
+.combinations, recycleds {
+    width: 100%;
+    min-height: 66vh;
+    margin: 0 !important;
+    padding: 10px !important;
+    border: thin solid;
+    overflow: auto;
+}
+.combinations-body {
+    width: 100%;
+    height: 70vh!important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex;
+    flex-direction: row;
+}
+.combinations-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 3.5vh;
+    width: 100%;
+}
+.recycle-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 5vh;
+    width: 100%;
+}
+    .combinations-title > button,
+    .recycle-title > button {
+        font-size: 1.25rem;
+    }
+
+.title-message {
+    display: block;
+    width: 60%;
+    margin-left: 1rem;
+}
+
+.combinations-header {
+    display: flex;
+    flex-direction: row;
+    height: 3vh;
+    width: 100%;
+    /*align-items: center;*/
+}
+
+.recycle-header {
+    display: flex;
+    flex-direction: row;
+    height: 3vh;
+    width: 100%;
+    align-items: center;
+}
+
+.combinations-header, .recycle-header {
+    border-bottom: solid thin;
+}
+
+.combinations-item, .recycle-item {
+    height: 3vh;
+    width: 100%;
+    padding: 0 10px;
+}
+
+.combinations-item, .recycle-item {
+    /*border-bottom: solid thin;*/
+}
+
+/*
+    Stryle for MiniCard
+*/
+
+.minicard {
+    max-width: 170px;
+    min-width: 170px;
+    height: 60px;
+    padding: 0;
+    margin: 0 5px;
+}
+
+.minicard-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    margin: 0;
+    height: 24px;
+    font-weight: 400;
+    border: solid thin;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.minicard-body {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    height: fit-content;
+    height: 36px;
+    border: solid thin;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+    .minicard-body > * {
+        font-size: 0.55rem;
+        line-height: 0.2rem;
+    }
+
+    .minicard-body > input {
+        /*background-color: transparent;*/
+        border: none;
+        margin: 0 10px;
+    }
+
+/*
+    Other styles
+*/
+
+.buttoncard {
+    max-width: 3.5rem;
+    min-width: 3.5rem;
+    max-height: 3.5rem;
+    min-height: 3.5rem;
+    margin: 0.55rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: solid thin transparent;
+    border-radius: 5px;
+}
+
+.disabled > * {
+    opacity: 0.5;
+    font-size: 0.7rem;
+}
+
+.buttoncard:hover {
+    border: groove thin #80808072;
+    cursor: pointer;
+}
+
+.action-icon {
+    min-height: 1.75rem;
+    max-height: 1.75rem;
+    position: relative;
+    bottom: -0.35rem;
+}
+
+    .action-icon > * {
+        font-size: 1.25rem !important;
+    }
+
+    .action-icon .badge {
+        position: absolute;
+        z-index: 0;
+        font-size: 0.6rem !important;
+    }
+
+.buttoncard-text {
+    display: flex;
+    flex-wrap: wrap;
+    word-wrap: break-word;
+    flex-direction: row;
+    text-align: center;
+    line-height: 0.75rem;
+    height: 1.75rem;
+    color: dimgray;
+    font-weight: 500;
+}
+
+.numbers-options {
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+    margin: 0 5px;
+    justify-content: space-around;
+}
+
+.form-check-input {
+    font-size: 0.7rem!important;
+}
+
+input[type=number] {
+    text-align: center;
+    padding: 0;
+}
+
+input[type=checkbox] {
+    text-align: center;
+    margin: 2px;
+}
+
+.input {
+
+}
+
+    .input label {
+        margin-bottom: 0.35rem;
+    }
+
+.links {
+    display: flex;
+    justify-content: space-between;
+}
+
+    .links a {
+        margin: 10px 0;
+        font-size: 0.8em;
+        color: darkred !important;
+        text-decoration: none;
+    }
+
+        .links a:hover { /* , .links a:nth-child(2) */
+            color: red !important;
+            font-weight: 400;
+        }
+
+/*
+    Style for pagination
+*/
+
+.btn-page-group {
+    height: 2vh !important;
+    width: 5vh !important;
+    min-width: 40% !important;
+    max-width: 40% !important;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+    .btn-page-group > label {
+        min-height: 2vh;
+        max-height: 2vh;
+        min-width: 10vh;
+        max-width: 10vh;
+        padding: 0 .1rem;
+        /*color: dimgray;*/
+        text-align: center;
+    }
+
+.btn-page {
+    height: 2.0vh !important;
+    width: 2.0vh !important;
+    background-color: transparent;
+    /*color: dimgray;*/
+    padding: 0;
+    margin: 0.35vh 0.35vh 0 0.35vh;
+    border: solid thin transparent;
+    border-radius: 1px;
+}
+
+    .btn-page:hover {
+        border: solid thin white;
+        cursor: pointer;
     }

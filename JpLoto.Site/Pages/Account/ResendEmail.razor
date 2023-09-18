@@ -79,7 +79,7 @@
 
     private async Task HandleResendConfirmationEmail()
     {
-        await accountService.ResendConfirmationEmail(new EmailRequestApplication { Email = currentUserName });
+        await accountService.ResendConfirmationEmail(new EmailRequest { Email = currentUserName });
         isSent = true;
         //navigationManager.NavigateTo(returnUrl, true);
     }

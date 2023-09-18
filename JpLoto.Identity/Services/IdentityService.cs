@@ -24,7 +24,7 @@ namespace JpLoto.Identity.Services
             _jwtOptions = jwtOptions.Value;
         }
 
-        public async Task<RegisterResponseApplication> RegisterNewUser(RegisterRequestApplication usuarioCadastro)
+        public async Task<RegisterResponse> RegisterNewUser(RegisterRequest usuarioCadastro)
         {
             var identityUser = new IdentityUser
             {
@@ -34,48 +34,48 @@ namespace JpLoto.Identity.Services
                 TwoFactorEnabled = false            // User can do it on 'UserProfile/SecuritySettings'
             };
 
-            var result = await _userManager.CreateAsync(identityUser, usuarioCadastro.Senha);
+            var result = await _userManager.CreateAsync(identityUser, usuarioCadastro.Password);
             if (result.Succeeded)
                 await _userManager.SetLockoutEnabledAsync(identityUser, false);
 
-            var usuarioCadastroResponse = new RegisterResponseApplication(result.Succeeded);
+            var usuarioCadastroResponse = new RegisterResponse(result.Succeeded);
             if (!result.Succeeded && result.Errors.Count() > 0)
-                usuarioCadastroResponse.AdicionarErros(result.Errors.Select(r => r.Description));
+                usuarioCadastroResponse.AddErrors(result.Errors.Select(r => r.Description));
 
             return usuarioCadastroResponse;
         }
         
-        public async Task<RegisterResponseApplication> ChangePassword(ChangePasswordRequestApplication changePswRequest)
+        public async Task<RegisterResponse> ChangePassword(ChangePasswordRequest changePswRequest)
         {
-            var response = new RegisterResponseApplication(true);
+            var response = new RegisterResponse(true);
             var identityUser = await _userManager.FindByEmailAsync(changePswRequest.UserName); // TODO - Para ajustar depois
-            var result = await _userManager.ChangePasswordAsync(identityUser, changePswRequest.SenhaAtual, changePswRequest.NovaSenha);
+            var result = await _userManager.ChangePasswordAsync(identityUser, changePswRequest.CurrentPassword, changePswRequest.NewPassword);
 
             if (result.Succeeded)
                 await _userManager.SetLockoutEnabledAsync(identityUser, false);
             else if (!result.Succeeded && result.Errors.Count() > 0)
-                response.AdicionarErros(result.Errors.Select(r => r.Description));
+                response.AddErrors(result.Errors.Select(r => r.Description));
 
             return response;
         }
 
-        public async Task<LoginResponseApplication> Login(LoginRequestApplication usuarioLogin)
+        public async Task<LoginResponse> Login(LoginRequest usuarioLogin)
         {
-            var result = await _signInManager.PasswordSignInAsync(usuarioLogin.Email, usuarioLogin.Senha, usuarioLogin.IsPersistent, true);
+            var result = await _signInManager.PasswordSignInAsync(usuarioLogin.Email, usuarioLogin.Password, usuarioLogin.IsPersistent, true);
             if (result.Succeeded)
                 return await GenerateCredentials(usuarioLogin.Email);
 
-            var usuarioLoginResponse = new LoginResponseApplication();
+            var usuarioLoginResponse = new LoginResponse();
             if (!result.Succeeded)
             {
                 if (result.IsLockedOut)
-                    usuarioLoginResponse.AdicionarErro("Essa conta está bloqueada");
+                    usuarioLoginResponse.AddError("Essa conta está bloqueada");
                 else if (result.IsNotAllowed)
-                    usuarioLoginResponse.AdicionarErro("Essa conta não tem permissão para fazer login");
+                    usuarioLoginResponse.AddError("Essa conta não tem permissão para fazer login");
                 else if (result.RequiresTwoFactor)
-                    usuarioLoginResponse.AdicionarErro("É necessário confirmar o login no seu segundo fator de autenticação");
+                    usuarioLoginResponse.AddError("É necessário confirmar o login no seu segundo fator de autenticação");
                 else
-                    usuarioLoginResponse.AdicionarErro("Usuário e/ou senha estão incorretos");
+                    usuarioLoginResponse.AddError("Usuário e/ou Password estão incorretos");
             }
 
             return usuarioLoginResponse;
@@ -87,23 +87,23 @@ namespace JpLoto.Identity.Services
             await _signInManager.SignOutAsync();
         }
 
-        public async Task<LoginResponseApplication> RefreshToken(string usuarioId)
+        public async Task<LoginResponse> RefreshToken(string usuarioId)
         {
-            var usuarioLoginResponse = new LoginResponseApplication();
+            var usuarioLoginResponse = new LoginResponse();
             var usuario = await _userManager.FindByIdAsync(usuarioId);
 
             if (await _userManager.IsLockedOutAsync(usuario))
-                usuarioLoginResponse.AdicionarErro("Essa conta está bloqueada");
+                usuarioLoginResponse.AddError("Essa conta está bloqueada");
             else if (!await _userManager.IsEmailConfirmedAsync(usuario))
-                usuarioLoginResponse.AdicionarErro("Essa conta precisa confirmar seu e-mail antes de realizar o login");
+                usuarioLoginResponse.AddError("Essa conta precisa confirmar seu e-mail antes de realizar o login");
 
-            if (usuarioLoginResponse.Sucesso)
+            if (usuarioLoginResponse.Success)
                 return await GenerateCredentials(usuario.Email);
 
             return usuarioLoginResponse;
         }
 
-        private async Task<LoginResponseApplication> GenerateCredentials(string email)
+        private async Task<LoginResponse> GenerateCredentials(string email)
         {
             var user = await _userManager.FindByEmailAsync(email);
             var accessTokenClaims = await TakeClaims(user, adicionarClaimsUsuario: true);
@@ -115,9 +115,9 @@ namespace JpLoto.Identity.Services
             var accessToken = GerarToken(accessTokenClaims, dataExpiracaoAccessToken);
             var refreshToken = GerarToken(refreshTokenClaims, dataExpiracaoRefreshToken);
 
-            return new LoginResponseApplication
+            return new LoginResponse
             (
-                sucesso: true,
+                success: true,
                 accessToken: accessToken,
                 refreshToken: refreshToken
             );

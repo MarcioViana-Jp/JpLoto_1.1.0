@@ -4,10 +4,10 @@ namespace JpLoto.Domain.Interfaces.Repositories.Shared;
     
 public interface IRepositoryBase<TEntity> : IDisposable where TEntity : Entity
 {
-    Task<IEnumerable<TEntity>> ObterTodosAsync();
-    Task<TEntity?> ObterPorIdAsync(int id);
-    Task<object> AdicionarAsync(TEntity objeto);
-    Task AtualizarAsync(TEntity objeto);
-    Task RemoverAsync(TEntity objeto);
-    Task RemoverPorIdAsync(int id);
+    Task<IEnumerable<TEntity>> GetAllAsync();
+    Task<TEntity?> GetByIdAsync(int id);
+    Task<object> AddAsync(TEntity objeto);
+    Task UpdateAsync(TEntity objeto);
+    Task RemoveAsync(TEntity objeto);
+    Task RemoveByIdAsync(int id);
 }

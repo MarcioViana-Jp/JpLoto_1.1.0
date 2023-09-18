@@ -1,5 +1,7 @@
 ﻿@using System.Net.Http
 @using System.Net.Http.Json
+@using System.Globalization;
+@using Microsoft.Extensions.Localization;
 @using Microsoft.AspNetCore.Components.Forms
 @using Microsoft.AspNetCore.Components.Routing
 @using Microsoft.AspNetCore.WebUtilities
@@ -13,6 +15,9 @@
 @using Blazored.LocalStorage
 @using JpLoto.Application.Dto.Request
 @using JpLoto.Application.Dto.Response
+@using JpLoto.Globalization.Resources;
+@using JpLoto.Lottery.Constants;
+@using JpLoto.Lottery.Shared;
 @using JpLoto.Site
 @using JpLoto.Site.Shared
 @using JpLoto.Site.Services.Account

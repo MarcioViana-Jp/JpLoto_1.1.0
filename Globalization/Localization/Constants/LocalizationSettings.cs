@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace JPLoto.Globalization.Localization.Constants;
+namespace JpLoto.Globalization.Localization.Constants;
 
 public class LocalizationSettings
 {

@@ -24,25 +24,25 @@ public class AccountController : ControllerBase
     }
 
 
-    [ProducesResponseType(typeof(RegisterResponseApplication), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(RegisterResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     [HttpPost("register")]
-    public async Task<IActionResult> Register(RegisterRequestApplication registerRequest)
+    public async Task<IActionResult> Register(RegisterRequest registerRequest)
     {
         if (!ModelState.IsValid)
             return BadRequest();
 
         var response = await _identityService.RegisterNewUser(registerRequest);
-        if (response.Sucesso)
+        if (response.Success)
         {
             await SendEmailAsync(registerRequest.Email);
             return Ok(response);
 
         }
-        else if (response.Erros.Count > 0)
+        else if (response.Errors.Count > 0)
         {
-            //var problemDetails = new CustomProblemDetails(HttpStatusCode.BadRequest, Request, errors: response.Erros);
+            //var problemDetails = new CustomProblemDetails(HttpStatusCode.BadRequest, Request, errors: response.Errors);
             //return BadRequest(problemDetails);
             return BadRequest(response);
         }
@@ -51,11 +51,11 @@ public class AccountController : ControllerBase
     }
 
 
-    [ProducesResponseType(typeof(RegisterResponseApplication), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(RegisterResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     [HttpPost("resendemail")]
-    public async Task<IActionResult> ResendConfirmationEmail(EmailRequestApplication emailRequest)
+    public async Task<IActionResult> ResendConfirmationEmail(EmailRequest emailRequest)
     {
         // Sending errors are not proccessed. Users might procceed resending email again, instead.
         if (!ModelState.IsValid)
@@ -63,25 +63,25 @@ public class AccountController : ControllerBase
 
         if (await SendEmailAsync(emailRequest.Email))
         {
-            return Ok("E-mail de confirmação reenviado com sucesso.");
+            return Ok("E-mail de confirmação reenviado com success.");
         }
 
         return StatusCode(StatusCodes.Status500InternalServerError);
     }
 
 
-    [ProducesResponseType(typeof(RegisterResponseApplication), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(RegisterResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     [HttpPost("login")]
-    public async Task<ActionResult<LoginResponseApplication>> Login(LoginRequestApplication usuarioLogin)
+    public async Task<ActionResult<LoginResponse>> Login(LoginRequest usuarioLogin)
     {
         if (!ModelState.IsValid)
             return BadRequest();
 
         var resultado = await _identityService.Login(usuarioLogin);
-        if (resultado.Sucesso)
+        if (resultado.Success)
         {
             return Ok(resultado);
         }
@@ -90,13 +90,13 @@ public class AccountController : ControllerBase
     }
 
 
-    [ProducesResponseType(typeof(RegisterResponseApplication), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(RegisterResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     [Authorize]
     [HttpPost("refresh-login")]
-    public async Task<ActionResult<RegisterResponseApplication>> RefreshLogin()
+    public async Task<ActionResult<RegisterResponse>> RefreshLogin()
     {
         var identity = HttpContext.User.Identity as ClaimsIdentity;
         var usuarioId = identity?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -104,14 +104,14 @@ public class AccountController : ControllerBase
             return BadRequest();
 
         var resultado = await _identityService.RefreshToken(usuarioId);
-        if (resultado.Sucesso)
+        if (resultado.Success)
             return Ok(resultado);
 
         return Unauthorized(resultado);
     }
 
 
-    [ProducesResponseType(typeof(RegisterResponseApplication), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(RegisterResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
@@ -120,16 +120,16 @@ public class AccountController : ControllerBase
     {
         await _identityService.Logout();
 
-        return Ok("Usuário desconectado do servidor com sucesso!");
+        return Ok("Usuário desconectado do servidor com success!");
     }
 
 
-    [ProducesResponseType(typeof(RegisterResponseApplication), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(RegisterResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     [HttpGet("confirmemail")]
-    public async Task<ActionResult<RegisterResponseApplication>> ConfirmEmail(string userId, string token)
+    public async Task<ActionResult<RegisterResponse>> ConfirmEmail(string userId, string token)
     {
         var user = await _userManager.FindByIdAsync(userId);
         if (user != null)
@@ -137,7 +137,7 @@ public class AccountController : ControllerBase
             var result = await _userManager.ConfirmEmailAsync(user, token);
             if (result.Succeeded)
             {
-                return Ok("Usuário criado e e-mail enviado com sucesso!");
+                return Ok("Usuário criado e e-mail enviado com success!");
             }
         }
 
@@ -145,21 +145,21 @@ public class AccountController : ControllerBase
     }
 
 
-    [ProducesResponseType(typeof(RegisterResponseApplication), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(RegisterResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     [HttpPost("changepassword")]
-    public async Task<IActionResult> ChangePassword(ChangePasswordRequestApplication changePswRequest)
+    public async Task<IActionResult> ChangePassword(ChangePasswordRequest changePswRequest)
     {
         if (!ModelState.IsValid)
             return BadRequest();
 
         var response = await _identityService.ChangePassword(changePswRequest);
-        if (response.Sucesso)
+        if (response.Success)
             return Ok(response);
-        else if (response.Erros.Count > 0)
+        else if (response.Errors.Count > 0)
         {
-            //var problemDetails = new CustomProblemDetails(HttpStatusCode.BadRequest, Request, errors: response.Erros);
+            //var problemDetails = new CustomProblemDetails(HttpStatusCode.BadRequest, Request, errors: response.Errors);
             //return BadRequest(problemDetails);
             return BadRequest(response);
         }

@@ -26,11 +26,15 @@
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.11" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Globalization\JpLoto.Globalization.csproj" />
     <ProjectReference Include="..\JpLoto.Application\JpLoto.Application.csproj" />
+    <ProjectReference Include="..\JpLoto.Data\JpLoto.Data.csproj" />
     <ProjectReference Include="..\JpLoto.Domain\JpLoto.Domain.csproj" />
+    <ProjectReference Include="..\JpLoto.Lottery\JpLoto.Lottery.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -27,15 +27,15 @@
                                     </div>
                                     <ValidationMessage For="@(() => registerRequest.Email)" class="text-xs text-danger" />
                                     <div class="input-group input-group-outline mt-3">
-                                        <label for="senha" class="form-label text-xs">Password</label>
-                                        <InputText id="senha" type="password" style="text-align:center;" @bind-Value="registerRequest.Senha" class="form-control my-2" />
+                                        <label for="Password" class="form-label text-xs">Password</label>
+                                        <InputText id="Password" type="password" style="text-align:center;" @bind-Value="registerRequest.Password" class="form-control my-2" />
                                     </div>
-                                    <ValidationMessage For="@(() => registerRequest.Senha)" class="text-xs text-danger" />
+                                    <ValidationMessage For="@(() => registerRequest.Password)" class="text-xs text-danger" />
                                     <div class="input-group input-group-outline mt-3">
-                                        <label for="senhaConfirmacao" class="form-label text-xs">Password</label>
-                                        <InputText id="senhaConfirmacao" type="password" style="text-align:center;" @bind-Value="registerRequest.SenhaConfirmacao" class="form-control my-2" />
+                                        <label for="ConfirmPassword" class="form-label text-xs">Password</label>
+                                        <InputText id="ConfirmPassword" type="password" style="text-align:center;" @bind-Value="registerRequest.ConfirmPassword" class="form-control my-2" />
                                     </div>
-                                    <ValidationMessage For="@(() => registerRequest.SenhaConfirmacao)" class="text-xs text-danger" />
+                                    <ValidationMessage For="@(() => registerRequest.ConfirmPassword)" class="text-xs text-danger" />
                                     <div class="form-check form-check-info text-start mt-3 ps-0">
                                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
                                         <label class="form-check-label" for="flexCheckDefault">
@@ -74,7 +74,7 @@
 </main>
 
 @code {
-    private RegisterRequestApplication registerRequest = new();
+    private RegisterRequest registerRequest = new();
     private List<string> errorMessages = new();
     private string returnUrl = string.Empty;
 
@@ -92,10 +92,10 @@
         errorMessages = new();
 
         var response = await accountService.Register(registerRequest);
-        if (response.Sucesso)
+        if (response.Success)
             navigationManager.NavigateTo(returnUrl);
 
-        errorMessages = response.Erros;
+        errorMessages = response.Errors;
     }
 
 }
