@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Globalization\Globalization.csproj" />
+    <ProjectReference Include="..\Globalization\JpLoto.Globalization.csproj" />
     <ProjectReference Include="..\JpLoto.Application\JpLoto.Application.csproj" />
     <ProjectReference Include="..\JpLoto.Data\JpLoto.Data.csproj" />
     <ProjectReference Include="..\JpLoto.Domain\JpLoto.Domain.csproj" />

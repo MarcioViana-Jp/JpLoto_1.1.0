@@ -1,3 +1,5 @@
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.AspNetCore.Http;
 using Hellang.Middleware.ProblemDetails;
 using JpLoto.Api.Extensions;
 using JpLoto.Api.IoC;

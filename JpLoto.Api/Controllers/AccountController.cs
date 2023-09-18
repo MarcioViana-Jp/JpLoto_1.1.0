@@ -4,7 +4,6 @@ using JpLoto.Application.Interfaces.Services;
 using JpLoto.EmailServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
 namespace JpLoto.Api.Controllers;

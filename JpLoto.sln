@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JpLoto.Identity", "JpLoto.I
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JpLoto.Domain", "JpLoto.Domain\JpLoto.Domain.csproj", "{BAC0D198-1EBB-4B92-B363-E3039F758369}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Globalization", "Globalization\Globalization.csproj", "{22DFBC98-F4FF-4C29-88B6-24DBD55DDF7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JpLoto.Globalization", "Globalization\JpLoto.Globalization.csproj", "{22DFBC98-F4FF-4C29-88B6-24DBD55DDF7A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JpLoto.Api", "JpLoto.Api\JpLoto.Api.csproj", "{FDEFF4D9-CEF0-4B36-87F6-67D28135D30B}"
 EndProject
