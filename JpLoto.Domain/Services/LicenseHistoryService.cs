@@ -5,7 +5,7 @@ using JpLoto.Domain.Services.Shared;
 
 namespace JpLoto.Domain.Services;
 
-public class LicenseHistoryService : ServiceBase<LicenseHistory>, ILicenseHistoryService
+public class LicenseHistoryService : ServiceBase<JplLicenseHistory>, ILicenseHistoryService
 {
-    public LicenseHistoryService(IRepositoryBase<LicenseHistory> licenceHistoryRepository) : base(licenceHistoryRepository) { }
+    public LicenseHistoryService(IRepositoryBase<JplLicenseHistory> licenceHistoryRepository) : base(licenceHistoryRepository) { }
 }

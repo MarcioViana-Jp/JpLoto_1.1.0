@@ -9,7 +9,7 @@ public abstract class LotoResultBase : Entity
     {
         _quantityBonus = quantityBonus;
     }
-
+    public int DrawNumber {  get; set; }
     public DateTime Date { get; set; }
     public string? Numbers { get; set; } = string.Empty;
     public string? Bonus { get; set; } = string.Empty;

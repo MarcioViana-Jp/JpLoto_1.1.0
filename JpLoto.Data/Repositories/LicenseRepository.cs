@@ -5,7 +5,7 @@ using JpLoto.Domain.Interfaces.Repositories;
 
 namespace JpLoto.Data.Repositories;
 
-public class LicenseRepository : RepositoryBase<License>, ILicenseRepository
+public class LicenseRepository : RepositoryBase<JplLicense>, ILicenseRepository
 {
     public LicenseRepository(DataContext dataContext) : base(dataContext) { }
 }

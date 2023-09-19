@@ -2,7 +2,7 @@
 
 namespace JpLoto.Domain.Entities
 {
-    public class LicenseHistory : Entity
+    public class JplLicenseHistory : Entity
     {
         public string? UserId { get; set; } = string.Empty;
         public string? PlanCode { get; set; } = string.Empty;
