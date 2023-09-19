@@ -1,6 +1,4 @@
-﻿
-
-namespace JpLoto.Api.Controllers
+﻿namespace JpLoto.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

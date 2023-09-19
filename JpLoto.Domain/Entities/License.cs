@@ -2,7 +2,7 @@ using JpLoto.Domain.Entities.Shared;
 
 namespace JpLoto.Domain.Entities;
 
-public class Licence : Entity
+public class License : Entity
 {
     public string? UserId { get; set; } = string.Empty;
     public string? PlanCode { get; set; } = string.Empty;
