@@ -11,9 +11,7 @@ public class Loto6 : LotoBase
     public List<Jogo>? Combinacoes { get; set; }
     private readonly CommonLocalizationService _lotoLocalizer;
 
-    public Loto6() : base(LotoType.Loto6)
-    {
-    }
+    public Loto6() : base(LotoType.Loto6) { }
 
     public Loto6(CommonLocalizationService authLocalizer) : base(LotoType.Loto6)
     {

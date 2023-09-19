@@ -11,9 +11,7 @@ public class Loto7 : LotoBase
     public List<Jogo>? Combinacoes { get; set; }
     private readonly CommonLocalizationService _lotoLocalizer;
 
-    public Loto7() : base(LotoType.Loto7)
-    {
-    }
+    public Loto7() : base(LotoType.Loto7) { }
 
     public Loto7(CommonLocalizationService authLocalizer) : base(LotoType.Loto7)
     {
@@ -166,7 +164,7 @@ public class Loto7 : LotoBase
                         {
                             for (int e = d + 1; e <= (QuantidadeDezenasSelecionadas - qtdNiveis + 4); e++)
                             {
-                                for (int f = e + 1; f <= (QuantidadeDezenasSelecionadas - qtdNiveis + 5); e++)
+                                for (int f = e + 1; f <= (QuantidadeDezenasSelecionadas - qtdNiveis + 5); f++)
                                 {
                                     jogoTemp = new int[DezenasPorJogo];
                                     jogoTemp[0] = _dezenasFixas[0];

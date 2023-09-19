@@ -11,9 +11,7 @@ public class MiniLoto : LotoBase
     public List<Jogo>? Combinacoes { get; set; }
     private readonly CommonLocalizationService _lotoLocalizer;
 
-    public MiniLoto() : base(LotoType.MiniLoto)
-    {
-    }
+    public MiniLoto() : base(LotoType.MiniLoto) { }
 
     public MiniLoto(CommonLocalizationService authLocalizer) : base(LotoType.MiniLoto)
     {
@@ -53,7 +51,7 @@ public class MiniLoto : LotoBase
                 jogoTemp[1] = _dezenasFixas[1];
                 jogoTemp[2] = _dezenasFixas[2];
                 jogoTemp[3] = _dezenasFixas[3];
-                jogoTemp[5] = _dezenasSelecionadas[a];
+                jogoTemp[4] = _dezenasSelecionadas[a];
                 Array.Sort(jogoTemp);
                 jogosTemp.Add(VetorParaTexto(jogoTemp, LotoType.MiniLoto));
             }
@@ -68,8 +66,8 @@ public class MiniLoto : LotoBase
                     jogoTemp[0] = _dezenasFixas[0];
                     jogoTemp[1] = _dezenasFixas[1];
                     jogoTemp[2] = _dezenasFixas[2];
-                    jogoTemp[4] = _dezenasSelecionadas[a];
-                    jogoTemp[5] = _dezenasSelecionadas[b];
+                    jogoTemp[3] = _dezenasSelecionadas[a];
+                    jogoTemp[4] = _dezenasSelecionadas[b];
                     Array.Sort(jogoTemp);
                     jogosTemp.Add(VetorParaTexto(jogoTemp, LotoType.MiniLoto));
                 }
@@ -86,9 +84,9 @@ public class MiniLoto : LotoBase
                         jogoTemp = new int[DezenasPorJogo];
                         jogoTemp[0] = _dezenasFixas[0];
                         jogoTemp[1] = _dezenasFixas[1];
-                        jogoTemp[3] = _dezenasSelecionadas[a];
-                        jogoTemp[4] = _dezenasSelecionadas[b];
-                        jogoTemp[5] = _dezenasSelecionadas[c];
+                        jogoTemp[2] = _dezenasSelecionadas[a];
+                        jogoTemp[3] = _dezenasSelecionadas[b];
+                        jogoTemp[4] = _dezenasSelecionadas[c];
                         Array.Sort(jogoTemp);
                         jogosTemp.Add(VetorParaTexto(jogoTemp, LotoType.MiniLoto));
                     }
@@ -107,10 +105,10 @@ public class MiniLoto : LotoBase
                         {
                             jogoTemp = new int[DezenasPorJogo];
                             jogoTemp[0] = _dezenasFixas[0];
-                            jogoTemp[2] = _dezenasSelecionadas[a];
-                            jogoTemp[3] = _dezenasSelecionadas[b];
-                            jogoTemp[4] = _dezenasSelecionadas[c];
-                            jogoTemp[5] = _dezenasSelecionadas[d];
+                            jogoTemp[1] = _dezenasSelecionadas[a];
+                            jogoTemp[2] = _dezenasSelecionadas[b];
+                            jogoTemp[3] = _dezenasSelecionadas[c];
+                            jogoTemp[4] = _dezenasSelecionadas[d];
                             Array.Sort(jogoTemp);
                             jogosTemp.Add(VetorParaTexto(jogoTemp, LotoType.MiniLoto));
                         }
