@@ -153,6 +153,15 @@
   <data name="ClearSuggestions" xml:space="preserve">
     <value>Borrar sugerencias</value>
   </data>
+  <data name="CombForLoto6" xml:space="preserve">
+    <value>Combinaciones para Loto Seis</value>
+  </data>
+  <data name="CombForLoto7" xml:space="preserve">
+    <value>Combinaciones para Loto Siete</value>
+  </data>
+  <data name="CombForMiniLoto" xml:space="preserve">
+    <value>Combinaciones para Mini Loto</value>
+  </data>
   <data name="Combinations" xml:space="preserve">
     <value>Combinaciones</value>
   </data>
@@ -335,6 +344,15 @@
   </data>
   <data name="SelectDiretory" xml:space="preserve">
     <value>Guardar en</value>
+  </data>
+  <data name="SelectForLoto6" xml:space="preserve">
+    <value>Seleccione 7 números o más y obtenga todas las combinaciones posibles enumeradas en conjuntos de seis números.</value>
+  </data>
+  <data name="SelectForLoto7" xml:space="preserve">
+    <value>Seleccione 8 números o más y obtenga todas las combinaciones posibles enumeradas en conjuntos de siete números.</value>
+  </data>
+  <data name="SelectForMiniLoto" xml:space="preserve">
+    <value>Seleccione 6 números o más y obtenga todas las combinaciones posibles enumeradas en conjuntos de cinco números.</value>
   </data>
   <data name="Suggestions" xml:space="preserve">
     <value>Sugerencias</value>

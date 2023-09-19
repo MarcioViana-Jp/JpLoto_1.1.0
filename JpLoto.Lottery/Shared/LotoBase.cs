@@ -9,7 +9,7 @@ public abstract class LotoBase
 {
     public int MaximaDezena { get; set; } = 0;
     public int DezenasPorJogo { get; set; } = 0;
-    public int TipoLoto { get; set; } = 0;
+    public int TipoLoto { get; set; } = -1;
     public int[] Dezenas { get; set; } = Array.Empty<int>();
     public List<Dezena> BotoesDezenas { get; set; }
     public void MarcaComoLivre(int indice) => DefineStatus(indice, Status.Livre);
@@ -41,6 +41,7 @@ public abstract class LotoBase
     {
         DezenasPorJogo = dezenasPorJogo;
         MaximaDezena = maximaDezena;
+        TipoLoto = LotoType.ObtemTipo(dezenasPorJogo);
         InicializaDezenas();
     }
 
@@ -164,7 +165,6 @@ public abstract class LotoBase
                 UrlDinamica = false
             });
         }
-        TipoLoto = LotoType.ObtemTipo(DezenasPorJogo);
         LotoFileInfo = new LotoFileInfo(TipoLoto);
     }
 

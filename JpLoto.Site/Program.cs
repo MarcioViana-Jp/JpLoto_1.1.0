@@ -16,16 +16,18 @@ global using Microsoft.AspNetCore.Components.Web;
 global using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 global using Microsoft.JSInterop;
 global using System.Globalization;
+using JpLoto.Site.Extensions;
 using JpLoto.Site.Providers;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
 builder.Services.AddLocalization();
+
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
 builder.Services.AddBlazoredLocalStorage();
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IConfigurationService, ConfigurationService>();
@@ -42,4 +44,8 @@ builder.Services.AddOptions();
 builder.Services.AddAuthorizationCore();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 
-await builder.Build().RunAsync();
+var host = builder.Build();
+await host.SetDefaultCulture();
+await host.RunAsync();
+
+//await builder.Build().RunAsync();

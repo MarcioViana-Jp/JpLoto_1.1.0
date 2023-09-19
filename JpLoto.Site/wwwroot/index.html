@@ -148,34 +148,22 @@
     <!--<script src="assets/js/plugins/chartjs.min.js"></script>-->
 
     <script src="_framework/blazor.webassembly.js"></script>
-
-    <script>
-        //let platform = navigator.userAgentData.platform
-        var win = navigator.userAgentData.platform.indexOf('Win') > -1;
-        if (win && document.querySelector('#sidenav-scrollbar')) {
-            var options = {
-                damping: '0.5'
-            }
-            Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-        }
-    </script>
-
-    <!-- Github buttons -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="assets/js/material-dashboard.min.js?v=3.1.0"></script>
+    <script src="css/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <script>
         window.blazorCulture = {
             get: () => localStorage["BlazorCulture"],
             set: (value) => localStorage["BlazorCulture"] = value
         }
+
         window.Confirm = function (title) {
             return confirm(title);
         }
+
         window.Alert = function (title) {
             return alert(title);
         }
+
         function SaveFile(fileName, content) {
             const anchorElement = document.createElement('a');
             anchorElement.download = fileName;
@@ -184,6 +172,7 @@
             anchorElement.click();
             document.body.removeChild(anchorElement);
         }
+
         async function saveFileAs(_suggestedName, _description, _extension) {
             let fileName;
             try {
@@ -206,25 +195,22 @@
         }
     </script>
 
+    <script>
+        //let platform = navigator.userAgentData.platform
+        var win = navigator.userAgentData.platform.indexOf('Win') > -1;
+        if (win && document.querySelector('#sidenav-scrollbar')) {
+            var options = {
+                damping: '0.5'
+            }
+            Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+        }
+    </script>
+
+    <!-- Github buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="assets/js/material-dashboard.min.js?v=3.1.0"></script>
+
 </body>
 
 </html>
-
-<!-- Codigo Original
-<body>
-    <div id="app">
-        <svg class="loading-progress">
-            <circle r="40%" cx="50%" cy="50%" />
-            <circle r="40%" cx="50%" cy="50%" />
-        </svg>
-        <div class="loading-progress-text"></div>
-    </div>
-
-    <div id="blazor-error-ui">
-        An unhandled error has occurred.
-        <a href="" class="reload">Reload</a>
-        <a class="dismiss">🗙</a>
-    </div>
-    <script src="_framework/blazor.webassembly.js"></script>
-</body>
--->

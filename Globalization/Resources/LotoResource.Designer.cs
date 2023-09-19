@@ -39,7 +39,7 @@ namespace JpLoto.Globalization.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JpLoto.Shared.Resources.LotoResource", typeof(LotoResource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JpLoto.Globalization.Resources.LotoResource", typeof(LotoResource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -165,6 +165,33 @@ namespace JpLoto.Globalization.Resources {
         public static string ClearSuggestions {
             get {
                 return ResourceManager.GetString("ClearSuggestions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ロトシックスの組み合わせ.
+        /// </summary>
+        public static string CombForLoto6 {
+            get {
+                return ResourceManager.GetString("CombForLoto6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ロトセブンの組み合わせ.
+        /// </summary>
+        public static string CombForLoto7 {
+            get {
+                return ResourceManager.GetString("CombForLoto7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ミニロトの組み合わせ.
+        /// </summary>
+        public static string CombForMiniLoto {
+            get {
+                return ResourceManager.GetString("CombForMiniLoto", resourceCulture);
             }
         }
         
@@ -718,6 +745,33 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 7 つ以上の数字を選択し、6 つの数字セットにリストされているすべての可能な組み合わせを取得します。.
+        /// </summary>
+        public static string SelectForLoto6 {
+            get {
+                return ResourceManager.GetString("SelectForLoto6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 8 つ以上の数字を選択し、7 つの数字セットにリストされているすべての可能な組み合わせを取得します。.
+        /// </summary>
+        public static string SelectForLoto7 {
+            get {
+                return ResourceManager.GetString("SelectForLoto7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 6 つ以上の数字を選択し、5 つの数字セットにリストされているすべての可能な組み合わせを取得します。.
+        /// </summary>
+        public static string SelectForMiniLoto {
+            get {
+                return ResourceManager.GetString("SelectForMiniLoto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 提案.
         /// </summary>
         public static string Suggestions {
@@ -772,7 +826,7 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mini Loto.
+        ///   Looks up a localized string similar to ミニロト.
         /// </summary>
         public static string TITLE_MINILOTO {
             get {

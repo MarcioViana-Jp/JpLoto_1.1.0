@@ -1,0 +1,32 @@
+﻿.culture-selector {
+    height: 31px;
+    color: dimgray;
+    /*background-color: white;*/
+    /*border-radius: 50px;*/
+    padding: 5px!important;
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+    .culture-selector option {
+        border-bottom: none;
+        font-size: 0.8rem;
+    }
+
+    .culture-selector i {
+        font-size: 1.10rem !important;
+        color: dimgray;
+        margin-right: 0.5rem;
+    }
+    
+    .culture-selector select, option {
+        font-size: 0.75rem;
+        border: none;
+        padding: 2px;
+    }
+
+
+@media (min-width: 574px) {
+
+}

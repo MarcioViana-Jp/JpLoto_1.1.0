@@ -4,17 +4,17 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+	<BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
   </PropertyGroup>
 
   <ItemGroup>
     <Content Remove="wwwroot\assets\img\logo-ct.png" />
     <Content Remove="wwwroot\site_icons\flag-pt-BR.png" />
-    <Content Remove="wwwroot\site_icons\logo-ct.png" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="wwwroot\assets\img\logo-ct.png" />
-    <EmbeddedResource Include="wwwroot\site_icons\flag-pt-BR.png" />
+    <EmbeddedResource Include="wwwroot\site_images\country-flags\flag-pt-BR.png" />
     <EmbeddedResource Include="wwwroot\site_icons\logo-ct.png" />
   </ItemGroup>
 

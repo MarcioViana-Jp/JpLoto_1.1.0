@@ -153,6 +153,15 @@
   <data name="ClearSuggestions" xml:space="preserve">
     <value>提案削除</value>
   </data>
+  <data name="CombForLoto6" xml:space="preserve">
+    <value>ロトシックスの組み合わせ</value>
+  </data>
+  <data name="CombForLoto7" xml:space="preserve">
+    <value>ロトセブンの組み合わせ</value>
+  </data>
+  <data name="CombForMiniLoto" xml:space="preserve">
+    <value>ミニロトの組み合わせ</value>
+  </data>
   <data name="Combinations" xml:space="preserve">
     <value>組み合わせ</value>
   </data>
@@ -336,6 +345,15 @@
   <data name="SelectDiretory" xml:space="preserve">
     <value>フォルダーを選択</value>
   </data>
+  <data name="SelectForLoto6" xml:space="preserve">
+    <value>7 つ以上の数字を選択し、6 つの数字セットにリストされているすべての可能な組み合わせを取得します。</value>
+  </data>
+  <data name="SelectForLoto7" xml:space="preserve">
+    <value>8 つ以上の数字を選択し、7 つの数字セットにリストされているすべての可能な組み合わせを取得します。</value>
+  </data>
+  <data name="SelectForMiniLoto" xml:space="preserve">
+    <value>6 つ以上の数字を選択し、5 つの数字セットにリストされているすべての可能な組み合わせを取得します。</value>
+  </data>
   <data name="Suggestions" xml:space="preserve">
     <value>提案</value>
   </data>
@@ -355,7 +373,7 @@
     <value>ロト７</value>
   </data>
   <data name="TITLE_MINILOTO" xml:space="preserve">
-    <value>Mini Loto</value>
+    <value>ミニロト</value>
   </data>
   <data name="TITLE_RESULTS" xml:space="preserve">
     <value>結果</value>

@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JpLoto.Api", "JpLoto.Api\Jp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JpLoto.Site", "JpLoto.Site\JpLoto.Site.csproj", "{6089E7C3-592F-4CE2-8DF4-AFD94B749234}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JpLoto.Lottery", "JpLoto.Lottery\JpLoto.Lottery.csproj", "{71BE764F-1827-4F4B-9C3F-DC476B31A90A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JpLoto.Lottery", "JpLoto.Lottery\JpLoto.Lottery.csproj", "{71BE764F-1827-4F4B-9C3F-DC476B31A90A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
