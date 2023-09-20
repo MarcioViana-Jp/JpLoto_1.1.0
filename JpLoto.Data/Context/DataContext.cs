@@ -12,7 +12,7 @@ public class DataContext : DbContext
     public DbSet<Loto7Result> Loto7Results { get; set; }
     public DbSet<MiniLotoResult> MiniLotoResults { get; set; }
     public DbSet<Plan> Plans { get; set; }
-    public DbSet<JplLicense> Licences { get; set; }
+    public DbSet<Subscription> Subscriptions { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

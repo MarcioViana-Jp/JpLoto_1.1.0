@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JpLoto.Domain.Entities;
 
-public class JplLicense : Entity
+public class Subscription : Entity
 {
     public string? UserId { get; set; } = string.Empty;
     public int PlanId { get; set; } 
@@ -16,11 +16,11 @@ public class JplLicense : Entity
     [NotMapped]
     public bool IsOnDate { get => ExpirationDate <= DateTime.UtcNow; }
     
-    public JplLicense(string userId, int planId, DateTime subscriptionDate, DateTime expirationDate, int price, bool isActive = true)
+    public Subscription(string userId, int planId, DateTime subscriptionDate, DateTime expirationDate, int price, bool isActive = true)
         : this(default, userId, planId, subscriptionDate, expirationDate, price, isActive)
     {            
     }
-    public JplLicense(int id, string userId, int planId, DateTime subscriptionDate, DateTime expirationDate, int price, bool isActive = true)
+    public Subscription(int id, string userId, int planId, DateTime subscriptionDate, DateTime expirationDate, int price, bool isActive = true)
     {
         Id = id;
         UserId = userId;

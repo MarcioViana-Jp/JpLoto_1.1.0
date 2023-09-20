@@ -4,18 +4,18 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace JpLoto.Data.Mappings;
 
-public class JplLicenseMap : IEntityTypeConfiguration<JplLicense>
+public class SubscriptionMap : IEntityTypeConfiguration<Subscription>
 {
-    public void Configure(EntityTypeBuilder<JplLicense> builder)
+    public void Configure(EntityTypeBuilder<Subscription> builder)
     {
-        builder.ToTable("Licenses");
+        builder.ToTable("Subscriptions");
 
         builder.Property(p => p.UserId)
             .HasMaxLength(450)
             .IsUnicode(false);
 
         builder.HasOne(p => p.Plan)
-            .WithMany(p => p.JplLicenses)
+            .WithMany(p => p.Subscriptions)
             .HasForeignKey(p => p.PlanId)
             .OnDelete(DeleteBehavior.NoAction);
     }

@@ -5,7 +5,7 @@ using JpLoto.Domain.Services.Shared;
 
 namespace JpLoto.Domain.Services;
 
-public class LicenseService : ServiceBase<JplLicense>, ILicenseService
+public class SubscriptionService : ServiceBase<Subscription>, ISubscriptionService
 {
-    public LicenseService(ILicenseRepository licenseRepository) : base(licenseRepository) { }
+    public SubscriptionService(ISubscriptionRepository licenseRepository) : base(licenseRepository) { }
 }

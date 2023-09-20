@@ -12,18 +12,19 @@ public class Plan : Entity
     public int ExpirationFactor { get; set; } = 0; // it willl be added to the current date to determine licence expiration
     public int ExpirationDescriptor { get; set; } = 0; // 0-day, 1-month, 2-year
     public bool IsActive { get; set; } = true;
-    public ICollection<JplLicense>? JplLicenses { get; private set; }
+    public ICollection<Subscription>? Subscriptions { get; private set; }
     
-    public Plan(string planCode, string description, DateTime notBefore, DateTime validThru, int expirationFactor, int expirationDescriptor, bool isActive = true )
-        : this(default, planCode, description, notBefore, validThru, expirationFactor, expirationDescriptor, isActive) 
+    public Plan(string planCode, string description, int price, DateTime notBefore, DateTime validThru, int expirationFactor, int expirationDescriptor, bool isActive = true )
+        : this(default, planCode, description, price, notBefore, validThru, expirationFactor, expirationDescriptor, isActive) 
     { 
     }
 
-    public Plan(int id, string planCode, string description, DateTime notBefore, DateTime validThru, int expirationFactor, int expirationDescriptor, bool isActive = true )
+    public Plan(int id, string planCode, string description, int price, DateTime notBefore, DateTime validThru, int expirationFactor, int expirationDescriptor, bool isActive = true )
     {
         Id = id; 
         PlanCode = planCode; 
         Description = description; 
+        Price = price;
         NotBefore = notBefore; 
         ValidThru = validThru;  
         ExpirationFactor = expirationFactor;

@@ -1,9 +1,17 @@
+﻿global using JpLoto.Application.Constants;
+global using JpLoto.Application.Interfaces;
+global using JpLoto.Application.Dto.Request;
+global using JpLoto.Application.Dto.Response;
+global using JpLoto.Data.Context;
+global using JpLoto.Domain.Entities;
+global using JpLoto.Globalization.Localization.Constants;
+global using JpLoto.Domain.Interfaces.Repositories;
 global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.EntityFrameworkCore;
 using Hellang.Middleware.ProblemDetails;
 using JpLoto.Api.Extensions;
 using JpLoto.Api.IoC;
 using JpLoto.EmailServices.Settings;
-using JpLoto.Globalization.Localization.Constants;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,19 +19,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<SmtpSetting>(builder.Configuration.GetSection("SMTP"));
 
 // Add services to the container.
-//builder.Services.AddCors();
-
-//builder.Services.AddCors(options =>
-//{
-//    options.AddPolicy(name: "cors_policy",
-//                      policy =>
-//                      {
-//                          policy.WithOrigins("https://localhost:7129", "http://localhost:5094")
-//                          .AllowAnyMethod()
-//                          .AllowAnyHeader();
-//                      });
-//});
-
 builder.Services.AddCors(p => p.AddPolicy("cors_policy", policy =>
 {
     policy.WithOrigins("https://localhost:7219")
@@ -76,13 +71,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseCors("cors_policy");
-
-//app.UseCors(builder => builder
-//    .SetIsOriginAllowed(orign => true)
-//    .AllowAnyMethod()
-//    .AllowAnyHeader()
-//    .AllowAnyMethod()
-//    .AllowCredentials());
 
 app.MapRazorPages();
 app.MapControllers();
