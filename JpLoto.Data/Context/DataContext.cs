@@ -1,7 +1,5 @@
 ﻿using JpLoto.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection.Emit;
-using System.Reflection;
 
 namespace JpLoto.Data.Context;
 public class DataContext : DbContext
@@ -14,6 +12,7 @@ public class DataContext : DbContext
     public DbSet<Loto7Result> Loto7Results { get; set; }
     public DbSet<MiniLotoResult> MiniLotoResults { get; set; }
     public DbSet<Plan> Plans { get; set; }
+    public DbSet<JplLicense> Licences { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
