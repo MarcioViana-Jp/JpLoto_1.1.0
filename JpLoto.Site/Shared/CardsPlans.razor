@@ -1,0 +1,75 @@
+﻿@inject IStringLocalizer<FeedResource> FeedLocalizer
+@inject IStringLocalizer<PlanResource> PlanLocalizer
+<div class="row">
+    <h6>@FeedLocalizer["CardPlansTitle"]</h6>
+    <div class="col-lg-4 col-md-6 mt-4 mb-4">
+        <div class="card z-index-2">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent shadow-sm">
+                <a href="/miniloto">
+                    <div class="bg-gradient-faded-success shadow-blur border-radius-lg py-2 pe-1">
+                        <h5 class="text-white font-weight-bold text-center mt-0 mb-0 p-0">FREE-30</h5>
+                        <p class="text-white font-weight-bold text-center font-10 mt-0 mb-0 p-0">::: @PlanLocalizer["FreeTrial"] :::</p>
+                    </div>
+                </a>
+            </div>
+            <div class="card-body">
+                <p class="mb-0 font-12 text-center">@PlanLocalizer["FreeTrialText"]</p>
+                <hr class="dark horizontal">
+                <div class="d-flex align-self-center">
+                    <p class="mb-0 text-xs text-center">
+                        <span><i class="fa fa-close me-sm-1 text-danger"></i></span>
+                        @PlanLocalizer["ExpiredIn"] @DateTime.Today.ToShortDateString()
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 mt-4 mb-4">
+        <div class="card z-index-2">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent shadow-sm">
+                <a href="/miniloto">
+                    <div class="bg-gradient-faded-info shadow-blur border-radius-lg py-2 pe-1">
+                        <h5 class="text-white font-weight-bold text-center mt-0 mb-0 p-0">LUCK-6</h5>
+                        <p class="text-white font-weight-bold text-center font-10 mt-0 mb-0 p-0">::: @PlanLocalizer["ClickHereToSubscribe"] :::</p>
+                    </div>
+                </a>
+            </div>
+            <div class="card-body">
+                <p class="mb-0 font-12 text-center">@PlanLocalizer["SixMonthSubsciption"]</p>
+                <hr class="dark horizontal">
+                <div class="d-flex align-items-center">
+                    <span><i class="fa fa-star-o text-green me-sm-1"></i></span>
+                    <p class="mb-0 text-xs text-center">
+                        @PlanLocalizer["ExpiresIn"] @DateTime.Today.ToShortDateString()
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 mt-4 mb-4">
+        <div class="card z-index-2">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent shadow-sm">
+                <a href="/miniloto">
+                    <div class="bg-gradient-faded-primary shadow-blur border-radius-lg py-2 pe-1">
+                        <h5 class="text-white font-weight-bold text-center mt-0 mb-0 p-0">LUCK-12</h5>
+                        <p class="text-white font-weight-bold text-center font-10 mt-0 mb-0 p-0">::: @PlanLocalizer["ClickHereToSubscribe"] :::</p>
+                    </div>
+                </a>
+            </div>
+            <div class="card-body">
+                <p class="mb-0 font-12 text-center">@PlanLocalizer["OneYearSubscription"]</p>
+                <hr class="dark horizontal">
+                <div class="d-flex align-self-center">
+                    <p class="mb-0 text-xs text-center">
+                        <span><i class="fa fa-star-o text-green me-sm-1"></i></span>
+                        @PlanLocalizer["ExpiresIn"] @DateTime.Today.ToShortDateString()
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+}

@@ -123,6 +123,9 @@
   <data name="CardNewsTitle" xml:space="preserve">
     <value>Noticias recientes</value>
   </data>
+  <data name="CardPlansTitle" xml:space="preserve">
+    <value>Planes disponibles</value>
+  </data>
   <data name="CardSubscriptionsTitle" xml:space="preserve">
     <value>Tus suscripciones</value>
   </data>
@@ -130,6 +133,6 @@
     <value>Click aquí para comenzar</value>
   </data>
   <data name="SponsoredLinks" xml:space="preserve">
-    <value>Links patrocinados</value>
+    <value>Links patrocinados </value>
   </data>
 </root>

@@ -1,81 +1,66 @@
 ﻿@inject IStringLocalizer<LotoResource> LotoLocalizer
 @inject IStringLocalizer<FeedResource> FeedLocalizer
-<div class="row">
-    <h5>@FeedLocalizer["CardLotteriesTitle"]</h5>
-    <div class="col-lg-4 col-md-6 mt-4 mb-4">
-        <div class="card z-index-2">
-            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent shadow-sm">
-                <a href="/miniloto">
-                    <div class="bg-gradient-faded-info shadow-blur border-radius-lg py-2 pe-1">
-                        @* <img src="site_images/buttons/btnLoto6_menu_shadow.png" width="120" /> *@
-                        <h4 class="text-white font-weight-bold text-center mt-0 mb-0 p-0">@LotoLocalizer["TITLE_MINILOTO"]</h4>
-                        <p class="text-white font-weight-bold text-center font-10 mt-0 mb-0 p-0">::: @FeedLocalizer["ClickHereToStart"] :::</p>
+
+<div class="container-fluid mb-4">
+    <h6 class="mb-4 card-title">@FeedLocalizer["CardLotteriesTitle"]</h6>
+    <div class="row">
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+                <div class="card-header p-3 pt-2">
+                    <div class="d-inline-flex icon icon-shape ico-plans bg-gradient-info shadow-dark text-center border-radius-xl mt-n4 position-absolute justify-content-center align-items-center">
+                        <a href="/miniloto" class="font-9 link-white text-center">
+                            <h6 class="text-white font-12 bold mt-1">@LotoLocalizer["TITLE_MINILOTO"]</h6>
+                        </a>
                     </div>
-                </a>
-            </div>
-            <div class="card-body">
-                <h6 class="mb-0 text-center">@LotoLocalizer["CombForMiniLoto"]</h6>
-                <p class="text-sm">@LotoLocalizer["SelectForMiniLoto"]</p>
-                <hr class="dark horizontal">
-                <div class="d-flex align-self-center">
-                    <p class="mb-0 text-xxs text-center">
-                        <strong class="text-sm">&reg;</strong> MiniLoto is a 宝くじネット TM 
-                        <br />
-                        (c)2020 Takarakujinet Co.,Ltd. All Rights Reserved. 
-                    </p>
-                </div>                
+                    <div class="text-end mt-4">
+                        @* <p class="font-10 text-center mb-0">@LotoLocalizer["CombForMiniLoto"]</p> *@
+                        <p class="font-10 text-center mb-0">@LotoLocalizer["SelectForMiniLoto"]</p>
+                    </div>
+                </div>
+                <hr class="dark horizontal my-0">
+                <div class="card-footer d-inline-flex align-items-center justify-content-center p-0 mt-1 mb-2">
+                    <a href="/miniloto" class="font-9 link-danger bold text-info text-center">>> @FeedLocalizer["ClickHereToStart"]</a>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-lg-4 col-md-6 mt-4 mb-4">
-        <a href="/loto6">
-            <div class="card z-index-2">
-                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent shadow-sm">
-                    <div class="bg-gradient-faded-danger shadow-blur border-radius-lg py-2 pe-1">
-                        @* <img src="site_images/buttons/btnLoto6_menu_shadow.png" width="120" /> *@
-                        <h4 class="text-white font-weight-bold text-center mt-0 mb-0 p-0">@LotoLocalizer["TITLE_LOTO6"]</h4>
-                        <p class="text-white font-weight-bold text-center font-10 mt-0 mb-0 p-0">::: @FeedLocalizer["ClickHereToStart"] :::</p>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+                <div class="card-header p-3 pt-2">
+                    <div class="d-inline-flex icon icon-shape ico-plans bg-gradient-danger shadow-dark text-center border-radius-xl mt-n4 position-absolute justify-content-center align-items-center">
+                        <a href="/miniloto" class="font-9 link-white text-center">
+                            <h6 class="text-white font-12 bold mt-1">@LotoLocalizer["TITLE_LOTO6"]</h6>
+                        </a>
+                    </div>
+                    <div class="text-end mt-4">
+                        @* <p class="font-10 text-center mb-0">@LotoLocalizer["CombForLoto6"]</p> *@
+                        <p class="font-10 text-center mb-0">@LotoLocalizer["SelectForLoto6"]</p>
                     </div>
                 </div>
-                <div class="card-body">
-                    <h6 class="mb-0 text-center">@LotoLocalizer["CombForLoto6"]</h6>
-                    <p class="text-sm">@LotoLocalizer["SelectForLoto6"]</p>
-                    <hr class="dark horizontal">
-                    <div class="d-flex align-self-center">
-                        <p class="mb-0 text-xxs text-center">
-                            <strong class="text-sm">&reg;</strong> Loto6 is a 宝くじネット TM 
-                            <br />
-                            (c)2020 Takarakujinet Co.,Ltd. All Rights Reserved. 
-                        </p>
-                    </div>                
+                <hr class="dark horizontal my-0">
+                <div class="card-footer d-inline-flex align-items-center justify-content-center p-0 mt-1 mb-2">
+                    <a href="/loto6" class="font-9 link-danger bold text-info text-center">>> @FeedLocalizer["ClickHereToStart"]</a>
                 </div>
             </div>
-        </a>
-    </div>
-    <div class="col-lg-4 col-md-6 mt-4 mb-4">
-        <a href="/loto7">
-            <div class="card z-index-2">
-                <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2 bg-transparent shadow-sm">
-                    <div class="bg-gradient-faded-primary shadow-blur border-radius-lg py-2 pe-1">
-                        @* <img src="site_images/buttons/btnLoto6_menu_shadow.png" width="120" /> *@
-                        <h4 class="text-white font-weight-bold text-center mt-0 mb-0 p-0">@LotoLocalizer["TITLE_LOTO7"]</h4>
-                        <p class="text-white font-weight-bold text-center font-10 mt-0 mb-0 p-0">::: @FeedLocalizer["ClickHereToStart"] :::</p>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+                <div class="card-header p-3 pt-2">
+                    <div class="d-inline-flex icon icon-shape ico-plans bg-gradient-primary shadow-dark text-center border-radius-xl mt-n4 position-absolute justify-content-center align-items-center">
+                        <a href="/miniloto" class="font-9 link-white text-center">
+                            <h6 class="text-white font-12 bold mt-1">@LotoLocalizer["TITLE_LOTO7"]</h6>
+                        </a>
+                    </div>
+                    <div class="text-end mt-4">
+                        @* <p class="font-10 text-center mb-0">@LotoLocalizer["CombForLoto7"]</p> *@
+                        <p class="font-10 text-center mb-0">@LotoLocalizer["SelectForLoto7"]</p>
                     </div>
                 </div>
-                <div class="card-body">
-                    <h6 class="mb-0 text-center">@LotoLocalizer["CombForLoto7"]</h6>
-                    <p class="text-sm">@LotoLocalizer["SelectForLoto7"]</p>
-                    <hr class="dark horizontal">
-                    <div class="d-flex align-self-center">
-                        <p class="mb-0 text-xxs text-center">
-                            <strong class="text-sm text-center">&reg;</strong>Loto7 is a 宝くじネット TM 
-                            <br />
-                            (c)2020 Takarakujinet Co.,Ltd. All Rights Reserved. 
-                        </p>
-                    </div>                
+                <hr class="dark horizontal my-0">
+                <div class="card-footer d-inline-flex align-items-center justify-content-center p-0 mt-1 mb-2">
+                    <a href="/loto7" class="font-9 link-danger bold text-info text-center">>> @FeedLocalizer["ClickHereToStart"]</a>
                 </div>
             </div>
-        </a>
+        </div>
     </div>
 </div>
 

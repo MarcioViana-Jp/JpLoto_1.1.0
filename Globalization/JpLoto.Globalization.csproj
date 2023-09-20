@@ -21,6 +21,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>LotoResource.resx</DependentUpon>
     </Compile>
+    <Compile Update="Resources\PlanResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PlanResource.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -46,6 +51,10 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\FeedResource.es-ES.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\PlanResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PlanResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

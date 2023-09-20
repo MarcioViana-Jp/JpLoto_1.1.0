@@ -5,6 +5,7 @@ namespace JpLoto.Site.Services.Account
 {
     public interface IAccountService
     {
+        event Action? OnChange;
         Task<LoginResponseData> Login(LoginRequest request);
         Task Logout();
         Task<RegisterResponseData> Register(RegisterRequest request);

@@ -22,14 +22,14 @@ namespace JpLoto.Globalization.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class FeedResource {
+    public class PlanResource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal FeedResource() {
+        internal PlanResource() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace JpLoto.Globalization.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JpLoto.Globalization.Resources.FeedResource", typeof(FeedResource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JpLoto.Globalization.Resources.PlanResource", typeof(PlanResource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,56 +61,92 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 「ロトシリーズ」への組み合わせ - お宝くじネット宝くじ.
+        ///   Looks up a localized string similar to Click here to subscribe.
         /// </summary>
-        public static string CardLotteriesTitle {
+        public static string ClickHereToSubscribe {
             get {
-                return ResourceManager.GetString("CardLotteriesTitle", resourceCulture);
+                return ResourceManager.GetString("ClickHereToSubscribe", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 最新のニュース.
+        ///   Looks up a localized string similar to Expired in.
         /// </summary>
-        public static string CardNewsTitle {
+        public static string ExpiredIn {
             get {
-                return ResourceManager.GetString("CardNewsTitle", resourceCulture);
+                return ResourceManager.GetString("ExpiredIn", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 利用可能なプラン.
+        ///   Looks up a localized string similar to Expires in .
         /// </summary>
-        public static string CardPlansTitle {
+        public static string ExpiresIn {
             get {
-                return ResourceManager.GetString("CardPlansTitle", resourceCulture);
+                return ResourceManager.GetString("ExpiresIn", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ごサブスクリプションリスト.
+        ///   Looks up a localized string similar to Sign up for free.
         /// </summary>
-        public static string CardSubscriptionsTitle {
+        public static string FreeTrial {
             get {
-                return ResourceManager.GetString("CardSubscriptionsTitle", resourceCulture);
+                return ResourceManager.GetString("FreeTrial", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to クリックして開始します.
+        ///   Looks up a localized string similar to Sign up for a 30-day free trial with all features available. No credit card is required. You will not be charged at the end of this trial period..
         /// </summary>
-        public static string ClickHereToStart {
+        public static string FreeTrialText {
             get {
-                return ResourceManager.GetString("ClickHereToStart", resourceCulture);
+                return ResourceManager.GetString("FreeTrialText", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to パートナーのスポンサーリンク.
+        ///   Looks up a localized string similar to Sorry! Not available..
         /// </summary>
-        public static string SponsoredLinks {
+        public static string NotAvailable {
             get {
-                return ResourceManager.GetString("SponsoredLinks", resourceCulture);
+                return ResourceManager.GetString("NotAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subscription valid for one year. It will not be automatically renewed at the end of the period. To continue using JpLoto, please make a new subscription..
+        /// </summary>
+        public static string OneYearSubscription {
+            get {
+                return ResourceManager.GetString("OneYearSubscription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subscription valid for six months. It will not be automatically renewed at the end of the period. To continue using JpLoto, please make a new subscription..
+        /// </summary>
+        public static string SixMonthSubsciption {
+            get {
+                return ResourceManager.GetString("SixMonthSubsciption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry! Your subscription expired .
+        /// </summary>
+        public static string SubscriptionExpired {
+            get {
+                return ResourceManager.GetString("SubscriptionExpired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorry! Your trial period is over.
+        /// </summary>
+        public static string TrialExpired {
+            get {
+                return ResourceManager.GetString("TrialExpired", resourceCulture);
             }
         }
     }

@@ -123,6 +123,9 @@
   <data name="CardNewsTitle" xml:space="preserve">
     <value>最新のニュース</value>
   </data>
+  <data name="CardPlansTitle" xml:space="preserve">
+    <value>利用可能なプラン</value>
+  </data>
   <data name="CardSubscriptionsTitle" xml:space="preserve">
     <value>ごサブスクリプションリスト</value>
   </data>

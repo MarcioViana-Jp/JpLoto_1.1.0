@@ -117,22 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CardLotteriesTitle" xml:space="preserve">
-    <value>Combinações para loterias TakarakujiNet - Series Loto</value>
+  <data name="ClickHereToSubscribe" xml:space="preserve">
+    <value>Click here to subscribe</value>
   </data>
-  <data name="CardNewsTitle" xml:space="preserve">
-    <value>Notícias recentes</value>
+  <data name="ExpiredIn" xml:space="preserve">
+    <value>Expired in</value>
   </data>
-  <data name="CardPlansTitle" xml:space="preserve">
-    <value>Planos disponíveis</value>
+  <data name="ExpiresIn" xml:space="preserve">
+    <value>Expires in </value>
   </data>
-  <data name="CardSubscriptionsTitle" xml:space="preserve">
-    <value>Suas assinaturas</value>
+  <data name="FreeTrial" xml:space="preserve">
+    <value>Sign up for free</value>
   </data>
-  <data name="ClickHereToStart" xml:space="preserve">
-    <value>Clique aqui pra começar</value>
+  <data name="FreeTrialText" xml:space="preserve">
+    <value>Sign up for a 30-day free trial with all features available. No credit card is required. You will not be charged at the end of this trial period.</value>
   </data>
-  <data name="SponsoredLinks" xml:space="preserve">
-    <value>Links patrocinados </value>
+  <data name="NotAvailable" xml:space="preserve">
+    <value>Sorry! Not available.</value>
+  </data>
+  <data name="OneYearSubscription" xml:space="preserve">
+    <value>Subscription valid for one year. It will not be automatically renewed at the end of the period. To continue using JpLoto, please make a new subscription.</value>
+  </data>
+  <data name="SixMonthSubsciption" xml:space="preserve">
+    <value>Subscription valid for six months. It will not be automatically renewed at the end of the period. To continue using JpLoto, please make a new subscription.</value>
+  </data>
+  <data name="SubscriptionExpired" xml:space="preserve">
+    <value>Sorry! Your subscription expired </value>
+  </data>
+  <data name="TrialExpired" xml:space="preserve">
+    <value>Sorry! Your trial period is over</value>
   </data>
 </root>

@@ -20,7 +20,7 @@ a, .btn-link {
     color: #0071c1;
 }
 
-.btn2 {
+.jplbtn {
     margin: 0.5rem !important;
     padding: 0.25rem !important;
     height: 1.5rem !important;
@@ -29,7 +29,7 @@ a, .btn-link {
     font-size: 0.75rem;
 }
 
-.btn-primary {
+.jplbtn-primary {
     /*color: #0060e5 !important;*/
     color: white !important;
     background-color: #1b6ec2 !important;
@@ -37,7 +37,7 @@ a, .btn-link {
     transition: background-color 0.5s ease, color 0.5s ease, transform 0.5s
 }
 
-    .btn-primary:hover {
+    .jplbtn-primary:hover {
         /*color: #5da8e0 !important;*/
         color: ghostwhite !important;
         background-color: #0060e5 !important;
@@ -613,6 +613,14 @@ input[type=checkbox] {
         cursor: pointer;
     }
 
-.card-header:hover {
-    transform: scale(1.03);
+.ico-plans {
+    height: 40px!important;
+    width: 100px!important;
+}
+    .ico-plans:hover {
+        transform: scale(1.03);
+    }
+
+.card-title {
+    color: dimgrey;
 }

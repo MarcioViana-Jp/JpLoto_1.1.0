@@ -1,5 +1,9 @@
-﻿@inherits LayoutComponentBase
+﻿@using Microsoft.AspNetCore.Identity;
 @inject NavigationManager navigationManager
+@inject ISyncLocalStorageService localStorage
+@inject IAccountService accountService
+@implements IDisposable
+@inherits LayoutComponentBase
 
 <div class="page @navbarClassShow @navbarClass bg-gray-200">
     <style>
@@ -35,6 +39,19 @@
         <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
             <NavMenu />
         </div>
+
+        <AuthorizeView>
+            <Authorized>
+                <div class="sidenav-footer position-absolute w-100 bottom-3 ">
+                    <div class="mx-3 font-10 text-center">
+                        <span><i class="fas fa-user text-center"></i></span>
+                        <br class="mt-0 mb-0 p-0" />
+                        @GetCurrentUserName()
+                    </div>
+                </div>
+            </Authorized>
+        </AuthorizeView>
+
     </aside>
 
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
@@ -64,7 +81,7 @@
                                 <li class="nav-item d-flex align-items-center">
                                     <a href="/logout" class="nav-link text-body font-weight-bold px-0">
                                         <i class="fa fa-sign-out me-sm-1"></i>
-                                        <span class="d-sm-inline d-none">Sign Out</span>
+                                        <span class="d-sm-inline d-none font-10">Sign Out</span>
                                     </a>
                                 </li>
                             </Authorized>
@@ -72,7 +89,7 @@
                                 <li class="nav-item d-flex align-items-center">
                                     <a href="/login" class="nav-link text-body font-weight-bold px-0">
                                         <i class="fa fa-user me-sm-1"></i>
-                                        <span class="d-sm-inline d-none">Sign In</span>
+                                        <span class="d-sm-inline d-none font-10">Sign In</span>
                                     </a>
                                 </li>
                             </NotAuthorized>
@@ -94,6 +111,7 @@
 </div>
 
 @code {
+
     private bool isNavbarExpanded = true;
     private string? navbarClassShow => isNavbarExpanded ? "g-sidenav-show" : null;
     private string? navbarClass => isNavbarExpanded ? null : "g-sidenav-pinned";
@@ -108,6 +126,18 @@
         {
             returnUrl = url;
         }
+        accountService.OnChange += StateHasChanged;
+    }
+
+    private string GetCurrentUserName()
+    {
+        return localStorage.GetItemAsString("_user");
+    }
+
+
+    public void Dispose()
+    {
+        accountService.OnChange -= StateHasChanged;
     }
 
     private void NavbarTogglerHandler()
