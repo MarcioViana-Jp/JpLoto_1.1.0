@@ -88,6 +88,15 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to クリックして開始します.
+        /// </summary>
+        public static string ClickHereToStart {
+            get {
+                return ResourceManager.GetString("ClickHereToStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to パートナーのスポンサーリンク.
         /// </summary>
         public static string SponsoredLinks {

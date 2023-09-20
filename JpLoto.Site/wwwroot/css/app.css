@@ -41,7 +41,7 @@ a, .btn-link {
         /*color: #5da8e0 !important;*/
         color: ghostwhite !important;
         background-color: #0060e5 !important;
-        transform: scale(1.1)
+        transform: scale(1.1);
         /*border-color: #1861ac!important;*/
     }
 
@@ -612,3 +612,7 @@ input[type=checkbox] {
         border: solid thin white;
         cursor: pointer;
     }
+
+.card-header:hover {
+    transform: scale(1.03);
+}

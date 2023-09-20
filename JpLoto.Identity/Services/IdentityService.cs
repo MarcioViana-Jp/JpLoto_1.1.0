@@ -58,6 +58,11 @@ namespace JpLoto.Identity.Services
 
             return response;
         }
+        
+        public async Task<IdentityUser> GetUserByEmailAsync(string email)
+        {
+            return await _userManager.FindByEmailAsync(email); 
+        }
 
         public async Task<LoginResponse> Login(LoginRequest usuarioLogin)
         {

@@ -126,6 +126,9 @@
   <data name="CardSubscriptionsTitle" xml:space="preserve">
     <value>ごサブスクリプションリスト</value>
   </data>
+  <data name="ClickHereToStart" xml:space="preserve">
+    <value>クリックして開始します</value>
+  </data>
   <data name="SponsoredLinks" xml:space="preserve">
     <value>パートナーのスポンサーリンク</value>
   </data>

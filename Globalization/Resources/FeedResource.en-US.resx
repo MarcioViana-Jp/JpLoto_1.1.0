@@ -126,6 +126,9 @@
   <data name="CardSubscriptionsTitle" xml:space="preserve">
     <value>Your subscriptions</value>
   </data>
+  <data name="ClickHereToStart" xml:space="preserve">
+    <value>Click here to start</value>
+  </data>
   <data name="SponsoredLinks" xml:space="preserve">
     <value>Partner's Sponsored Links</value>
   </data>

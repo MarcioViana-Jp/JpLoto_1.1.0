@@ -1,14 +1,11 @@
 using JpLoto.Application.Interfaces.Services;
-using JpLoto.Data.Context;
 using JpLoto.Data.Repositories;
-using JpLoto.Domain.Interfaces.Repositories;
 using JpLoto.Domain.Interfaces.Services;
 using JpLoto.Domain.Services;
 using JpLoto.EmailServices;
 using JpLoto.Identity.Data;
 using JpLoto.Identity.Services;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 namespace JpLoto.Api.IoC
 {
@@ -32,8 +29,12 @@ namespace JpLoto.Api.IoC
             services.AddScoped<ILoto7ResultRepository, Loto7ResultRepository>();
             services.AddScoped<IMiniLotoResultRepository, MiniLotoResultRepository>();
 
+            services.AddScoped<ITrialService, TrialService>();
+            services.AddScoped<ITrialRepository, TrialRepository>();
+
             services.AddScoped<IPlanService, PlanService>();
             services.AddScoped<IPlanRepository, PlanRepository>();
+
             services.AddScoped<ISubscriptionService, SubscriptionService>();
             services.AddScoped<ISubscriptionRepository, LicenseRepository>();
 

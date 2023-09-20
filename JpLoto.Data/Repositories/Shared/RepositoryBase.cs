@@ -42,11 +42,12 @@ public abstract class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where T
     public virtual async Task RemoveByIdAsync(int id)
     {
         var objeto = await GetByIdAsync(id);
-        //if (objeto == null)
-        //    throw new Exception("O registro não existe na base de dados.");
-        //await RemoveAsync(objeto);
-        if (objeto != null)
-            await RemoveAsync(objeto);
+        if (objeto == null)
+            throw new Exception("O registro não existe na base de dados.");
+        await RemoveAsync(objeto);
+
+        //if (objeto != null)
+        //    await RemoveAsync(objeto);
     }
 
     public void Dispose() =>

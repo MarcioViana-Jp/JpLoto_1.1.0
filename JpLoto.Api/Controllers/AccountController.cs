@@ -1,6 +1,7 @@
 ﻿using JpLoto.Application.Dto.Request;
 using JpLoto.Application.Dto.Response;
 using JpLoto.Application.Interfaces.Services;
+using JpLoto.Domain.Interfaces.Services;
 using JpLoto.EmailServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -15,12 +16,15 @@ public class AccountController : ControllerBase
     private IIdentityService _identityService;
     private readonly IEmailService _emailService;
     private readonly UserManager<IdentityUser> _userManager;
+    private readonly ITrialService _trialService;
 
-    public AccountController(IIdentityService identityService, IEmailService emailService, UserManager<IdentityUser> userManager)
+    public AccountController(IIdentityService identityService, IEmailService emailService, 
+        UserManager<IdentityUser> userManager, ITrialService trialService)
     {
         _identityService = identityService;
         _emailService = emailService;
         _userManager = userManager;
+        _trialService = trialService;
     }
 
 
@@ -37,6 +41,17 @@ public class AccountController : ControllerBase
         if (response.Success)
         {
             await SendEmailAsync(registerRequest.Email);
+
+            var user = await _identityService.GetUserByEmailAsync(registerRequest.Email);
+            if(user != null)
+            {
+                var trial = await _trialService.GetByUserIdAsync(user.Id);
+                if (trial == null)
+                    await _trialService.AddAsync(
+                        new Trial (user.Id, DateTime.Now, DateTime.Now.AddDays(31))
+                    );
+            }
+
             return Ok(response);
 
         }
