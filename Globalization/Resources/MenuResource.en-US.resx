@@ -118,7 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Account" xml:space="preserve">
-    <value>My account</value>
+    <value>Account</value>
+  </data>
+  <data name="AlreadyRegistered" xml:space="preserve">
+    <value>Already registered?</value>
   </data>
   <data name="ChangePassword" xml:space="preserve">
     <value>Change password</value>
@@ -153,8 +156,17 @@
   <data name="MiniLoto" xml:space="preserve">
     <value>Mini Loto</value>
   </data>
+  <data name="MyAccount" xml:space="preserve">
+    <value>My account</value>
+  </data>
   <data name="MyProfile" xml:space="preserve">
     <value>My profile</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>Sign up</value>
+  </data>
+  <data name="NotRegistered" xml:space="preserve">
+    <value>Not registered, yet?</value>
   </data>
   <data name="Pricing" xml:space="preserve">
     <value>Princing</value>
@@ -166,7 +178,7 @@
     <value>Privacy Policy</value>
   </data>
   <data name="Register" xml:space="preserve">
-    <value>Sign up</value>
+    <value>Sign up for FREE</value>
   </data>
   <data name="ResendConfirmationEmail" xml:space="preserve">
     <value>Resend email</value>

@@ -117,6 +117,11 @@ namespace JpLoto.Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("ColorClass")
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(50)");
+
                     b.Property<string>("Description")
                         .HasMaxLength(100)
                         .IsUnicode(false)

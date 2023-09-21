@@ -79,7 +79,7 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 利用可能なプラン.
+        ///   Looks up a localized string similar to 30 日間の無料トライアルにサインアップするか、以下のプランのいずれかを選択してください.
         /// </summary>
         public static string CardPlansTitle {
             get {

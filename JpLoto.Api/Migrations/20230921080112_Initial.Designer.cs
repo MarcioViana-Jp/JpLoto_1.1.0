@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JpLoto.Api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230920063756_Initial")]
+    [Migration("20230921080112_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -119,6 +119,11 @@ namespace JpLoto.Api.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ColorClass")
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("Description")
                         .HasMaxLength(100)

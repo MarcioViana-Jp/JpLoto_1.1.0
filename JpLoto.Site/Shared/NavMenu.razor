@@ -4,7 +4,36 @@
     <AuthorizeView>
         <Authorized>
             <li class="nav-item mt-3">
-                <h6 class="ps-4 ms-2 text-uppercase text-sm text-white font-weight-bolder opacity-8">@menuLocalizer["Account"]</h6>
+                <h6 class="ps-4 ms-2 text-uppercase text-sm text-white font-weight-bolder opacity-8">@menuLocalizer["Lottery"]</h6>
+            </li>
+            <hr class="horizontal light mt-0 mb-2">
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/miniloto">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">filter_5</i>
+                    </div>
+                    <span class="nav-link-text text-xs ms-1">@menuLocalizer["MiniLoto"]</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/loto6">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">filter_6</i>
+                    </div>
+                    <span class="nav-link-text text-xs ms-1">@menuLocalizer["Loto6"]</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/loto7">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">filter_7</i>
+                    </div>
+                    <span class="nav-link-text text-xs ms-1">@menuLocalizer["Loto7"]</span>
+                </a>
+            </li>
+            <hr class="horizontal light mt-2 mb-0">
+            <li class="nav-item mt-3">
+                <h6 class="ps-4 ms-2 text-uppercase text-sm text-white font-weight-bolder opacity-8">@menuLocalizer["MyAccount"]</h6>
             </li>
             <hr class="horizontal light mt-0 mb-2">
             <li class="nav-item">
@@ -39,56 +68,31 @@
                     <span class="nav-link-text text-xs ms-1">@menuLocalizer["Logout"]</span>
                 </a>
             </li>
-            <hr class="horizontal light mt-2 mb-0">
-            <li class="nav-item mt-3">
-                <h6 class="ps-4 ms-2 text-uppercase text-sm text-white font-weight-bolder opacity-8">@menuLocalizer["Lottery"]</h6>
-            </li>
-            <hr class="horizontal light mt-0 mb-2">
-            <li class="nav-item">
-                <a class="nav-link text-white" href="/miniloto">
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">filter_5</i>
-                    </div>
-                    <span class="nav-link-text text-xs ms-1">@menuLocalizer["MiniLoto"]</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="/loto6">
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">filter_6</i>
-                    </div>
-                    <span class="nav-link-text text-xs ms-1">@menuLocalizer["Loto6"]</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="/loto7">
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">filter_7</i>
-                    </div>
-                    <span class="nav-link-text text-xs ms-1">@menuLocalizer["Loto7"]</span>
-                </a>
-            </li>
         </Authorized>
         <NotAuthorized>
-            <li class="nav-item mt-3">
-                <h6 class="ps-4 ms-2 text-uppercase text-sm text-white font-weight-bolder opacity-8">@menuLocalizer["Account"]</h6>
-            </li>
-            <hr class="horizontal light mt-0 mb-2">
             <li class="nav-item">
-                <a class="nav-link text-white" href="login">
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">login</i>
+                <div class="flex-column m-0 p-0" style="width:100%!important;">
+                    <p class="text-white font-9 mt-4 mb-1" style="margin-left:10%;">
+                        @menuLocalizer["AlreadyRegistered"]
+                    </p>
+                    <div class="d-flex justify-content-center">
+                        <a class="btn btn-outline-primary mt-0 mb-0 h-75 pt-1 pb-1" style="width:80%!important;" href="/login">
+                            @menuLocalizer["Login"]
+                        </a>
                     </div>
-                    <span class="nav-link-text text-xs ms-1">@menuLocalizer["Login"]</span>
-                </a>
+                </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link text-white " href="register">
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">assignment</i>
+            <li class="nav-item mt-4">
+                <div class="flex-column m-0 p-0" style="width:100%!important;">
+                    <p class="text-white font-9 mt-2 mb-1" style="margin-left:10%;">
+                        @menuLocalizer["NotRegistered"]
+                    </p>
+                    <div class="d-flex justify-content-center">
+                        <a class="btn bg-gradient-primary mt-0 mb-0 h-75 pt-1 pb-1" style="width:80%!important;" href="/login">
+                            @menuLocalizer["Register"]
+                        </a>
                     </div>
-                    <span class="nav-link-text text-xs ms-1">@menuLocalizer["Register"]</span>
-                </a>
+                </div>
             </li>
         </NotAuthorized>
     </AuthorizeView>

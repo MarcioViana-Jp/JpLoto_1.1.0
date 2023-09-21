@@ -67,6 +67,7 @@ namespace JpLoto.Api.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PlanCode = table.Column<string>(type: "varchar(20)", unicode: false, maxLength: 20, nullable: true),
                     Description = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true),
+                    ColorClass = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
                     Price = table.Column<int>(type: "int", nullable: false),
                     NotBefore = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ValidThru = table.Column<DateTime>(type: "datetime2", nullable: false),

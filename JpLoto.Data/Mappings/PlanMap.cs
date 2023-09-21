@@ -17,5 +17,9 @@ public class PlanMap : IEntityTypeConfiguration<Plan>
         builder.Property(p => p.Description)
             .HasMaxLength(100)
             .IsUnicode(false);
+
+        builder.Property(p => p.ColorClass)
+            .HasMaxLength(50)
+            .IsUnicode(false);
     }
 }

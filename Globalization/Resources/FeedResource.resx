@@ -124,7 +124,7 @@
     <value>最新のニュース</value>
   </data>
   <data name="CardPlansTitle" xml:space="preserve">
-    <value>利用可能なプラン</value>
+    <value>30 日間の無料トライアルにサインアップするか、以下のプランのいずれかを選択してください</value>
   </data>
   <data name="CardSubscriptionsTitle" xml:space="preserve">
     <value>ごサブスクリプションリスト</value>

@@ -20,7 +20,6 @@
             <div class=" d-flex align-items-center align-content-between">
                 <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
                 <a class="navbar-brand m-0" href=""> @* target="_blank" *@
-                    @* <img src="assets/img/logo-ct.png" class="navbar-brand-img h-50" alt="main_logo"> *@
                     <img src="site_images/logos/jpllogo_60x10_wr.png" style="width: 100px;" class="navbar-brand-img" alt="main_logo">
                     <span class="font-weight-bold text-white jploto_version p-1">1.1</span>
                 </a>
@@ -41,7 +40,6 @@
         <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
             <NavMenu />
         </div>
-
         <AuthorizeView>
             <Authorized>
                 <div class="sidenav-footer position-absolute w-100 bottom-3 ">
@@ -49,7 +47,7 @@
                         <li class="nav-item list-unstyled d-flex align-items-center justify-content-center">
                             <a class="nav-link text-white" href="@GetPrivacyPolicyPageUrl()">
                                 <div class="text-white me-2">
-                                    <i class="material-icons opacity-10">privacy_tip</i>
+                                    <i class="material-icons opacity-10 position-absolute bottom-70 start-10">privacy_tip</i>
                                     <span class="nav-link-text text-xs text-center ms-1">@menuLocalizer["PrivacyPolicy"]</span>
                                 </div>
                             </a>
@@ -64,7 +62,6 @@
                 </div>
             </Authorized>
         </AuthorizeView>
-
     </aside>
 
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
@@ -74,7 +71,7 @@
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <h6 class="navbar-nav justify-content-start font-weight-bolder mb-0" hidden><span>JP Loto 1.1</span></h6>
                     <ul class="navbar-nav justify-content-end">                        
-                        <li class="nav-item d-xl-none ps-3 d-flex align-items-center" @onclick="NavbarTogglerHandler">
+                        <li class="nav-item d-xl-none ps-3 d-flex align-items-center me-auto" @onclick="NavbarTogglerHandler">
                              <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
                                 <div class="sidenav-toggler-inner">
                                     <i class="sidenav-toggler-line"></i>
@@ -94,12 +91,10 @@
                                 </li>
                             </Authorized>
                             <NotAuthorized>
-                                <li class="nav-item d-flex align-items-center">
-                                    <a href="/login" class="nav-link text-body font-weight-bold px-0">
-                                        <i class="fa fa-user me-sm-1"></i>
-                                        <span class="d-sm-inline d-none font-10">@menuLocalizer["Login"]</span>
-                                    </a>
-                                </li>
+                                <div class="d-inline-flex m-0 p-0 align-items-center justify-content-center">
+                                    <a class="btn btn-outline-primary mt-0 mb-0 h-70 w-110 pt-1 pb-1" href="/login">@menuLocalizer["Login"]</a>
+                                    <a class="btn bg-gradient-primary mt-0 mb-0 h-70 w-110 pt-1 pb-1 ms-3" href="/register">@menuLocalizer["New"]</a>
+                                </div>
                             </NotAuthorized>
                         </AuthorizeView>
                     </ul>

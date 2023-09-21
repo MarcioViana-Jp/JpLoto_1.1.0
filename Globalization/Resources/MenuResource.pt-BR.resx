@@ -118,7 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Account" xml:space="preserve">
-    <value>Minha Conta</value>
+    <value>Conta</value>
+  </data>
+  <data name="AlreadyRegistered" xml:space="preserve">
+    <value>Já possui conta?</value>
   </data>
   <data name="ChangePassword" xml:space="preserve">
     <value>Altera senha</value>
@@ -136,7 +139,7 @@
     <value>Home</value>
   </data>
   <data name="Login" xml:space="preserve">
-    <value>Login</value>
+    <value>Entrar</value>
   </data>
   <data name="Logout" xml:space="preserve">
     <value>Sair</value>
@@ -153,8 +156,17 @@
   <data name="MiniLoto" xml:space="preserve">
     <value>Mini Loto</value>
   </data>
+  <data name="MyAccount" xml:space="preserve">
+    <value>Minha Conta</value>
+  </data>
   <data name="MyProfile" xml:space="preserve">
     <value>Meu perfil</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>Novo</value>
+  </data>
+  <data name="NotRegistered" xml:space="preserve">
+    <value>Ainda não possui conta?</value>
   </data>
   <data name="Pricing" xml:space="preserve">
     <value>Preços das apostas</value>
@@ -166,7 +178,7 @@
     <value>Política de Privacidade</value>
   </data>
   <data name="Register" xml:space="preserve">
-    <value>Novo Usuário</value>
+    <value>Registre-se grátis</value>
   </data>
   <data name="ResendConfirmationEmail" xml:space="preserve">
     <value>Reenvia cofirmação</value>
