@@ -204,6 +204,9 @@
   <data name="UpdateOk" xml:space="preserve">
     <value>更新成功しました。</value>
   </data>
+  <data name="UpdatePassword" xml:space="preserve">
+    <value>審しいパスワード保存</value>
+  </data>
   <data name="UserNotFound" xml:space="preserve">
     <value>ユーザーが見つかりません。</value>
   </data>
@@ -227,6 +230,9 @@
   </data>
   <data name="WrongPassword" xml:space="preserve">
     <value>間違ったパスワード。</value>
+  </data>
+  <data name="_CHANGE_PASSWORD_TITLE" xml:space="preserve">
+    <value>パスワード変更</value>
   </data>
   <data name="_LOGIN_TITLE" xml:space="preserve">
     <value>ユーザーログイン</value>

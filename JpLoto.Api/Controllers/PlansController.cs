@@ -50,7 +50,7 @@ public class PlansController : ControllerBase
     [ProducesResponseType(typeof(IEnumerable<PlanResponse>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-    [HttpGet("{id}")]
+    [HttpGet("{id:int}")]
     public async Task<ActionResult<PlanResponse>> GetById(int id)
     {
         var Plan = await _planService.GetByIdAsync(id);
@@ -65,7 +65,7 @@ public class PlansController : ControllerBase
     [ProducesResponseType(typeof(IEnumerable<PlanResponse>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-    [HttpDelete("{id}")]
+    [HttpDelete("{id:int}")]
     public async Task<ActionResult> RemoveById(int id)
     {
         await _planService.RemoveByIdAsync(id);

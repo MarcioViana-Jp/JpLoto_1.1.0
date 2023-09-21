@@ -29,6 +29,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Resources\AuthResource.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\AuthResource.pt-BR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\FeedResource.en-US.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
@@ -52,9 +58,18 @@
     <EmbeddedResource Update="Resources\FeedResource.es-ES.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\PlanResource.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\PlanResource.pt-BR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\PlanResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>PlanResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\PlanResource.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
   </ItemGroup>
 

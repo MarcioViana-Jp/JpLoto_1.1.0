@@ -204,6 +204,9 @@
   <data name="UpdateOk" xml:space="preserve">
     <value>Cambios realizados con éxito.</value>
   </data>
+  <data name="UpdatePassword" xml:space="preserve">
+    <value>Actualiza contraseña</value>
+  </data>
   <data name="UserNotFound" xml:space="preserve">
     <value>Usuário não encontrado.</value>
   </data>
@@ -230,6 +233,9 @@
   </data>
   <data name="WrongPassword" xml:space="preserve">
     <value>Contraseña incorrecta.</value>
+  </data>
+  <data name="_CHANGE_PASSWORD_TITLE" xml:space="preserve">
+    <value>Cambiar la Contraseña</value>
   </data>
   <data name="_LOGIN_TITLE" xml:space="preserve">
     <value>Login</value>

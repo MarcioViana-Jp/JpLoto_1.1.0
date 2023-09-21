@@ -118,33 +118,33 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ClickHereToSubscribe" xml:space="preserve">
-    <value>Click here to subscribe</value>
+    <value>購読するに進む</value>
   </data>
   <data name="ExpiredIn" xml:space="preserve">
-    <value>Expired in</value>
+    <value>有効期限終了</value>
   </data>
   <data name="ExpiresIn" xml:space="preserve">
-    <value>Expires in </value>
+    <value>有効期限</value>
   </data>
   <data name="FreeTrial" xml:space="preserve">
-    <value>Sign up for free</value>
+    <value>無料でお申し込み頂けます</value>
   </data>
   <data name="FreeTrialText" xml:space="preserve">
-    <value>Sign up for a 30-day free trial with all features available. No credit card is required. You will not be charged at the end of this trial period.</value>
+    <value>フル機能を備えた 30 日間の無料トライアルにサインアップしてください。 クレジット カードは必要なく、この試用期間の終了時に料金が請求されることはありません。 幸運を！</value>
   </data>
   <data name="NotAvailable" xml:space="preserve">
-    <value>Sorry! Not available.</value>
+    <value>申し訳ございませんが、利用不可</value>
   </data>
   <data name="OneYearSubscription" xml:space="preserve">
-    <value>Subscription valid for one year. It will not be automatically renewed at the end of the period. To continue using JpLoto, please make a new subscription.</value>
+    <value>サブスクリプションは 1 年月間有効です。 この期間の終了時に自動的に更新されることはありません。 その後、JpLoto を継続して使用するには、新たな定期購入を行ってください。</value>
   </data>
   <data name="SixMonthSubsciption" xml:space="preserve">
-    <value>Subscription valid for six months. It will not be automatically renewed at the end of the period. To continue using JpLoto, please make a new subscription.</value>
+    <value>サブスクリプションは 6 か月間有効です。 この期間の終了時に自動的に更新されることはありません。 その後、JpLoto を継続して使用するには、新たな定期購入を行ってください。</value>
   </data>
   <data name="SubscriptionExpired" xml:space="preserve">
-    <value>Sorry! Your subscription expired </value>
+    <value>申し訳ございませんが、ごプランの有効期限が切れました</value>
   </data>
   <data name="TrialExpired" xml:space="preserve">
-    <value>Sorry! Your trial period is over</value>
+    <value>申し訳ありませんが、試用期間は終了しました</value>
   </data>
 </root>

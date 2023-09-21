@@ -1,16 +1,18 @@
-﻿
+﻿@inject IStringLocalizer<MenuResource> menuLocalizer
+
 <ul class="navbar-nav">
-    <li class="nav-item mt-3">
-        <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account</h6> @* text-uppercase *@
-    </li>
     <AuthorizeView>
         <Authorized>
+            <li class="nav-item mt-3">
+                <h6 class="ps-4 ms-2 text-uppercase text-sm text-white font-weight-bolder opacity-8">@menuLocalizer["Account"]</h6>
+            </li>
+            <hr class="horizontal light mt-0 mb-2">
             <li class="nav-item">
                 <a class="nav-link text-white" href="userprofile">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">person</i>
                     </div>
-                    <span class="nav-link-text ms-1">Profile</span>
+                    <span class="nav-link-text text-xs ms-1">@menuLocalizer["MyProfile"]</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -18,7 +20,7 @@
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">password</i>
                     </div>
-                    <span class="nav-link-text ms-1">Change password</span>
+                    <span class="nav-link-text text-xs ms-1">@menuLocalizer["ChangePassword"]</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -26,7 +28,7 @@
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">email</i>
                     </div>
-                    <span class="nav-link-text ms-1">Resend confirmation</span>
+                    <span class="nav-link-text text-xs ms-1">@menuLocalizer["ResendConfirmationEmail"]</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -34,17 +36,50 @@
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">logout</i>
                     </div>
-                    <span class="nav-link-text ms-1">Sign Out</span>
+                    <span class="nav-link-text text-xs ms-1">@menuLocalizer["Logout"]</span>
+                </a>
+            </li>
+            <hr class="horizontal light mt-2 mb-0">
+            <li class="nav-item mt-3">
+                <h6 class="ps-4 ms-2 text-uppercase text-sm text-white font-weight-bolder opacity-8">@menuLocalizer["Lottery"]</h6>
+            </li>
+            <hr class="horizontal light mt-0 mb-2">
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/miniloto">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">filter_5</i>
+                    </div>
+                    <span class="nav-link-text text-xs ms-1">@menuLocalizer["MiniLoto"]</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/loto6">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">filter_6</i>
+                    </div>
+                    <span class="nav-link-text text-xs ms-1">@menuLocalizer["Loto6"]</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/loto7">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">filter_7</i>
+                    </div>
+                    <span class="nav-link-text text-xs ms-1">@menuLocalizer["Loto7"]</span>
                 </a>
             </li>
         </Authorized>
         <NotAuthorized>
+            <li class="nav-item mt-3">
+                <h6 class="ps-4 ms-2 text-uppercase text-sm text-white font-weight-bolder opacity-8">@menuLocalizer["Account"]</h6>
+            </li>
+            <hr class="horizontal light mt-0 mb-2">
             <li class="nav-item">
                 <a class="nav-link text-white" href="login">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">login</i>
                     </div>
-                    <span class="nav-link-text ms-1">Sign In</span>
+                    <span class="nav-link-text text-xs ms-1">@menuLocalizer["Login"]</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -52,43 +87,11 @@
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">assignment</i>
                     </div>
-                    <span class="nav-link-text ms-1">Sign Up</span>
+                    <span class="nav-link-text text-xs ms-1">@menuLocalizer["Register"]</span>
                 </a>
             </li>
         </NotAuthorized>
     </AuthorizeView>
-    <li class="nav-item">
-        <a class="nav-link text-white " href="~/pages/tables.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">table_view</i>
-            </div>
-            <span class="nav-link-text ms-1">Tables</span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-white " href="~/pages/billing.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">receipt_long</i>
-            </div>
-            <span class="nav-link-text ms-1">Billing</span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-white " href="~/pages/virtual-reality.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">view_in_ar</i>
-            </div>
-            <span class="nav-link-text ms-1">Virtual Reality</span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-white" href="~/pages/notifications.html">
-            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="material-icons opacity-10">notifications</i>
-            </div>
-            <span class="nav-link-text ms-1">Notifications</span>
-        </a>
-    </li>
 </ul>
 
 @code {

@@ -1,63 +1,60 @@
-﻿@inject IStringLocalizer<LotoResource> LotoLocalizer
-@inject IStringLocalizer<FeedResource> FeedLocalizer
+﻿@inject IStringLocalizer<LotoResource> lotoLocalizer
+@inject IStringLocalizer<FeedResource> feedLocalizer
 
 <div class="container-fluid mb-4">
-    <h6 class="mb-4 card-title">@FeedLocalizer["CardLotteriesTitle"]</h6>
+    <h6 class="mb-4 card-title">@feedLocalizer["CardLotteriesTitle"]</h6>
     <div class="row">
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
             <div class="card">
-                <div class="card-header p-3 pt-2">
-                    <div class="d-inline-flex icon icon-shape ico-plans bg-gradient-info shadow-dark text-center border-radius-xl mt-n4 position-absolute justify-content-center align-items-center">
+                <div class="card-header p-3 pt-2 bg-gradient-faded-info text-white shadow-dark">
+                    <div class="d-inline-flex icon icon-shape ico-plans bg-transparent border-radius-xl mt-n4 position-absolute justify-content-center align-items-center">
                         <a href="/miniloto" class="font-9 link-white text-center">
-                            <h6 class="text-white font-12 bold mt-1">@LotoLocalizer["TITLE_MINILOTO"]</h6>
+                            <img src="site_images/buttons/btnMiniLoto.png" width="100" />
                         </a>
                     </div>
                     <div class="text-end mt-4">
-                        @* <p class="font-10 text-center mb-0">@LotoLocalizer["CombForMiniLoto"]</p> *@
-                        <p class="font-10 text-center mb-0">@LotoLocalizer["SelectForMiniLoto"]</p>
+                        <p class="font-10 text-center mb-0">@lotoLocalizer["SelectForMiniLoto"]</p>
                     </div>
                 </div>
                 <hr class="dark horizontal my-0">
                 <div class="card-footer d-inline-flex align-items-center justify-content-center p-0 mt-1 mb-2">
-                    <a href="/miniloto" class="font-9 link-danger bold text-info text-center">>> @FeedLocalizer["ClickHereToStart"]</a>
+                    <a href="/miniloto" class="font-9 link-danger text-info text-center">>> @feedLocalizer["ClickHereToStart"]</a>
                 </div>
             </div>
         </div>
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
             <div class="card">
-                <div class="card-header p-3 pt-2">
-                    <div class="d-inline-flex icon icon-shape ico-plans bg-gradient-danger shadow-dark text-center border-radius-xl mt-n4 position-absolute justify-content-center align-items-center">
-                        <a href="/miniloto" class="font-9 link-white text-center">
-                            <h6 class="text-white font-12 bold mt-1">@LotoLocalizer["TITLE_LOTO6"]</h6>
+                <div class="card-header p-3 pt-2 bg-gradient-faded-danger text-white shadow-dark">
+                    <div class="d-inline-flex icon icon-shape ico-plans bg-transparent border-radius-xl mt-n4 position-absolute justify-content-center align-items-center">
+                        <a href="/loto6" class="font-9 link-white text-center">
+                            <img src="site_images/buttons/btnLoto6.png" width="100" />
                         </a>
                     </div>
                     <div class="text-end mt-4">
-                        @* <p class="font-10 text-center mb-0">@LotoLocalizer["CombForLoto6"]</p> *@
-                        <p class="font-10 text-center mb-0">@LotoLocalizer["SelectForLoto6"]</p>
+                        <p class="font-10 text-center mb-0">@lotoLocalizer["SelectForLoto6"]</p>
                     </div>
                 </div>
                 <hr class="dark horizontal my-0">
                 <div class="card-footer d-inline-flex align-items-center justify-content-center p-0 mt-1 mb-2">
-                    <a href="/loto6" class="font-9 link-danger bold text-info text-center">>> @FeedLocalizer["ClickHereToStart"]</a>
+                    <a href="/loto6" class="font-9 link-danger text-info text-center">>> @feedLocalizer["ClickHereToStart"]</a>
                 </div>
             </div>
         </div>
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
             <div class="card">
-                <div class="card-header p-3 pt-2">
-                    <div class="d-inline-flex icon icon-shape ico-plans bg-gradient-primary shadow-dark text-center border-radius-xl mt-n4 position-absolute justify-content-center align-items-center">
-                        <a href="/miniloto" class="font-9 link-white text-center">
-                            <h6 class="text-white font-12 bold mt-1">@LotoLocalizer["TITLE_LOTO7"]</h6>
+                <div class="card-header p-3 pt-2 bg-gradient-faded-primary text-white shadow-dark">
+                    <div class="d-inline-flex icon icon-shape ico-plans bg-transparent border-radius-xl mt-n4 position-absolute justify-content-center align-items-center">
+                        <a href="/loto7" class="font-9 link-white text-center">
+                            <img src="site_images/buttons/btnLoto7.png" width="100" />
                         </a>
                     </div>
                     <div class="text-end mt-4">
-                        @* <p class="font-10 text-center mb-0">@LotoLocalizer["CombForLoto7"]</p> *@
-                        <p class="font-10 text-center mb-0">@LotoLocalizer["SelectForLoto7"]</p>
+                        <p class="font-10 text-center mb-0">@lotoLocalizer["SelectForLoto7"]</p>
                     </div>
                 </div>
                 <hr class="dark horizontal my-0">
                 <div class="card-footer d-inline-flex align-items-center justify-content-center p-0 mt-1 mb-2">
-                    <a href="/loto7" class="font-9 link-danger bold text-info text-center">>> @FeedLocalizer["ClickHereToStart"]</a>
+                    <a href="/loto7" class="font-9 link-danger text-info text-center">>> @feedLocalizer["ClickHereToStart"]</a>
                 </div>
             </div>
         </div>

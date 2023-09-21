@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Account" xml:space="preserve">
+    <value>Mi cuenta</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Cambiar la contraseña</value>
+  </data>
   <data name="Combinations" xml:space="preserve">
     <value>Combinaciones</value>
   </data>
@@ -141,8 +147,14 @@
   <data name="Loto7" xml:space="preserve">
     <value>Loto7</value>
   </data>
+  <data name="Lottery" xml:space="preserve">
+    <value>Lotería</value>
+  </data>
   <data name="MiniLoto" xml:space="preserve">
     <value>Mini Loto</value>
+  </data>
+  <data name="MyProfile" xml:space="preserve">
+    <value>Mi perfil</value>
   </data>
   <data name="Pricing" xml:space="preserve">
     <value>Precios de Apuestas</value>
@@ -155,6 +167,9 @@
   </data>
   <data name="Register" xml:space="preserve">
     <value>Nuevo Usuario</value>
+  </data>
+  <data name="ResendConfirmationEmail" xml:space="preserve">
+    <value>Reenviar confirmación</value>
   </data>
   <data name="ResultsLoto6" xml:space="preserve">
     <value>Resultados del Loto6</value>

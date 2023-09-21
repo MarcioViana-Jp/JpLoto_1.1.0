@@ -61,7 +61,7 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Click here to subscribe.
+        ///   Looks up a localized string similar to 購読するに進む.
         /// </summary>
         public static string ClickHereToSubscribe {
             get {
@@ -70,7 +70,7 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Expired in.
+        ///   Looks up a localized string similar to 有効期限終了.
         /// </summary>
         public static string ExpiredIn {
             get {
@@ -79,7 +79,7 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Expires in .
+        ///   Looks up a localized string similar to 有効期限.
         /// </summary>
         public static string ExpiresIn {
             get {
@@ -88,7 +88,7 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sign up for free.
+        ///   Looks up a localized string similar to 無料でお申し込み頂けます.
         /// </summary>
         public static string FreeTrial {
             get {
@@ -97,7 +97,7 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sign up for a 30-day free trial with all features available. No credit card is required. You will not be charged at the end of this trial period..
+        ///   Looks up a localized string similar to フル機能を備えた 30 日間の無料トライアルにサインアップしてください。 クレジット カードは必要なく、この試用期間の終了時に料金が請求されることはありません。 幸運を！.
         /// </summary>
         public static string FreeTrialText {
             get {
@@ -106,7 +106,7 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry! Not available..
+        ///   Looks up a localized string similar to 申し訳ございませんが、利用不可.
         /// </summary>
         public static string NotAvailable {
             get {
@@ -115,7 +115,7 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Subscription valid for one year. It will not be automatically renewed at the end of the period. To continue using JpLoto, please make a new subscription..
+        ///   Looks up a localized string similar to サブスクリプションは 1 年月間有効です。 この期間の終了時に自動的に更新されることはありません。 その後、JpLoto を継続して使用するには、新たな定期購入を行ってください。.
         /// </summary>
         public static string OneYearSubscription {
             get {
@@ -124,7 +124,7 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Subscription valid for six months. It will not be automatically renewed at the end of the period. To continue using JpLoto, please make a new subscription..
+        ///   Looks up a localized string similar to サブスクリプションは 6 か月間有効です。 この期間の終了時に自動的に更新されることはありません。 その後、JpLoto を継続して使用するには、新たな定期購入を行ってください。.
         /// </summary>
         public static string SixMonthSubsciption {
             get {
@@ -133,7 +133,7 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry! Your subscription expired .
+        ///   Looks up a localized string similar to 申し訳ございませんが、ごプランの有効期限が切れました.
         /// </summary>
         public static string SubscriptionExpired {
             get {
@@ -142,7 +142,7 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sorry! Your trial period is over.
+        ///   Looks up a localized string similar to 申し訳ありませんが、試用期間は終了しました.
         /// </summary>
         public static string TrialExpired {
             get {
