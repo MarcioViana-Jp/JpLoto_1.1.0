@@ -1,5 +1,4 @@
-﻿using JpLoto.Globalization.Localization.Constants;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
 
@@ -21,7 +20,6 @@ public class CultureController : Controller
                     new RequestCulture(culture, culture)));
         }
         return Redirect(redirectUri);
-        //return LocalRedirect(redirectUri);
     }
 
     [HttpGet("{culture}")]

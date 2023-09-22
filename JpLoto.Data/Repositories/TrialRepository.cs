@@ -14,8 +14,7 @@ public class TrialRepository : RepositoryBase<Trial>, ITrialRepository
         _context = dataContext;
     }
 
-    public async Task<Trial> GetByUserIdAsync(string userId)
-    {
-        return await _context.Trials.FirstOrDefaultAsync(p => p.UserId.Equals(userId));
-    }
+    public async Task<Trial> GetByUserIdAsync(string userId) =>    
+           await _context.Trials.FirstOrDefaultAsync(p => p.UserId.Equals(userId));
+    
 }

@@ -12,6 +12,7 @@ public class SubscriptionsController : ControllerBase
     public SubscriptionsController(ISubscriptionService planService) =>
         _licenseService = planService;
 
+
     [ProducesResponseType(typeof(int), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
@@ -24,15 +25,15 @@ public class SubscriptionsController : ControllerBase
     }
 
 
-    [ProducesResponseType(typeof(int), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(SubscriptionResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     [HttpPut]
     public async Task<ActionResult> Update(SubscriptionUpdateRequest request)
     {
-        var plan = SubscriptionUpdateRequest.ConvertToEntity(request);
-        await _licenseService.UpdateAsync(plan);
-        return Ok(plan);
+        var subscription = SubscriptionUpdateRequest.ConvertToEntity(request);
+        await _licenseService.UpdateAsync(subscription);
+        return Ok(SubscriptionResponse.ConvertToResponse(subscription));
     }
 
 
@@ -41,13 +42,12 @@ public class SubscriptionsController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<SubscriptionResponse>>> GetAll()
     {
-        var plans = await _licenseService.GetAllAsync();
-        var plansResponse = plans.Select(License => SubscriptionResponse.ConvertToResponse(License));
-        return Ok(plansResponse);
+        var subscriptions = await _licenseService.GetAllAsync();
+        return Ok(subscriptions.Select(License => SubscriptionResponse.ConvertToResponse(License)));
     }
 
 
-    [ProducesResponseType(typeof(IEnumerable<SubscriptionResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(SubscriptionResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     [HttpGet("{id}")]
@@ -57,18 +57,17 @@ public class SubscriptionsController : ControllerBase
         if (License is null)
             return NotFound();
 
-        var planResponse = SubscriptionResponse.ConvertToResponse(License);
-        return Ok(planResponse);
+        return Ok(SubscriptionResponse.ConvertToResponse(License));
     }
 
 
-    [ProducesResponseType(typeof(IEnumerable<SubscriptionResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     [HttpDelete("{id}")]
     public async Task<ActionResult> RemoveById(int id)
     {
         await _licenseService.RemoveByIdAsync(id);
-        return Ok();
+        return Ok(id);
     }
 }

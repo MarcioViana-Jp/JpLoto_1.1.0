@@ -1,27 +1,34 @@
-﻿global using JpLoto.Application.Constants;
-global using JpLoto.Application.Interfaces;
+﻿global using JpLoto.Application.Dto;
 global using JpLoto.Application.Dto.Request;
 global using JpLoto.Application.Dto.Response;
+global using JpLoto.Application.Interfaces.Services;
+global using JpLoto.Application.Services;
+global using JpLoto.Application.Settings;
 global using JpLoto.Data.Context;
+global using JpLoto.Data.Repositories;
 global using JpLoto.Domain.Entities;
-global using JpLoto.Globalization.Localization.Constants;
 global using JpLoto.Domain.Interfaces.Repositories;
+global using JpLoto.Domain.Interfaces.Services;
+global using JpLoto.Domain.Services;
+global using JpLoto.Globalization.Localization.Constants;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
 using Hellang.Middleware.ProblemDetails;
 using JpLoto.Api.Extensions;
 using JpLoto.Api.IoC;
-using JpLoto.EmailServices.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configure EmailServices
+// Configure EmailServices and Cors
 builder.Services.Configure<SmtpSetting>(builder.Configuration.GetSection("SMTP"));
+builder.Services.Configure<CorsSetting>(builder.Configuration.GetSection("JplCors"));
 
+var cors =
 // Add services to the container.
 builder.Services.AddCors(p => p.AddPolicy("cors_policy", policy =>
 {
-    policy.WithOrigins("https://localhost:7219")
+    //policy.WithOrigins("https://localhost:7219")
+    policy.WithOrigins(builder.Configuration.GetValue<string>("JplCors:AllowedOrigins"))
     .AllowAnyMethod()
     .AllowAnyHeader();
 }));

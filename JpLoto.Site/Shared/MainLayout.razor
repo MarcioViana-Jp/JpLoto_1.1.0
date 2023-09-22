@@ -1,5 +1,4 @@
-﻿@using Microsoft.AspNetCore.Identity;
-@inject NavigationManager navigationManager
+﻿@inject NavigationManager navigationManager
 @inject ISyncLocalStorageService localStorage
 @inject IAccountService accountService
 @inject IStringLocalizer<LotoResource> lotoLocalizer
@@ -114,7 +113,6 @@
 </div>
 
 @code {
-
     private bool isNavbarExpanded = true;
     private string? navbarClassShow => isNavbarExpanded ? "g-sidenav-show" : null;
     private string? navbarClass => isNavbarExpanded ? null : "g-sidenav-pinned";

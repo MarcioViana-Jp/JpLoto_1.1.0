@@ -1,11 +1,12 @@
 using JpLoto.Domain.Entities.Shared;
-using System.ComponentModel.DataAnnotations;
 
 namespace JpLoto.Domain.Entities;
 
 public class JplUserDetail : Entity
 {
     public string? UserId { get; set; } = string.Empty;
+    public string FirstName { get; set; } = string.Empty;
+    public string LastName { get; set; } = string.Empty;
     public string? PostalCode { get; private set; } = string.Empty;
     public string? State { get; private set; } = string.Empty;
     public string? City { get; private set; } = string.Empty;
@@ -14,4 +15,23 @@ public class JplUserDetail : Entity
     public DateTime UpdateDate { get; set; }
     public bool IsActive { get; set; } = true;
 
+    public JplUserDetail(string userId, string firstName, string lastName, string postalCode, string state, string city, string address, string phone, DateTime updateDate, bool isActive = true)
+        : this(default, userId, firstName, lastName, postalCode, state, city, address, phone, updateDate, isActive)
+    {
+    }
+
+    public JplUserDetail(int id, string userId, string firstName, string lastName, string postalCode, string state, string city, string address, string phone, DateTime updateDate, bool isActive = true)
+    {
+        Id = id;
+        UserId = userId;
+        FirstName = firstName;
+        LastName = lastName;
+        PostalCode = postalCode;
+        State = state;
+        City = city;
+        Address = address;
+        Phone = phone;
+        UpdateDate = updateDate;
+        IsActive = isActive;
+    }
 }

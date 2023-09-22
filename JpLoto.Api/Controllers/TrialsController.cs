@@ -1,7 +1,4 @@
-﻿using JpLoto.Application.Dto;
-using JpLoto.Domain.Interfaces.Services;
-
-namespace JpLoto.Api.Controllers.v1;
+﻿namespace JpLoto.Api.Controllers.v1;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -10,8 +7,9 @@ public class TrialsController : ControllerBase
 {
     private ITrialService _trialService;
 
-    public TrialsController(ITrialService planService) =>
-        _trialService = planService;
+    public TrialsController(ITrialService trialService) =>
+        _trialService = trialService;
+
 
     [ProducesResponseType(typeof(int), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -25,7 +23,7 @@ public class TrialsController : ControllerBase
     }
 
 
-    [ProducesResponseType(typeof(int), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(Trial), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     [HttpPut]
@@ -47,7 +45,7 @@ public class TrialsController : ControllerBase
     }
 
 
-    [ProducesResponseType(typeof(IEnumerable<TrialDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(TrialDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     [HttpGet("{id}")]
@@ -58,11 +56,11 @@ public class TrialsController : ControllerBase
             return NotFound();
 
         return Ok(TrialDto.ConvertToDto(trial));
-        
+
     }
 
 
-    [ProducesResponseType(typeof(IEnumerable<TrialDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(TrialDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     [HttpGet("{userId}")]
@@ -73,17 +71,17 @@ public class TrialsController : ControllerBase
             return NotFound();
 
         return Ok(TrialDto.ConvertToDto(trial));
-        
+
     }
 
 
-    [ProducesResponseType(typeof(IEnumerable<TrialDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     [HttpDelete("{id}")]
     public async Task<ActionResult> RemoveById(int id)
     {
         await _trialService.RemoveByIdAsync(id);
-        return Ok();
+        return Ok(id);
     }
 }

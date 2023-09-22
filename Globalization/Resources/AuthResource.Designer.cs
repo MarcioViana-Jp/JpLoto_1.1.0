@@ -39,7 +39,7 @@ namespace JpLoto.Globalization.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JpLoto.Shared.Resources.AuthResource", typeof(AuthResource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JpLoto.Globalization.Resources.AuthResource", typeof(AuthResource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,6 +57,15 @@ namespace JpLoto.Globalization.Resources {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to パスワード変更.
+        /// </summary>
+        public static string _CHANGE_PASSWORD_TITLE {
+            get {
+                return ResourceManager.GetString("_CHANGE_PASSWORD_TITLE", resourceCulture);
             }
         }
         
@@ -174,6 +183,15 @@ namespace JpLoto.Globalization.Resources {
         public static string ConfirmPassword {
             get {
                 return ResourceManager.GetString("ConfirmPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to プロファイル編集.
+        /// </summary>
+        public static string EditProfile {
+            get {
+                return ResourceManager.GetString("EditProfile", resourceCulture);
             }
         }
         
@@ -322,6 +340,15 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to プロフィール情報.
+        /// </summary>
+        public static string ProfileInformation {
+            get {
+                return ResourceManager.GetString("ProfileInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ユーザーを追加.
         /// </summary>
         public static string Register {
@@ -358,11 +385,38 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 審しいパスワード保存.
+        /// </summary>
+        public static string UpdatePassword {
+            get {
+                return ResourceManager.GetString("UpdatePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ユーザーが見つかりません。.
         /// </summary>
         public static string UserNotFound {
             get {
                 return ResourceManager.GetString("UserNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to あなたのプロファイルはまだ定義されていません。.
+        /// </summary>
+        public static string UserProfileNotDefined {
+            get {
+                return ResourceManager.GetString("UserProfileNotDefined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;プロファイル編集&gt; をクリックして個人情報を入力できます。.
+        /// </summary>
+        public static string UserProfileSet {
+            get {
+                return ResourceManager.GetString("UserProfileSet", resourceCulture);
             }
         }
         

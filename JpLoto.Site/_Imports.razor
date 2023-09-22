@@ -9,8 +9,10 @@
 @using Microsoft.AspNetCore.Components.Web.Virtualization;
 @using Microsoft.AspNetCore.Components.WebAssembly.Http;
 @using Microsoft.AspNetCore.Components.Authorization;
+@using Microsoft.AspNetCore.Identity;
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Http;
+@using System.Security.Claims;
 @using Microsoft.JSInterop;
 @using Blazored.LocalStorage;
 @using JpLoto.Application.Dto.Request;
@@ -21,4 +23,7 @@
 @using JpLoto.Lottery.Shared;
 @using JpLoto.Site;
 @using JpLoto.Site.Shared;
-@using JpLoto.Site.Services.Account;
+@using JpLoto.Site.Interfaces.Services;
+@using JpLoto.Site.Interfaces.Repositories;
+@using JpLoto.Site.Repositories;
+@using JpLoto.Site.Services;

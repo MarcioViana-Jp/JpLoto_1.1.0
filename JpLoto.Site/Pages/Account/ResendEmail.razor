@@ -1,9 +1,9 @@
 ﻿@page "/resendemail"
-@using System.Security.Claims
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject IAccountService accountService
 @inject ILocalStorageService localStorage
 @inject NavigationManager navigationManager
+@attribute [Authorize]
 
 <PageTitle>Resend Confirmation Email</PageTitle>
 

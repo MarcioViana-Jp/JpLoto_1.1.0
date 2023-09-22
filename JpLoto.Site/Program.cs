@@ -9,13 +9,16 @@ global using JpLoto.Site;
 global using JpLoto.Site.Dto;
 global using JpLoto.Site.Interfaces;
 global using JpLoto.Site.Services;
-global using JpLoto.Site.Services.Account;
+global using JpLoto.Site.Interfaces.Services;
+global using JpLoto.Site.Interfaces.Repositories;
 global using Microsoft.AspNetCore.Components.Authorization;
 global using Microsoft.AspNetCore.Components.Forms;
 global using Microsoft.AspNetCore.Components.Web;
 global using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 global using Microsoft.JSInterop;
 global using System.Globalization;
+using JpLoto.Application.Interfaces.Services;
+using JpLoto.Application.Services;
 using JpLoto.Site.Extensions;
 using JpLoto.Site.Providers;
 
@@ -38,6 +41,8 @@ builder.Services.AddScoped<IMiniLotoResultService, MiniLotoResultService>();
 builder.Services.AddScoped<ILoto6ResultRepository, Loto6ResultRepository>();
 builder.Services.AddScoped<ILoto7ResultRepository, Loto7ResultRepository>();
 builder.Services.AddScoped<IMiniLotoResultRepository, MiniLotoResultRepository>();
+
+builder.Services.AddScoped<ICorsSettingService, CorsSettingService>();
 builder.Services.AddSingleton<CommonLocalizationService>();
 
 builder.Services.AddOptions();

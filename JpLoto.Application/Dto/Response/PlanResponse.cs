@@ -29,20 +29,20 @@ public class PlanResponse
         IsActive = isActive;
     }
 
-    public static PlanResponse ConvertToResponse(Plan response)
+    public static PlanResponse ConvertToResponse(Plan plan)
     {
         return new PlanResponse
         (
-            response.Id,
-            response.PlanCode ?? string.Empty,
-            response.Description ?? string.Empty,
-            response.ColorClass ?? string.Empty,
-            response.Price,
-            response.NotBefore,
-            response.ValidThru,
-            response.ExpirationFactor,
-            response.ExpirationDescriptor,
-            response.IsActive
+            plan.Id,
+            plan.PlanCode ?? string.Empty,
+            plan.Description ?? string.Empty,
+            plan.ColorClass ?? string.Empty,
+            plan.Price,
+            plan.NotBefore,
+            plan.ValidThru,
+            plan.ExpirationFactor,
+            plan.ExpirationDescriptor,
+            plan.IsActive
         );
     }
 }

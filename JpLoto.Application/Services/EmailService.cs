@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Options;
 using System.Net;
 using System.Net.Mail;
-using JpLoto.EmailServices.Settings;
+using JpLoto.Application.Settings;
 
-namespace JpLoto.EmailServices;
+namespace JpLoto.Application.Services;
 
 public class EmailService : IEmailService
 {

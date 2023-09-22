@@ -1,7 +1,7 @@
 ﻿using JpLoto.Application.Dto.Request;
 using JpLoto.Application.Dto.Response;
 
-namespace JpLoto.Site.Services.Account
+namespace JpLoto.Site.Interfaces.Services
 {
     public interface IAccountService
     {
@@ -12,5 +12,6 @@ namespace JpLoto.Site.Services.Account
         Task<RegisterResponseData> ChangePassword(ChangePasswordRequest request);
         Task<bool> IsUserAuthenticated();
         Task<bool> ResendConfirmationEmail(EmailRequest emailRequest);
+        Task<string> GetCurrentUserName();
     }
 }

@@ -144,6 +144,9 @@
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Confirme Password</value>
   </data>
+  <data name="EditProfile" xml:space="preserve">
+    <value>Editar perfil</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>E-mail</value>
   </data>
@@ -192,6 +195,9 @@
   <data name="PasswordChangeOk" xml:space="preserve">
     <value>Senha alterada com success.</value>
   </data>
+  <data name="ProfileInformation" xml:space="preserve">
+    <value>Informações do perfil</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>Novo usuário</value>
   </data>
@@ -209,6 +215,12 @@
   </data>
   <data name="UserNotFound" xml:space="preserve">
     <value>Usuário não encontrado.</value>
+  </data>
+  <data name="UserProfileNotDefined" xml:space="preserve">
+    <value>Seu perfil ainda não foi definido.</value>
+  </data>
+  <data name="UserProfileSet" xml:space="preserve">
+    <value>Você pode clicar em &lt;EDITAR PERFIL&gt; para preencher seus dados pessoais.</value>
   </data>
   <data name="UserUpdate" xml:space="preserve">
     <value>Altera usuário</value>

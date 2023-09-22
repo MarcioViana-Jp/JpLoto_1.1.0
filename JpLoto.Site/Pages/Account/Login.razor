@@ -1,7 +1,7 @@
 ﻿@page "/login"
 @inject IAccountService accountService
 @inject NavigationManager navigationManager
-@inject ILocalStorageService LocalStorage
+@inject ILocalStorageService localStorage
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
 <PageTitle>Login</PageTitle>
@@ -106,7 +106,7 @@
         var response = await accountService.Login(loginRequest);
         if (response.Success)
         {
-            await LocalStorage.SetItemAsync("authToken", response.AccessToken);
+            await localStorage.SetItemAsync("authToken", response.AccessToken);
             await AuthenticationStateProvider.GetAuthenticationStateAsync();
 
             if (await accountService.IsUserAuthenticated())

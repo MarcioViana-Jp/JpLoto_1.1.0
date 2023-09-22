@@ -1,7 +1,10 @@
 ﻿@using System.Text;
+@using JpLoto.Application.Interfaces.Services;
+@using JpLoto.Application.Settings;
+@using Microsoft.Extensions.Options;
 @inject IJSRuntime JSRuntime
 @inject NavigationManager NavigationManager
-@inject IStringLocalizer<CultureResource> CultureLocalizer
+@inject IStringLocalizer<CultureResource> cultureLocalizer
 @inject HttpClient http
 
 <li class="nav-item dropdown pe-2 d-flex align-items-center ms-3 me-3">
@@ -19,7 +22,7 @@
                         </div>
                         <div class="d-flex flex-column justify-content-center">
                             <h6 class="text-sm font-weight-normal mb-1">
-                                <span class="font-weight-bold">@CultureLocalizer[culture.Name]</span>
+                                <span class="font-weight-bold">@cultureLocalizer[culture.Name]</span>
                                 @if (culture.Name.Substring(0, 2) == CultureInfo.CurrentCulture.Name.Substring(0, 2))
                                 {
                                     <span class="ms-2"><i class="fa fa-check text-green font-12"></i></span>
@@ -37,6 +40,7 @@
 {
     private string cultureName = string.Empty;
     private string flagIconPath(string culture) => "site_images/country-flags/flag-" + culture + ".png";
+    private CorsSetting? corsSetting;
 
     private CultureInfo Culture
     {
@@ -48,14 +52,13 @@
                 var uri = new Uri(NavigationManager.Uri)
                     .GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
                 var cultureEscaped = Uri.EscapeDataString(value.Name);
-                // var uriEscaped = Uri.EscapeDataString(uri);
 
                 var js = (IJSInProcessRuntime)JSRuntime;
                 js.InvokeVoid("blazorCulture.set", cultureEscaped);
 
                 NavigationManager.NavigateTo(
-                    // $"https://localhost:7125/culture/set?culture={cultureEscaped}&redirectUri={uriEscaped}",
-                    $"https://localhost:7125/culture/set?culture={cultureEscaped}&redirectUri={"https://localhost:7219" + uri}",
+                    // $"https://apiv1-1.jploto.com/culture/set?culture={cultureEscaped}&redirectUri={"https://v1-1.jploto.com/" + uri}",
+                    $"{corsSetting.ApiHost}/culture/set?culture={cultureEscaped}&redirectUri={$"{corsSetting.AllowedOrigins}" + uri}",
                     forceLoad: true);
             }
         }
@@ -63,9 +66,28 @@
     
     protected override async Task OnInitializedAsync()
     {
+        // TODO - Aguardando implementacao da controller AppConfiguration
+        bool _isProductionMode = false;
+        if (_isProductionMode)
+        {
+            corsSetting = new CorsSetting()
+            {
+                ApiHost = "apiv1-1.jploto.com",
+                AllowedOrigins = "v1-1.jploto.com"
+            };
+        }
+        else
+        {
+            corsSetting = new CorsSetting()
+            {
+                ApiHost = "https://localhost:7125",
+                AllowedOrigins = "https://localhost:7219"
+            };
+        }
+
         Culture = CultureInfo.CurrentCulture;
-        // await http.GetAsync($"Culture/SetServerCulture/{Culture.Name}");
-        await http.GetAsync($"https://localhost:7125/culture/setserverculture/{Culture.Name}");
+        // await http.GetAsync($"https://apiv1-1.jploto.com/culture/setserverculture/{Culture.Name}");
+        await http.GetAsync($"{corsSetting.ApiHost}/culture/setserverculture/{Culture.Name}");
     }
 
     private void SetCulture(string cultureName)
