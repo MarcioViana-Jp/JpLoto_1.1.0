@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/JpLoto.Api/appsettings.json
+/JpLoto.Api/appsettings.Development.json
