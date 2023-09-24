@@ -5,7 +5,7 @@ using JpLoto.Domain.Interfaces.Repositories;
 
 namespace JpLoto.Data.Repositories;
 
-public class LicenseRepository : RepositoryBase<Subscription>, ISubscriptionRepository
+public class SubscriptionRepository : RepositoryBase<Subscription>, ISubscriptionRepository
 {
-    public LicenseRepository(DataContext dataContext) : base(dataContext) { }
+    public SubscriptionRepository(DataContext dataContext) : base(dataContext) { }
 }

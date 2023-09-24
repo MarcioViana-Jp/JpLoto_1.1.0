@@ -31,7 +31,10 @@ namespace JpLoto.Api.IoC
             services.AddScoped<IPlanRepository, PlanRepository>();
 
             services.AddScoped<ISubscriptionService, SubscriptionService>();
-            services.AddScoped<ISubscriptionRepository, LicenseRepository>();
+            services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
+
+            services.AddScoped<IUserDetailService, UserDetailService>();
+            services.AddScoped<IUserDetailRepository, UserDetailRepository>();
 
             services.AddSingleton<IEmailService, EmailService>();
 
