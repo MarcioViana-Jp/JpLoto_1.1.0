@@ -147,7 +147,7 @@ public class AccountController : ControllerBase
             var result = await _userManager.ConfirmEmailAsync(user, token);
             if (result.Succeeded)
             {
-                return Ok("Usuário criado e e-mail enviado com success!");
+                return Ok("E-mail de confirmação enviado com successo! Você pode retornar à tela de login para autenticação.");
             }
         }
 
@@ -187,10 +187,18 @@ public class AccountController : ControllerBase
             return false;
         }
 
+        // TODO - Aguardando implementacao da controller AppConfiguration
+        string host = string.Empty;
+        bool _isProductionMode = true;
+        if (_isProductionMode)
+            host = "https://apiv1-1.jploto.com";
+        else
+            host = "https://localhost:7125";
+
         var confirmationToken = await _userManager.GenerateEmailConfirmationTokenAsync(user);
         var confirmationLink = Url.Action(action: "confirmemail", controller: "Account",
                                values: new { userId = user.Id, token = confirmationToken },
-                               protocol: "https", host: "localhost:7125") ?? "/";
+                               protocol: "https", host: $"host") ?? "/";
 
         string msgBody = $"Clique no link abaixo para confirmar seu endereço de e-mail: \n\n {confirmationLink}";
 

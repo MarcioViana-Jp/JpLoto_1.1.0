@@ -1,7 +1,4 @@
-﻿using JpLoto.Lottery.Dto;
-using JpLoto.Site.Interfaces;
-using Microsoft.JSInterop;
-using System.Text.Json;
+﻿using System.Text.Json;
 
 namespace JpLoto.Site.Services;
 

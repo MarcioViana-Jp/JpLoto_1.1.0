@@ -71,13 +71,14 @@
         await accountService.Logout();
         try
         {
-            await localStorage.RemoveItemAsync("authToken");        // Stores credentials of the current logged User (it can be Company or Shain)
+            await localStorage.RemoveItemAsync("authToken");
         }
         catch
         {
             // Nothing to do
         }
-        navigationManager.NavigateTo(returnUrl, true);
+        navigationManager.NavigateTo("/login", true);
+        // navigationManager.NavigateTo(returnUrl, true);
     }
 
 

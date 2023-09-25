@@ -1,6 +1,6 @@
 using JpLoto.Application.Dto.Request;
 using JpLoto.Application.Dto.Response;
-using JpLoto.Application.Interfaces.Services;
+using JpLoto.Application.Interfaces;
 using JpLoto.Identity.Configurations;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;

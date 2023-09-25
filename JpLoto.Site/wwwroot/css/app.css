@@ -624,3 +624,17 @@ input[type=checkbox] {
 .card-title {
     color: dimgrey;
 }
+
+@media(max-widh: 1023.98px) {
+
+}
+
+@media (max-width: 640.98px) {
+    .nav-section-title {
+        font-size: 10px;
+        color: mediumpurple;
+    }
+}
+
+@media (min-width: 641px) {
+}

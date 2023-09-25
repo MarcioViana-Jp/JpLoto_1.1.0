@@ -9,4 +9,5 @@ public class EmailRequest
     [EmailAddress]
     [Display(Name = "E-mail")]
     public string Email { get; set; } = string.Empty;
+    public string Host { get; set; } = string.Empty;
 }

@@ -1,5 +1,6 @@
 ﻿namespace JpLoto.Application.Settings;
 
+[Serializable]
 public class SmtpSetting
 {
     public string Domain { get; set; } = string.Empty;

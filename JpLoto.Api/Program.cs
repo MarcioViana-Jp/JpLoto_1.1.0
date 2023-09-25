@@ -1,7 +1,7 @@
 ﻿global using JpLoto.Application.Dto;
 global using JpLoto.Application.Dto.Request;
 global using JpLoto.Application.Dto.Response;
-global using JpLoto.Application.Interfaces.Services;
+global using JpLoto.Application.Interfaces;
 global using JpLoto.Application.Services;
 global using JpLoto.Application.Settings;
 global using JpLoto.Data.Context;
@@ -18,10 +18,6 @@ using JpLoto.Api.Extensions;
 using JpLoto.Api.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Configure EmailServices and Cors
-builder.Services.Configure<SmtpSetting>(builder.Configuration.GetSection("SMTP"));
-builder.Services.Configure<CorsSetting>(builder.Configuration.GetSection("JplCors"));
 
 var cors =
 // Add services to the container.
@@ -48,6 +44,7 @@ builder.Services.AddSwaggerGen();
 // IoC
 builder.Services.AddAuthentication(builder.Configuration);
 builder.Services.AddAuthorizationPolicies();
+builder.Services.ApplicationSetup(builder.Configuration);
 builder.Services.RegisterServices(builder.Configuration);
 
 var app = builder.Build();

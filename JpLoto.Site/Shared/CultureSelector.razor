@@ -5,6 +5,7 @@
 @inject IJSRuntime JSRuntime
 @inject NavigationManager NavigationManager
 @inject IStringLocalizer<CultureResource> cultureLocalizer
+@inject IAppConfigService configService
 @inject HttpClient http
 
 <li class="nav-item dropdown pe-2 d-flex align-items-center ms-3 me-3">
@@ -40,6 +41,7 @@
 {
     private string cultureName = string.Empty;
     private string flagIconPath(string culture) => "site_images/country-flags/flag-" + culture + ".png";
+    private AppConfiguration appConfiguration;
     private CorsSetting? corsSetting;
 
     private CultureInfo Culture
@@ -57,37 +59,20 @@
                 js.InvokeVoid("blazorCulture.set", cultureEscaped);
 
                 NavigationManager.NavigateTo(
-                    // $"https://apiv1-1.jploto.com/culture/set?culture={cultureEscaped}&redirectUri={"https://v1-1.jploto.com/" + uri}",
-                    $"{corsSetting.ApiHost}/culture/set?culture={cultureEscaped}&redirectUri={$"{corsSetting.AllowedOrigins}" + uri}",
+                    $"{appConfiguration.CorsSetting.ApiHost}/culture/set?culture={cultureEscaped}&redirectUri={$"{appConfiguration.CorsSetting.AllowedOrigins}" + uri}",
                     forceLoad: true);
             }
         }
     }
-    
+
     protected override async Task OnInitializedAsync()
     {
-        // TODO - Aguardando implementacao da controller AppConfiguration
-        bool _isProductionMode = false;
-        if (_isProductionMode)
-        {
-            corsSetting = new CorsSetting()
-            {
-                ApiHost = "apiv1-1.jploto.com",
-                AllowedOrigins = "v1-1.jploto.com"
-            };
-        }
-        else
-        {
-            corsSetting = new CorsSetting()
-            {
-                ApiHost = "https://localhost:7125",
-                AllowedOrigins = "https://localhost:7219"
-            };
-        }
-
         Culture = CultureInfo.CurrentCulture;
-        // await http.GetAsync($"https://apiv1-1.jploto.com/culture/setserverculture/{Culture.Name}");
-        await http.GetAsync($"{corsSetting.ApiHost}/culture/setserverculture/{Culture.Name}");
+        appConfiguration = await configService.GetAppConfigurationAsync();
+        if (appConfiguration != null)
+        {
+            await http.GetAsync($"{appConfiguration.CorsSetting.ApiHost}/culture/setserverculture/{Culture.Name}");
+        }
     }
 
     private void SetCulture(string cultureName)

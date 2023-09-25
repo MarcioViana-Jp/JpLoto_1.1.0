@@ -1,4 +1,4 @@
-﻿namespace JpLoto.Site.Interfaces
+﻿namespace JpLoto.Site.Interfaces.Services
 {
     public interface IConfigurationService
     {

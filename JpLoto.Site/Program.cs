@@ -7,10 +7,9 @@ global using JpLoto.Globalization.Localization;
 global using JpLoto.Lottery.Dto;
 global using JpLoto.Site;
 global using JpLoto.Site.Dto;
-global using JpLoto.Site.Interfaces;
-global using JpLoto.Site.Services;
-global using JpLoto.Site.Interfaces.Services;
 global using JpLoto.Site.Interfaces.Repositories;
+global using JpLoto.Site.Interfaces.Services;
+global using JpLoto.Site.Services;
 global using Microsoft.AspNetCore.Components.Authorization;
 global using Microsoft.AspNetCore.Components.Forms;
 global using Microsoft.AspNetCore.Components.Web;
@@ -33,6 +32,7 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 builder.Services.AddBlazoredLocalStorage();
 
 builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IAppConfigService, AppConfigService>();
 builder.Services.AddScoped<IConfigurationService, ConfigurationService>();
 builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddScoped<ILoto6ResultService, Loto6ResultService>();

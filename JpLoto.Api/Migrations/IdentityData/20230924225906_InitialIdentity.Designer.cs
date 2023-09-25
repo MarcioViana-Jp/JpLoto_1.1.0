@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JpLoto.Api.Migrations.IdentityData
 {
     [DbContext(typeof(IdentityDataContext))]
-    [Migration("20230921080134_InitialIdentity")]
+    [Migration("20230924225906_InitialIdentity")]
     partial class InitialIdentity
     {
         /// <inheritdoc />

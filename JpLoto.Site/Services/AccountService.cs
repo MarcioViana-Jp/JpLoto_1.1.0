@@ -1,7 +1,7 @@
 ﻿using JpLoto.Application.Dto.Request;
 using JpLoto.Application.Dto.Response;
+using JpLoto.Application.Services;
 using JpLoto.Application.Settings;
-using JpLoto.Site.Interfaces.Services;
 using System.Net.Http.Json;
 
 namespace JpLoto.Site.Services;
@@ -12,39 +12,23 @@ public class AccountService : IAccountService
     private readonly HttpClient _http;
     private readonly AuthenticationStateProvider _authStateProvider;
     private readonly ILocalStorageService _localStorage;
-    private readonly CorsSetting _corsSetting;
+    private readonly IAppConfigService _appConfigService;
 
     public AccountService(HttpClient http,
                           AuthenticationStateProvider authStateProvider,
-                          ILocalStorageService localStorage)
+                          ILocalStorageService localStorage,
+                          IAppConfigService appConfigService)
     {
         _http = http;
         _authStateProvider = authStateProvider;
         _localStorage = localStorage;
-
-        // TODO - Aguardando implementacao da controller AppConfiguration
-        bool _isProductionMode = false;
-        if (_isProductionMode)
-        {
-            _corsSetting = new CorsSetting()
-            {
-                ApiHost = "apiv1-1.jploto.com",
-                AllowedOrigins = "v1-1.jploto.com"
-            };
-        }
-        else
-        {
-            _corsSetting = new CorsSetting()
-            {
-                ApiHost = "https://localhost:7125",
-                AllowedOrigins = "https://localhost:7219"
-            };
-        }
+        _appConfigService = appConfigService;
     }
 
     public async Task<RegisterResponseData> ChangePassword(ChangePasswordRequest request)
     {
-        var result = await _http.PostAsJsonAsync($"{_corsSetting.ApiHost}/api/account/changepassword", request);
+        var appConfig = await _appConfigService.GetAppConfigurationAsync();
+        var result = await _http.PostAsJsonAsync($"{appConfig.CorsSetting.ApiHost}/api/account/changepassword", request);
         var response = await result.Content.ReadFromJsonAsync<RegisterResponseData>();
         return response;
     }
@@ -52,12 +36,14 @@ public class AccountService : IAccountService
     public async Task<bool> IsUserAuthenticated()
     {
         bool isAuthenticated = (await _authStateProvider.GetAuthenticationStateAsync()).User.Identity.IsAuthenticated;
+        OnChange?.Invoke();
         return isAuthenticated;
     }
 
     public async Task<LoginResponseData> Login(LoginRequest request)
     {
-        var result = await _http.PostAsJsonAsync($"{_corsSetting.ApiHost}/api/account/login", request);
+        var appConfig = await _appConfigService.GetAppConfigurationAsync();
+        var result = await _http.PostAsJsonAsync($"{appConfig.CorsSetting.ApiHost}/api/account/login", request);
         await _localStorage.SetItemAsync("_user", request.Email);
         OnChange?.Invoke();
         return await result.Content.ReadFromJsonAsync<LoginResponseData>();
@@ -65,27 +51,31 @@ public class AccountService : IAccountService
 
     public async Task<RegisterResponseData> Register(RegisterRequest request)
     {
-        var result = await _http.PostAsJsonAsync($"{_corsSetting.ApiHost}/api/account/register", request);
+        var appConfig = await _appConfigService.GetAppConfigurationAsync();
+        var result = await _http.PostAsJsonAsync($"{appConfig.CorsSetting.ApiHost}/api/account/register", request);
         return await result.Content.ReadFromJsonAsync<RegisterResponseData>();
     }
 
     public async Task<bool> ResendConfirmationEmail(EmailRequest request)
     {
-        await _http.PostAsJsonAsync($"{_corsSetting.ApiHost}/api/account/resendemail", request);
+        var appConfig = await _appConfigService.GetAppConfigurationAsync();
+        await _http.PostAsJsonAsync($"{appConfig.CorsSetting.ApiHost}/api/account/resendemail", request);
         return true;
     }
 
     public async Task Logout()
     {
-        await _http.GetAsync($"{_corsSetting.ApiHost}/api/account/logout");
+        var appConfig = await _appConfigService.GetAppConfigurationAsync();
+        await _http.GetAsync($"{appConfig.CorsSetting.ApiHost}/api/account/logout");
         await _localStorage.RemoveItemAsync("_user");
+        await _appConfigService.RemoveAppCookieAsync();
         OnChange?.Invoke();
         return;
     }
 
     public async Task<string> GetCurrentUserName()
     {
-        return await _localStorage.GetItemAsStringAsync("_user");
+        return await _localStorage.GetItemAsStringAsync("_user") ?? "* Not authenticaded *";
     }
 }
 

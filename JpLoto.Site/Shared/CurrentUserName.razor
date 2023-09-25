@@ -1,0 +1,44 @@
+﻿@inject AuthenticationStateProvider authStateProvider
+@inject IAccountService accountService
+@inject IStringLocalizer<AuthResource> authLocalizer
+@implements IDisposable
+
+<div class="mx-3 font-10 text-center">
+    <span><i class="fas fa-user text-center"></i></span>
+    <br class="mt-0 mb-0 p-0" />
+    @currentUserName
+</div>
+
+@code {
+    private ClaimsPrincipal? currentUser { get; set; }
+    private string? currentUserName { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetClaimsPrincipalData();
+
+        accountService.OnChange += StateHasChanged;
+    }
+
+    private async Task<ClaimsPrincipal> GetClaimsPrincipalData()
+    {
+        var user = (await authStateProvider.GetAuthenticationStateAsync()).User;
+        if (user.Identity != null && user.Identity.IsAuthenticated)
+        {
+            var claims = user.Claims;
+            currentUserName = user.FindFirst(c => c.Type == "name")?.Value;
+        }
+        else
+        {
+            currentUserName = "* Not authenticated *";
+        }
+
+        return user;
+    }
+
+    public void Dispose()
+    {
+        accountService.OnChange -= StateHasChanged;
+    }
+
+}

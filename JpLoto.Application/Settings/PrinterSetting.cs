@@ -1,5 +1,6 @@
 ﻿namespace JpLoto.Application.Settings;
 
+[Serializable]
 public class PrinterSetting
 {
     public string? TamanhoPapel { get; set; } = string.Empty;

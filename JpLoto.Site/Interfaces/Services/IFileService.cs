@@ -1,6 +1,6 @@
 ﻿using JpLoto.Lottery.Dto;
 
-namespace JpLoto.Site.Interfaces;
+namespace JpLoto.Site.Interfaces.Services;
 
 public interface IFileService
 {

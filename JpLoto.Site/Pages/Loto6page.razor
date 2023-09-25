@@ -28,56 +28,6 @@
                 }
             </div>
             <div class="options">
-                <div class="numbers-options mb-3">
-                    <div class="minicard shadow-dark">
-                        <div class="minicard-title bg-darkgreen text-white bc-lightgreen font-8">
-                            <input class="form-check-input mt-1" type="checkbox" @bind="limitaDezenasVariaveis"
-                                   aria-label="Checkbox for following text input">
-                            <label class="mt-1 text-white font-10">@LotoLocalizer["LimitNumbers"]</label>
-                        </div>
-                        <div class="minicard-body bc-lightgreen bg-palegreen text-green font-8">
-                            <label class="font-10 text-darkgreen">@LotoLocalizer["Maximum"]</label>
-                            <input type="number" disabled="@(!limitaDezenasVariaveis)"
-                                   @bind-value="dezenasVariaveis" min="@(loto.DezenasPorJogo - loto.QuantidadeDezenasFixas + 1)"
-                                   class="form-control p-0 font-10" id="dezenasVariaveis">
-                        </div>
-                    </div>
-                    <div class="minicard shadow-dark">
-                        <div class="minicard-title bg-darkgreen text-white bc-lightgreen font-8">
-                            <input class="form-check-input mt-1" type="checkbox" @bind="limitaCombinacoes"
-                                   aria-label="Checkbox for following text input">
-                            <label class="mt-1 text-white font-10">@LotoLocalizer["LimitCombinations"]</label>
-                        </div>
-                        <div class="minicard-body bc-lightgreen bg-palegreen text-green font-8">
-                            <label class="font-10 text-darkgreen">@LotoLocalizer["Maximum"]</label>
-                            <input type="number" disabled="@(!limitaCombinacoes)"
-                                   @bind-value="quantidadeDeCombinacoes" max="@loto.ObtemQuantidadeDeCombinacoes()"
-                                   class="form-control p-0 font-10" id="quantidadeDeCombinacoes">
-                        </div>
-                    </div>
-                </div>
-                <div class="numbers-options mb-3">
-                    <div class="minicard shadow-dark">
-                        <div class="minicard-title bg-darkgreen text-white bc-lightgreen font-8">
-                            <input class="form-check-input mt-1" type="checkbox" @bind="mantemCombinacoesAnteriores"
-                                   aria-label="Checkbox for following text input">
-                            <label class="mt-1 text-white font-10">@LotoLocalizer["PreviousCombinations"]</label>
-                        </div>
-                        <div class="minicard-body bc-lightgreen bg-palegreen text-green font-8">
-                            @LotoLocalizer["KeepPrevious"]
-                        </div>
-                    </div>
-                    <div class="minicard shadow-dark">
-                        <div class="minicard-title bg-darkgreen text-white bc-lightgreen font-8">
-                            <input class="form-check-input mt-1" type="checkbox" @bind="geraCombinacoesAleatorias"
-                                   aria-label="Checkbox for following text input">
-                            <label class="mt-1 text-white font-10">@LotoLocalizer["RandomCombinations"]</label>
-                        </div>
-                        <div class="minicard-body bc-lightgreen bg-palegreen text-green font-8">
-                            @LotoLocalizer["GenerateRandom"]
-                        </div>
-                    </div>
-                </div>
                 <div class="numbers-options">
                     <div class="buttoncard @disabledClass(!limitaDezenasVariaveis || loto.QuantidadeDezenasSelecionadas == dezenasVariaveis)" @onclick="GeraSugestoes">
                         <div class="action-icon">
@@ -126,14 +76,64 @@
                         <InputFile id="inputFileOpen" hidden OnChange="CarregaCombinacoesDoArquivo" />
                     </div>
                 </div>
-                <div class="numbers-options justify-content-center">
+                <div class="numbers-options">
+                    <div class="minicard shadow-dark mb-2">
+                        <div class="minicard-title bg-darkgreen text-white bc-lightgreen font-8">
+                            <input class="form-check-input mt-1" type="checkbox" @bind="limitaDezenasVariaveis"
+                                   aria-label="Checkbox for following text input">
+                            <label class="mt-1 text-white font-10">@LotoLocalizer["LimitNumbers"]</label>
+                        </div>
+                        <div class="minicard-body bc-lightgreen bg-palegreen text-green font-8">
+                            <label class="font-10 text-darkgreen">@LotoLocalizer["Maximum"]</label>
+                            <input type="number" disabled="@(!limitaDezenasVariaveis)"
+                            @bind-value="dezenasVariaveis" min="@(loto.DezenasPorJogo - loto.QuantidadeDezenasFixas + 1)"
+                                   class="form-control p-0 font-10" id="dezenasVariaveis">
+                        </div>
+                    </div>
+                    <div class="minicard shadow-dark mb-2">
+                        <div class="minicard-title bg-darkgreen text-white bc-lightgreen font-8">
+                            <input class="form-check-input mt-1" type="checkbox" @bind="limitaCombinacoes"
+                                   aria-label="Checkbox for following text input">
+                            <label class="mt-1 text-white font-10">@LotoLocalizer["LimitCombinations"]</label>
+                        </div>
+                        <div class="minicard-body bc-lightgreen bg-palegreen text-green font-8">
+                            <label class="font-10 text-darkgreen">@LotoLocalizer["Maximum"]</label>
+                            <input type="number" disabled="@(!limitaCombinacoes)"
+                            @bind-value="quantidadeDeCombinacoes" max="@loto.ObtemQuantidadeDeCombinacoes()"
+                                   class="form-control p-0 font-10" id="quantidadeDeCombinacoes">
+                        </div>
+                    </div>
+                </div>
+                <div class="numbers-options">
+                    <div class="minicard shadow-dark mb-2">
+                        <div class="minicard-title bg-darkgreen text-white bc-lightgreen font-8">
+                            <input class="form-check-input mt-1" type="checkbox" @bind="mantemCombinacoesAnteriores"
+                                   aria-label="Checkbox for following text input">
+                            <label class="mt-1 text-white font-10">@LotoLocalizer["PreviousCombinations"]</label>
+                        </div>
+                        <div class="minicard-body bc-lightgreen bg-palegreen text-green font-8">
+                            @LotoLocalizer["KeepPrevious"]
+                        </div>
+                    </div>
+                    <div class="minicard shadow-dark mb-2">
+                        <div class="minicard-title bg-darkgreen text-white bc-lightgreen font-8">
+                            <input class="form-check-input mt-1" type="checkbox" @bind="geraCombinacoesAleatorias"
+                                   aria-label="Checkbox for following text input">
+                            <label class="mt-1 text-white font-10">@LotoLocalizer["RandomCombinations"]</label>
+                        </div>
+                        <div class="minicard-body bc-lightgreen bg-palegreen text-green font-8">
+                            @LotoLocalizer["GenerateRandom"]
+                        </div>
+                    </div>
+                </div>
+                <div class="numbers-options justify-content-center mt-2">
                     <button class="btn btn-primary"
                             disabled="@(loto.QuantidadeDezenasSelecionadas < dezenasVariaveis || loto.QuantidadeDezenasSelecionadas < loto.DezenasPorJogo)"
                             @onclick="GeraCombinacoes">
                         @ButtonLocalizer["GenerateCombinations"]
                     </button>
                 </div>
-                <div class="numbers-options">
+                <div class="numbers-options">                    
                     <div class="buttoncard @disabledClass(false)" @onclick="DefineFiltros">
                         <div class="action-icon">
                             <i class="fas fa-traffic-light"></i>

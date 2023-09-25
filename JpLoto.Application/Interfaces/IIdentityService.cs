@@ -2,7 +2,7 @@ using JpLoto.Application.Dto.Request;
 using JpLoto.Application.Dto.Response;
 using Microsoft.AspNetCore.Identity;
 
-namespace JpLoto.Application.Interfaces.Services;
+namespace JpLoto.Application.Interfaces;
 
 public interface IIdentityService
 {
