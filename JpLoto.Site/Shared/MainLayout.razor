@@ -1,13 +1,11 @@
-﻿@* @inject AuthenticationStateProvider authStateProvider *@
-@inject NavigationManager navigationManager
+﻿@inject NavigationManager navigationManager
 @inject ISyncLocalStorageService localStorage
 @inject IAccountService accountService
 @inject IStringLocalizer<LotoResource> lotoLocalizer
 @inject IStringLocalizer<MenuResource> menuLocalizer
-@* @implements IDisposable *@
 @inherits LayoutComponentBase
 
-<div class="page @navbarClassShow @navbarClass bg-gray-200">
+<div class="page @navbarClassShow @navbarClass">
     <style>
         span.jploto_version {
             position: relative;
@@ -55,12 +53,7 @@
                     </ul>                    
                     <hr class="horizontal light text-bg-danger opacity-100 mt-0 mb-2">
                     <CurrentUserName />
-@*                     <div class="mx-3 font-10 text-center">
-                        <span><i class="fas fa-user text-center"></i></span>
-                        <br class="mt-0 mb-0 p-0" />
-                        @currentUserName
-                    </div>
- *@                </div>
+                </div>
             </Authorized>
         </AuthorizeView>
     </aside>
@@ -104,7 +97,7 @@
         </nav>
         <!-- End Navbar -->
       
-        <article class="content px-4">
+        <article class="content">
             @Body
         </article>
 
@@ -120,39 +113,16 @@
     private string? navbarClass => isNavbarExpanded ? null : "g-sidenav-pinned";
     private string? styleTogglerIcon => isNavbarExpanded ? "none" : "block";
 
-    // private ClaimsPrincipal? currentUser { get; set; }
-    // private string? currentUserName { get; set; }    
-
     private string returnUrl = string.Empty;
 
-    protected override async void OnInitialized()
+    protected override void OnInitialized()
     {
-        // await GetClaimsPrincipalData();
-
         var uri = navigationManager.ToAbsoluteUri(navigationManager.Uri);
         if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("returnUrl", out var url))
         {
-            returnUrl = url;
+            returnUrl = !string.IsNullOrEmpty(url) ? url : "/" ;
         }
-        // accountService.OnChange += StateHasChanged;
     }
-    /*
-    private async Task<ClaimsPrincipal> GetClaimsPrincipalData()
-    {
-        var user = (await authStateProvider.GetAuthenticationStateAsync()).User;
-        if (user.Identity != null && user.Identity.IsAuthenticated)
-        {
-            var claims = user.Claims;
-            currentUserName = user.FindFirst(c => c.Type == "name")?.Value;
-        }
-        else
-        {
-            currentUserName = "* Not authenticated *";
-        }
-
-        return user;
-    }
-    */
 
     private string GetCurrentUserName()
     {
@@ -164,11 +134,6 @@
         var culture = "/privacypolicy-" + CultureInfo.CurrentCulture.Name;
         return culture;
     }
-
-    // public void Dispose()
-    // {
-    //     accountService.OnChange -= StateHasChanged;
-    // }
 
     private void NavbarTogglerHandler()
     {

@@ -169,6 +169,33 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 登録されていますか.
+        /// </summary>
+        public static string AlreadyRegistered {
+            get {
+                return ResourceManager.GetString("AlreadyRegistered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ここをクリック.
+        /// </summary>
+        public static string ClickHere {
+            get {
+                return ResourceManager.GetString("ClickHere", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 戻るにはここをクリックしてください.
+        /// </summary>
+        public static string ClickHereToReturn {
+            get {
+                return ResourceManager.GetString("ClickHereToReturn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 新しいパスワード確認.
         /// </summary>
         public static string ConfirmNewPassword {
@@ -183,6 +210,15 @@ namespace JpLoto.Globalization.Resources {
         public static string ConfirmPassword {
             get {
                 return ResourceManager.GetString("ConfirmPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 現在のパスワード.
+        /// </summary>
+        public static string CurrentPassword {
+            get {
+                return ResourceManager.GetString("CurrentPassword", resourceCulture);
             }
         }
         
@@ -313,6 +349,15 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to まだ登録されていませんか.
+        /// </summary>
+        public static string NotRegistered {
+            get {
+                return ResourceManager.GetString("NotRegistered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ユーザーログイン未.
         /// </summary>
         public static string NoUserLogged {
@@ -358,6 +403,15 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 無料で登録.
+        /// </summary>
+        public static string RegisterForFree {
+            get {
+                return ResourceManager.GetString("RegisterForFree", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 登録に成功！.
         /// </summary>
         public static string RegistrationOk {
@@ -367,11 +421,29 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 確認メールを再送信.
+        /// </summary>
+        public static string ResendConfirmationEmail {
+            get {
+                return ResourceManager.GetString("ResendConfirmationEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to サーバーエラー。 後でもう一度やり直してください。.
         /// </summary>
         public static string ServerError {
             get {
                 return ResourceManager.GetString("ServerError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to このウェブサイトの利用規約に同意します.
+        /// </summary>
+        public static string TermsAndConditionsAgreement {
+            get {
+                return ResourceManager.GetString("TermsAndConditionsAgreement", resourceCulture);
             }
         }
         

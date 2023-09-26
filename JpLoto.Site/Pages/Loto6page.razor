@@ -28,7 +28,7 @@
                 }
             </div>
             <div class="options">
-                <div class="numbers-options">
+                <div class="options-zone">
                     <div class="buttoncard @disabledClass(!limitaDezenasVariaveis || loto.QuantidadeDezenasSelecionadas == dezenasVariaveis)" @onclick="GeraSugestoes">
                         <div class="action-icon">
                             <i class="fas fa-magic text-blue"></i>
@@ -58,8 +58,8 @@
                                                           loto.QuantidadeDezenasFixas < 1 && 
                                                           loto.QuantidadeDezenasBloqueadas < 1)" 
                                                           @onclick="LimpaTudo">
-                        <div class="action-icon text-red">
-                            <i class="fas fa-times"></i>
+                        <div class="action-icon">
+                            <i class="fas fa-times text-red"></i>
                             @* <span class="badge"><i class="fas fa-times text-red"></i></span> *@
                         </div>
                         <div class="buttoncard-text text-red font-10">
@@ -67,8 +67,8 @@
                         </div>
                     </div>
                     <div class="buttoncard" onclick="document.getElementById('inputFileOpen').click()"> 
-                        <div class="action-icon text-dimgray">
-                            <i class="fas fa-file-alt"></i>
+                        <div class="action-icon">
+                            <i class="fas fa-file-alt text-blue"></i>
                         </div>
                         <div class="buttoncard-text font-10">
                             @LotoLocalizer["Load"]
@@ -76,7 +76,7 @@
                         <InputFile id="inputFileOpen" hidden OnChange="CarregaCombinacoesDoArquivo" />
                     </div>
                 </div>
-                <div class="numbers-options">
+                <div class="options-zone">
                     <div class="minicard shadow-dark mb-2">
                         <div class="minicard-title bg-darkgreen text-white bc-lightgreen font-8">
                             <input class="form-check-input mt-1" type="checkbox" @bind="limitaDezenasVariaveis"
@@ -104,7 +104,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="numbers-options">
+                <div class="options-zone">
                     <div class="minicard shadow-dark mb-2">
                         <div class="minicard-title bg-darkgreen text-white bc-lightgreen font-8">
                             <input class="form-check-input mt-1" type="checkbox" @bind="mantemCombinacoesAnteriores"
@@ -126,17 +126,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="numbers-options justify-content-center mt-2">
+                <div class="options-zone justify-content-center mt-2">
                     <button class="btn btn-primary"
                             disabled="@(loto.QuantidadeDezenasSelecionadas < dezenasVariaveis || loto.QuantidadeDezenasSelecionadas < loto.DezenasPorJogo)"
                             @onclick="GeraCombinacoes">
                         @ButtonLocalizer["GenerateCombinations"]
                     </button>
                 </div>
-                <div class="numbers-options">                    
+                <div class="options-zone">                    
                     <div class="buttoncard @disabledClass(false)" @onclick="DefineFiltros">
                         <div class="action-icon">
-                            <i class="fas fa-traffic-light"></i>
+                            <i class="fas fa-traffic-light text-blue"></i>
                         </div>
                         <div class="buttoncard-text font-10">
                             @LotoLocalizer["Filters"]
@@ -145,7 +145,7 @@
                     <div class="buttoncard @disabledClass(loto.DezenasSelecionadas.Length < 1 && loto.DezenasFixas.Length < 1)"
                         @onclick="SalvaCombinacoes">
                         <div class="action-icon">
-                            <i class="fas fa-save"></i>
+                            <i class="fas fa-save text-blue"></i>
                         </div>
                         <div class="buttoncard-text font-10">
                             @LotoLocalizer["Save"]
@@ -153,9 +153,9 @@
                     </div>
                     <div class="buttoncard @disabledClass(Combinacoes.Count < 1)" @onclick="LimpaTudo">
                         <div class="action-icon">
-                            <i class="fas fa-print"></i>
+                            <i class="fas fa-print text-blue"></i>
                             <span class="badge position-absolute bottom-0 start-100 translate-middle">
-                                <i class="far fa-file-pdf text-gray"></i>
+                                <i class="far fa-file-pdf text-lightblue"></i>
                             </span>
                         </div>                                                                   
                         <div class="buttoncard-text font-10">
@@ -164,9 +164,9 @@
                     </div>                                                                       
                     <div class="buttoncard @disabledClass(false)" @onclick="ConfiguraImpressao">       
                         <div class="action-icon">                                            
-                            <i class="fas fa-cog"></i>                                           
+                            <i class="fas fa-cog text-blue"></i>
                             <span class="badge position-absolute bottom-0 start-100 translate-middle">
-                                <i class="fas fa-print text-gray"></i>
+                                <i class="fas fa-print text-lighblue"></i>
                             </span>
                         </div>
                         <div class="buttoncard-text font-10">
@@ -175,7 +175,7 @@
                     </div>
                     <div class="buttoncard @disabledClass(Combinacoes.Count < 1)" @onclick="LimpaSugestoes">
                         <div class="action-icon">
-                            <i class="fas fa-search-dollar"></i>
+                            <i class="fas fa-search-dollar text-blue"></i>
                         </div>
                         <div class="buttoncard-text font-10">
                             @LotoLocalizer["CheckResult"]
@@ -185,7 +185,7 @@
             </div>
         </div>
 
-        <div class="numbers-card col-lg-6 col-md-6 col-sm-12 mt-3">
+        <div class="combinations-card col-lg-6 col-md-6 col-sm-12">
             <div class="combinations-title font-12 bg-darkgreen text-white bold">
                 <div class="title-message font-10 text-white">
                     <i class="fas fa-grip-horizontal font-10 text-white"></i>
@@ -208,7 +208,7 @@
                     </div>
                 </div>
             </div>
-            <div class="combinations bg-palegreen bc-lightgreen shadow-dark mb-3">
+            <div class="combinations-zone bg-palegreen bc-lightgreen shadow-dark mb-3">
                 <div class="combinations-header bc-darkgreen">
                     <div class="col txt-50 font-10 text-darkgreen">@LotoLocalizer["Order"]</div>
                     <div class="col txt-120 font-10 text-darkgreen">@LotoLocalizer["Numbers"]</div>
@@ -260,7 +260,7 @@
                 </div>
             </div>
         </div>
-        <div class="recycleds bc-darkred">
+        <div class="recycle-zone bc-darkred">
             <div class="recycle-header bc-darkred">
                 <div class="col txt-50 text-darkred font-10">@LotoLocalizer["Order"]</div>
                 <div class="col txt-100 text-darkred font-10">@LotoLocalizer["Numbers"]</div>
@@ -271,7 +271,7 @@
                 <div class="row recycle-item bc-darkred text-darkred">
                     <div class="col txt-50 font-10">@(jogo.Id.ToString("000000"))</div>
                     <div class="col txt-120 font-10">@jogo.DezenasTexto</div>
-                    <div class="col txt-50 font-10">
+                    <div class="col txt-50 font-10 d-inline-flex">
                         <div class="btn-delete" role="button" @onclick="() => DeletaCombinacaoReciclada(jogo)"
                                 data-bs-toggle="tooltip" data-bs-placement="top" title="@LotoLocalizer["DeletePermanent"]">
                             <i class="fas fa-trash-alt text-red"></i>

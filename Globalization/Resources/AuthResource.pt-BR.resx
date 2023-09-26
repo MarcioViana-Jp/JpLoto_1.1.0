@@ -138,11 +138,23 @@
   <data name="AccountUserOrPasswordInvalid" xml:space="preserve">
     <value>Usuário e/ou Password inválidos.</value>
   </data>
+  <data name="AlreadyRegistered" xml:space="preserve">
+    <value>Já possui uma conta</value>
+  </data>
+  <data name="ClickHere" xml:space="preserve">
+    <value>Clique aqui</value>
+  </data>
+  <data name="ClickHereToReturn" xml:space="preserve">
+    <value>Clique aqui para retornar</value>
+  </data>
   <data name="ConfirmNewPassword" xml:space="preserve">
-    <value>Confirme nova Password</value>
+    <value>Confirme nova senha</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
-    <value>Confirme Password</value>
+    <value>Confirme senha</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Senha atual</value>
   </data>
   <data name="EditProfile" xml:space="preserve">
     <value>Editar perfil</value>
@@ -186,6 +198,9 @@
   <data name="NoRecordsFound" xml:space="preserve">
     <value>Nenhum registro encontrado.</value>
   </data>
+  <data name="NotRegistered" xml:space="preserve">
+    <value>Não está registrado</value>
+  </data>
   <data name="NoUserLogged" xml:space="preserve">
     <value>Não há usuário logado.</value>
   </data>
@@ -201,11 +216,20 @@
   <data name="Register" xml:space="preserve">
     <value>Novo usuário</value>
   </data>
+  <data name="RegisterForFree" xml:space="preserve">
+    <value>Registre-se gratis</value>
+  </data>
   <data name="RegistrationOk" xml:space="preserve">
     <value>Registrado com success.</value>
   </data>
+  <data name="ResendConfirmationEmail" xml:space="preserve">
+    <value>Reenviar e-mail de confirmação</value>
+  </data>
   <data name="ServerError" xml:space="preserve">
     <value>Erro de servidor. Por favor, tente novamente mais tarde.</value>
+  </data>
+  <data name="TermsAndConditionsAgreement" xml:space="preserve">
+    <value>Eu concordo com os termos e condições deste site</value>
   </data>
   <data name="UpdateOk" xml:space="preserve">
     <value>Alterações efetuadas com success.</value>

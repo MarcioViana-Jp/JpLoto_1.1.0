@@ -138,11 +138,23 @@
   <data name="AccountUserOrPasswordInvalid" xml:space="preserve">
     <value>Nombre de usuario y / o contraseña inválido.</value>
   </data>
+  <data name="AlreadyRegistered" xml:space="preserve">
+    <value>Ya tienes una cuenta</value>
+  </data>
+  <data name="ClickHere" xml:space="preserve">
+    <value>Clic aquí</value>
+  </data>
+  <data name="ClickHereToReturn" xml:space="preserve">
+    <value>Clic aquí para regresar</value>
+  </data>
   <data name="ConfirmNewPassword" xml:space="preserve">
     <value>Confirmar nueva contraseña</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Confirmar contraseña</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Contraseña actual</value>
   </data>
   <data name="EditProfile" xml:space="preserve">
     <value>Editar perfil</value>
@@ -186,6 +198,9 @@
   <data name="NoRecordsFound" xml:space="preserve">
     <value>No se encontraron registros.</value>
   </data>
+  <data name="NotRegistered" xml:space="preserve">
+    <value>No está registrado</value>
+  </data>
   <data name="NoUserLogged" xml:space="preserve">
     <value>No hay ningún usuario conectado.</value>
   </data>
@@ -201,11 +216,20 @@
   <data name="Register" xml:space="preserve">
     <value>Nuevo usuario</value>
   </data>
+  <data name="RegisterForFree" xml:space="preserve">
+    <value>Registrate gratis</value>
+  </data>
   <data name="RegistrationOk" xml:space="preserve">
     <value>Registrado con éxito.</value>
   </data>
+  <data name="ResendConfirmationEmail" xml:space="preserve">
+    <value>Reenviar email de confirmación</value>
+  </data>
   <data name="ServerError" xml:space="preserve">
     <value>Error del Servidor. Por favor, inténtelo de nuevo más tarde.</value>
+  </data>
+  <data name="TermsAndConditionsAgreement" xml:space="preserve">
+    <value>Acepto los términos y condiciones de este sitio</value>
   </data>
   <data name="UpdateOk" xml:space="preserve">
     <value>Cambios realizados con éxito.</value>

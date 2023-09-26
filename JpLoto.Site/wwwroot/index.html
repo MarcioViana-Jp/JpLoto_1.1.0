@@ -45,7 +45,7 @@
 
 </head>
 
-<body>
+<body class=" bg-gray-200">
 
     <div id="app">
         <svg class="loading-progress">
@@ -70,12 +70,12 @@
     <!--<script src="assets/js/plugins/chartjs.min.js"></script>-->
 
     <script src="_framework/blazor.webassembly.js"></script>
-    <script src="css/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!--<script src="assets/js/core/bootstrap.bundle.min.js"></script>-->
 
     <script>
         window.blazorCulture = {
             get: () => localStorage["BlazorCulture"],
-            set: (value) => localStorage["BlazorCulture"] = value            
+            set: (value) => localStorage["BlazorCulture"] = value
         }
 
         window.Confirm = function (title) {

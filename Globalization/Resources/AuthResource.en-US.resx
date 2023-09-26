@@ -138,11 +138,23 @@
   <data name="AccountUserOrPasswordInvalid" xml:space="preserve">
     <value>Invalid user and/or password.</value>
   </data>
+  <data name="AlreadyRegistered" xml:space="preserve">
+    <value>Already registered</value>
+  </data>
+  <data name="ClickHere" xml:space="preserve">
+    <value>Click here</value>
+  </data>
+  <data name="ClickHereToReturn" xml:space="preserve">
+    <value>Click here to return</value>
+  </data>
   <data name="ConfirmNewPassword" xml:space="preserve">
     <value>Confirm new password</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Confirm password</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Current password</value>
   </data>
   <data name="EditProfile" xml:space="preserve">
     <value>Edit profile</value>
@@ -186,6 +198,9 @@
   <data name="NoRecordsFound" xml:space="preserve">
     <value>No records found.</value>
   </data>
+  <data name="NotRegistered" xml:space="preserve">
+    <value>Not registered yet</value>
+  </data>
   <data name="NoUserLogged" xml:space="preserve">
     <value>No user logged in.</value>
   </data>
@@ -201,11 +216,20 @@
   <data name="Register" xml:space="preserve">
     <value>New user</value>
   </data>
+  <data name="RegisterForFree" xml:space="preserve">
+    <value>Sign up for free</value>
+  </data>
   <data name="RegistrationOk" xml:space="preserve">
     <value>Registration succeeded.</value>
   </data>
+  <data name="ResendConfirmationEmail" xml:space="preserve">
+    <value>Resend confirmation email</value>
+  </data>
   <data name="ServerError" xml:space="preserve">
     <value>Server error. Please try again later.</value>
+  </data>
+  <data name="TermsAndConditionsAgreement" xml:space="preserve">
+    <value>I agree the terms and conditions of this website</value>
   </data>
   <data name="UpdateOk" xml:space="preserve">
     <value>Uptade succeeded.</value>

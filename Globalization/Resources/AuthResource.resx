@@ -138,11 +138,23 @@
   <data name="AccountUserOrPasswordInvalid" xml:space="preserve">
     <value>Invalid user and/or pasword</value>
   </data>
+  <data name="AlreadyRegistered" xml:space="preserve">
+    <value>登録されていますか</value>
+  </data>
+  <data name="ClickHere" xml:space="preserve">
+    <value>ここをクリック</value>
+  </data>
+  <data name="ClickHereToReturn" xml:space="preserve">
+    <value>戻るにはここをクリックしてください</value>
+  </data>
   <data name="ConfirmNewPassword" xml:space="preserve">
     <value>新しいパスワード確認</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>パスワード確認</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>現在のパスワード</value>
   </data>
   <data name="EditProfile" xml:space="preserve">
     <value>プロファイル編集</value>
@@ -186,6 +198,9 @@
   <data name="NoRecordsFound" xml:space="preserve">
     <value>レコードが見つかりません。</value>
   </data>
+  <data name="NotRegistered" xml:space="preserve">
+    <value>まだ登録されていませんか</value>
+  </data>
   <data name="NoUserLogged" xml:space="preserve">
     <value>ユーザーログイン未</value>
   </data>
@@ -201,11 +216,20 @@
   <data name="Register" xml:space="preserve">
     <value>ユーザーを追加</value>
   </data>
+  <data name="RegisterForFree" xml:space="preserve">
+    <value>無料で登録</value>
+  </data>
   <data name="RegistrationOk" xml:space="preserve">
     <value>登録に成功！</value>
   </data>
+  <data name="ResendConfirmationEmail" xml:space="preserve">
+    <value>確認メールを再送信</value>
+  </data>
   <data name="ServerError" xml:space="preserve">
     <value>サーバーエラー。 後でもう一度やり直してください。</value>
+  </data>
+  <data name="TermsAndConditionsAgreement" xml:space="preserve">
+    <value>このウェブサイトの利用規約に同意します</value>
   </data>
   <data name="UpdateOk" xml:space="preserve">
     <value>更新成功しました。</value>
