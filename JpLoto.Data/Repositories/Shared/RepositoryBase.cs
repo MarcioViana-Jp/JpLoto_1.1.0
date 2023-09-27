@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using JpLoto.Data.Context;
+using JpLoto.Data.JplContext;
 using JpLoto.Domain.Entities.Shared;
 using JpLoto.Domain.Interfaces.Repositories.Shared;
 

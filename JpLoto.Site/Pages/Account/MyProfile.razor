@@ -1,13 +1,14 @@
 ﻿@page "/myprofile"
+@using JpLoto.Application.Dto;
 @using JpLoto.Site.Interfaces.Services;
 @inject IAccountService accountService
+@inject IMyProfileRepository myProfileRepository
 @inject NavigationManager navigationManager
-@inject ISyncLocalStorageService localStorage
 @inject AuthenticationStateProvider AuthenticationStateProvider
-@inject IStringLocalizer<AuthResource> authLocalizer
+@inject IStringLocalizer<UserDetailResource> userDetailLocalizer
 @attribute [Authorize]
 
-<PageTitle>Login</PageTitle>
+<PageTitle>My Profile</PageTitle>
 
 <main class="main-content  mt-0">
     <div class="container-fluid px-2 px-md-4">
@@ -20,7 +21,7 @@
                     <div class="mt-4 flex-column">
                         <h6 class="mb-1">
                             <span><i class="fa fa-user fa-lg me-2"></i></span>
-                            @GetCurrentUserName()
+                            @currentUserName
                         </h6>
                         <p class="mb-0 font-weight-normal text-sm">
                             Trial period
@@ -37,80 +38,105 @@
                             <div class="card-header pb-0 p-3">
                                 <div class="row">
                                     <div class="col-md-8 d-flex align-items-center">
-                                        <h6 class="mb-0">@authLocalizer["ProfileInformation"]</h6>
+                                        <h6 class="mb-0 me-auto">@userDetailLocalizer["ProfileInformation"]</h6>
+                                        <a href="javascript:;">
+                                            <i class="fas fa-user-edit text-12 @iconColorClass" 
+                                               data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Profile"
+                                               @onclick="EditModeToggle">
+                                            </i>
+                                        </a>
                                     </div>
                                     <div class="col-md-4 text-end">
-                                        <a href="javascript:;">
-                                            <i class="fas fa-user-edit text-secondary text-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Profile"></i>
-                                        </a>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-body p-3">
                                 <p class="text-sm">
-                                    Hi, I’m Alec Thompson, Decisions: If you can’t decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality).
+                                    Clique no botão ao lado para alterar informações do seu perfil. Para concluir, clique no botão [atualizar].
                                 </p>
                                 <hr class="horizontal gray-light my-4">
-                                <ul class="list-group">
-                                    <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Full Name:</strong> &nbsp; Alec M. Thompson</li>
-                                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Mobile:</strong> &nbsp; (44) 123 1234 123</li>
-                                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email:</strong> &nbsp; alecthompson@mail.com</li>
-                                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Location:</strong> &nbsp; USA</li>
-                                    <li class="list-group-item border-0 ps-0 pb-0">
-                                        <strong class="text-dark text-sm">Social:</strong> &nbsp;
-                                        <a class="btn btn-facebook btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
-                                            <i class="fab fa-facebook fa-lg"></i>
-                                        </a>
-                                        <a class="btn btn-twitter btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
-                                            <i class="fab fa-twitter fa-lg"></i>
-                                        </a>
-                                        <a class="btn btn-instagram btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
-                                            <i class="fab fa-instagram fa-lg"></i>
-                                        </a>
-                                    </li>
-                                </ul>
+                                <EditForm Model="userDetailDto" OnValidSubmit="HandleUpdate">
+                                    <DataAnnotationsValidator />
+                                    <div class="input-group input-group-outline mt-3">
+                                        <label for="firstname" class="form-label text-xs">@userDetailLocalizer["FirstName"]</label>
+                                        <InputText id="firstname" style="text-align:center;" @bind-Value="userDetailDto.FirstName" class="form-control my-2" />
+                                    </div>
+                                    <ValidationMessage For="@(() => userDetailDto.FirstName)" class="text-xs text-danger" />
+
+                                    <div class="input-group input-group-outline mt-3">
+                                        <label for="lastname" class="form-label text-xs">@userDetailLocalizer["LastName"]</label>
+                                        <InputText id="lastname" style="text-align:center;" @bind-Value="userDetailDto.LastName" class="form-control my-2" />
+                                    </div>
+                                    <ValidationMessage For="@(() => userDetailDto.LastName)" class="text-xs text-danger" />
+
+                                    <div class="input-group input-group-outline mt-3">
+                                        <label for="phone" class="form-label text-xs">@userDetailLocalizer["Phone"]</label>
+                                        <InputText id="phone" style="text-align:center;" @bind-Value="userDetailDto.Phone" class="form-control my-2" />
+                                    </div>
+                                    <ValidationMessage For="@(() => userDetailDto.Phone)" class="text-xs text-danger" />
+
+                                    <div class="input-group input-group-outline mt-3">
+                                        <label for="postalcode" class="form-label text-xs">@userDetailLocalizer["PostalCode"]</label>
+                                        <InputText id="postalcode" style="text-align:center;" @bind-Value="userDetailDto.PostalCode" class="form-control my-2" />
+                                    </div>
+                                    <ValidationMessage For="@(() => userDetailDto.PostalCode)" class="text-xs text-danger" />
+
+                                    <div class="input-group input-group-outline mt-3">
+                                        <label for="state" class="form-label text-xs">@userDetailLocalizer["State"]</label>
+                                        <InputText id="state" style="text-align:center;" @bind-Value="userDetailDto.State" class="form-control my-2" />
+                                    </div>
+                                    <ValidationMessage For="@(() => userDetailDto.State)" class="text-xs text-danger" />
+
+                                    <div class="input-group input-group-outline mt-3">
+                                        <label for="city" class="form-label text-xs">@userDetailLocalizer["City"]</label>
+                                        <InputText id="city" style="text-align:center;" @bind-Value="userDetailDto.City" class="form-control my-2" />
+                                    </div>
+                                    <ValidationMessage For="@(() => userDetailDto.City)" class="text-xs text-danger" />
+                                        
+                                    <div class="input-group input-group-outline mt-3">
+                                        <label for="address" class="form-label text-xs">@userDetailLocalizer["Address"]</label>
+                                        <InputText id="address" style="text-align:center;" @bind-Value="userDetailDto.Address" class="form-control my-2" />
+                                    </div>
+                                    <ValidationMessage For="@(() => userDetailDto.Address)" class="text-xs text-danger" />
+
+                                    <div class="text-center mb-2">
+                                        <button type="submit" class="btn bg-gradient-primary w-100 my-4">@userDetailLocalizer["Update"]</button>
+                                    </div>
+                                </EditForm>
+                                <div class="mt-2">
+                                    @if (errorMessages.Count > 0)
+                                    {
+                                        foreach (var msg in errorMessages)
+                                        {
+                                            <label class="text-danger text-xs">@msg</label>
+                                            <br />
+                                        }
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-xl-3">
                         <div class="card card-plain h-100">
                             <div class="card-header pb-0 p-3">
-                                <h6 class="mb-0">Platform Settings</h6>
+                                <h6 class="mb-0">App Settings</h6>
                             </div>
                             <div class="card-body p-3">
-                                <h6 class="text-uppercase text-body text-xs font-weight-bolder">Account</h6>
+                                <h6 class="text-uppercase text-body text-xs font-weight-bolder">Security </h6>
                                 <ul class="list-group">
                                     <li class="list-group-item border-0 px-0">
                                         <div class="form-check form-switch ps-0">
                                             <input class="form-check-input ms-auto" type="checkbox" id="flexSwitchCheckDefault" checked>
-                                            <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="flexSwitchCheckDefault">Email me when someone follows me</label>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item border-0 px-0">
-                                        <div class="form-check form-switch ps-0">
-                                            <input class="form-check-input ms-auto" type="checkbox" id="flexSwitchCheckDefault1">
-                                            <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="flexSwitchCheckDefault1">Email me when someone answers on my post</label>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item border-0 px-0">
-                                        <div class="form-check form-switch ps-0">
-                                            <input class="form-check-input ms-auto" type="checkbox" id="flexSwitchCheckDefault2" checked>
-                                            <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="flexSwitchCheckDefault2">Email me when someone mentions me</label>
+                                            <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="flexSwitchCheckDefault">Enable/Disable 2FA</label>
                                         </div>
                                     </li>
                                 </ul>
-                                <h6 class="text-uppercase text-body text-xs font-weight-bolder mt-4">Application</h6>
+                                <h6 class="text-uppercase text-body text-xs font-weight-bolder mt-4">Notifications</h6>
                                 <ul class="list-group">
                                     <li class="list-group-item border-0 px-0">
                                         <div class="form-check form-switch ps-0">
                                             <input class="form-check-input ms-auto" type="checkbox" id="flexSwitchCheckDefault3">
                                             <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="flexSwitchCheckDefault3">New launches and projects</label>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item border-0 px-0">
-                                        <div class="form-check form-switch ps-0">
-                                            <input class="form-check-input ms-auto" type="checkbox" id="flexSwitchCheckDefault4" checked>
-                                            <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="flexSwitchCheckDefault4">Monthly product updates</label>
                                         </div>
                                     </li>
                                     <li class="list-group-item border-0 px-0 pb-0">
@@ -130,42 +156,61 @@
 </main>
 
 @code {
-    private LoginRequest loginRequest = new();
+    private UserDetailDto? userDetailDto { get; set; } = new();
     private List<string> errorMessages = new();
     private string returnUrl = string.Empty;
+    private string currentUserName { get; set; }
+    private bool isNewProfile = false;
+    private bool isEditingMode = false;
+    private string editingClass { get => isEditingMode ? null : "disabled"; }
+    private string iconColorClass { get => isEditingMode ? "text-green" : "text-gray"; }
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
         var uri = navigationManager.ToAbsoluteUri(navigationManager.Uri);
         if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("returnUrl", out var url))
         {
             returnUrl = url;
         }
-    }
+        currentUserName = await accountService.GetCurrentUserName();
+        var userId = await accountService.GetUserIdByEmailAsync(currentUserName);
 
-    private string GetCurrentUserName()
-    {
-        return localStorage.GetItemAsString("_user");
+        errorMessages = new();
+
+        if (userId is null)
+            errorMessages.Add($"Something went wrong. User '{currentUserName}' not found!");
+        else
+        {
+            var userDetail = await myProfileRepository.GetByUserIdAsync(userId);
+            if(userDetail == null || userDetail.Id == 0)
+            {
+                isNewProfile = true;
+                userDetailDto = new();
+                userDetailDto.UserId = userId;
+            }
+            else
+            {
+                isNewProfile = false;
+                userDetailDto = new UserDetailDto(userDetail);
+            }
+        }
     }
 
     private async Task HandleUpdate()
     {
-        errorMessages = new();
+        errorMessages = new(); // TODO - Add/Update Responses
+        userDetailDto.UpdateDate = DateTime.Now;
+        userDetailDto.IsActive = true;
 
-        var response = await accountService.Login(loginRequest);
-        if (response.Success)
-        {
-            localStorage.SetItem("authToken", response.AccessToken);
-            await AuthenticationStateProvider.GetAuthenticationStateAsync();
-
-            if (await accountService.IsUserAuthenticated())
-                errorMessages = new() { "Usuário não logado no momento.- 1o IF" };
-            navigationManager.NavigateTo(returnUrl);
-        }
+        if(isNewProfile)
+            await myProfileRepository.AddAsync(userDetailDto.ConvertToAddRequest());
         else
-        {
-            errorMessages = response.Errors;
-        }
+            await myProfileRepository.UpdateAsync(userDetailDto.ConvertToUpdateRequest());
+    }
+
+    private void EditModeToggle()
+    {
+        isEditingMode = !isEditingMode;
     }
 
 }

@@ -2,7 +2,7 @@ using JpLoto.Domain.Entities.Shared;
 
 namespace JpLoto.Domain.Entities;
 
-public class JplUserDetail : Entity
+public class UserDetail : Entity
 {
     public string? UserId { get; set; } = string.Empty;
     public string FirstName { get; set; } = string.Empty;
@@ -15,12 +15,12 @@ public class JplUserDetail : Entity
     public DateTime UpdateDate { get; set; }
     public bool IsActive { get; set; } = true;
 
-    public JplUserDetail(string userId, string firstName, string lastName, string postalCode, string state, string city, string address, string phone, DateTime updateDate, bool isActive = true)
+    public UserDetail(string userId, string firstName, string lastName, string postalCode, string state, string city, string address, string phone, DateTime updateDate, bool isActive = true)
         : this(default, userId, firstName, lastName, postalCode, state, city, address, phone, updateDate, isActive)
     {
     }
 
-    public JplUserDetail(int id, string userId, string firstName, string lastName, string postalCode, string state, string city, string address, string phone, DateTime updateDate, bool isActive = true)
+    public UserDetail(int id, string userId, string firstName, string lastName, string postalCode, string state, string city, string address, string phone, DateTime updateDate, bool isActive = true)
     {
         Id = id;
         UserId = userId;
@@ -33,5 +33,9 @@ public class JplUserDetail : Entity
         Phone = phone;
         UpdateDate = updateDate;
         IsActive = isActive;
+    }
+
+    public UserDetail()
+    {
     }
 }

@@ -1,0 +1,24 @@
+﻿@page "/privacy"
+@inject NavigationManager navigationManager
+
+<div class="ctn-privacy">    
+    @if(CultureInfo.CurrentCulture.Name == "pt-BR") 
+    {
+        <PrivacyPolicy_pt_BR />
+    }
+    else if(CultureInfo.CurrentCulture.Name == "en-US")
+    {
+        <PrivacyPolicy_en_US  />
+    }
+    else if(CultureInfo.CurrentCulture.Name == "es-ES")
+    {
+        <PrivacyPolicy_es_ES  />
+    }
+    else
+    {
+        <PrivacyPolicy_ja_JP  />
+    }   
+    <div class="text-center text-blue mt-2">
+        <ButonClose_BigCircle />
+    </div>
+</div>

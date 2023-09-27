@@ -4,19 +4,19 @@
 [ApiController]
 public class UserDetailsController : ControllerBase
 {
-    private UserDetailService _userDetailService;
+    private IUserDetailService _userDetailService;
 
-    public UserDetailsController(UserDetailService jplUserDetailService) =>
+    public UserDetailsController(IUserDetailService jplUserDetailService) =>
         _userDetailService = jplUserDetailService;
 
 
     [ProducesResponseType(typeof(int), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-    [HttpPost]
+    [HttpPost("add")]
     public async Task<ActionResult<int>> Add(UserDetailAddRequest request)
     {
-        var userDetail = new JplUserDetail(request.UserId, request.FirstName, request.LastName, request.PostalCode,
+        var userDetail = new UserDetail(request.UserId, request.FirstName, request.LastName, request.PostalCode,
                         request.State, request.City, request.Address, request.Phone, request.UpdateDate, true);
         var id = (int)await _userDetailService.AddAsync(userDetail);
         return CreatedAtAction(nameof(GetById), new { id = id }, id);
@@ -26,10 +26,10 @@ public class UserDetailsController : ControllerBase
     [ProducesResponseType(typeof(UserDetailResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-    [HttpPut]
+    [HttpPut("update")]
     public async Task<ActionResult> Update(UserDetailUpdateRequest request)
     {
-        var userDetail = new JplUserDetail(request.UserId, request.FirstName, request.LastName, request.PostalCode,
+        var userDetail = new UserDetail(request.Id, request.UserId, request.FirstName, request.LastName, request.PostalCode,
                         request.State, request.City, request.Address, request.Phone, request.UpdateDate, true);
         await _userDetailService.UpdateAsync(userDetail);
         return Ok(UserDetailResponse.ConvertToResponse(userDetail));
@@ -38,7 +38,7 @@ public class UserDetailsController : ControllerBase
 
     [ProducesResponseType(typeof(IEnumerable<UserDetailResponse>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-    [HttpGet]
+    [HttpGet("getall")]
     public async Task<ActionResult<IEnumerable<UserDetailResponse>>> GetAll()
     {
         var userDetails = await _userDetailService.GetAllAsync();
@@ -49,7 +49,7 @@ public class UserDetailsController : ControllerBase
     [ProducesResponseType(typeof(UserDetailResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-    [HttpGet("{id}")]
+    [HttpGet("getbyid/{id}")]
     public async Task<ActionResult<UserDetailResponse>> GetById(int id)
     {
         var userDetail = await _userDetailService.GetByIdAsync(id);
@@ -63,15 +63,16 @@ public class UserDetailsController : ControllerBase
     [ProducesResponseType(typeof(UserDetailResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-    [HttpGet("{userId}")]
+    [HttpGet("getbyuserid/{userId}")]
     public async Task<ActionResult<UserDetailResponse>> GetByUserId(string userId)
     {
         var userDetail = await _userDetailService.GetByUserIdAsync(userId);
         if (userDetail is null)
-            return NotFound();
+            return Ok(null);
 
         return Ok(UserDetailResponse.ConvertToResponse(userDetail));
-
+        //var resp = UserDetailResponse.ConvertToResponse(userDetail);
+        //return Ok(resp);
     }
 
 
@@ -90,7 +91,7 @@ public class UserDetailsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
     [HttpDelete("{id}")]
-    public async Task<ActionResult> Remove(JplUserDetail userDetail)
+    public async Task<ActionResult> Remove(UserDetail userDetail)
     {
         await _userDetailService.RemoveAsync(userDetail);
         return Ok(userDetail);

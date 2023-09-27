@@ -12,6 +12,7 @@ namespace JpLoto.Site.Interfaces.Services
         Task<RegisterResponseData> ChangePassword(ChangePasswordRequest request);
         Task<bool> IsUserAuthenticated();
         Task<bool> ResendConfirmationEmail(EmailRequest emailRequest);
+        Task<string> GetUserIdByEmailAsync(string email);
         Task<string> GetCurrentUserName();
     }
 }

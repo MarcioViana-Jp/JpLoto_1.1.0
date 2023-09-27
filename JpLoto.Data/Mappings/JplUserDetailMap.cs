@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace JpLoto.Data.Mappings;
 
-public class JplUserDetailMap : IEntityTypeConfiguration<JplUserDetail>
+public class JplUserDetailMap : IEntityTypeConfiguration<UserDetail>
 {
-    public void Configure(EntityTypeBuilder<JplUserDetail> builder)
+    public void Configure(EntityTypeBuilder<UserDetail> builder)
     {
         builder.ToTable("UserDetails");
 

@@ -60,11 +60,23 @@ public class AccountController : ControllerBase
         return StatusCode(StatusCodes.Status500InternalServerError);
     }
 
+    [ProducesResponseType(typeof(RegisterResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+    [HttpGet("getuseridbyemail/{email}")]
+    public async Task<IActionResult> GetUserIdByEmailAsync(string email)
+    {
+        var user = await _identityService.GetUserByEmailAsync(email);
+        if (user == null)
+            return Ok(null);
+        return Ok(user.Id);
+    }
+
 
     [ProducesResponseType(typeof(RegisterResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-    [HttpPost("resendemail")]
+    [HttpPost("ResendEmail")]
     public async Task<IActionResult> ResendConfirmationEmail(EmailRequest emailRequest)
     {
         // Sending errors are not proccessed. Users might procceed resending email again, instead.

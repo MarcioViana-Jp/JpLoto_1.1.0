@@ -242,6 +242,12 @@ a, .btn-link {
     display: none;
 }
 
+.ctn-privacy {
+    margin: 1rem!important;
+    padding: 1rem!important;
+    border-radius: 5px;
+}
+
 .ctn-loto {
     margin: 0!important;
     padding: 0!important;

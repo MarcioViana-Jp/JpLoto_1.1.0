@@ -1,7 +1,7 @@
 ﻿using JpLoto.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace JpLoto.Data.Context;
+namespace JpLoto.Data.JplContext;
 public class DataContext : DbContext
 {
     public DataContext(DbContextOptions<DataContext> options)
@@ -11,7 +11,7 @@ public class DataContext : DbContext
     public DbSet<Loto6Result> Loto6Results { get; set; }
     public DbSet<Loto7Result> Loto7Results { get; set; }
     public DbSet<MiniLotoResult> MiniLotoResults { get; set; }
-    public DbSet<JplUserDetail> UserDetails { get; set; }
+    public DbSet<UserDetail> UserDetails { get; set; }
     public DbSet<Trial> Trials { get; set; }
     public DbSet<Plan> Plans { get; set; }
     public DbSet<Subscription> Subscriptions { get; set; }

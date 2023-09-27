@@ -1,4 +1,4 @@
-﻿using JpLoto.Data.Context;
+﻿using JpLoto.Data.JplContext;
 using JpLoto.Data.Repositories.Shared;
 using JpLoto.Domain.Entities;
 using JpLoto.Domain.Interfaces.Repositories;
@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace JpLoto.Data.Repositories;
 
-public class UserDetailRepository : RepositoryBase<JplUserDetail>, IUserDetailRepository
+public class UserDetailRepository : RepositoryBase<UserDetail>, IUserDetailRepository
 {
     private readonly DataContext _context;
     public UserDetailRepository(DataContext context) : base(context)
@@ -14,7 +14,7 @@ public class UserDetailRepository : RepositoryBase<JplUserDetail>, IUserDetailRe
         _context = context;
     }
 
-    public async Task<JplUserDetail> GetByUserIdAsync(string userId) =>
+    public async Task<UserDetail> GetByUserIdAsync(string userId) =>
            await _context.UserDetails.FirstOrDefaultAsync(p => p.UserId.Equals(userId));
 
 }

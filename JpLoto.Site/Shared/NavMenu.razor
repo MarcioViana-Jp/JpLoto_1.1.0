@@ -3,7 +3,7 @@
 <ul class="navbar-nav">
     <AuthorizeView>
         <Authorized>
-            <li class="nav-item mt-3">
+            <li class="nav-item mt-2">
                 <h6 class="ps-4 ms-2 text-uppercase text-sm text-white font-weight-bolder opacity-8 nav-section-title">@menuLocalizer["Lottery"]</h6>
             </li>
             <hr class="horizontal light mt-0 mb-2">
@@ -88,7 +88,7 @@
                         @menuLocalizer["NotRegistered"]
                     </p>
                     <div class="d-flex justify-content-center">
-                        <a class="btn bg-gradient-primary mt-0 mb-0 h-75 pt-1 pb-1" style="width:80%!important;" href="/login">
+                        <a class="btn bg-gradient-primary mt-0 mb-0 h-75 pt-1 pb-1" style="width:80%!important;" href="/register">
                             @menuLocalizer["Register"]
                         </a>
                     </div>
@@ -96,6 +96,14 @@
             </li>
         </NotAuthorized>
     </AuthorizeView>
+    <li class="nav-item">
+        <a class="nav-link text-white" href="privacy">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="material-icons opacity-10">privacy_tip</i>
+            </div>
+            <span class="nav-link-text text-xs ms-1">@menuLocalizer["PrivacyPolicy"]</span>
+        </a>
+    </li>
 </ul>
 
 @code {

@@ -3,7 +3,7 @@ using JpLoto.Domain.Interfaces.Services.Shared;
 
 namespace JpLoto.Domain.Interfaces.Services;
 
-public interface IUserDetailService : IServiceBase<JplUserDetail>
+public interface IUserDetailService : IServiceBase<UserDetail>
 {
-    Task<JplUserDetail> GetByUserIdAsync(string userId);
+    Task<UserDetail> GetByUserIdAsync(string userId);
 }

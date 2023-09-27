@@ -4,7 +4,7 @@ global using JpLoto.Application.Dto.Response;
 global using JpLoto.Application.Interfaces;
 global using JpLoto.Application.Services;
 global using JpLoto.Application.Settings;
-global using JpLoto.Data.Context;
+global using JpLoto.Data.JplContext;
 global using JpLoto.Data.Repositories;
 global using JpLoto.Domain.Entities;
 global using JpLoto.Domain.Interfaces.Repositories;
@@ -33,6 +33,13 @@ builder.Services.AddApiProblemDetails();
 builder.Services.AddLocalization(options => options.ResourcesPath = "SharedResource");
 
 builder.Services.AddRazorPages();
+builder.Services.Configure<CookiePolicyOptions>(options =>
+{
+    options.CheckConsentNeeded = context => true;
+    options.MinimumSameSitePolicy = SameSiteMode.None;
+    options.ConsentCookieValue = "true";
+});
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddRouting();
 //builder.Services.AddRouting(options => options.LowercaseUrls = true);
@@ -61,6 +68,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
+app.UseCookiePolicy();
 app.UseRouting();
 
 // Configure supported cultures

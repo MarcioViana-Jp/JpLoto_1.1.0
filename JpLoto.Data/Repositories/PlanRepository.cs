@@ -1,4 +1,4 @@
-﻿using JpLoto.Data.Context;
+﻿using JpLoto.Data.JplContext;
 using JpLoto.Data.Repositories.Shared;
 using JpLoto.Domain.Entities;
 using JpLoto.Domain.Interfaces.Repositories;

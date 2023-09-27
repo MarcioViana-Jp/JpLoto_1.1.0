@@ -7,11 +7,11 @@ public class UserDetailAddRequest
     public string? UserId { get; set; } = string.Empty;
     public string FirstName { get; set; } = string.Empty;
     public string LastName { get; set; } = string.Empty;
-    public string? PostalCode { get; private set; } = string.Empty;
-    public string? State { get; private set; } = string.Empty;
-    public string? City { get; private set; } = string.Empty;
-    public string? Address { get; private set; } = string.Empty;
-    public string? Phone { get; private set; } = string.Empty;
+    public string? PostalCode { get; set; } = string.Empty;
+    public string? State { get; set; } = string.Empty;
+    public string? City { get; set; } = string.Empty;
+    public string? Address { get; set; } = string.Empty;
+    public string? Phone { get; set; } = string.Empty;
     public DateTime UpdateDate { get; set; }
     //public bool IsActive { get; set; } = true;
 
@@ -28,9 +28,9 @@ public class UserDetailAddRequest
         UpdateDate = updateDate;
     }
 
-    public static JplUserDetail ConvertToEntity(UserDetailAddRequest request)
+    public static UserDetail ConvertToEntity(UserDetailAddRequest request)
     {
-        return new JplUserDetail
+        return new UserDetail
         (
             request.UserId ?? string.Empty,
             request.FirstName ?? string.Empty,

@@ -20,6 +20,7 @@ using JpLoto.Application.Interfaces.Services;
 using JpLoto.Application.Services;
 using JpLoto.Site.Extensions;
 using JpLoto.Site.Providers;
+using JpLoto.Site.Repositories;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
@@ -41,6 +42,7 @@ builder.Services.AddScoped<IMiniLotoResultService, MiniLotoResultService>();
 builder.Services.AddScoped<ILoto6ResultRepository, Loto6ResultRepository>();
 builder.Services.AddScoped<ILoto7ResultRepository, Loto7ResultRepository>();
 builder.Services.AddScoped<IMiniLotoResultRepository, MiniLotoResultRepository>();
+builder.Services.AddScoped<IMyProfileRepository, MyProfileRepository>();
 
 builder.Services.AddScoped<ICorsSettingService, CorsSettingService>();
 builder.Services.AddSingleton<CommonLocalizationService>();
