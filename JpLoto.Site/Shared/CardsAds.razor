@@ -1,191 +1,118 @@
 ﻿@inject IStringLocalizer<LotoResource> LotoLocalizer
 @inject IStringLocalizer<FeedResource> FeedLocalizer
+
 <style>
+    .ads-zone {
+        display: flex;
+        flex-flow: row wrap;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
     .card-ads {
-        display: flex;
-        flex-direction: column; 
-        padding: 0;
-        margin: 0 20px 0 0;
-        width: 150px;
-        height: 150px;
-        border-radius: 5px;
-        background-color: white;
-        }
-    .card-ads-body {
-        width: 150px;
-        height: 81px;
-        border-radius: 5px 0 0 5px;
-        }
-        img {
-        border-radius: 5px 5px 0 0;
-        }
-    .card-ads-price {
-        display: flex;
-        flex-direction: row;
-        width: 60px;
-        height: 15px;
-        padding: 0 5px;
-        }
-        .cathegory {
-            display: flex;
-            flex-direction: column;
-            font-size: 12px; 
-            text-align: left;
-            color: dodgerblue;
-            line-height: 1;
-        }
-        .price {
-            display: flex;
-            flex-direction: row;
-            font-size: 12px; 
-            color: blue;
-            line-height: 1;
-        }    
-    .card-ads-footer {
-        display: flex;
-        flex-direction: column;
-        bottom: 0;
-        width: 150px;
-        height: 50px;
-        padding: 0 5px;
-        line-height: 1;
+        margin: 5px !important;
     }
 </style>
 
-<div class="container-fluid py-4">
-    <h6 class="card-title mt-2 mb-2">@FeedLocalizer["SponsoredLinks"]</h6>
-    <div class="row">
-        <div class="card-ads shadow-card mb-4">
+<div class="container col-12">
+    <h6 class="m-2 text-center text-wrap">@FeedLocalizer["SponsoredLinks"]</h6>
+    @* <div class="row d-flex flex-wrap py-4"> *@
+    <div class="ads-zone">
+        <div class="card card-ads shadow-card" style="width: 8rem; height: 10rem;">
             <a href="https://go.hotmart.com/P79499577G?dp=1">
-                <div class="card-ads-body">
-                    <img src="site_images/affiliates/ir_no_japao_1.png" width="150" height="81" />
-                </div>
-                <div class="card-ads-price mt-1 mb-1">
-                    <div class="cathegory">
-                        Curso:
-                    </div>
-                    <div class="price">
-                        <span class="material-icons text-xs">currency_yen</span>
-                        15,000
+                <img src="site_images/affiliates/ir_no_japao_1.png" class="card-img-top" alt="...">
+                <div class="card-body ps-2 pe-2 pt-1 pb-0">
+                    <div class="d-inline-flex w-100 mt-0 mb-0">
+                        <h6 class="card-title text-start text-xxs mt-0 mb-0 me-auto">Curso</h6>
+                        <h6 class="card-title text-xs mt-0 mb-0">￥15,000</h6>
                     </div>
                 </div>
-                <div class="card-ads-footer font-9 text-center">
+                <p class="text-ads text-xxs text-center ps-2 pe-2" style="line-height:0.75rem;">
                     Como declarar imposto de renda no Japão.
-                </div>
+                </p>
             </a>
         </div>
-        <div class="card-ads shadow-card mb-2">
+        <div class="card card-ads shadow-card" style="width: 8rem; height: 10rem;">
             <a href="https://go.hotmart.com/G79499553N?dp=1">
-                <div class="card-ads-body">
-                    <img src="site_images/affiliates/nikkei_investing_1.png" width="150" height="81" />
-                </div>
-                <div class="card-ads-price mt-1 mb-1">
-                    <div class="cathegory">
-                        Curso:
-                    </div>
-                    <div class="price">
-                        <span class="material-icons text-xs">currency_yen</span>
-                        9,980
+                <img src="site_images/affiliates/nikkei_investing_1.png" class="card-img-top" alt="...">
+                <div class="card-body ps-2 pe-2 pt-1 pb-0">
+                    <div class="d-inline-flex w-100 mt-0 mb-0">
+                        <h6 class="card-title text-start text-xxs mt-0 mb-0 me-auto">Curso</h6>
+                        <h6 class="card-title text-xs mt-0 mb-0">￥9,980</h6>
                     </div>
                 </div>
-                <div class="card-ads-footer font-9 text-center">
-                    Curso completo COMO COMEÇAR A INVESTIR no Japão 2.0
-                </div>
+                <p class="text-ads text-xxs text-center ps-2 pe-2" style="line-height:0.75rem;">
+                    Curso completo COMO COMEÇAR A INVESTIR no Japão 2.0.
+                </p>
             </a>
         </div>
-        <div class="card-ads shadow-card mb-2">
+        <div class="card card-ads shadow-card" style="width: 8rem; height: 10rem;">
             <a href="https://go.hotmart.com/V86820230G?dp=1">
-                <div class="card-ads-body">
-                    <img src="site_images/affiliates/ganhe_dinheiro_online.png" width="150" height="81" />
-                </div>
-                <div class="card-ads-price mt-1 mb-1">
-                    <div class="cathegory">
-                        Ebook:
-                    </div>
-                    <div class="price">
-                        <span class="material-icons text-xs">currency_yen</span>
-                        3,000
+                <img src="site_images/affiliates/ganhe_dinheiro_online.png" class="card-img-top" alt="...">
+                <div class="card-body ps-2 pe-2 pt-1 pb-0">
+                    <div class="d-inline-flex w-100 mt-0 mb-0">
+                        <h6 class="card-title text-start text-xxs mt-0 mb-0 me-auto">E-book</h6>
+                        <h6 class="card-title text-xs mt-0 mb-0">￥3,000</h6>
                     </div>
                 </div>
-                <div class="card-ads-footer font-9 text-center">
+                <p class="text-ads text-xxs text-center ps-2 pe-2" style="line-height:0.75rem;">
                     Inicie seu e-commerce com PLR, afiliados e dropshipping.
-                </div>
+                </p>
             </a>
         </div>
-        <div class="card-ads shadow-card mb-2">
+        <div class="card card-ads shadow-card" style="width: 8rem; height: 10rem;">
             <a href="https://go.hotmart.com/H86819942I?dp=1">
-                <div class="card-ads-body">
-                    <img src="site_images/affiliates/master_trade_hk50.png" width="150" height="81" />
-                </div>
-                <div class="card-ads-price mt-1 mb-1">
-                    <div class="cathegory">
-                        Curso:
-                    </div>
-                    <div class="price">
-                        <span class="material-icons text-xs">currency_yen</span>
-                        12,297
+                <img src="site_images/affiliates/master_trade_hk50.png" class="card-img-top" alt="...">
+                <div class="card-body ps-2 pe-2 pt-1 pb-0">
+                    <div class="d-inline-flex w-100 mt-0 mb-0">
+                        <h6 class="card-title text-start text-xxs mt-0 mb-0 me-auto">Curso</h6>
+                        <h6 class="card-title text-xs mt-0 mb-0">￥12,002</h6>
                     </div>
                 </div>
-                <div class="card-ads-footer font-9 text-center">
+                <p class="text-ads text-xxs text-center ps-2 pe-2" style="line-height:0.75rem;">
                     Alcance a independência financeira vivendo do trade.
-                </div>
+                </p>
             </a>
         </div>
-        <div class="card-ads shadow-card mb-2">
+        <div class="card card-ads shadow-card" style="width: 8rem; height: 10rem;">
             <a href="https://go.hotmart.com/U86819846U?dp=1">
-                <div class="card-ads-body">
-                    <img src="site_images/affiliates/hamburguer_gourmet.png" width="150" height="81" />
-                </div>
-                <div class="card-ads-price mt-1 mb-1">
-                    <div class="cathegory">
-                        Ebook:
-                    </div>
-                    <div class="price">
-                        <span class="material-icons text-xs">currency_yen</span>
-                        1,100
+                <img src="site_images/affiliates/hamburguer_gourmet.png" class="card-img-top" alt="...">
+                <div class="card-body ps-2 pe-2 pt-1 pb-0">
+                    <div class="d-inline-flex w-100 mt-0 mb-0">
+                        <h6 class="card-title text-start text-xxs mt-0 mb-0 me-auto">E-book</h6>
+                        <h6 class="card-title text-xs mt-0 mb-0">￥1,100</h6>
                     </div>
                 </div>
-                <div class="card-ads-footer font-9 text-center">
+                <p class="text-ads text-xxs text-center ps-2 pe-2" style="line-height:0.75rem;">
                     Guia completo com segredos, dicas e receitas deliciosas.
-                </div>
+                </p>
             </a>
         </div>
-        <div class="card-ads shadow-card mb-2">
+        <div class="card card-ads shadow-card" style="width: 8rem; height: 10rem;">
             <a href="https://go.hotmart.com/E79499574R?dp=1">
-                <div class="card-ads-body">
-                    <img src="site_images/affiliates/norte_do_investimento.png" width="150" height="81" />
-                </div>
-                <div class="card-ads-price mt-1 mb-1">
-                    <div class="cathegory">
-                        Ebook:
-                    </div>
-                    <div class="price">
-                        <span class="material-icons text-xs">currency_yen</span>
-                        1,980
+                <img src="site_images/affiliates/norte_do_investimento.png" class="card-img-top" alt="...">
+                <div class="card-body ps-2 pe-2 pt-1 pb-0">
+                    <div class="d-inline-flex w-100 mt-0 mb-0">
+                        <h6 class="card-title text-start text-xxs mt-0 mb-0 me-auto">E-book</h6>
+                        <h6 class="card-title text-xs mt-0 mb-0">￥1,980</h6>
                     </div>
                 </div>
-                <div class="card-ads-footer font-9 text-center">
+                <p class="text-ads text-xxs text-center ps-2 pe-2" style="line-height:0.75rem;">
                     Aprenda a investir no exterior sem medo ou complicações.
-                </div>
+                </p>
             </a>
         </div>
-        <div class="card-ads shadow-card mb-2">
+        <div class="card card-ads shadow-card" style="width: 8rem; height: 10rem;">
             <a href="https://go.hotmart.com/X86820808Q?dp=1">
-                <div class="card-ads-body">
-                    <img src="site_images/affiliates/seja_bilingue.png" width="150" height="81" />
-                </div>
-                <div class="card-ads-price mt-1 mb-1">
-                    <div class="cathegory">
-                        Assinatura:
-                    </div>
-                    <div class="price">
-                        <span class="material-icons text-xs">currency_yen</span>
-                        5,000
+                <img src="site_images/affiliates/seja_bilingue.png" class="card-img-top" alt="...">
+                <div class="card-body ps-2 pe-2 pt-1 pb-0">
+                    <div class="d-inline-flex w-100 mt-0 mb-0">
+                        <h6 class="card-title text-start text-xxs mt-0 mb-0 me-auto">Mensal</h6>
+                        <h6 class="card-title text-xs mt-0 mb-0">￥5,000</h6>
                     </div>
                 </div>
-                <div class="card-ads-footer font-9 text-center">
+                <p class="text-ads text-xxs text-center ps-2 pe-2" style="line-height:0.75rem;">
                     O caminho mais seguro e possível para criar filhos bilingues.
-                </div>
+                </p>
             </a>
         </div>
     </div>

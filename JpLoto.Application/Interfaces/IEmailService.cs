@@ -1,4 +1,4 @@
-﻿namespace JpLoto.Application.Services;
+﻿namespace JpLoto.Application.Interfaces;
 
 public interface IEmailService
 {

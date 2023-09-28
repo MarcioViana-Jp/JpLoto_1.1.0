@@ -117,34 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ClickHereToSubscribe" xml:space="preserve">
-    <value>Clique aqui para iniciar</value>
+  <data name="CardLotteriesTitle" xml:space="preserve">
+    <value>Combinaciones para series de Loto - Loterías TakarakujiNet</value>
   </data>
-  <data name="ExpiredIn" xml:space="preserve">
-    <value>Expirado em</value>
+  <data name="CardNewsTitle" xml:space="preserve">
+    <value>Noticias recientes</value>
   </data>
-  <data name="ExpiresIn" xml:space="preserve">
-    <value>Expira em</value>
+  <data name="CardPlansTitle" xml:space="preserve">
+    <value>Regístrese para una prueba gratuita de 30 días o seleccione uno de los planes </value>
   </data>
-  <data name="FreeTrial" xml:space="preserve">
-    <value>Sign up for free</value>
+  <data name="CardSubscriptionsTitle" xml:space="preserve">
+    <value>Tus suscripciones</value>
   </data>
-  <data name="FreeTrialText" xml:space="preserve">
-    <value>Experimente o JpLoto gratuitamente por 30 dias com todos os recursos disponíveis. Nenhum cartão de crédito é necessário e você não será cobrado no final desse período. Boa sorte!</value>
+  <data name="ClickHereToStart" xml:space="preserve">
+    <value>Click aquí para comenzar</value>
   </data>
-  <data name="NotAvailable" xml:space="preserve">
-    <value>Não disponível</value>
-  </data>
-  <data name="OneYearSubscription" xml:space="preserve">
-    <value>Assinatura válida por seis meses. Não será renovada automaticamente ao final deste período. Depois disso, faça uma nova assinatura para continuar usando o JpLoto</value>
-  </data>
-  <data name="SixMonthSubsciption" xml:space="preserve">
-    <value>Assinatura válida por um ano. Não será renovada automaticamente ao final deste período. Depois disso, faça uma nova assinatura para continuar usando o JpLoto</value>
-  </data>
-  <data name="SubscriptionExpired" xml:space="preserve">
-    <value>Desculpe! Sua assinatura expirou</value>
-  </data>
-  <data name="TrialExpired" xml:space="preserve">
-    <value>Desculpe! Seu período de teste acabou</value>
+  <data name="SponsoredLinks" xml:space="preserve">
+    <value>Links patrocinados </value>
   </data>
 </root>

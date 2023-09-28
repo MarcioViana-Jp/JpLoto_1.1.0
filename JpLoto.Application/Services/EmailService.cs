@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Mail;
 using JpLoto.Application.Settings;
+using JpLoto.Application.Interfaces;
 
 namespace JpLoto.Application.Services;
 

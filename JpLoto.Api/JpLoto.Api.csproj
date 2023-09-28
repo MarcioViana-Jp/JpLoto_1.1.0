@@ -24,10 +24,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Globalization\JpLoto.Globalization.csproj" />
     <ProjectReference Include="..\JpLoto.Application\JpLoto.Application.csproj" />
     <ProjectReference Include="..\JpLoto.Data\JpLoto.Data.csproj" />
     <ProjectReference Include="..\JpLoto.Domain\JpLoto.Domain.csproj" />
+    <ProjectReference Include="..\JpLoto.Globalization\JpLoto.Globalization.csproj" />
     <ProjectReference Include="..\JpLoto.Identity\JpLoto.Identity.csproj" />
   </ItemGroup>
 
