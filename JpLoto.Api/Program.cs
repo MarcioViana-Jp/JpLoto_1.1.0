@@ -18,21 +18,23 @@ using JpLoto.Api.Extensions;
 using JpLoto.Api.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
+string[] allowedOrigins = {
+    "https://localhost:7219", "http://localhost:5258",
+    "https://v1-1.jploto.com","http://v1-1.jploto.com"
+};
 
-var cors =
-// Add services to the container.
-builder.Services.AddCors(p => p.AddPolicy("cors_policy", policy =>
+builder.Services.AddCors(options =>
 {
-    //policy.WithOrigins("https://localhost:7219")
-    policy.WithOrigins(builder.Configuration.GetValue<string>("JplCors:AllowedOrigins"))
-    .AllowAnyMethod()
-    .AllowAnyHeader();
-}));
+    options.AddPolicy(name: "cors_policy",
+                      policy =>
+                      {
+                          policy.WithOrigins(allowedOrigins)
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+                      });
+});
 
-builder.Services.AddApiProblemDetails();
-builder.Services.AddLocalization(options => options.ResourcesPath = "SharedResource");
 
-builder.Services.AddRazorPages();
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {
     options.CheckConsentNeeded = context => true;
@@ -40,9 +42,14 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
     options.ConsentCookieValue = "true";
 });
 
+builder.Services.ApplicationSetup(builder.Configuration);
+builder.Services.RegisterServices(builder.Configuration);
+builder.Services.AddApiProblemDetails();
+
+builder.Services.AddLocalization(options => options.ResourcesPath = "SharedResource");
+builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
-builder.Services.AddRouting();
-//builder.Services.AddRouting(options => options.LowercaseUrls = true);
+builder.Services.AddRouting(); //(options => options.LowercaseUrls = true);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -51,8 +58,6 @@ builder.Services.AddSwaggerGen();
 // IoC
 builder.Services.AddAuthentication(builder.Configuration);
 builder.Services.AddAuthorizationPolicies();
-builder.Services.ApplicationSetup(builder.Configuration);
-builder.Services.RegisterServices(builder.Configuration);
 
 var app = builder.Build();
 
@@ -65,27 +70,26 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCookiePolicy();
 app.UseHttpsRedirection();
 app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
-app.UseCookiePolicy();
 app.UseRouting();
+
+app.UseCors("cors_policy");
 
 // Configure supported cultures
 var localizationOptions = new RequestLocalizationOptions()
     .SetDefaultCulture(LocalizationSettings.SupportedCulturesCodes[0])
     .AddSupportedCultures(LocalizationSettings.SupportedCulturesCodes)
     .AddSupportedUICultures(LocalizationSettings.SupportedCulturesCodes);
-
 app.UseRequestLocalization(localizationOptions);
 
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseCors("cors_policy");
-
-app.MapRazorPages();
-app.MapControllers();
+app.MapRazorPages().RequireCors("cors_policy");
+app.MapControllers().RequireCors("cors_policy");
 app.MapFallbackToFile("index.html");
 
 app.Run();

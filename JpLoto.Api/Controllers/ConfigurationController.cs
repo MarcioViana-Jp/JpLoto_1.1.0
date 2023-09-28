@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Newtonsoft.Json;
 
 namespace JpLoto.Api.Controllers;
@@ -14,13 +15,13 @@ public class ConfigurationController : Controller
     {
         _appConfig = appConfig;
     }
-    
-    
+
+    [EnableCors("cors_policy")]
     [HttpGet]
     public IActionResult LoadAppConfiguration()
     {
         var retorno = JsonConvert.SerializeObject(_appConfig.LoadAppConfiguration());
         return Ok(retorno);
     }
-    
+
 }

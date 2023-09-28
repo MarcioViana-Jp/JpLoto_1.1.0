@@ -118,45 +118,45 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Address" xml:space="preserve">
-    <value>住所</value>
+    <value>Address</value>
   </data>
   <data name="City" xml:space="preserve">
-    <value>町名</value>
+    <value>City</value>
   </data>
   <data name="DisableEditingMode" xml:space="preserve">
-    <value>Disable editing mode</value>
+    <value>Desativar modo de edição</value>
   </data>
   <data name="EditingModeText" xml:space="preserve">
-    <value>右上のボタンをクリックして、プロファイル情報の編集を有効または無効にします。 変更を保存するには、ボタンをクリックします</value>
+    <value>Clique no botão ao lado para ativar/desativar a edição das informações do seu perfil. Para salvar as alterações, clique no botão</value>
   </data>
   <data name="EnableEditingMode" xml:space="preserve">
-    <value>Enable editing mode</value>
+    <value>Ativar modo de edição</value>
   </data>
   <data name="FirstName" xml:space="preserve">
-    <value>(名)</value>
+    <value>First name</value>
   </data>
   <data name="IsActive" xml:space="preserve">
-    <value>アクティブ</value>
+    <value>Is active</value>
   </data>
   <data name="LastName" xml:space="preserve">
-    <value>(姓)</value>
+    <value>Last name</value>
   </data>
   <data name="Phone" xml:space="preserve">
-    <value>電話番号</value>
+    <value>Phone number</value>
   </data>
   <data name="PostalCode" xml:space="preserve">
-    <value>郵便番号</value>
+    <value>Postal code</value>
   </data>
   <data name="ProfileInformation" xml:space="preserve">
-    <value>ユザープロファイル</value>
+    <value>User profile</value>
   </data>
   <data name="State" xml:space="preserve">
-    <value>市役所</value>
+    <value>Province</value>
   </data>
   <data name="Update" xml:space="preserve">
-    <value>保存</value>
+    <value>Update</value>
   </data>
   <data name="UpdateDate" xml:space="preserve">
-    <value>変更日</value>
+    <value>Update date</value>
   </data>
 </root>

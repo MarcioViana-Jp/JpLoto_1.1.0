@@ -61,7 +61,7 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Address.
+        ///   Looks up a localized string similar to 住所.
         /// </summary>
         public static string Address {
             get {
@@ -70,7 +70,7 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to City.
+        ///   Looks up a localized string similar to 町名.
         /// </summary>
         public static string City {
             get {
@@ -79,7 +79,34 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to First name.
+        ///   Looks up a localized string similar to Disable editing mode.
+        /// </summary>
+        public static string DisableEditingMode {
+            get {
+                return ResourceManager.GetString("DisableEditingMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 右上のボタンをクリックして、プロファイル情報の編集を有効または無効にします。 変更を保存するには、ボタンをクリックします.
+        /// </summary>
+        public static string EditingModeText {
+            get {
+                return ResourceManager.GetString("EditingModeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable editing mode.
+        /// </summary>
+        public static string EnableEditingMode {
+            get {
+                return ResourceManager.GetString("EnableEditingMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (名).
         /// </summary>
         public static string FirstName {
             get {
@@ -88,7 +115,7 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Is active.
+        ///   Looks up a localized string similar to アクティブ.
         /// </summary>
         public static string IsActive {
             get {
@@ -97,7 +124,7 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Last name.
+        ///   Looks up a localized string similar to (姓).
         /// </summary>
         public static string LastName {
             get {
@@ -106,7 +133,7 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Phone number.
+        ///   Looks up a localized string similar to 電話番号.
         /// </summary>
         public static string Phone {
             get {
@@ -115,7 +142,7 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Postal code.
+        ///   Looks up a localized string similar to 郵便番号.
         /// </summary>
         public static string PostalCode {
             get {
@@ -124,7 +151,16 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Province.
+        ///   Looks up a localized string similar to ユザープロファイル.
+        /// </summary>
+        public static string ProfileInformation {
+            get {
+                return ResourceManager.GetString("ProfileInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 市役所.
         /// </summary>
         public static string State {
             get {
@@ -133,7 +169,7 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update.
+        ///   Looks up a localized string similar to 保存.
         /// </summary>
         public static string Update {
             get {
@@ -142,7 +178,7 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update date.
+        ///   Looks up a localized string similar to 変更日.
         /// </summary>
         public static string UpdateDate {
             get {

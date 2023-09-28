@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
 
@@ -6,9 +7,11 @@ namespace JpLoto.Api.Controllers;
 
 [Route("[controller]/[action]")]
 [AllowAnonymous]
+
 public class CultureController : Controller
 {
     //[HttpGet("set/{culture}/{redirectUri}")]
+    [EnableCors("cors_policy")]
     [HttpGet]
     public IActionResult Set(string culture, string redirectUri)
     {
@@ -22,6 +25,7 @@ public class CultureController : Controller
         return Redirect(redirectUri);
     }
 
+    [EnableCors("cors_policy")]
     [HttpGet("{culture}")]
     public IActionResult SetServerCulture(string culture)
     {

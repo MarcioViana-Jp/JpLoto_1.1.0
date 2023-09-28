@@ -1,5 +1,4 @@
-﻿using Azure.Core;
-using JpLoto.Application.Dto.Request;
+﻿using JpLoto.Application.Dto.Request;
 using JpLoto.Application.Dto.Response;
 using System.Net.Http.Json;
 
@@ -74,7 +73,7 @@ public class AccountService : IAccountService
 
     public async Task<string> GetCurrentUserName()
     {
-        var email = (await _localStorage.GetItemAsStringAsync("_user")).Replace("\"","") ?? "* Not authenticaded *";
+        var email = (await _localStorage.GetItemAsStringAsync("_user")).Replace("\"", "") ?? "* Not authenticaded *";
         return email;
         //return await _localStorage.GetItemAsStringAsync("_user") ?? "* Not authenticaded *";
     }

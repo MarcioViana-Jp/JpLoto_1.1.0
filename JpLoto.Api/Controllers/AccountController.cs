@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 
@@ -6,6 +7,7 @@ namespace JpLoto.Api.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[EnableCors("cors_policy")]
 public class AccountController : ControllerBase
 {
     private IIdentityService _identityService;

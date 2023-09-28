@@ -59,7 +59,7 @@
                 js.InvokeVoid("blazorCulture.set", cultureEscaped);
 
                 NavigationManager.NavigateTo(
-                    $"{appConfiguration.CorsSetting.ApiHost}/culture/set?culture={cultureEscaped}&redirectUri={$"{appConfiguration.CorsSetting.AllowedOrigins}" + uri}",
+                    $"{appConfiguration.CorsSetting.ApiHost}/culture/set?culture={cultureEscaped}&redirectUri={$"{appConfiguration.CorsSetting.AppHost}" + uri}",
                     forceLoad: true);
             }
         }

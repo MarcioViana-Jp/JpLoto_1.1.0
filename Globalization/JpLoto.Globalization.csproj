@@ -88,6 +88,15 @@
     <EmbeddedResource Update="Resources\PlanResource.en-US.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\UserDetailResource.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\UserDetailResource.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\UserDetailResource.pt-BR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\UserDetailResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UserDetailResource.Designer.cs</LastGenOutput>
