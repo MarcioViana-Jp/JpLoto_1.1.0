@@ -124,13 +124,13 @@
     <value>町名</value>
   </data>
   <data name="DisableEditingMode" xml:space="preserve">
-    <value>Disable editing mode</value>
+    <value>編集モードをオフにする</value>
   </data>
   <data name="EditingModeText" xml:space="preserve">
     <value>右上のボタンをクリックして、プロファイル情報の編集を有効または無効にします。 変更を保存するには、ボタンをクリックします</value>
   </data>
   <data name="EnableEditingMode" xml:space="preserve">
-    <value>Enable editing mode</value>
+    <value>編集モードをオンにする</value>
   </data>
   <data name="FirstName" xml:space="preserve">
     <value>(名)</value>

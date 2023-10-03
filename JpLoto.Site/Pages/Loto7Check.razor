@@ -1,0 +1,229 @@
+﻿@inject NavigationManager navigationManager
+@inject ILocalStorageService localStorage
+@page "/loto7checkresult"
+
+<PageTitle>Loto7 check results</PageTitle>
+<div class="ctn-privacy body-left">
+    <h5 class="text-center">Results</h5>
+    <table class="table table-prize">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Prize #</th>
+                <th scope="col">Card</th>
+                <th scope="col">Numbers</th>
+                <th scope="col">#cardId</th>
+            </tr>
+        </thead>
+        <tbody>
+            @* Prize#1 *@
+            @{
+                subTotal = prizes.WinningCards1.Count() * result.Prize1Value;
+                total += subTotal;
+                showHeader = true;
+            }
+            @foreach (var card in prizes.WinningCards1)
+            {
+                <tr>
+                    @if (showHeader)
+                    {
+                        <th scope="row" class="@classHeader">Prize 1 @($" - {prizes.WinningCards1.Count()} case(s) - ￥{subTotal}")</th>
+                    }
+                    else
+                    {
+                        <th scope="row"></th>
+                    }
+                    <td class="@(showHeader ? classHeader : string.Empty)">@card.CardPosition</td>
+                    <td class="@(showHeader ? classHeader : string.Empty)">@card.Card.NumbersText</td>
+                    <td class="@(showHeader ? classHeader : string.Empty)">@card.Card.Id</td>
+                </tr>
+                showHeader = false;
+            }
+            @* Prize#2 *@
+            @{
+                subTotal = prizes.WinningCards2.Count() * result.Prize2Value;
+                total += subTotal;
+                showHeader = true;
+            }
+            @foreach (var card in prizes.WinningCards2)
+            {
+                <tr>
+                    @if (showHeader)
+                    {
+                        <th scope="row" class="@classHeader">Prize 2 @($" - {prizes.WinningCards2.Count()} case(s) - ￥{subTotal}")</th>
+                    }
+                    else
+                    {
+                        <th scope="row"></th>
+                    }
+                    <td class="@(showHeader ? classHeader : string.Empty)">@card.CardPosition</td>
+                    <td class="@(showHeader ? classHeader : string.Empty)">@card.Card.NumbersText</td>
+                    <td class="@(showHeader ? classHeader : string.Empty)">@card.Card.Id</td>
+                </tr>
+                showHeader = false;
+            }
+            @* Prize#3 *@
+            @{
+                subTotal = prizes.WinningCards3.Count() * result.Prize3Value;
+                total += subTotal;
+                showHeader = true;
+            }
+            @foreach (var card in prizes.WinningCards3)
+            {
+                <tr>
+                    @if (showHeader)
+                    {
+                        <th scope="row" class="@classHeader">Prize 3 @($" - {prizes.WinningCards3.Count()} case(s) - ￥{subTotal}")</th>
+                    }
+                    else
+                    {
+                        <th scope="row"></th>
+                    }
+                    <td class="@(showHeader ? classHeader : string.Empty)">@card.CardPosition</td>
+                    <td class="@(showHeader ? classHeader : string.Empty)">@card.Card.NumbersText</td>
+                    <td class="@(showHeader ? classHeader : string.Empty)">@card.Card.Id</td>
+                </tr>
+                showHeader = false;
+            }
+            @* Prize#4 *@
+            @{
+                subTotal = prizes.WinningCards4.Count() * result.Prize4Value;
+                total += subTotal;
+                showHeader = true;
+            }
+            @foreach (var card in prizes.WinningCards4)
+            {
+                <tr>
+                    @if (showHeader)
+                    {
+                        <th scope="row" class="@classHeader">Prize 4 @($" - {prizes.WinningCards4.Count()} case(s) - ￥{subTotal}")</th>
+                    }
+                    else
+                    {
+                        <th scope="row"></th>
+                    }
+                    <td class="@(showHeader ? classHeader : string.Empty)">@card.CardPosition</td>
+                    <td class="@(showHeader ? classHeader : string.Empty)">@card.Card.NumbersText</td>
+                    <td class="@(showHeader ? classHeader : string.Empty)">@card.Card.Id</td>
+                </tr>
+                showHeader = false;
+            }
+            @* Prize#5 *@
+            @{
+                subTotal = prizes.WinningCards5.Count() * result.Prize5Value;
+                total += subTotal;
+                showHeader = true;
+            }
+            @foreach (var card in prizes.WinningCards5)
+            {
+                <tr>
+                    @if (showHeader)
+                    {
+                        <th scope="row" class="@classHeader">Prize 5 @($" - {prizes.WinningCards5.Count()} case(s) - ￥{subTotal}")</th>
+                    }
+                    else
+                    {
+                        <th scope="row"></th>
+                    }
+                    <td class="@(showHeader ? classHeader : string.Empty)">@card.CardPosition</td>
+                    <td class="@(showHeader ? classHeader : string.Empty)">@card.Card.NumbersText</td>
+                    <td class="@(showHeader ? classHeader : string.Empty)">@card.Card.Id</td>
+                </tr>
+                showHeader = false;
+            }
+            @* Prize#6 *@
+            @{
+                subTotal = prizes.WinningCards6.Count() * result.Prize6Value;
+                total += subTotal;
+                showHeader = true;
+            }
+            @foreach (var card in prizes.WinningCards6)
+            {
+                <tr>
+                    @if (showHeader)
+                    {
+                        <th scope="row" class="@classHeader">Prize 6 @($" - {prizes.WinningCards6.Count()} case(s) - ￥{subTotal}")</th>
+                    }
+                    else
+                    {
+                        <th scope="row"></th>
+                    }
+                    <td class="@(showHeader ? classHeader : string.Empty)">@card.CardPosition</td>
+                    <td class="@(showHeader ? classHeader : string.Empty)">@card.Card.NumbersText</td>
+                    <td class="@(showHeader ? classHeader : string.Empty)">@card.Card.Id</td>
+                </tr>
+                showHeader = false;
+            }
+        </tbody>
+    </table>
+    <div>
+        @if (total == 0)
+        {
+            <div class="bg-gradient-faded-light text-center p-3 m-3">
+                <h6 class="text-lm">Nenhum cartão premiado</h6>
+            </div>
+        }
+        <p class="text-dimgray text-xs">Total: ￥@total</p>
+    </div>
+
+    <div class="text-center text-blue mt-2">
+        <button class="btn btn-outline-primary w-25 bc-blue text-blue" @onclick="ReturnToUrl">
+            Close
+            @* <i class="fas fa-times-circle text-bold font-16 cursor-pointer"></i> *@
+        </button>
+    </div>
+
+    @if (errorMessages.Any())
+    {
+        <div class="mt-3 mb-2 text-danger">
+            foreach(var msg in errorMessages)
+            {
+            <p class="text-danger text-xs">msg</p>
+            }
+        </div>
+    }
+</div>
+
+@code {
+    private ResultResponse<Loto7Result, Loto7Prize>? prizesResponse { get; set; }
+    private Loto7Prize? prizes { get; set; } = new();
+    private Loto7Result? result { get; set; } = new();
+
+    private List<string>? errorMessages { get; set; }
+    private int total { get; set; }
+    private int subTotal { get; set; }
+    private bool showHeader { get; set; }
+    private string classHeader { get; set; } = "border-bottom bc-dimgray";
+
+    private string returnUrl { get; set; } = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        total = 0;
+        errorMessages = new();
+
+        var uri = navigationManager.ToAbsoluteUri(navigationManager.Uri);
+        if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("returnUrl", out var url))
+        {
+            returnUrl = url;
+        }
+
+        prizesResponse = await localStorage.GetItemAsync<ResultResponse<Loto7Result, Loto7Prize>>("jpl7Prizes");
+        if (prizesResponse.Success)
+        {
+            prizes = prizesResponse.Prizes;
+            result = prizesResponse.Result;
+        }
+        else
+        {
+            prizes = new();
+            result = new();
+        }
+    }
+
+    private async Task ReturnToUrl()
+    {
+        await localStorage.RemoveItemAsync("jpl7Prizes");
+        navigationManager.NavigateTo("/loto7");
+    }
+
+}

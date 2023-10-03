@@ -1,6 +1,4 @@
-﻿using JpLoto.Domain.Interfaces.Services;
-
-namespace JpLoto.Api.Controllers.v1;
+﻿namespace JpLoto.Api.Controllers.v1;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -23,7 +21,7 @@ public class PlansController : ControllerBase
         return CreatedAtAction(nameof(GetById), new { id = id }, id);
     }
 
-    
+
     [ProducesResponseType(typeof(int), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]

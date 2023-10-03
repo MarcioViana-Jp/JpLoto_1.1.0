@@ -668,3 +668,7 @@ input[type=checkbox] {
         margin-top: 1rem!important;
     }
 }
+
+.table-prize > * {
+    font-size: 1rem;
+}

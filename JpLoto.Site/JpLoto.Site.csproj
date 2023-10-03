@@ -41,4 +41,11 @@
     <Folder Include="wwwroot\css\bootstrap\js\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\assets\img\favicon.png">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

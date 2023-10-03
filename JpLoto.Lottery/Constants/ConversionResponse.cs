@@ -1,4 +1,4 @@
-﻿using JpLoto.Lottery.Shared;
+﻿using JpLoto.Lottery.Loto.Shared;
 
 namespace JpLoto.Lottery.Constants;
 
@@ -36,21 +36,28 @@ public class ConversionResponse
     public int ActionType { get; set; } = -1; // No action yet
     public int ResponseCode { get; set; } = ConversionResponseCode.Ok;
     public string ErrorResource { get => ConversionResponseCode.ErrorResource[ResponseCode]; }
-    public string DezenasTexto { get; set; } = string.Empty;
-    public int[] DezenasVetor { get; set; } = Array.Empty<int>();
+    public string NumbersText { get; set; } = string.Empty;
+    public int[] NumbersVetor { get; set; } = Array.Empty<int>();
     public ConversionResponse() { }
-    public ConversionResponse(string dezenasTexto, int tipoLoto)
+    public ConversionResponse(string numbersTexto, int lotoType)
     {
         ActionType = ConversionActionType.TextToArray;
         ResponseCode = ConversionResponseCode.Ok;
-        DezenasTexto = dezenasTexto;
-        DezenasVetor = LotoBase.TextoParaVetor(dezenasTexto, tipoLoto).DezenasVetor;
+        NumbersText = numbersTexto;
+        NumbersVetor = LotoBase.TextToArray(numbersTexto);
     }
-    public ConversionResponse(int[] dezenasVetor, int tipoLoto)
+    public ConversionResponse(int[] numbersVetor, int lotoType)
     {
         ActionType = ConversionActionType.ArrayToText;
         ResponseCode = ConversionResponseCode.Ok;
-        DezenasVetor = dezenasVetor;
-        DezenasTexto = LotoBase.VetorParaTexto(dezenasVetor, tipoLoto);
+        NumbersVetor = numbersVetor;
+        NumbersText = LotoBase.ArrayToText(numbersVetor, lotoType);
+    }
+    public ConversionResponse(List<int> numbersList, int lotoType)
+    {
+        ActionType = ConversionActionType.ArrayToText;
+        ResponseCode = ConversionResponseCode.Ok;
+        NumbersVetor = numbersList.ToArray();
+        NumbersText = LotoBase.ArrayToText(NumbersVetor, lotoType);
     }
 }

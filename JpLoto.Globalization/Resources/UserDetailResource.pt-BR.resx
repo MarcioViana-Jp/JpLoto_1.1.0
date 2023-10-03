@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Address" xml:space="preserve">
-    <value>Address</value>
+    <value>Endereço</value>
   </data>
   <data name="City" xml:space="preserve">
-    <value>City</value>
+    <value>Cidade</value>
   </data>
   <data name="DisableEditingMode" xml:space="preserve">
     <value>Desativar modo de edição</value>
@@ -133,30 +133,30 @@
     <value>Ativar modo de edição</value>
   </data>
   <data name="FirstName" xml:space="preserve">
-    <value>First name</value>
+    <value>Primeiro nome</value>
   </data>
   <data name="IsActive" xml:space="preserve">
-    <value>Is active</value>
+    <value>Ativo</value>
   </data>
   <data name="LastName" xml:space="preserve">
-    <value>Last name</value>
+    <value>Último nome</value>
   </data>
   <data name="Phone" xml:space="preserve">
-    <value>Phone number</value>
+    <value>Telefone</value>
   </data>
   <data name="PostalCode" xml:space="preserve">
-    <value>Postal code</value>
+    <value>Código postal</value>
   </data>
   <data name="ProfileInformation" xml:space="preserve">
-    <value>User profile</value>
+    <value>Perfil do usuário</value>
   </data>
   <data name="State" xml:space="preserve">
-    <value>Province</value>
+    <value>Província</value>
   </data>
   <data name="Update" xml:space="preserve">
-    <value>Update</value>
+    <value>Altera</value>
   </data>
   <data name="UpdateDate" xml:space="preserve">
-    <value>Update date</value>
+    <value>Data de alteração</value>
   </data>
 </root>

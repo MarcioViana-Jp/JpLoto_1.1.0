@@ -17,8 +17,8 @@ public class AppConfigService : IAppConfigService
     // Load all application from server
     public async Task<AppConfiguration> LoadAppConfigurationAsync()
     {
-        //var configStr = await _http.GetStringAsync("https://localhost:7125/Configuration/LoadAppConfiguration");
-        var configStr = await _http.GetStringAsync("https://apiv1-1.jploto.com/Configuration/LoadAppConfiguration");
+        var configStr = await _http.GetStringAsync("https://localhost:7125/Configuration/LoadAppConfiguration");
+        //var configStr = await _http.GetStringAsync("https://apiv1-1.jploto.com/Configuration/LoadAppConfiguration");
 
         if (!string.IsNullOrEmpty(configStr))
         {

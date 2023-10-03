@@ -79,7 +79,7 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Disable editing mode.
+        ///   Looks up a localized string similar to 編集モードをオフにする.
         /// </summary>
         public static string DisableEditingMode {
             get {
@@ -97,7 +97,7 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enable editing mode.
+        ///   Looks up a localized string similar to 編集モードをオンにする.
         /// </summary>
         public static string EnableEditingMode {
             get {

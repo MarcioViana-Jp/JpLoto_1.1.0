@@ -1,69 +1,68 @@
 ﻿@page "/loto7"
-@using JpLoto.Lottery.Dto;
-@using JpLoto.Lottery.Loto;
-@inject NavigationManager NavigationManager
-@inject IFileService FileService
-@inject IStringLocalizer<LotoResource> LotoLocalizer
-@inject IStringLocalizer<ButtonResource> ButtonLocalizer
-@inject IJSRuntime JSRuntime
+@inject ILocalStorageService localStorage
+@inject NavigationManager navigationManager
+@inject IFileService fileService
+@inject IStringLocalizer<LotoResource> lotoLocalizer
+@inject IStringLocalizer<ButtonResource> buttonLocalizer
+@inject IJSRuntime jsRuntime
 @attribute [Authorize]
 
 <PageTitle>Loto7</PageTitle>
 
 <div class="container ctn-loto">
     <div class="ctn-loto-title bg-primary">
-        <h2 class="text-md text-white bold mt-2 me-auto">@LotoLocalizer["TITLE_LOTO7"] - @LotoLocalizer["TITLE_SELECTNUMBERS"]</h2>
+        <h2 class="text-md text-white bold mt-2 me-auto">@lotoLocalizer["TITLE_LOTO7"] - @lotoLocalizer["TITLE_SELECTNUMBERS"]</h2>
         <ButtonClose_Circle />
     </div>
     <div class="row ctn-numbers bg-gradient-loto7">
         <div class="numbers-card col-lg-6 col-md-6 col-sm-12">
             <div class="numbers-zone">
-                @foreach (var dezena in loto.BotoesDezenas)
+                @foreach (var number in loto.ButtonNumbers)
                 {
-                    <button class="btn-numbers @GetBtnNumberClass(dezena.Indice)"
-                        @onmousedown="(() => DezenaPressionada(dezena))"
-                        @onmouseup="(() => DezenaLiberada(dezena))">
-                        @dezena.DezenaTxt
+                    <button class="btn-numbers @GetBtnNumberClass(number.Indice)"
+                        @onmousedown="(() => NumberPressed(number))"
+                        @onmouseup="(() => NumberReleased(number))">
+                        @number.NumberTxt
                     </button>
                 }
             </div>
             <div class="options">
                 <div class="options-zone">
-                    <div class="buttoncard @disabledClass(!limitaDezenasVariaveis || loto.QuantidadeDezenasSelecionadas == dezenasVariaveis)" @onclick="GeraSugestoes">
+                    <div class="buttoncard @disabledClass(!limitaNumbersVariaveis || loto.QuantityOfSelectedNumbers == variableNumbers)" @onclick="CreateSuggestions">
                         <div class="action-icon">
                             <i class="fas fa-magic text-blue"></i>
                         </div>
                         <div class="buttoncard-text font-10">
-                            @LotoLocalizer["Suggestions"]
+                            @lotoLocalizer["Suggestions"]
                         </div>
                     </div>
-                    <div class="buttoncard @disabledClass(loto.QuantidadeDezenasSugeridas < 1)" @onclick="AplicaSugestoes">
+                    <div class="buttoncard @disabledClass(loto.QuantityOfSuggestedNumbers < 1)" @onclick="ApplySuggestions">
                         <div class="action-icon">
                             <i class="fas fa-hand-sparkles text-blue"></i>
                         </div>
                         <div class="buttoncard-text font-10">
-                            @LotoLocalizer["ApplySuggestions"]
+                            @lotoLocalizer["ApplySuggestions"]
                         </div>
                     </div>
-                    <div class="buttoncard @disabledClass(loto.QuantidadeDezenasSugeridas < 1)" @onclick="LimpaSugestoes">
+                    <div class="buttoncard @disabledClass(loto.QuantityOfSuggestedNumbers < 1)" @onclick="LimpaSugestoes">
                         <div class="action-icon">
                             <i class="fas fa-trash-alt text-red"></i>
                             @* <span class="badge"><i class="fas fa-magic text-red"></i></span> *@
                         </div>
                         <div class="buttoncard-text text-red font-10">
-                            @LotoLocalizer["ClearSuggestions"]
+                            @lotoLocalizer["ClearSuggestions"]
                         </div>
                     </div>
-                    <div class="buttoncard @disabledClass(loto.QuantidadeDezenasSelecionadas < 1 &&
-                                                          loto.QuantidadeDezenasFixas < 1 &&
-                                                          loto.QuantidadeDezenasBloqueadas < 1)"
-                    @onclick="LimpaTudo">
+                    <div class="buttoncard @disabledClass(loto.QuantityOfSelectedNumbers < 1 &&
+                                                          loto.QuantityOfFixedNumbers < 1 &&
+                                                          loto.QuantityOfBlockedNumbers < 1)"
+                    @onclick="ClearAll">
                         <div class="action-icon">
                             <i class="fas fa-times text-red"></i>
                             @* <span class="badge"><i class="fas fa-times text-red"></i></span> *@
                         </div>
                         <div class="buttoncard-text text-red font-10">
-                            @LotoLocalizer["ClearAll"]
+                            @lotoLocalizer["ClearAll"]
                         </div>
                     </div>
                     <div class="buttoncard" onclick="document.getElementById('inputFileOpen').click()">
@@ -71,35 +70,35 @@
                             <i class="fas fa-file-alt text-blue"></i>
                         </div>
                         <div class="buttoncard-text font-10">
-                            @LotoLocalizer["Load"]
+                            @lotoLocalizer["Load"]
                         </div>
-                        <InputFile id="inputFileOpen" hidden OnChange="CarregaCombinacoesDoArquivo" />
+                        <InputFile id="inputFileOpen" hidden OnChange="LoadCombinationsFromFile" />
                     </div>
                 </div>
                 <div class="options-zone">
                     <div class="minicard shadow-dark mb-2">
                         <div class="minicard-title bg-darkgreen text-white bc-lightgreen font-8">
-                            <input class="form-check-input mt-1" type="checkbox" @bind="limitaDezenasVariaveis"
+                            <input class="form-check-input mt-1" type="checkbox" @bind="limitaNumbersVariaveis"
                                    aria-label="Checkbox for following text input">
-                            <label class="mt-1 text-white font-10">@LotoLocalizer["LimitNumbers"]</label>
+                            <label class="mt-1 text-white font-10">@lotoLocalizer["LimitNumbers"]</label>
                         </div>
                         <div class="minicard-body bc-lightgreen bg-palegreen text-green font-8">
-                            <label class="font-10 text-darkgreen">@LotoLocalizer["Maximum"]</label>
-                            <input type="number" disabled="@(!limitaDezenasVariaveis)"
-                            @bind-value="dezenasVariaveis" min="@(loto.DezenasPorJogo - loto.QuantidadeDezenasFixas + 1)"
-                                   class="form-control p-0 font-10" id="dezenasVariaveis">
+                            <label class="font-10 text-darkgreen">@lotoLocalizer["Maximum"]</label>
+                            <input type="number" disabled="@(!limitaNumbersVariaveis)"
+                            @bind-value="variableNumbers" min="@(loto.NumbersPerCard - loto.QuantityOfFixedNumbers + 1)"
+                                   class="form-control p-0 font-10" id="variableNumbers">
                         </div>
                     </div>
                     <div class="minicard shadow-dark mb-2">
                         <div class="minicard-title bg-darkgreen text-white bc-lightgreen font-8">
                             <input class="form-check-input mt-1" type="checkbox" @bind="limitaCombinacoes"
                                    aria-label="Checkbox for following text input">
-                            <label class="mt-1 text-white font-10">@LotoLocalizer["LimitCombinations"]</label>
+                            <label class="mt-1 text-white font-10">@lotoLocalizer["LimitCombinations"]</label>
                         </div>
                         <div class="minicard-body bc-lightgreen bg-palegreen text-green font-8">
-                            <label class="font-10 text-darkgreen">@LotoLocalizer["Maximum"]</label>
+                            <label class="font-10 text-darkgreen">@lotoLocalizer["Maximum"]</label>
                             <input type="number" disabled="@(!limitaCombinacoes)"
-                            @bind-value="quantidadeDeCombinacoes" max="@loto.ObtemQuantidadeDeCombinacoes()"
+                            @bind-value="quantidadeDeCombinacoes" max="@loto.GetCombinationCount()"
                                    class="form-control p-0 font-10" id="quantidadeDeCombinacoes">
                         </div>
                     </div>
@@ -109,49 +108,49 @@
                         <div class="minicard-title bg-darkgreen text-white bc-lightgreen font-8">
                             <input class="form-check-input mt-1" type="checkbox" @bind="mantemCombinacoesAnteriores"
                                    aria-label="Checkbox for following text input">
-                            <label class="mt-1 text-white font-10">@LotoLocalizer["PreviousCombinations"]</label>
+                            <label class="mt-1 text-white font-10">@lotoLocalizer["PreviousCombinations"]</label>
                         </div>
                         <div class="minicard-body bc-lightgreen bg-palegreen text-green font-8">
-                            @LotoLocalizer["KeepPrevious"]
+                            @lotoLocalizer["KeepPrevious"]
                         </div>
                     </div>
                     <div class="minicard shadow-dark mb-2">
                         <div class="minicard-title bg-darkgreen text-white bc-lightgreen font-8">
                             <input class="form-check-input mt-1" type="checkbox" @bind="geraCombinacoesAleatorias"
                                    aria-label="Checkbox for following text input">
-                            <label class="mt-1 text-white font-10">@LotoLocalizer["RandomCombinations"]</label>
+                            <label class="mt-1 text-white font-10">@lotoLocalizer["RandomCombinations"]</label>
                         </div>
                         <div class="minicard-body bc-lightgreen bg-palegreen text-green font-8">
-                            @LotoLocalizer["GenerateRandom"]
+                            @lotoLocalizer["GenerateRandom"]
                         </div>
                     </div>
                 </div>
                 <div class="options-zone justify-content-center mt-2">
                     <button class="btn btn-primary"
-                            disabled="@(loto.QuantidadeDezenasSelecionadas < dezenasVariaveis || loto.QuantidadeDezenasSelecionadas < loto.DezenasPorJogo)"
-                            @onclick="GeraCombinacoes">
-                            @ButtonLocalizer["GenerateCombinations"]
+                            disabled="@(loto.QuantityOfSelectedNumbers < variableNumbers || loto.QuantityOfSelectedNumbers < loto.NumbersPerCard)"
+                            @onclick="CreateCombinations">
+                            @buttonLocalizer["GenerateCombinations"]
                     </button>
                 </div>
                 <div class="options-zone">
-                    <div class="buttoncard @disabledClass(false)" @onclick="DefineFiltros">
+                    <div class="buttoncard @disabledClass(false)" @onclick="DefineFilters">
                         <div class="action-icon">
                             <i class="fas fa-traffic-light text-blue"></i>
                         </div>
                         <div class="buttoncard-text font-10">
-                            @LotoLocalizer["Filters"]
+                            @lotoLocalizer["Filters"]
                         </div>
                     </div>
-                    <div class="buttoncard @disabledClass(loto.DezenasSelecionadas.Length < 1 && loto.DezenasFixas.Length < 1)"
-                    @onclick="SalvaCombinacoes">
+                    <div class="buttoncard @disabledClass(loto.SelectedNumbers.Length < 1 && loto.FixedNumbers.Length < 1)"
+                    @onclick="SaveCombinations">
                         <div class="action-icon">
                             <i class="fas fa-save text-blue"></i>
                         </div>
                         <div class="buttoncard-text font-10">
-                            @LotoLocalizer["Save"]
+                            @lotoLocalizer["Save"]
                         </div>
                     </div>
-                    <div class="buttoncard @disabledClass(Combinacoes.Count < 1)" @onclick="LimpaTudo">
+                    <div class="buttoncard @disabledClass(Combinacoes.Count < 1)" @onclick="ClearAll">
                         <div class="action-icon">
                             <i class="fas fa-print text-blue"></i>
                             <span class="badge position-absolute bottom-0 start-100 translate-middle">
@@ -159,10 +158,10 @@
                             </span>
                         </div>
                         <div class="buttoncard-text font-10">
-                            @LotoLocalizer["Print"]
+                            @lotoLocalizer["Print"]
                         </div>
                     </div>
-                    <div class="buttoncard @disabledClass(false)" @onclick="ConfiguraImpressao">
+                    <div class="buttoncard @disabledClass(false)" @onclick="ConfigurePrinting">
                         <div class="action-icon">
                             <i class="fas fa-cog text-blue"></i>
                             <span class="badge position-absolute bottom-0 start-100 translate-middle">
@@ -170,15 +169,15 @@
                             </span>
                         </div>
                         <div class="buttoncard-text font-10">
-                            @LotoLocalizer["ConfigurePrinting"]
+                            @lotoLocalizer["ConfigurePrinting"]
                         </div>
                     </div>
-                    <div class="buttoncard @disabledClass(Combinacoes.Count < 1)" @onclick="LimpaSugestoes">
+                    <div class="buttoncard @disabledClass(Combinacoes.Count < 1)" @onclick="CheckResultsHandle">
                         <div class="action-icon">
                             <i class="fas fa-search-dollar text-blue"></i>
                         </div>
                         <div class="buttoncard-text font-10">
-                            @LotoLocalizer["CheckResult"]
+                            @lotoLocalizer["CheckResult"]
                         </div>
                     </div>
                 </div>
@@ -192,40 +191,40 @@
                     @mensagemTituloCombinacao
                 </div>
                 <div class="btn-page-group">
-                    <div @onclick="PaginaAnterior" data-bs-toggle="tooltip" data-bs-placement="top" title="@LotoLocalizer["PagePrevious"]">
+                    <div @onclick="PaginaAnterior" data-bs-toggle="tooltip" data-bs-placement="top" title="@lotoLocalizer["PagePrevious"]">
                         <i class="fas fa-angle-left btn-page text-white"></i>
                     </div>
-                    <div @onclick="PaginaInicial" data-bs-toggle="tooltip" data-bs-placement="top" title="@LotoLocalizer["PageFirst"]">
+                    <div @onclick="PaginaInicial" data-bs-toggle="tooltip" data-bs-placement="top" title="@lotoLocalizer["PageFirst"]">
                         <i class="fas fa-angle-double-left btn-page text-white"></i>
                     </div>
-                    @* <label class="label-page text-white font-9">@LotoLocalizer["Page"] @paginacaoStatus</label> *@
+                    @* <label class="label-page text-white font-9">@lotoLocalizer["Page"] @paginacaoStatus</label> *@
                     <label class="label-page text-white font-9 mt-2">P:@paginacaoStatus</label>
-                    <div @onclick="PaginaFinal" data-bs-toggle="tooltip" data-bs-placement="top" title="@LotoLocalizer["PageLast"]">
+                    <div @onclick="PaginaFinal" data-bs-toggle="tooltip" data-bs-placement="top" title="@lotoLocalizer["PageLast"]">
                         <i class="fas fa-angle-double-right btn-page text-white"></i>
                     </div>
-                    <div @onclick="ProximaPagina" data-bs-toggle="tooltip" data-bs-placement="top" title="@LotoLocalizer["PageNext"]">
+                    <div @onclick="ProximaPagina" data-bs-toggle="tooltip" data-bs-placement="top" title="@lotoLocalizer["PageNext"]">
                         <i class="fas fa-angle-right btn-page text-white"></i>
                     </div>
                 </div>
             </div>
             <div class="combinations-zone bg-palegreen bc-lightgreen shadow-dark mb-3">
                 <div class="combinations-header bc-darkgreen">
-                    <div class="col txt-50 font-10 text-darkgreen">@LotoLocalizer["Order"]</div>
-                    <div class="col txt-120 font-10 text-darkgreen">@LotoLocalizer["Numbers"]</div>
-                    <div class="col txt-50 font-10 text-darkgreen">@LotoLocalizer["Recycle"]</div>
+                    <div class="col txt-50 font-10 text-darkgreen">@lotoLocalizer["Order"]</div>
+                    <div class="col txt-120 font-10 text-darkgreen">@lotoLocalizer["Numbers"]</div>
+                    <div class="col txt-50 font-10 text-darkgreen">@lotoLocalizer["Recycle"]</div>
                 </div>
-                @foreach (var jogo in CombinacoesPaginadas)
+                @foreach (var card in CombinacoesPaginadas)
                 {
                     <div class="row combinations-item">
-                        <div class="col txt-50 font-10">@(jogo.Id.ToString("000000"))</div>
-                        <div class="col txt-120 font-10">@jogo.DezenasTexto</div>
+                        <div class="col txt-50 font-10">@(card.Id.ToString("000000"))</div>
+                        <div class="col txt-120 font-10">@card.NumbersText</div>
                         <div class="col txt-50 font-10 d-inline-flex">
-                            <div class="btn-delete" role="button" @onclick="() => DeletaCombinacao(jogo)"
-                                 data-bs-toggle="tooltip" data-bs-placement="top" title="@LotoLocalizer["DeletePermanent"]">
+                            <div class="btn-delete" role="button" @onclick="() => DeletaCombinacao(card)"
+                                 data-bs-toggle="tooltip" data-bs-placement="top" title="@lotoLocalizer["DeletePermanent"]">
                                 <i class="fas fa-trash-alt text-red font-12"></i>
                             </div>
-                            <div class="btn-recycle" @onclick="() => ReciclaCombinacao(jogo)"
-                                 data-bs-toggle="tooltip" data-bs-placement="top" title="@LotoLocalizer["RecycleItem"]">
+                            <div class="btn-recycle" @onclick="() => ReciclaCombinacao(card)"
+                                 data-bs-toggle="tooltip" data-bs-placement="top" title="@lotoLocalizer["RecycleItem"]">
                                 <i class="fas fa-recycle text-red btn-recycle font-12"></i>
                             </div>
                         </div>
@@ -244,41 +243,41 @@
                 @mensagemTituloLixeira
             </div>
             <div class="btn-page-group">
-                <div @onclick="PaginaAnteriorLixeira" data-bs-toggle="tooltip" data-bs-placement="top" title="@LotoLocalizer["PagePrevious"]">
+                <div @onclick="PaginaAnteriorLixeira" data-bs-toggle="tooltip" data-bs-placement="top" title="@lotoLocalizer["PagePrevious"]">
                     <i class="fas fa-angle-left btn-page text-white"></i>
                 </div>
-                <div @onclick="PaginaInicialLixeira" data-bs-toggle="tooltip" data-bs-placement="top" title="@LotoLocalizer["PageFirst"]">
+                <div @onclick="PaginaInicialLixeira" data-bs-toggle="tooltip" data-bs-placement="top" title="@lotoLocalizer["PageFirst"]">
                     <i class="fas fa-angle-double-left btn-page text-white"></i>
                 </div>
-                @* <label class="label-page text-white">@LotoLocalizer["Page"] @paginacaoStatusLixeira</label> *@
+                @* <label class="label-page text-white">@lotoLocalizer["Page"] @paginacaoStatusLixeira</label> *@
                 <label class="label-page text-white font-9 mt-2">P:@paginacaoStatusLixeira</label>
-                <div @onclick="PaginaFinalLixeira" data-bs-toggle="tooltip" data-bs-placement="top" title="@LotoLocalizer["PageLast"]">
+                <div @onclick="PaginaFinalLixeira" data-bs-toggle="tooltip" data-bs-placement="top" title="@lotoLocalizer["PageLast"]">
                     <i class="fas fa-angle-double-right btn-page text-white"></i>
                 </div>
-                <div @onclick="ProximaPaginaLixeira" data-bs-toggle="tooltip" data-bs-placement="top" title="@LotoLocalizer["PageNext"]">
+                <div @onclick="ProximaPaginaLixeira" data-bs-toggle="tooltip" data-bs-placement="top" title="@lotoLocalizer["PageNext"]">
                     <i class="fas fa-angle-right btn-page text-white"></i>
                 </div>
             </div>
         </div>
         <div class="recycle-zone bc-darkred">
             <div class="recycle-header bc-darkred">
-                <div class="col txt-50 text-darkred font-10">@LotoLocalizer["Order"]</div>
-                <div class="col txt-100 text-darkred font-10">@LotoLocalizer["Numbers"]</div>
-                <div class="col txt-50 text-darkred font-10">@LotoLocalizer["Restore"]</div>
+                <div class="col txt-50 text-darkred font-10">@lotoLocalizer["Order"]</div>
+                <div class="col txt-100 text-darkred font-10">@lotoLocalizer["Numbers"]</div>
+                <div class="col txt-50 text-darkred font-10">@lotoLocalizer["Restore"]</div>
             </div>
-            @foreach (var jogo in LixeiraPaginada)
+            @foreach (var card in LixeiraPaginada)
             {
                 <div class="row recycle-item bc-darkred text-darkred">
-                    <div class="col txt-50 font-10">@(jogo.Id.ToString("000000"))</div>
-                    <div class="col txt-120 font-10">@jogo.DezenasTexto</div>
+                    <div class="col txt-50 font-10">@(card.Id.ToString("000000"))</div>
+                    <div class="col txt-120 font-10">@card.NumbersText</div>
                     <div class="col txt-50 font-10 d-inline-flex">
-                        <div class="btn-delete" role="button" @onclick="() => DeletaCombinacaoReciclada(jogo)"
-                             data-bs-toggle="tooltip" data-bs-placement="top" title="@LotoLocalizer["DeletePermanent"]">
+                        <div class="btn-delete" role="button" @onclick="() => DeletaCombinacaoReciclada(card)"
+                             data-bs-toggle="tooltip" data-bs-placement="top" title="@lotoLocalizer["DeletePermanent"]">
                             <i class="fas fa-trash-alt text-red"></i>
                         </div>
-                        <div class="btn-restore" role="button" @onclick="() => RestauraCombinacao(jogo)"
-                             data-bs-toggle="tooltip" data-bs-placement="top" title="@LotoLocalizer["RestoreItem"]">
-                            <i class="fas fa-trash-restore text-green" @onclick="() => RestauraCombinacao(jogo)"></i>
+                        <div class="btn-restore" role="button" @onclick="() => RestauraCombinacao(card)"
+                             data-bs-toggle="tooltip" data-bs-placement="top" title="@lotoLocalizer["RestoreItem"]">
+                            <i class="fas fa-trash-restore text-green"></i>
                         </div>
                     </div>
                 </div>
@@ -293,11 +292,11 @@
     private Loto7 loto { get; set; } = new Loto7();
     private string mensagemTituloCombinacao
     {
-        get => $"{Combinacoes.Count} {LotoLocalizer["Combinations"]}";
+        get => $"{Combinacoes.Count} {lotoLocalizer["Combinations"]}";
     }
     private string mensagemTituloLixeira
     {
-        get => $"{Lixeira.Count} {LotoLocalizer["Combinations"]}";
+        get => $"{Lixeira.Count} {lotoLocalizer["Combinations"]}";
     }
 
     private const int linhasPorPagina = 20;
@@ -313,37 +312,37 @@
     private string[] btnNumberClasses = { "btn-numbers-free", "btn-numbers-selected", "btn-numbers-fixed", "btn-numbers-suggested" };
     private string btnNumberClass { get; set; } = string.Empty;
 
-    private List<Jogo> Combinacoes { get; set; } = new();
-    private List<Jogo> CombinacoesPaginadas { get; set; } = new();
-    private List<Jogo> Lixeira { get; set; } = new();
-    private List<Jogo> LixeiraPaginada { get; set; } = new();
+    private List<Card> Combinacoes { get; set; } = new();
+    private List<Card> CombinacoesPaginadas { get; set; } = new();
+    private List<Card> Lixeira { get; set; } = new();
+    private List<Card> LixeiraPaginada { get; set; } = new();
 
     private long _quantidadeDeCombinacoes;
     private long quantidadeDeCombinacoes
     {
-        get => limitaCombinacoes ? _quantidadeDeCombinacoes : _quantidadeDeCombinacoes = loto.ObtemQuantidadeDeCombinacoes();
+        get => limitaCombinacoes ? _quantidadeDeCombinacoes : _quantidadeDeCombinacoes = loto.GetCombinationCount();
         set => _quantidadeDeCombinacoes = value;
     }
-    private int _dezenasVariaveis;
-    private int dezenasVariaveis
+    private int _variableNumbers;
+    private int variableNumbers
     {
-        get => _dezenasVariaveis;
+        get => _variableNumbers;
         set
         {
-            _dezenasVariaveis = value;
-            AtualizaDezenasSelecionadas(_dezenasVariaveis);
+            _variableNumbers = value;
+            RefreshSelectedNumbers(_variableNumbers);
         }
     }
-    private DateTime dezenaPressionada { get; set; }
-    private DateTime dezenaLiberada { get; set; }
-    private bool _limitaDezenasVariaveis { get; set; }
-    private bool limitaDezenasVariaveis
+    private DateTime numberPressionada { get; set; }
+    private DateTime numberLiberada { get; set; }
+    private bool _limitaNumbersVariaveis { get; set; }
+    private bool limitaNumbersVariaveis
     {
-        get => _limitaDezenasVariaveis;
+        get => _limitaNumbersVariaveis;
         set
         {
-            _limitaDezenasVariaveis = value;
-            loto.DesmarcaDezenasSugeridas();
+            _limitaNumbersVariaveis = value;
+            loto.ReleaseSuggestedNumbers();
         }
     }
     private bool _limitaCombinacoes { get; set; }
@@ -362,99 +361,103 @@
     {
         loto = new();
         quantidadeDeCombinacoes = 0;
-        dezenasVariaveis = 8;
+        variableNumbers = 8;
         limitaCombinacoes = false;
-        limitaDezenasVariaveis = true;
+        limitaNumbersVariaveis = true;
         mantemCombinacoesAnteriores = false;
         geraCombinacoesAleatorias = false;
 
 
-        var uri = NavigationManager.ToAbsoluteUri(NavigationManager.Uri);
+        var uri = navigationManager.ToAbsoluteUri(navigationManager.Uri);
         if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("returnUrl", out var url))
         {
             returnUrl = url;
         }
     }
 
-    private string GetBtnNumberClass(int indice)
+    private string GetBtnNumberClass(int index)
     {
-        return btnNumberClasses[loto.Dezenas[indice]];
+        return btnNumberClasses[loto.Numbers[index]];
     }
 
-    private void GeraSugestoes()
+    private void CreateSuggestions()
     {
-        loto.GeraSugestoes(dezenasVariaveis);
+        loto.CreateSuggestions(variableNumbers);
     }
 
-    private void AplicaSugestoes()
+    private void ApplySuggestions()
     {
-        loto.AplicaSugestoes();
+        loto.ApplySuggestions();
     }
 
     private void LimpaSugestoes()
     {
-        loto.DesmarcaDezenasSugeridas();
+        loto.ReleaseSuggestedNumbers();
     }
 
-    private void ReciclaCombinacao(Jogo jogo)
+    private void ReciclaCombinacao(Card card)
     {
-        Lixeira.Add(jogo);
-        Combinacoes.Remove(jogo);
+        Lixeira.Add(card);
+        Combinacoes.Remove(card);
         ObtemPaginacao(paginaAtual, linhasPorPagina);
         ObtemPaginacaoLixeira(paginaAtualLixeira, linhasPorPagina);
     }
 
-    private void RestauraCombinacao(Jogo jogo)
+    private void RestauraCombinacao(Card card)
     {
-        Combinacoes.Add(jogo);
-        Lixeira.Remove(jogo);
+        Combinacoes.Add(card);
+        Lixeira.Remove(card);
         ObtemPaginacao(paginaAtual, linhasPorPagina);
         ObtemPaginacaoLixeira(paginaAtualLixeira, linhasPorPagina);
     }
 
-    private async Task DeletaCombinacao(Jogo jogo)
+    private async Task DeletaCombinacao(Card card)
     {
-        var js = (IJSInProcessRuntime)JSRuntime;
-        var confirm = await js.InvokeAsync<bool>("Confirm", $"{@LotoLocalizer["ConfirmDelete"]} #{jogo.Id:000000}?");
+        var js = (IJSInProcessRuntime)jsRuntime;
+        var confirm = await js.InvokeAsync<bool>("Confirm", $"{@lotoLocalizer["ConfirmDelete"]} #{card.Id:000000}?");
         if (confirm)
         {
-            Combinacoes.Remove(jogo);
+            Combinacoes.Remove(card);
             ObtemPaginacao(paginaAtual, linhasPorPagina);
         }
     }
 
-    private async Task DeletaCombinacaoReciclada(Jogo jogo)
+    private async Task DeletaCombinacaoReciclada(Card card)
     {
-        var js = (IJSInProcessRuntime)JSRuntime;
-        if (await js.InvokeAsync<bool>("Confirm", $"{@LotoLocalizer["ConfirmDelete"]} #{jogo.Id:000000}?"))
+        var js = (IJSInProcessRuntime)jsRuntime;
+        if (await js.InvokeAsync<bool>("Confirm", $"{@lotoLocalizer["ConfirmDelete"]} #{card.Id:000000}?"))
         {
-            Lixeira.Remove(jogo);
+            Lixeira.Remove(card);
             ObtemPaginacaoLixeira(paginaAtualLixeira, linhasPorPagina);
         }
     }
 
-    private void LimpaTudo()
+    private async Task ClearAll()
     {
-        loto.DesmarcaTodas();
-        LimpaCombinacoes();
+        var js = (IJSInProcessRuntime)jsRuntime;
+        if (await js.InvokeAsync<bool>("Confirm", $"{@lotoLocalizer["ConfirmClearAll"]}?"))
+        {
+            loto.ReleaseAll();
+            ClearCombinations();
+        }
     }
 
-    private void GeraCombinacoes()
+    private void CreateCombinations()
     {
-        var response = loto.GeraCombinacoes((int)quantidadeDeCombinacoes, mantemCombinacoesAnteriores, geraCombinacoesAleatorias);
-        CarregaCombinacoes(response.Combinacoes);
+        var response = loto.CreateCombinations((int)quantidadeDeCombinacoes, mantemCombinacoesAnteriores, geraCombinacoesAleatorias);
+        LoadCombinations(response.Combinations);
     }
 
-    private void CarregaCombinacoes(List<Jogo> combinacoes)
+    private void LoadCombinations(List<Card> combinacoes)
     {
         Combinacoes = combinacoes;
         PaginaInicial();
         PaginaInicialLixeira();
     }
 
-    private void LimpaCombinacoes()
+    private void ClearCombinations()
     {
-        loto.LimpaCombinacoes();
+        loto.ClearCombinations();
         Combinacoes = new();
         CombinacoesPaginadas = new();
         Lixeira = new();
@@ -550,74 +553,96 @@
         paginaAtualLixeira = pagina;
     }
 
-    private void DezenaPressionada(Dezena dezena)
+    private void NumberPressed(LotoNumber number)
     {
-        dezenaPressionada = DateTime.Now;
+        numberPressionada = DateTime.Now;
     }
 
-    private void AtualizaDezenasSelecionadas(int dezVar)
+    private void RefreshSelectedNumbers(int dezVar)
     {
-        loto.AtualizaDezenasSelecionadas(dezVar);
+        loto.RefreshSelectedNumbers(dezVar);
     }
 
-    private void DezenaLiberada(Dezena dezena)
+    private void NumberReleased(LotoNumber number)
     {
-        dezenaLiberada = DateTime.Now;
-        var tempo = dezenaLiberada - dezenaPressionada;
+        numberLiberada = DateTime.Now;
+        var tempo = numberLiberada - numberPressionada;
         if (tempo.Seconds >= 1)
         {
-            loto.MarcaComoFixa(dezena.Indice);
+            loto.SetAsFixed(number.Indice);
         }
         else
         {
-            if (!limitaDezenasVariaveis || loto.QuantidadeDezenasSelecionadas < dezenasVariaveis)
-                loto.MarcaComoSelecionada(dezena.Indice);
+            if (!limitaNumbersVariaveis || loto.QuantityOfSelectedNumbers < variableNumbers)
+                loto.SetAsSelected(number.Indice);
             else
-                loto.MarcaComoLivre(dezena.Indice);
+                loto.SetAsFree(number.Indice);
         }
-        if (!limitaDezenasVariaveis)
-            dezenasVariaveis = loto.QuantidadeDezenasSelecionadas;
+        if (!limitaNumbersVariaveis)
+            variableNumbers = loto.QuantityOfSelectedNumbers;
     }
 
-    private async Task SalvaCombinacoes()
+    private async Task SaveCombinations()
     {
-        if (loto.DezenasSelecionadas.Length < 1 && loto.DezenasFixas.Length < 1)
+        if (loto.SelectedNumbers.Length < 1 && loto.FixedNumbers.Length < 1)
             return;
-        var file = await JSRuntime.InvokeAsync<string>("saveFileAs", loto.LotoFileInfo.SugestaoDeNome, loto.LotoFileInfo.Descricao, loto.LotoFileInfo.Extensao);
+        var file = await jsRuntime.InvokeAsync<string>("saveFileAs", loto.LotoFileInfo.SugestaoDeNome, loto.LotoFileInfo.Descricao, loto.LotoFileInfo.Extensao);
         if (!string.IsNullOrEmpty(file))
         {
             LotoFile lotoFile = new()
                 {
-                    TipoLoto = loto.LotoFileInfo.Nome,
-                    DezenasSelecionadas = LotoBase.VetorParaTexto(loto.DezenasSelecionadas, LotoType.Loto7),
-                    DezenasFixas = LotoBase.VetorParaTexto(loto.DezenasFixas, LotoType.Loto7),
-                    Combinacoes = Combinacoes
+                    LotoType = loto.LotoFileInfo.Nome,
+                    SelectedNumbers = LotoBase.ArrayToText(loto.SelectedNumbers, LotoType.Loto7),
+                    FixedNumbers = LotoBase.ArrayToText(loto.FixedNumbers, LotoType.Loto7),
+                    Combinations = Combinacoes
                 };
-            await FileService.SaveFileAsync(lotoFile, file);
+            await fileService.SaveFileAsync(lotoFile, file);
         }
     }
 
-    private async Task CarregaCombinacoesDoArquivo(InputFileChangeEventArgs args)
+    private async Task LoadCombinationsFromFile(InputFileChangeEventArgs args)
     {
-        LotoFile? lotoFile = await FileService.ReadFileAsync(args.File);
+        LotoFile? lotoFile = await fileService.ReadFileAsync(args.File);
         if (lotoFile != null)
         {
-            LimpaTudo();
-            loto.SelecionaDezenas(lotoFile.DezenasSelecionadas);
-            loto.FixaDezenas(lotoFile.DezenasFixas);
-            loto.Combinacoes = lotoFile.Combinacoes;
-            CarregaCombinacoes(loto.Combinacoes);
+            ClearAll();
+            loto.SelectNumbers(lotoFile.SelectedNumbers);
+            loto.FixNumbers(lotoFile.FixedNumbers);
+            loto.Combinations = lotoFile.Combinations;
+            LoadCombinations(loto.Combinations);
         }
     }
 
-    private void ConfiguraImpressao()
+    private void ConfigurePrinting()
     {
-        NavigationManager.NavigateTo("printConfigPage?returnUrl=/loto7page", false, true);
+        navigationManager.NavigateTo("printConfigPage?returnUrl=/loto7page", false, true);
     }
 
-    private void DefineFiltros()
+    private void DefineFilters()
     {
-        NavigationManager.NavigateTo($"lotoFiltersPage/{LotoType.Loto7}?returnUrl=/loto7page", false, true);
+        navigationManager.NavigateTo($"lotoFiltersPage/{LotoType.Loto7}?returnUrl=/loto7page", false, true);
+    }
+
+    private async Task CheckResultsHandle()
+    {
+        // Provisorio - simula leitura do resultado
+        var result = new Loto7Result()
+            {
+                DrawNumber = 1,
+                Numbers = "08,09,14,21,23,32,37",
+                Bonus = "15,31",
+                Date = DateTime.Now,
+                Prize1Value = 1_000_000,
+                Prize2Value = 500_000,
+                Prize3Value = 100_000,
+                Prize4Value = 15_000,
+                Prize5Value = 2_000,
+                Prize6Value = 1_000
+            };
+
+        var prizesResult = loto.CheckResults(result);
+        await localStorage.SetItemAsync<ResultResponse<Loto7Result, Loto7Prize>>("jpl7Prizes", prizesResult);
+        navigationManager.NavigateTo($"/loto7checkresult");
     }
 
 }

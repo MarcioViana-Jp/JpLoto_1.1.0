@@ -214,6 +214,15 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to すべての選択、フィルター、組み合わせが削除されます。 続行しますか?.
+        /// </summary>
+        public static string ConfirmClearAll {
+            get {
+                return ResourceManager.GetString("ConfirmClearAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 項目削除.
         /// </summary>
         public static string ConfirmDelete {

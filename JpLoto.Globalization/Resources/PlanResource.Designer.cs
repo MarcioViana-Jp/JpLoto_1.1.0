@@ -88,7 +88,7 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 無料でお申し込み頂けます.
+        ///   Looks up a localized string similar to 無料で会員登録.
         /// </summary>
         public static string FreeTrial {
             get {

@@ -39,7 +39,7 @@ namespace JpLoto.Globalization.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JpLoto.Shared.Resources.MenuResource", typeof(MenuResource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JpLoto.Globalization.Resources.MenuResource", typeof(MenuResource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,6 +57,33 @@ namespace JpLoto.Globalization.Resources {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to アカウント.
+        /// </summary>
+        public static string Account {
+            get {
+                return ResourceManager.GetString("Account", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to アカウントをお持ちですか？.
+        /// </summary>
+        public static string AlreadyRegistered {
+            get {
+                return ResourceManager.GetString("AlreadyRegistered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to パスワード変更.
+        /// </summary>
+        public static string ChangePassword {
+            get {
+                return ResourceManager.GetString("ChangePassword", resourceCulture);
             }
         }
         
@@ -133,11 +160,56 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 宝くじ.
+        /// </summary>
+        public static string Lottery {
+            get {
+                return ResourceManager.GetString("Lottery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ミニロト.
         /// </summary>
         public static string MiniLoto {
             get {
                 return ResourceManager.GetString("MiniLoto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to マイアカウント.
+        /// </summary>
+        public static string MyAccount {
+            get {
+                return ResourceManager.GetString("MyAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to マイプロファイル.
+        /// </summary>
+        public static string MyProfile {
+            get {
+                return ResourceManager.GetString("MyProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 新登録.
+        /// </summary>
+        public static string New {
+            get {
+                return ResourceManager.GetString("New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to アカウントをお持ちでないですか？.
+        /// </summary>
+        public static string NotRegistered {
+            get {
+                return ResourceManager.GetString("NotRegistered", resourceCulture);
             }
         }
         
@@ -169,11 +241,20 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ユザー登録.
+        ///   Looks up a localized string similar to 無料で登録.
         /// </summary>
         public static string Register {
             get {
                 return ResourceManager.GetString("Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 確認メールを再送信.
+        /// </summary>
+        public static string ResendConfirmationEmail {
+            get {
+                return ResourceManager.GetString("ResendConfirmationEmail", resourceCulture);
             }
         }
         

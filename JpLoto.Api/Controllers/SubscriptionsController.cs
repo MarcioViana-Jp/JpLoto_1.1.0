@@ -1,6 +1,4 @@
-﻿using JpLoto.Domain.Interfaces.Services;
-
-namespace JpLoto.Api.Controllers.v1;
+﻿namespace JpLoto.Api.Controllers.v1;
 
 [Route("api/[controller]")]
 [ApiController]

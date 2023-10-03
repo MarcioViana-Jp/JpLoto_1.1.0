@@ -1,14 +1,14 @@
-﻿using JpLoto.Lottery.Shared;
+﻿using JpLoto.Lottery.Loto.Shared;
 using System.Text.Json.Serialization;
 
-namespace JpLoto.Lottery.Dto;
+namespace JpLoto.Lottery.Loto;
 
-public class Jogo
+public class Card
 {
     public int Id { get; set; }
-    public string DezenasTexto { get; set; } = string.Empty;
+    public string NumbersText { get; set; } = string.Empty;
     [JsonIgnore(Condition = JsonIgnoreCondition.Always)]
-    public int[] Dezenas { get => LotoBase.TextoParaVetor(DezenasTexto, 99).DezenasVetor; }
+    public int[] Numbers { get => LotoBase.TextToArray(NumbersText); }
 
     [JsonIgnore(Condition = JsonIgnoreCondition.Always)]
     public bool IsDeleted { get; set; } = false;

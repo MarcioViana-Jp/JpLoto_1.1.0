@@ -2,10 +2,10 @@
 {
     public static class Status
     {
-        public const int Livre = 0;
-        public const int Selecionada = 1;
-        public const int Fixa = 2;
-        public const int Sugerida = 3;
-        public const int Bloqueada = 4;
+        public const int Free = 0;
+        public const int Selected = 1;
+        public const int Fixed = 2;
+        public const int Suggested = 3;
+        public const int Blocked = 4;
     }
 }

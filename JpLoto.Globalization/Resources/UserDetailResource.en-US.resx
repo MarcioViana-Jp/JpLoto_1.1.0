@@ -124,13 +124,13 @@
     <value>City</value>
   </data>
   <data name="DisableEditingMode" xml:space="preserve">
-    <value>編集モードをオフにする</value>
+    <value>Disable editing mode</value>
   </data>
   <data name="EditingModeText" xml:space="preserve">
     <value>Click the button next to enable/dissable editing of your profile information. To save the changes, click the button</value>
   </data>
   <data name="EnableEditingMode" xml:space="preserve">
-    <value>編集モードをオンにする</value>
+    <value>Disable editing mode</value>
   </data>
   <data name="FirstName" xml:space="preserve">
     <value>First name</value>

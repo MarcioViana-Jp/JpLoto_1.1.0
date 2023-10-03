@@ -76,9 +76,9 @@ public class ConfigurationService : IConfigurationService
         await SaveConfiguration(config);
     }
 
-    public async Task<FiltersDto> GetLotoFilters(int tipoLoto)
+    public async Task<FiltersDto> GetLotoFilters(int lotoType)
     {
-        switch (tipoLoto)
+        switch (lotoType)
         {
             case LotoType.MiniLoto:
                 return await GetMiniLotoFilters();
@@ -91,9 +91,9 @@ public class ConfigurationService : IConfigurationService
         }
     }
 
-    public async Task SaveLotoFilters(int tipoLoto, FiltersDto filterDto)
+    public async Task SaveLotoFilters(int lotoType, FiltersDto filterDto)
     {
-        switch (tipoLoto)
+        switch (lotoType)
         {
             case LotoType.MiniLoto:
                 await SaveMiniLotoFilters(filterDto);

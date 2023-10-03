@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CardLotteriesTitle" xml:space="preserve">
-    <value>Combinaciones para series de Loto - Loterías TakarakujiNet</value>
+    <value>Combinaciones para Loterías TakarakujiNet</value>
   </data>
   <data name="CardNewsTitle" xml:space="preserve">
     <value>Noticias recientes</value>

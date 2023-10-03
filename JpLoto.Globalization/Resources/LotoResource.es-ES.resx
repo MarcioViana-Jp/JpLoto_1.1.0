@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddSuccess" xml:space="preserve">
-    <value>Item added successfully</value>
+    <value>Registro añadido con éxito</value>
   </data>
   <data name="AlreadyExists" xml:space="preserve">
-    <value>Item already exists</value>
+    <value>Este elemento ya existe</value>
   </data>
   <data name="ApplyFilters" xml:space="preserve">
     <value>Aplicar filtros</value>
@@ -167,6 +167,9 @@
   </data>
   <data name="ConfigurePrinting" xml:space="preserve">
     <value>Configurar impresión</value>
+  </data>
+  <data name="ConfirmClearAll" xml:space="preserve">
+    <value>Se eliminarán todas las selecciones, filtros y combinaciones. ¿Quieres continuar?</value>
   </data>
   <data name="ConfirmDelete" xml:space="preserve">
     <value>Eliminar combinatón</value>
@@ -382,6 +385,6 @@
     <value>Seleccionar Números</value>
   </data>
   <data name="UpdateSuccess" xml:space="preserve">
-    <value>Item updateed successfully</value>
+    <value>Actualización exitosa</value>
   </data>
 </root>

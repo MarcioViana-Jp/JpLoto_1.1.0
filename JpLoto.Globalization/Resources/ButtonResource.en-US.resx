@@ -130,7 +130,7 @@
     <value>Edit user</value>
   </data>
   <data name="GenerateCombinations" xml:space="preserve">
-    <value>Generate combinations</value>
+    <value>Create combinations</value>
   </data>
   <data name="Help" xml:space="preserve">
     <value>Help</value>
@@ -148,7 +148,7 @@
     <value>Ok</value>
   </data>
   <data name="SaveChanges" xml:space="preserve">
-    <value>Guardar cambios</value>
+    <value>Save changes</value>
   </data>
   <data name="Update" xml:space="preserve">
     <value>Update</value>

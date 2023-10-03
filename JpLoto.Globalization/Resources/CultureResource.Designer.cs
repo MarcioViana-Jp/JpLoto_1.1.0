@@ -39,7 +39,7 @@ namespace JpLoto.Globalization.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JpLoto.Shared.Resources.CultureResource", typeof(CultureResource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JpLoto.Globalization.Resources.CultureResource", typeof(CultureResource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

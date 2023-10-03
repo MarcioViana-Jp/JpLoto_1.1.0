@@ -12,7 +12,7 @@ public class CultureController : Controller
 {
     //[HttpGet("set/{culture}/{redirectUri}")]
     [EnableCors("cors_policy")]
-    [HttpGet]
+    [HttpGet("{culture}/{redirectUrl}")] // ###
     public IActionResult Set(string culture, string redirectUri)
     {
         if (!string.IsNullOrEmpty(culture))
