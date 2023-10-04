@@ -59,7 +59,7 @@
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <h6 class="navbar-nav justify-content-start font-weight-bolder mb-0" hidden><span>JP Loto 1.1</span></h6>
                     <ul class="navbar-nav justify-content-end">                        
-                        <li class="nav-item d-xl-none ps-3 d-flex align-items-center me-auto" @onclick="NavbarTogglerHandler">
+                        <li class="nav-item d-xl-none ps-3 d-flex align-items-center me-2" @onclick="NavbarTogglerHandler">
                              <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
                                 <div class="sidenav-toggler-inner">
                                     <i class="sidenav-toggler-line"></i>
@@ -68,11 +68,14 @@
                                 </div>
                             </a>
                         </li>
+                        <li class="nav-item d-xl-none ps-3 d-flex align-items-center me-auto">
+                            <a href="/" class="text-red text-lg font-weight-bold p-0">JPLoto 1.1</a>
+                        </li>
                         <CultureSelector />
                         <AuthorizeView>
                             <Authorized>
                                 <li class="nav-item d-flex align-items-center">
-                                    <a href="/logout" class="nav-link text-body font-weight-bold px-0" @onclick="NavbarTogglerHandler">
+                                    <a href="/logout" class="nav-link text-body font-weight-bold px-0">
                                         <i class="fa fa-sign-out me-sm-1"></i>
                                         <span class="d-sm-inline d-none font-10">@menuLocalizer["Logout"]</span>
                                     </a>

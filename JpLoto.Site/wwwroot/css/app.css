@@ -647,9 +647,11 @@ input[type=checkbox] {
     }
     .numbers-card {
     }
-
     .combinations-card {
         margin-top: 0!important;
+    }
+    .card-loto {
+        margin-top: 1rem!important;
     }
 }
 
@@ -662,6 +664,9 @@ input[type=checkbox] {
     }
     .combinations-card {
         margin-top: 1rem!important;
+    }
+    .card-loto {
+        margin-top: 0rem!important;
     }
 }
 

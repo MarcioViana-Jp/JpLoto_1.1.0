@@ -35,61 +35,63 @@ else
     {
         @if (result.Editing)
         {
-            <EditForm Model="editingResult" OnValidSubmit="UpdateResult">
-                <DataAnnotationsValidator />
-                <div class="row mt-0 mb-0">
-                    <div class="col">
-                        <span class="text-xs">Date: </span>
-                        <InputDate id="date" @bind-Value="editingResult.Date" @bind-Value:format="dd/MM/yyyy" class="form-control bg-white text-xs ps-3"></InputDate>
+            <div class="bg-palegreen p-3">
+                <EditForm Model="editingResult" OnValidSubmit="UpdateResult">
+                    <DataAnnotationsValidator />
+                    <div class="row mt-0 mb-0">
+                        <div class="col">
+                            <span class="text-xs">Date: </span>
+                            <InputDate @bind-Value="editingResult.Date" @bind-Value:format="dd/MM/yyyy" class="form-control bg-white text-xs ps-3 h-25"></InputDate>
+                        </div>
+                        <ValidationMessage For="@(() => editingResult.Date)" class="text-xs text-danger" />
+                        <div class="col">
+                            <span class="text-xs">Drawn# </span>
+                            <InputNumber @bind-Value="editingResult.DrawNumber" class="form-control bg-white text-xs h-25"></InputNumber>
+                        </div>
+                        <ValidationMessage For="@(() => editingResult.DrawNumber)" class="text-xs text-danger" />
+                        <div class="col">
+                            <span class="text-xs">Numbers: </span>
+                            <InputText id="numbers" @bind-Value="editingResult.Numbers" class="form-control bg-white text-xs ps-3 h-25"></InputText>
+                        </div>
+                        <ValidationMessage For="@(() => editingResult.Numbers)" class="text-xs text-danger" />
+                        <div class="col">
+                            <span class="text-xs">Bonus: </span>
+                            <InputText id="bonus" @bind-Value="editingResult.Bonus" class="form-control bg-white text-xs ps-3 h-25"></InputText>
+                        </div>
+                        <ValidationMessage For="@(() => editingResult.Bonus)" class="text-xs text-danger" />
                     </div>
-                    <ValidationMessage For="@(() => editingResult.Date)" class="text-xs text-danger" />
-                    <div class="col">
-                        <span class="text-xs">Drawn# </span>
-                        <InputNumber @bind-Value="editingResult.DrawNumber" class="form-control bg-white text-xs"></InputNumber>
+                    <div class="row">
+                        <div class="col">
+                            <span class="text-xs">Prize1: </span>
+                            <InputNumber @bind-Value="editingResult.Prize1Value" class="form-control bg-white text-xs h-25"></InputNumber>
+                        </div>
+                        <div class="col">
+                            <span class="text-xs">Prize2: </span>
+                            <InputNumber @bind-Value="editingResult.Prize2Value" class="form-control bg-white text-xs h-25"></InputNumber>
+                        </div>
+                        <div class="col">
+                            <span class="text-xs">Prize3: </span>
+                            <InputNumber @bind-Value="editingResult.Prize3Value" class="form-control bg-white text-xs h-25"></InputNumber>
+                        </div>
+                        <div class="col">
+                            <span class="text-xs">Prize4: </span>
+                            <InputNumber @bind-Value="editingResult.Prize4Value" class="form-control bg-white text-xs h-25"></InputNumber>
+                        </div>
+                        <div class="col">
+                            <button type="submit" class="btn btn-edit2">
+                                <i class="oi oi-cloud-upload text-blue text-sm"></i>
+                            </button>
+                            <button class="btn btn-delete2" @onclick="CancelEditing">
+                                <i class="oi oi-circle-x text-danger text-sm"></i>
+                            </button>
+                        </div>
                     </div>
-                    <ValidationMessage For="@(() => editingResult.DrawNumber)" class="text-xs text-danger" />
-                    <div class="col">
-                        <span class="text-xs">Numbers: </span>
-                        <InputText id="numbers" @bind-Value="editingResult.Numbers" class="form-control bg-white text-xs ps-3"></InputText>
-                    </div>
-                    <ValidationMessage For="@(() => editingResult.Numbers)" class="text-xs text-danger" />
-                    <div class="col">
-                        <span class="text-xs">Bonus: </span>
-                        <InputText id="bonus" @bind-Value="editingResult.Bonus" class="form-control bg-white text-xs ps-3"></InputText>
-                    </div>
-                    <ValidationMessage For="@(() => editingResult.Bonus)" class="text-xs text-danger" />
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <span class="text-xs">Prize1: </span>
-                        <InputNumber @bind-Value="editingResult.Prize1Value" class="form-control bg-white text-xs"></InputNumber>
-                    </div>
-                    <div class="col">
-                        <span class="text-xs">Prize2: </span>
-                        <InputNumber @bind-Value="editingResult.Prize2Value" class="form-control bg-white text-xs"></InputNumber>
-                    </div>
-                    <div class="col">
-                        <span class="text-xs">Prize3: </span>
-                        <InputNumber @bind-Value="editingResult.Prize3Value" class="form-control bg-white text-xs"></InputNumber>
-                    </div>
-                    <div class="col">
-                        <span class="text-xs">Prize4: </span>
-                        <InputNumber @bind-Value="editingResult.Prize4Value" class="form-control bg-white text-xs"></InputNumber>
-                    </div>
-                    <div class="col">
-                        <button type="submit" class="btn btn-edit">
-                            <i class="oi oi-cloud-upload text-sm"></i>
-                        </button>
-                        <button class="btn btn-delete" @onclick="CancelEditing">
-                            <i class="oi oi-circle-x text-sm"></i>
-                        </button>
-                    </div>
-                </div>
-            </EditForm>
+                </EditForm>
+            </div>
         }
         else
         {
-            <div class="row mt-0 mb-0 border-bottom bc-dimgray">
+            <div class="row mt-2 mb-0 border-bottom bc-dimgray">
                 <div class="col text-xs">@result.Date.ToShortDateString()</div>
                 <div class="col text-xs">@result.DrawNumber</div>
                 <div class="col text-xs">@result.Numbers</div>
@@ -142,12 +144,12 @@ else
             await resultRepository.AddAsync(editingResult);
         else
             await resultRepository.UpdateAsync(editingResult);
-        editingResult = new ();
+        editingResult = new();
     }
 
     private async Task CancelEditing()
     {
-        editingResult = new ();
+        editingResult = new();
         await resultRepository.GetAllAsync();
     }
 
