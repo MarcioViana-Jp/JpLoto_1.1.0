@@ -3,7 +3,7 @@
 @using JpLoto.Application.Settings;
 @using Microsoft.Extensions.Options;
 @inject IJSRuntime JSRuntime
-@inject NavigationManager NavigationManager
+@inject NavigationManager navigationManager
 @inject IStringLocalizer<CultureResource> cultureLocalizer
 @inject IAppConfigService configService
 @inject HttpClient http
@@ -51,15 +51,15 @@
         {
             if (CultureInfo.CurrentCulture != value)
             {
-                var uri = new Uri(NavigationManager.Uri)
+                var uri = new Uri(navigationManager.Uri)
                     .GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
                 var cultureEscaped = Uri.EscapeDataString(value.Name);
 
                 var js = (IJSInProcessRuntime)JSRuntime;
                 js.InvokeVoid("blazorCulture.set", cultureEscaped);
 
-                NavigationManager.NavigateTo(
-                    $"{appConfiguration.CorsSetting.ApiHost}/culture/set?culture={cultureEscaped}&redirectUri={$"{appConfiguration.CorsSetting.AppHost}" + uri}",
+                navigationManager.NavigateTo(
+                    $"{appConfiguration.CorsSetting.ApiHost}/cultures/set?culture={cultureEscaped}&redirectUrl={appConfiguration.CorsSetting.AppHost + uri}",
                     forceLoad: true);
             }
         }
@@ -71,7 +71,7 @@
         appConfiguration = await configService.GetAppConfigurationAsync();
         if (appConfiguration != null)
         {
-            await http.GetAsync($"{appConfiguration.CorsSetting.ApiHost}/culture/setserverculture/{Culture.Name}");
+            await http.GetAsync($"{appConfiguration.CorsSetting.ApiHost}/cultures/setserverculture/{Culture.Name}");
         }
     }
 

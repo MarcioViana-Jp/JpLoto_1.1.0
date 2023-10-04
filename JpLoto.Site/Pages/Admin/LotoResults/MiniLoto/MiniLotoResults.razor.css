@@ -1,0 +1,21 @@
+﻿.header {
+    display: flex!important;
+    font-weight: 600!important;
+    text-align: center!important;
+    border-bottom: 1px solid lightgray!important;
+    margin-bottom: 3px!important;
+    padding-bottom: 3px!important;
+}
+
+.row {
+    display: flex!important;
+    padding: 1px!important;
+}
+
+.col {
+    flex: 1!important;
+}
+
+.col-visible {
+    text-align: center!important;
+}

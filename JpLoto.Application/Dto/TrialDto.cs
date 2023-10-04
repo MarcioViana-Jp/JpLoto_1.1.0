@@ -4,24 +4,39 @@ namespace JpLoto.Application.Dto;
 
 public class TrialDto
 {
+    public int Id { get; set; }
     public string UserId { get; set; } = string.Empty;
     public DateTime TrialBegin { get; set; }
     public DateTime TrialFinish { get; set; }
 
     public TrialDto(string userId, DateTime trialBegin, DateTime trialFinish)
     {
-        userId = userId ?? string.Empty;
+        Id = 0;
+        UserId = userId ?? string.Empty;
         TrialBegin = trialBegin;
         TrialFinish = trialFinish;
     }
-
-    public static TrialDto ConvertToDto(Trial trial)
+    public TrialDto(int id, string userId, DateTime trialBegin, DateTime trialFinish)
     {
-        return new TrialDto
+        Id = id;
+        UserId = userId ?? string.Empty;
+        TrialBegin = trialBegin;
+        TrialFinish = trialFinish;
+    }
+    public TrialDto(Trial trial)
+    {
+        Id = trial.Id;
+        UserId = trial.UserId;
+        TrialBegin = trial.TrialBegin;
+        TrialFinish = trial.TrialFinish;
+    }
+    public static Trial ConvertToEntity(TrialDto dto)
+    {
+        return new Trial
         (
-            trial.UserId,
-            trial.TrialBegin,
-            trial.TrialFinish
+            dto.UserId,
+            dto.TrialBegin,
+            dto.TrialFinish
         );
     }
 }

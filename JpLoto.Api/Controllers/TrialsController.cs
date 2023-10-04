@@ -41,7 +41,7 @@ public class TrialsController : ControllerBase
     public async Task<ActionResult<IEnumerable<TrialDto>>> GetAll()
     {
         var trials = await _trialService.GetAllAsync();
-        return Ok(trials.Select(Trial => TrialDto.ConvertToDto(Trial)));
+        return Ok(trials.Select(Trial => new TrialDto(Trial)));
     }
 
 
@@ -55,7 +55,7 @@ public class TrialsController : ControllerBase
         if (trial is null)
             return NotFound();
 
-        return Ok(TrialDto.ConvertToDto(trial));
+        return Ok(new TrialDto(trial));
 
     }
 
@@ -70,8 +70,7 @@ public class TrialsController : ControllerBase
         if (trial is null)
             return NotFound();
 
-        return Ok(TrialDto.ConvertToDto(trial));
-
+        return Ok(new TrialDto(trial));
     }
 
 

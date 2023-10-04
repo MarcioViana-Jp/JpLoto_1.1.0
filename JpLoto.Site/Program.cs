@@ -34,12 +34,14 @@ builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IAppConfigService, AppConfigService>();
 builder.Services.AddScoped<IConfigurationService, ConfigurationService>();
 builder.Services.AddScoped<IFileService, FileService>();
+
 builder.Services.AddScoped<ILoto6ResultService, Loto6ResultService>();
 builder.Services.AddScoped<ILoto7ResultService, Loto7ResultService>();
 builder.Services.AddScoped<IMiniLotoResultService, MiniLotoResultService>();
+
 builder.Services.AddScoped<ILoto6ResultRepository, Loto6ResultRepository>();
 builder.Services.AddScoped<ILoto7ResultRepository, Loto7ResultRepository>();
-builder.Services.AddScoped<IMiniLotoResultRepository, MiniLotoResultRepository>();
+builder.Services.AddScoped<IMiniLResultRepository, MiniLResultRepository>();
 builder.Services.AddScoped<IMyProfileRepository, MyProfileRepository>();
 
 builder.Services.AddSingleton<CommonLocalizationService>();

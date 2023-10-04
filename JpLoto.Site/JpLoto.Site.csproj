@@ -25,7 +25,13 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.11" PrivateAssets="all" />
     <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.11" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.10" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages\Components\" />
+    <Folder Include="wwwroot\css\bootstrap\js\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,11 +40,6 @@
     <ProjectReference Include="..\JpLoto.Domain\JpLoto.Domain.csproj" />
     <ProjectReference Include="..\JpLoto.Globalization\JpLoto.Globalization.csproj" />
     <ProjectReference Include="..\JpLoto.Lottery\JpLoto.Lottery.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Pages\Components\" />
-    <Folder Include="wwwroot\css\bootstrap\js\" />
   </ItemGroup>
 
   <ItemGroup>

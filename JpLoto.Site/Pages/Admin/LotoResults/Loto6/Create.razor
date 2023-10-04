@@ -1,0 +1,73 @@
+﻿@page "/loto6-result-create"
+
+<h3>Create</h3>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="request.Prize1Value" class="control-label"></label>
+                <input asp-for="request.Prize1Value" class="form-control" />
+                <span asp-validation-for="request.Prize1Value" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="request.Prize2Value" class="control-label"></label>
+                <input asp-for="request.Prize2Value" class="form-control" />
+                <span asp-validation-for="request.Prize2Value" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="request.Prize3Value" class="control-label"></label>
+                <input asp-for="request.Prize3Value" class="form-control" />
+                <span asp-validation-for="request.Prize3Value" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="request.Prize4Value" class="control-label"></label>
+                <input asp-for="request.Prize4Value" class="form-control" />
+                <span asp-validation-for="request.Prize4Value" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="request.Prize5Value" class="control-label"></label>
+                <input asp-for="request.Prize5Value" class="form-control" />
+                <span asp-validation-for="request.Prize5Value" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="request.DrawNumber" class="control-label"></label>
+                <input asp-for="request.DrawNumber" class="form-control" />
+                <span asp-validation-for="request.DrawNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="request.Date" class="control-label"></label>
+                <input asp-for="request.Date" class="form-control" />
+                <span asp-validation-for="request.Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="request.Numbers" class="control-label"></label>
+                <input asp-for="request.Numbers" class="form-control" />
+                <span asp-validation-for="request.Numbers" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="request.Bonus" class="control-label"></label>
+                <input asp-for="request.Bonus" class="form-control" />
+                <span asp-validation-for="request.Bonus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@code {
+    private Loto6Result request { get; set; }
+
+    protected override void OnInitialized()
+    {
+        
+    }
+}

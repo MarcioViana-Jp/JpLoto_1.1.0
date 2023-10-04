@@ -22,6 +22,8 @@ public static class NativeInjectorConfig
         services.AddScoped<IIdentityService, IdentityService>();
         services.AddScoped<ILoto6ResultRepository, Loto6ResultRepository>();
         services.AddScoped<ILoto7ResultRepository, Loto7ResultRepository>();
+
+        services.AddScoped<IMiniLotoResultService, MiniLotoResultService>();
         services.AddScoped<IMiniLotoResultRepository, MiniLotoResultRepository>();
 
         services.AddScoped<ITrialService, TrialService>();

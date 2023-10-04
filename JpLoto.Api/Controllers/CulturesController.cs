@@ -8,22 +8,19 @@ namespace JpLoto.Api.Controllers;
 [Route("[controller]/[action]")]
 [AllowAnonymous]
 
-public class CultureController : Controller
+public class CulturesController : Controller
 {
-    //[HttpGet("set/{culture}/{redirectUri}")]
     [EnableCors("cors_policy")]
-    [HttpGet("{culture}/{redirectUrl}")] // ###
-    public IActionResult Set(string culture, string redirectUri)
+    [HttpGet]
+    public IActionResult Set([FromQuery] string culture, [FromQuery] string redirectUrl)
     {
         if (!string.IsNullOrEmpty(culture))
         {
-            HttpContext.Response.Cookies.Append(
-                CookieRequestCultureProvider.DefaultCookieName,
-                CookieRequestCultureProvider.MakeCookieValue(
-                    new RequestCulture(culture, culture)));
+            SetServerCulture(culture);
         }
-        return Redirect(redirectUri);
+        return Redirect(redirectUrl);
     }
+
 
     [EnableCors("cors_policy")]
     [HttpGet("{culture}")]

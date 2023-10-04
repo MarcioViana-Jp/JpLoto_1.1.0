@@ -1,0 +1,158 @@
+﻿@page "/admin/minilotoresults"
+@using JpLoto.Application.Dto;
+@inject IMiniLResultRepository resultRepository
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
+@* @attribute [Authorize] *@
+@implements IDisposable
+<style>
+    .header {
+        display: flex !important;
+        font-weight: 600 !important;
+        text-align: center !important;
+        border-bottom: 1px solid lightgray !important;
+        margin-bottom: 3px !important;
+        padding-bottom: 3px !important;
+    }
+</style>
+<h5 class="text-center">MiniLotoResults</h5>
+<hr />
+
+<div class="header text-sm">
+    <div class="col">Date#</div>
+    <div class="col">Drawn#</div>
+    <div class="col">Numbers</div>
+    <div class="col">Bonus</div>
+    <div class="col"></div>
+</div>
+@if (resultRepository.Results == null)
+{
+    <span>Loading results...</span>
+}
+else
+{
+    @foreach (var result in resultRepository.Results)
+    {
+        @if (result.Editing)
+        {
+            <EditForm Model="editingResult" OnValidSubmit="UpdateResult">
+                <DataAnnotationsValidator />
+                <div class="row mt-0 mb-0">
+                    <div class="col">
+                        <span class="text-xs">Date: </span>
+                        <InputDate id="date" @bind-Value="editingResult.Date" @bind-Value:format="dd/MM/yyyy" class="form-control bg-white text-xs ps-3"></InputDate>
+                    </div>
+                    <ValidationMessage For="@(() => editingResult.Date)" class="text-xs text-danger" />
+                    <div class="col">
+                        <span class="text-xs">Drawn# </span>
+                        <InputNumber @bind-Value="editingResult.DrawNumber" class="form-control bg-white text-xs"></InputNumber>
+                    </div>
+                    <ValidationMessage For="@(() => editingResult.DrawNumber)" class="text-xs text-danger" />
+                    <div class="col">
+                        <span class="text-xs">Numbers: </span>
+                        <InputText id="numbers" @bind-Value="editingResult.Numbers" class="form-control bg-white text-xs ps-3"></InputText>
+                    </div>
+                    <ValidationMessage For="@(() => editingResult.Numbers)" class="text-xs text-danger" />
+                    <div class="col">
+                        <span class="text-xs">Bonus: </span>
+                        <InputText id="bonus" @bind-Value="editingResult.Bonus" class="form-control bg-white text-xs ps-3"></InputText>
+                    </div>
+                    <ValidationMessage For="@(() => editingResult.Bonus)" class="text-xs text-danger" />
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span class="text-xs">Prize1: </span>
+                        <InputNumber @bind-Value="editingResult.Prize1Value" class="form-control bg-white text-xs"></InputNumber>
+                    </div>
+                    <div class="col">
+                        <span class="text-xs">Prize2: </span>
+                        <InputNumber @bind-Value="editingResult.Prize2Value" class="form-control bg-white text-xs"></InputNumber>
+                    </div>
+                    <div class="col">
+                        <span class="text-xs">Prize3: </span>
+                        <InputNumber @bind-Value="editingResult.Prize3Value" class="form-control bg-white text-xs"></InputNumber>
+                    </div>
+                    <div class="col">
+                        <span class="text-xs">Prize4: </span>
+                        <InputNumber @bind-Value="editingResult.Prize4Value" class="form-control bg-white text-xs"></InputNumber>
+                    </div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-edit">
+                            <i class="oi oi-cloud-upload text-sm"></i>
+                        </button>
+                        <button class="btn btn-delete" @onclick="CancelEditing">
+                            <i class="oi oi-circle-x text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </EditForm>
+        }
+        else
+        {
+            <div class="row mt-0 mb-0 border-bottom bc-dimgray">
+                <div class="col text-xs">@result.Date.ToShortDateString()</div>
+                <div class="col text-xs">@result.DrawNumber</div>
+                <div class="col text-xs">@result.Numbers</div>
+                <div class="col text-xs">@result.Bonus</div>
+                <div class="col text-xs">
+                    <button type="submit" class="btn btn-edit2" @onclick="(() => EditResult(result))">
+                        <i class="oi oi-pencil text-green text-sm"></i>
+                    </button>
+                    <button class="btn btn-delete2" @onclick="(() => DeleteResult(result.Id))">
+                        <i class="oi oi-trash text-danger text-sm"></i>
+                    </button>
+                </div>
+            </div>
+        }
+    }
+}
+<hr />
+<button class="btn btn-primary" @onclick="CreateNewResult">
+    <i class="oi oi-plus"></i> Add result
+</button>
+
+@code {
+    MiniLotoResultDto? editingResult = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await resultRepository.GetAllAsync();
+        resultRepository.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        resultRepository.OnChange -= StateHasChanged;
+    }
+
+    private void CreateNewResult()
+    {
+        editingResult = resultRepository.CreateNewResult();
+    }
+
+    private void EditResult(MiniLotoResultDto result)
+    {
+        result.Editing = true;
+        editingResult = result;
+    }
+
+    private async Task UpdateResult()
+    {
+        if (editingResult.IsNew)
+            await resultRepository.AddAsync(editingResult);
+        else
+            await resultRepository.UpdateAsync(editingResult);
+        editingResult = new ();
+    }
+
+    private async Task CancelEditing()
+    {
+        editingResult = new ();
+        await resultRepository.GetAllAsync();
+    }
+
+    private async Task DeleteResult(int resultId)
+    {
+        await resultRepository.RemoveByIdAsync(resultId);
+    }
+}
