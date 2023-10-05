@@ -30,7 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Components\" />
     <Folder Include="wwwroot\css\bootstrap\js\" />
   </ItemGroup>
 

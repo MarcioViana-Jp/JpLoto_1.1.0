@@ -1,0 +1,54 @@
+﻿<div class="modal fade show border-radius-lg" tabindex="-1"
+     id="messageBoxModal" style="display:block;">
+    <div class="modal-dialog">
+        <div class="modal-content bg-paleyellow shadow-card">
+            @if (!string.IsNullOrEmpty(Title))
+            {
+                <div class="modal-header border-0 bg-gradient-faded-dark text-center">
+                    <h6 class="modal-title text-center text-white text-sm font-weight-bold">@Title</h6>
+                    <button type="button" class="btn-close text-sm" data-bs-dismiss="modal" @onclick="@ModalCancel" aria-label="Close"></button>
+                </div>
+            }
+            <div class="modal-body">
+                <p class="text-xs">@BodyText</p>
+            </div>
+            <div class="modal-footer border-0">
+                @if (Action == MessageBoxAction.Delete || Action == MessageBoxAction.DeleteAll || Action == MessageBoxAction.ClearAll ||
+                Action == MessageBoxAction.DeleteCombination || Action == MessageBoxAction.DeleteRecycledCombination)
+                {
+                    <button type="button" class="btn btn-outline-dark text-xs" @onclick="@ModalCancel" data-bs-dismiss="modal">@ButtonCancelText</button>
+                    <button type="button" class="btn btn-danger text-xs" @onclick="@ModalOk">@ButtonAcceptText</button>
+                }
+                else
+                {
+                    <button type="button" class="btn btn-outline-dark text-xs" @onclick="@ModalCancel" data-bs-dismiss="modal">@ButtonCancelText</button>
+                    <button type="button" class="btn btn-info text-xs" @onclick="@ModalOk">@ButtonAcceptText</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int Action { get; set; }
+    [Parameter]
+    public string? Title { get; set; }
+    [Parameter]
+    public string? BodyText { get; set; }
+    [Parameter]
+    public string? ButtonAcceptText { get; set; }
+    [Parameter]
+    public string? ButtonCancelText { get; set; }
+    [Parameter]
+    public EventCallback<bool> OnClose { get; set; }
+
+    private async Task ModalCancel()
+    {
+        await OnClose.InvokeAsync(false);
+    }
+    private async Task ModalOk()
+    {
+        await OnClose.InvokeAsync(true);
+    }
+}

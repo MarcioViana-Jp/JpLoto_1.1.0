@@ -168,6 +168,9 @@
   <data name="ConfigurePrinting" xml:space="preserve">
     <value>Configurar impressão</value>
   </data>
+  <data name="ConfirmationRequired" xml:space="preserve">
+    <value>Confirmação requerida</value>
+  </data>
   <data name="ConfirmClearAll" xml:space="preserve">
     <value>Todas seleções, filtros e combinações seráo excluídos. Deseja continuar?</value>
   </data>
@@ -187,10 +190,10 @@
     <value>Quantidade de bônus inválida para essa loteria.</value>
   </data>
   <data name="cr_InvalidNumbersLenght" xml:space="preserve">
-    <value>Quantidade de numbers inválida para essa loteria</value>
+    <value>Quantidade de numeros inválida para essa loteria</value>
   </data>
   <data name="cr_MissingParametersError" xml:space="preserve">
-    <value>Nenhuma number informada</value>
+    <value>Nenhum numero informado</value>
   </data>
   <data name="cr_Ok" xml:space="preserve">
     <value>Ok</value>
@@ -244,7 +247,7 @@
     <value>Limitar combinações</value>
   </data>
   <data name="LimitNumbers" xml:space="preserve">
-    <value>Limitar numbers </value>
+    <value>Limitar numeros</value>
   </data>
   <data name="Load" xml:space="preserve">
     <value>Carregar</value>

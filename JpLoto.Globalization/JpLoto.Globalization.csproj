@@ -16,6 +16,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AuthResource.resx</DependentUpon>
     </Compile>
+    <Compile Update="Resources\ButtonResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ButtonResource.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\CultureResource.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -70,8 +75,15 @@
     <EmbeddedResource Update="Resources\ButtonResource.en-US.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ButtonResource.es-ES.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\ButtonResource.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\ButtonResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ButtonResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\CultureResource.en-US.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -100,6 +112,9 @@
       <LastGenOutput>FeedResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\LotoResource.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\LotoResource.es-ES.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\LotoResource.pt-BR.resx">

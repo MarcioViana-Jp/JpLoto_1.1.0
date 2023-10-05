@@ -120,6 +120,9 @@
   <data name="AddUser" xml:space="preserve">
     <value>ユーザーを追加</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
   <data name="ClearAll" xml:space="preserve">
     <value>すべてをクリア</value>
   </data>
@@ -128,6 +131,9 @@
   </data>
   <data name="Delete" xml:space="preserve">
     <value>削除</value>
+  </data>
+  <data name="DeleteAll" xml:space="preserve">
+    <value>すべて削除</value>
   </data>
   <data name="DeleteUser" xml:space="preserve">
     <value>ユザー削除</value>

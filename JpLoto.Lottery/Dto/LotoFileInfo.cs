@@ -9,7 +9,8 @@ public class LotoFileInfo
     public string Nome { get => _tipos[_tipo]; }
     public string Extensao { get => _extensao[_tipo]; }
     public string Descricao { get => _descricao[_tipo]; }
-    public string SugestaoDeNome { get => "Card" + Extensao; }
+    public string NomeSugerido { get => "Card_001"; }
+    public string NomeSugeridoComExtensao { get => "Card" + Extensao; }
 
     public LotoFileInfo(int tipo)
     {

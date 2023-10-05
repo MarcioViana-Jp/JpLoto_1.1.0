@@ -188,6 +188,7 @@ a, .btn-link {
 /* Background Colors */
 .bg-blue      { background-color: #0060e5 !important; }
 .bg-lightblue { background-color: #4d9dee !important; }
+.bg-paleblue  { background-color: #def1f8 !important; }
 .bg-red       { background-color: red !important; }
 .bg-darkred   { background-color: darkred !important; }
 .bg-orange    { background-color: orange !important; }
@@ -198,6 +199,7 @@ a, .btn-link {
 .bg-gray      { background-color: gray !important; }
 .bg-dimgray   { background-color: dimgray !important; }
 .bg-lightgray { background-color: lightgray !important; }
+.bg-paleyellow{ background-color: #fffff9 !important; }
 
 /* Border Colors */
 .bc-blue       { border-color: #0060e5 !important; }

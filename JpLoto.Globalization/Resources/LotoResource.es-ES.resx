@@ -168,6 +168,9 @@
   <data name="ConfigurePrinting" xml:space="preserve">
     <value>Configurar impresión</value>
   </data>
+  <data name="ConfirmationRequired" xml:space="preserve">
+    <value>Confirmación requerida</value>
+  </data>
   <data name="ConfirmClearAll" xml:space="preserve">
     <value>Se eliminarán todas las selecciones, filtros y combinaciones. ¿Quieres continuar?</value>
   </data>

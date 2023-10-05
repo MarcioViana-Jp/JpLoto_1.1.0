@@ -39,7 +39,7 @@ namespace JpLoto.Globalization.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JpLoto.Shared.Resources.ButtonResource", typeof(ButtonResource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JpLoto.Globalization.Resources.ButtonResource", typeof(ButtonResource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -70,6 +70,15 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to キャンセル.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to すべてをクリア.
         /// </summary>
         public static string ClearAll {
@@ -93,6 +102,15 @@ namespace JpLoto.Globalization.Resources {
         public static string Delete {
             get {
                 return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to すべて削除.
+        /// </summary>
+        public static string DeleteAll {
+            get {
+                return ResourceManager.GetString("DeleteAll", resourceCulture);
             }
         }
         

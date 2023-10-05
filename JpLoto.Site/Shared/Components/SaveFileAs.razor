@@ -1,0 +1,111 @@
+﻿<script>
+.label {
+    width: 15rem;
+    height: 2.5rem;
+    border: 2px dashed;
+    border-radius: 5px;
+    display: block;
+    padding: 0.5em;
+    transition: border 300ms ease;
+    cursor: pointer;
+    text-align: center;
+}
+i{
+    display: block;
+    font-size: 42px;
+    padding-bottom: 16px;
+}
+
+.title {
+    transition: 200ms color;
+}
+
+.label:hover {
+    border: 2px solid;
+}
+</script>
+
+<div class="modal fade show border-radius-lg" tabindex="-1"
+     id="messageBoxModal" style="display:block;">
+    <div class="modal-dialog">
+        <div class="modal-content bg-paleyellow shadow-card">
+            @if (!string.IsNullOrEmpty(Title))
+            {
+                <div class="modal-header border-0 bg-gradient-faded-dark text-center">
+                    <h6 class="modal-title text-center text-white text-sm font-weight-bold">@Title</h6>
+                    <button type="button" class="btn-close text-sm" data-bs-dismiss="modal" @onclick="@ModalCancel" aria-label="Close"></button>
+                </div>
+            }
+            <div class="modal-body">
+                <p class="text-xs">Inform the file name or select an existing file to update:</p>
+                <label for="filePicker" class="label">
+                    <i class="fa fa-file-text-o"></i>
+                    <InputText class="text-xs bg-white w-auto ms-2 me-2 p-2" @bind-Value="fileName"></InputText>
+                    <span class="text-xs">@FileExtension</span>
+                    <InputFile id="filePicker" class="invisible" OnChange="async (e) => await LoadFile(e)"></InputFile>
+                </label>
+                <p class="text-xs text-dimgray">Note: files can be saved in 'Download' directory only.</p>
+                @if(!string.IsNullOrEmpty(errorMessage))
+                {
+                    <p class="text-xs text-danger">@errorMessage</p>
+                }
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-outline-dark text-xs" @onclick="@ModalCancel" data-bs-dismiss="modal">@ButtonCancelText</button>
+                <button type="button" class="btn btn-info text-xs" @onclick="@ModalOk">@ButtonOpenText</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int Action { get; set; }
+    [Parameter]
+    public string? Title { get; set; }
+    [Parameter]
+    public string? SuggestedFileName { get; set; }
+    [Parameter]
+    public string? FileDescription { get; set; }
+    [Parameter]
+    public string? FileExtension { get; set; }
+    [Parameter]
+    public string? ButtonOpenText { get; set; }
+    [Parameter]
+    public string? ButtonCancelText { get; set; }
+    [Parameter]
+    public EventCallback<bool> OnClose { get; set; }
+
+    private string errorMessage { get; set; } = string.Empty;
+    private string fileName { get; set; } = string.Empty;
+
+    protected override void OnInitialized()
+    {
+        fileName = SuggestedFileName ?? string.Empty;
+    }
+
+    private async Task ModalCancel()
+    {
+        await OnClose.InvokeAsync(false);
+    }
+
+    private async Task ModalOk()
+    {
+        await OnClose.InvokeAsync(true);
+    }
+
+    private async Task LoadFile(InputFileChangeEventArgs e)
+    {
+        errorMessage = string.Empty;
+        if (e.File.Name.Contains(FileExtension))
+        {
+            fileName = e.File.Name;
+            fileName = fileName.Replace(FileExtension, "");
+        }
+        else
+        {
+            errorMessage = "Tipo de arquivo invalido.";
+        }
+    }
+
+}

@@ -288,6 +288,17 @@
 
 </div>
 
+@if (OpenMessageBox)
+{
+    <MessageBox Title="@messageBox.Title"
+                BodyText="@messageBox.BodyText"
+                ButtonAcceptText=@messageBox.ButtonAcceptText
+                ButtonCancelText=@messageBox.ButtonCancelText
+                Action=@messageBox.Action
+                OnClose="@OnCloseMessageBox">
+    </MessageBox>
+}
+
 @code {
     private Loto7 loto { get; set; } = new Loto7();
     private string mensagemTituloCombinacao
@@ -298,6 +309,9 @@
     {
         get => $"{Lixeira.Count} {lotoLocalizer["Combinations"]}";
     }
+
+    private MessageBoxOptions? messageBox { get; set; }
+    private bool OpenMessageBox { get; set; } = false;
 
     private const int linhasPorPagina = 20;
     private int paginaAtual = 1;
@@ -375,6 +389,33 @@
         }
     }
 
+    private void OnCloseMessageBox(bool accepted)
+    {
+        OpenMessageBox = false;
+        messageBox.Accepted = accepted;
+        StateHasChanged();
+        if (accepted)
+        {
+            switch (messageBox.Action)
+            {
+                case MessageBoxAction.Delete:
+                    Combinacoes.Remove((Card)messageBox.Object);
+                    ObtemPaginacao(paginaAtual, linhasPorPagina);
+                    break;
+
+                case MessageBoxAction.DeleteAll:
+                    Lixeira.Remove((Card)messageBox.Object);
+                    ObtemPaginacaoLixeira(paginaAtualLixeira, linhasPorPagina);
+                    break;
+
+                case MessageBoxAction.ClearAll:
+                    loto.ReleaseAll();
+                    ClearCombinations();
+                    break;
+            }
+        }
+    }
+
     private string GetBtnNumberClass(int index)
     {
         return btnNumberClasses[loto.Numbers[index]];
@@ -411,35 +452,42 @@
         ObtemPaginacaoLixeira(paginaAtualLixeira, linhasPorPagina);
     }
 
-    private async Task DeletaCombinacao(Card card)
+    private void DeletaCombinacao(Card card)
     {
-        var js = (IJSInProcessRuntime)jsRuntime;
-        var confirm = await js.InvokeAsync<bool>("Confirm", $"{@lotoLocalizer["ConfirmDelete"]} #{card.Id:000000}?");
-        if (confirm)
-        {
-            Combinacoes.Remove(card);
-            ObtemPaginacao(paginaAtual, linhasPorPagina);
-        }
+        messageBox = new();
+        messageBox.Action = MessageBoxAction.DeleteCombination;
+        messageBox.Object = card;
+        messageBox.Title = @lotoLocalizer["ConfirmationRequired"];
+        messageBox.BodyText = $"{@lotoLocalizer["ConfirmDelete"]} #{card.Id:000000}?";
+        messageBox.ButtonAcceptText = @buttonLocalizer["Delete"];
+        messageBox.ButtonCancelText = @buttonLocalizer["Cancel"];
+        OpenMessageBox = true;
+        StateHasChanged();
     }
 
-    private async Task DeletaCombinacaoReciclada(Card card)
+    private void DeletaCombinacaoReciclada(Card card)
     {
-        var js = (IJSInProcessRuntime)jsRuntime;
-        if (await js.InvokeAsync<bool>("Confirm", $"{@lotoLocalizer["ConfirmDelete"]} #{card.Id:000000}?"))
-        {
-            Lixeira.Remove(card);
-            ObtemPaginacaoLixeira(paginaAtualLixeira, linhasPorPagina);
-        }
+        messageBox = new();
+        messageBox.Action = MessageBoxAction.DeleteRecycledCombination;
+        messageBox.Object = card;
+        messageBox.Title = @lotoLocalizer["ConfirmationRequired"];
+        messageBox.BodyText = $"{@lotoLocalizer["ConfirmDelete"]} #{card.Id:000000}?";
+        messageBox.ButtonAcceptText = @buttonLocalizer["Delete"];
+        messageBox.ButtonCancelText = @buttonLocalizer["Cancel"];
+        OpenMessageBox = true;
+        StateHasChanged();
     }
 
-    private async Task ClearAll()
+    private void ClearAll()
     {
-        var js = (IJSInProcessRuntime)jsRuntime;
-        if (await js.InvokeAsync<bool>("Confirm", $"{@lotoLocalizer["ConfirmClearAll"]}?"))
-        {
-            loto.ReleaseAll();
-            ClearCombinations();
-        }
+        messageBox = new();
+        messageBox.Action = MessageBoxAction.ClearAll;
+        messageBox.Title = @lotoLocalizer["ConfirmationRequired"];
+        messageBox.BodyText = $"{@lotoLocalizer["ConfirmClearAll"]}?";
+        messageBox.ButtonAcceptText = @buttonLocalizer["ClearAll"];
+        messageBox.ButtonCancelText = @buttonLocalizer["Cancel"];
+        OpenMessageBox = true;
+        StateHasChanged();
     }
 
     private void CreateCombinations()
@@ -586,7 +634,7 @@
     {
         if (loto.SelectedNumbers.Length < 1 && loto.FixedNumbers.Length < 1)
             return;
-        var file = await jsRuntime.InvokeAsync<string>("saveFileAs", loto.LotoFileInfo.SugestaoDeNome, loto.LotoFileInfo.Descricao, loto.LotoFileInfo.Extensao);
+        var file = await jsRuntime.InvokeAsync<string>("saveFileAs", loto.LotoFileInfo.NomeSugerido, loto.LotoFileInfo.Descricao, loto.LotoFileInfo.Extensao);
         if (!string.IsNullOrEmpty(file))
         {
             LotoFile lotoFile = new()

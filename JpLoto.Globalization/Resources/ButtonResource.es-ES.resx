@@ -120,8 +120,17 @@
   <data name="AddUser" xml:space="preserve">
     <value>Nuevo usuario</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="ClearAll" xml:space="preserve">
+    <value>Limpiar todo</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>Borrar</value>
+  </data>
+  <data name="DeleteAll" xml:space="preserve">
+    <value>Borrar todos</value>
   </data>
   <data name="DeleteUser" xml:space="preserve">
     <value>Borrar usuario</value>

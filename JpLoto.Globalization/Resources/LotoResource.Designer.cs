@@ -214,6 +214,15 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 要確認.
+        /// </summary>
+        public static string ConfirmationRequired {
+            get {
+                return ResourceManager.GetString("ConfirmationRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to すべての選択、フィルター、組み合わせが削除されます。 続行しますか?.
         /// </summary>
         public static string ConfirmClearAll {
