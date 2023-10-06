@@ -8,7 +8,7 @@ public abstract class LotoBase
 {
     public int MaxNumber { get; set; } = 0;
     public int NumbersPerCard { get; set; } = 0;
-    public int TipoLoto { get; set; } = -1;
+    public int Loto_Type { get; set; } = -1;
     public int[] Numbers { get; set; } = Array.Empty<int>();
     public List<LotoNumber> ButtonNumbers { get; set; } = new();
     public void SetAsFree(int index) => SetStatus(index, Status.Free);
@@ -40,64 +40,65 @@ public abstract class LotoBase
     {
         NumbersPerCard = numbersPerCard;
         MaxNumber = maxNumber;
-        TipoLoto = LotoType.GetType(numbersPerCard);
+        Loto_Type = LotoType.GetType(numbersPerCard);
         Initialize();
     }
 
     public LotoBase(int lotoType)
     {
-        TipoLoto = lotoType;
+        Loto_Type = lotoType;
         NumbersPerCard = _numbersPerCard[lotoType];
         MaxNumber = _maxNumber[lotoType];
         Initialize();
     }
 
-    public void SelectNumbers(object numbers)
+    public void Initialize()
     {
-        int[] _numbers;;
-        if (numbers.GetType().IsArray)
+        Numbers = new int[MaxNumber];
+        ButtonNumbers = new();
+        for (int i = 0; i < MaxNumber; i++)
         {
-            _numbers = (int[])numbers;
+            Numbers[i] = Status.Free;
+            ButtonNumbers.Add(new LotoNumber
+            {
+                Indice = i,
+                Status = Status.Free,
+                DynamicUrl = false
+            });
         }
-        else
-        {
-            string _numbersTxt;
-            try { 
-                _numbersTxt = (string)numbers;
-                _numbers = TextToArray(_numbersTxt);
-            }
-            catch {
-                _numbers = new int[0];
-            }
-        }
-
-        for (int i = 0; i < _numbers.Length; i++)
-        {
-            SetAsSelected(_numbers[i]);
-        }
+        LotoFileInfo = new LotoFileInfo(Loto_Type);
     }
-    public void FixNumbers(object numbers)
+
+    /*
+     * NormatizeIndex always returns a normatized array of index (for Loto numbers)
+     */
+    private int[] NormatizedIndex(object numbers, int lotoType = LotoType.Undefined)
     {
         int[] _numbers;
         if (numbers.GetType().IsArray)
-        {
             _numbers = (int[])numbers;
-        }
         else
         {
-            string _numbersTxt;
-            try { 
-                _numbersTxt = (string)numbers;
-                _numbers = TextToArray(_numbersTxt);
-            }
-            catch { 
-                _numbers = new int[0]; 
-            }
+            try
+                { _numbers = TextToArray((string)numbers, lotoType); }
+            catch (Exception ex)  
+                { _numbers = new int[0]; }
         }
+        return _numbers;
+    }
+
+    public void SelectNumbers(object numbers, int lotoType = LotoType.Undefined)
+    {
+        int[] _numbers = NormatizedIndex(numbers, lotoType);
         for (int i = 0; i < _numbers.Length; i++)
-        {
+            SetAsSelected(_numbers[i]);
+    }
+
+    public void FixNumbers(object numbers, int lotoType = LotoType.Undefined)
+    {
+        int[] _numbers = NormatizedIndex(numbers, lotoType);
+        for (int i = 0; i < _numbers.Length; i++)
             SetAsFixed(_numbers[i]);
-        }
     }
 
     public void SetAsSelected(int index)
@@ -162,23 +163,6 @@ public abstract class LotoBase
         }
     }
 
-    public void Initialize()
-    {
-        Numbers = new int[MaxNumber];
-        ButtonNumbers = new();
-        for (int i = 0; i < MaxNumber; i++)
-        {
-            Numbers[i] = Status.Free;
-            ButtonNumbers.Add(new LotoNumber
-            {
-                Indice = i,
-                Status = Status.Free,
-                DynamicUrl = false
-            });
-        }
-        LotoFileInfo = new LotoFileInfo(TipoLoto);
-    }
-
     public void SetStatus(int index, int status)
     {
         Numbers[index] = status;
@@ -193,7 +177,7 @@ public abstract class LotoBase
 
     private static long Factorial(int num, int baseFactorial)
     {
-        if (num <= 0) num *= -1;  // Evita números negativos
+        if (num <= 0) num *= -1;  // Prevent negative numbers
         long fatorial = num;
         int numBase;
         for (int i = 1; i < baseFactorial; i++)
@@ -208,7 +192,7 @@ public abstract class LotoBase
     {
         try
         {
-            if (num <= 0) num *= -1;  // Evita números negativos
+            if (num <= 0) num *= -1;  // Prevent negative numbers
 
             if (num == 1)
             {
@@ -290,18 +274,24 @@ public abstract class LotoBase
         }
     }
 
-    public static int[] TextToArray(string cardTxt, bool isBonus = false, string separador = ",")
+    /*
+     * TextToArray always returns the index, not the actual number.
+     */
+    public static int[] TextToArray(string text, int lotoType, bool isBonus = false, string separador = ",")
     {
-        if (string.IsNullOrEmpty(cardTxt))
+        if (string.IsNullOrEmpty(text))
             return new int[0];
 
-        string[] cardsTxt = cardTxt.Split(separador);
-        int lotoType = LotoType.GetType(cardsTxt.Length);
-        int maxNumber = LotoType.MaxNumber(lotoType);
+        string[] cardsTxt = text.Split(separador);
+        int maxNumber = 0; 
 
-        if ( (!isBonus && cardsTxt.Length != LotoType.NumbersPerCard(lotoType)) ||
-             (isBonus && cardsTxt.Length  != LotoType.QuantityOfBonus(lotoType)) )
-            return new int[0];
+        if(lotoType != LotoType.Undefined)
+        {
+            maxNumber = LotoType.MaxNumber(lotoType);
+            if ((!isBonus && cardsTxt.Length != LotoType.NumbersPerCard(lotoType)) ||
+                 (isBonus && cardsTxt.Length != LotoType.QuantityOfBonus(lotoType)))
+                return new int[0];
+        }
 
         List<int> cardNumbers = new();
         int number;
@@ -309,42 +299,41 @@ public abstract class LotoBase
         bool hasOutOfRangeNumber = false;
         for (int i = 0; i < cardsTxt.Length; i++)
         {
-            //number = Convert.ToInt32(cardsTxt[i]);
             if (int.TryParse(cardsTxt[i], out number))
-            {
-                if (number > 0 && number <= maxNumber)
+            {            
+                if(lotoType == LotoType.Undefined || (number > 0 && number <= maxNumber))
                 {
-                    //cardsNum = cardsNum.Concat(new int[] { number }).ToArray();
-                    cardNumbers.Add(number);
+                    cardNumbers.Add(number - 1);
                 }
                 else
                 {
                     hasOutOfRangeNumber = true;
                 }
             }
-
         }
         if (hasOutOfRangeNumber)
             return new int[0];
 
         cardNumbers.Sort();
-        return cardNumbers.ToArray();    
+        return cardNumbers.ToArray();
     }
     
+    /*
+     * ArrayToText always returns the actual number, not the index.
+     */
     public static string ArrayToText(int[] cards, int lotoType, string separador = ",")
     {
         if (cards.Length == 0)
             return string.Empty;
 
-        int maxNumber = LotoType.MaxNumber(lotoType);
-
         string _separador = string.Empty;
         string cardsTxt = string.Empty;
         for (int i = 0; i < cards.Length; i++)
         {
-            if (cards[i] > 0 && cards[i] <= maxNumber)
+            if(lotoType == LotoType.Undefined ||
+              (cards[i] >= 0 && cards[i] < LotoType.MaxNumber(lotoType)))            
             {
-                cardsTxt += _separador + cards[i].ToString("00");
+                cardsTxt += _separador + (cards[i] + 1).ToString("00");
                 _separador = separador;
             }
         }

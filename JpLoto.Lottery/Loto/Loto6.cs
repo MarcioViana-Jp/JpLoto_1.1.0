@@ -36,9 +36,7 @@ public class Loto6 : LotoBase
         for(int i = 0; i < FixedNumbers.Length; i++)
             _fixedNumbers[i] = FixedNumbers[i] + 1;
         
-        int[] _selectedNumbers = new int[SelectedNumbers.Length];
-        for (int i = 0; i < SelectedNumbers.Length; i++)
-            _selectedNumbers[i] = SelectedNumbers[i] + 1;
+        int[] _selectedNumbers = SelectedNumbers;
 
         // Ordena arrays das numbers selecionadas e fixas
         Array.Sort(_selectedNumbers);
@@ -265,15 +263,15 @@ public class Loto6 : LotoBase
         if (Combinations is null || Combinations.Count == 0)
             return response;
 
-        var drawnNumbers = TextToArray(result.Numbers);
-        var drawnBonus = TextToArray(result.Bonus, true);
+        var drawnNumbers = TextToArray(result.Numbers, LotoType.Loto6);
+        var drawnBonus = TextToArray(result.Bonus, LotoType.Loto6, true);
         int commonNumbers, commonBonus;
         try
         {
             foreach (var card in Combinations)
             {
-                commonNumbers = CommonNumbers(card.Numbers, drawnNumbers);
-                commonBonus = CommonNumbers(card.Numbers, drawnBonus);
+                commonNumbers = CommonNumbers(card.Numbers(LotoType.Loto6), drawnNumbers);
+                commonBonus = CommonNumbers(card.Numbers(LotoType.Loto6), drawnBonus);
                 if (commonNumbers == 6)
                 {
                     prizes.WinningCards1.Insert(prizes.WinningCards1.Count, new Loto6Prize.Prize

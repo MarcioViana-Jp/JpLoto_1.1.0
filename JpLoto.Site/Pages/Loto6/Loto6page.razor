@@ -445,12 +445,12 @@
         if (fileResponse.Selected && !string.IsNullOrEmpty(fileResponse.FileName))
         {
             LotoFile lotoFile = new()
-                {
-                    LotoType = loto.LotoFileInfo.Nome,
-                    SelectedNumbers = LotoBase.ArrayToText(loto.SelectedNumbers, LotoType.Loto6),
-                    FixedNumbers = LotoBase.ArrayToText(loto.FixedNumbers, LotoType.Loto6),
-                    Combinations = Combinacoes
-                };
+            {
+                LotoType = loto.LotoFileInfo.Nome,
+                SelectedNumbers = LotoBase.ArrayToText(loto.SelectedNumbers, LotoType.Undefined),
+                FixedNumbers = LotoBase.ArrayToText(loto.FixedNumbers, LotoType.Undefined),
+                Combinations = Combinacoes
+            };
             await fileService.SaveFileAsync(lotoFile, fileResponse.FileName);
         }
     }
@@ -468,7 +468,7 @@
             loto.SelectNumbers(lotoFile.SelectedNumbers);
             loto.FixNumbers(lotoFile.FixedNumbers);
             loto.Combinations = lotoFile.Combinations;
-            LoadCombinations(loto.Combinations);
+            CarregaCombinacoes(loto.Combinations);
         }
     }
 
@@ -556,10 +556,10 @@
     private void CriaCombinacoes()
     {
         var response = loto.CreateCombinations((int)quantidadeDeCombinacoes, mantemCombinacoesAnteriores, geraCombinacoesAleatorias);
-        LoadCombinations(response.Combinations);
+        CarregaCombinacoes(response.Combinations);
     }
 
-    private void LoadCombinations(List<Card> combinacoes)
+    private void CarregaCombinacoes(List<Card> combinacoes)
     {
         Combinacoes = combinacoes;
         PaginaInicial();

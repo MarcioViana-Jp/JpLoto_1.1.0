@@ -7,6 +7,7 @@ public static class LotoType
     private static int[] _quantidadeDeBonus = { 1, 1, 2 };
     private static int[] _maxNumber = { 31, 43, 37 };
 
+    public const int Undefined = -1;
     public const int MiniLoto = 0;
     public const int Loto6 = 1;
     public const int Loto7 = 2;

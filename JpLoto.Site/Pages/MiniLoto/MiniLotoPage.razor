@@ -129,8 +129,8 @@
                 <div class="options-zone justify-content-center mt-2">
                     <button class="btn btn-primary"
                             disabled="@(loto.QuantityOfSelectedNumbers < variableNumbers || loto.QuantityOfSelectedNumbers < loto.NumbersPerCard)"
-                    @onclick="CriaCombinacoes">
-                        @buttonLocalizer["GenerateCombinations"]
+                            @onclick="CriaCombinacoes">
+                            @buttonLocalizer["GenerateCombinations"]
                     </button>
                 </div>
                 <div class="options-zone">
@@ -451,12 +451,12 @@
         if (fileResponse.Selected && !string.IsNullOrEmpty(fileResponse.FileName))
         {
             LotoFile lotoFile = new()
-                {
-                    LotoType = loto.LotoFileInfo.Nome,
-                    SelectedNumbers = LotoBase.ArrayToText(loto.SelectedNumbers, LotoType.MiniLoto),
-                    FixedNumbers = LotoBase.ArrayToText(loto.FixedNumbers, LotoType.MiniLoto),
-                    Combinations = Combinacoes
-                };
+            {
+                LotoType = loto.LotoFileInfo.Nome,
+                SelectedNumbers = LotoBase.ArrayToText(loto.SelectedNumbers, LotoType.Undefined),
+                FixedNumbers = LotoBase.ArrayToText(loto.FixedNumbers, LotoType.Undefined),
+                Combinations = Combinacoes
+            };
             await fileService.SaveFileAsync(lotoFile, fileResponse.FileName);
         }
     }
@@ -474,7 +474,7 @@
             loto.SelectNumbers(lotoFile.SelectedNumbers);
             loto.FixNumbers(lotoFile.FixedNumbers);
             loto.Combinations = lotoFile.Combinations;
-            LoadCombinations(loto.Combinations);
+            CarregaCombinacoes(loto.Combinations);
         }
     }
 
@@ -562,10 +562,10 @@
     private void CriaCombinacoes()
     {
         var response = loto.CreateCombinations((int)quantidadeDeCombinacoes, mantemCombinacoesAnteriores, geraCombinacoesAleatorias);
-        LoadCombinations(response.Combinations);
+        CarregaCombinacoes(response.Combinations);
     }
 
-    private void LoadCombinations(List<Card> combinacoes)
+    private void CarregaCombinacoes(List<Card> combinacoes)
     {
         Combinacoes = combinacoes;
         PaginaInicial();
@@ -670,14 +670,14 @@
         paginaAtualLixeira = pagina;
     }
 
-    private void NumberPressed(LotoNumber number)
-    {
-        numberPressionada = DateTime.Now;
-    }
-
     private void RefreshSelectedNumbers(int dezVar)
     {
         loto.RefreshSelectedNumbers(dezVar);
+    }
+
+    private void NumberPressed(LotoNumber number)
+    {
+        numberPressionada = DateTime.Now;
     }
 
     private void NumberReleased(LotoNumber number)

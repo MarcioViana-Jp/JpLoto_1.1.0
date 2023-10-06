@@ -248,7 +248,6 @@
                 <div @onclick="PaginaInicialLixeira" data-bs-toggle="tooltip" data-bs-placement="top" title="@lotoLocalizer["PageFirst"]">
                     <i class="fas fa-angle-double-left btn-page text-white"></i>
                 </div>
-                @* <label class="label-page text-white">@lotoLocalizer["Page"] @paginacaoStatusLixeira</label> *@
                 <label class="label-page text-white font-9 mt-2">P:@paginacaoStatusLixeira</label>
                 <div @onclick="PaginaFinalLixeira" data-bs-toggle="tooltip" data-bs-placement="top" title="@lotoLocalizer["PageLast"]">
                     <i class="fas fa-angle-double-right btn-page text-white"></i>
@@ -453,12 +452,12 @@
         if (fileResponse.Selected && !string.IsNullOrEmpty(fileResponse.FileName))
         {
             LotoFile lotoFile = new()
-                {
-                    LotoType = loto.LotoFileInfo.Nome,
-                    SelectedNumbers = LotoBase.ArrayToText(loto.SelectedNumbers, LotoType.Loto7),
-                    FixedNumbers = LotoBase.ArrayToText(loto.FixedNumbers, LotoType.Loto7),
-                    Combinations = Combinacoes
-                };
+            {
+                LotoType = loto.LotoFileInfo.Nome,
+                SelectedNumbers = LotoBase.ArrayToText(loto.SelectedNumbers, LotoType.Undefined),
+                FixedNumbers = LotoBase.ArrayToText(loto.FixedNumbers, LotoType.Undefined),
+                Combinations = Combinacoes
+            };
             await fileService.SaveFileAsync(lotoFile, fileResponse.FileName);
         }
     }
@@ -476,7 +475,7 @@
             loto.SelectNumbers(lotoFile.SelectedNumbers);
             loto.FixNumbers(lotoFile.FixedNumbers);
             loto.Combinations = lotoFile.Combinations;
-            LoadCombinations(loto.Combinations);
+            CarregaCombinacoes(loto.Combinations);
         }
     }
 
@@ -564,10 +563,10 @@
     private void CriaCombinacoes()
     {
         var response = loto.CreateCombinations((int)quantidadeDeCombinacoes, mantemCombinacoesAnteriores, geraCombinacoesAleatorias);
-        LoadCombinations(response.Combinations);
+        CarregaCombinacoes(response.Combinations);
     }
 
-    private void LoadCombinations(List<Card> combinacoes)
+    private void CarregaCombinacoes(List<Card> combinacoes)
     {
         Combinacoes = combinacoes;
         PaginaInicial();
