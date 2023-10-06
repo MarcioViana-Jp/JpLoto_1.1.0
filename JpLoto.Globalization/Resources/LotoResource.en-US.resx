@@ -348,6 +348,15 @@
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="SaveLoto6" xml:space="preserve">
+    <value>Save Loto Six</value>
+  </data>
+  <data name="SaveLoto7" xml:space="preserve">
+    <value>Save Loto Seven</value>
+  </data>
+  <data name="SaveMiniLoto" xml:space="preserve">
+    <value>Save Mini Loto</value>
+  </data>
   <data name="SelectDiretory" xml:space="preserve">
     <value>Save to</value>
   </data>

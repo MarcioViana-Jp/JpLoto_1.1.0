@@ -754,6 +754,33 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ロト6を保存する.
+        /// </summary>
+        public static string SaveLoto6 {
+            get {
+                return ResourceManager.GetString("SaveLoto6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ロト7を保存する.
+        /// </summary>
+        public static string SaveLoto7 {
+            get {
+                return ResourceManager.GetString("SaveLoto7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ミニロトを保存.
+        /// </summary>
+        public static string SaveMiniLoto {
+            get {
+                return ResourceManager.GetString("SaveMiniLoto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to フォルダーを選択.
         /// </summary>
         public static string SelectDiretory {

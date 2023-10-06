@@ -156,6 +156,9 @@
   <data name="OK" xml:space="preserve">
     <value>Ok</value>
   </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
   <data name="SaveChanges" xml:space="preserve">
     <value>Save changes</value>
   </data>

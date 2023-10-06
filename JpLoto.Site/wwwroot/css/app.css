@@ -655,6 +655,11 @@ input[type=checkbox] {
     .card-loto {
         margin-top: 1rem!important;
     }
+    .modal {
+        max-width: 75%;
+        margin-left: 10% !important;
+        margin-top: 20% !important;
+    }
 }
 
 @media (min-width: 577px) {
@@ -669,6 +674,11 @@ input[type=checkbox] {
     }
     .card-loto {
         margin-top: 0rem!important;
+    }
+    .modal {
+        max-width: 50% !important;
+        margin-left: 25% !important;
+        margin-top: 10% !important;
     }
 }
 

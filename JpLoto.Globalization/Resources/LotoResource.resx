@@ -348,6 +348,15 @@
   <data name="Save" xml:space="preserve">
     <value>保存</value>
   </data>
+  <data name="SaveLoto6" xml:space="preserve">
+    <value>ロト6を保存する</value>
+  </data>
+  <data name="SaveLoto7" xml:space="preserve">
+    <value>ロト7を保存する</value>
+  </data>
+  <data name="SaveMiniLoto" xml:space="preserve">
+    <value>ミニロトを保存</value>
+  </data>
   <data name="SelectDiretory" xml:space="preserve">
     <value>フォルダーを選択</value>
   </data>

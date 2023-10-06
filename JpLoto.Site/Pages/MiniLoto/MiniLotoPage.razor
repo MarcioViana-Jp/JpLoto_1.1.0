@@ -11,7 +11,7 @@
 
 <PageTitle>MiniLoto</PageTitle>
 
-<div class="container ctn-loto">    
+<div class="container ctn-loto">
     <div class="ctn-loto-title bg-info">
         <h2 class="text-md text-white bold mt-2 me-auto">@lotoLocalizer["TITLE_MINILOTO"] - @lotoLocalizer["TITLE_SELECTNUMBERS"]</h2>
         <ButtonClose_Circle />
@@ -30,7 +30,7 @@
             </div>
             <div class="options">
                 <div class="options-zone">
-                    <div class="buttoncard @disabledClass(!limitaNumbersVariaveis || loto.QuantityOfSelectedNumbers == variableNumbers)" @onclick="CreateSuggestions">
+                    <div class="buttoncard @disabledClass(!limitaNumbersVariaveis || loto.QuantityOfSelectedNumbers == variableNumbers)" @onclick="CriaSugestoes">
                         <div class="action-icon">
                             <i class="fas fa-magic text-blue"></i>
                         </div>
@@ -38,12 +38,12 @@
                             @lotoLocalizer["Suggestions"]
                         </div>
                     </div>
-                    <div class="buttoncard @disabledClass(loto.QuantityOfSuggestedNumbers < 1)" @onclick="ApplySuggestions">
+                    <div class="buttoncard @disabledClass(loto.QuantityOfSuggestedNumbers < 1)" @onclick="AplicaSugestoes">
                         <div class="action-icon">
                             <i class="fas fa-hand-sparkles text-blue"></i>
                         </div>
                         <div class="buttoncard-text font-10">
-                            @lotoLocalizer["ApplySuggestions"]
+                            @lotoLocalizer["AplicaSugestoes"]
                         </div>
                     </div>
                     <div class="buttoncard @disabledClass(loto.QuantityOfSuggestedNumbers < 1)" @onclick="LimpaSugestoes">
@@ -58,7 +58,7 @@
                     <div class="buttoncard @disabledClass(loto.QuantityOfSelectedNumbers < 1 &&
                                                           loto.QuantityOfFixedNumbers < 1 &&
                                                           loto.QuantityOfBlockedNumbers < 1)"
-                    @onclick="ClearAll">
+                    @onclick="LimpaTudo">
                         <div class="action-icon">
                             <i class="fas fa-times text-red"></i>
                             @* <span class="badge"><i class="fas fa-times text-red"></i></span> *@
@@ -74,7 +74,7 @@
                         <div class="buttoncard-text font-10">
                             @lotoLocalizer["Load"]
                         </div>
-                        <InputFile id="inputFileOpen" hidden OnChange="LoadCombinationsFromFile" />
+                        <InputFile id="inputFileOpen" hidden OnChange="CarregaDoArquivo" />
                     </div>
                 </div>
                 <div class="options-zone">
@@ -87,7 +87,7 @@
                         <div class="minicard-body bc-lightgreen bg-palegreen text-green font-8">
                             <label class="font-10 text-darkgreen">@lotoLocalizer["Maximum"]</label>
                             <input type="number" disabled="@(!limitaNumbersVariaveis)"
-                                   @bind-value="variableNumbers" min="@(loto.NumbersPerCard - loto.QuantityOfFixedNumbers + 1)"
+                            @bind-value="variableNumbers" min="@(loto.NumbersPerCard - loto.QuantityOfFixedNumbers + 1)"
                                    class="form-control p-0 font-10" id="variableNumbers">
                         </div>
                     </div>
@@ -130,8 +130,8 @@
                 <div class="options-zone justify-content-center mt-2">
                     <button class="btn btn-primary"
                             disabled="@(loto.QuantityOfSelectedNumbers < variableNumbers || loto.QuantityOfSelectedNumbers < loto.NumbersPerCard)"
-                            @onclick="CreateCombinations">
-                            @buttonLocalizer["GenerateCombinations"]
+                    @onclick="CreateCombinations">
+                        @buttonLocalizer["GenerateCombinations"]
                     </button>
                 </div>
                 <div class="options-zone">
@@ -143,7 +143,7 @@
                             @lotoLocalizer["Filters"]
                         </div>
                     </div>
-                    <div class="buttoncard @disabledClass(loto.SelectedNumbers.Length < 1 && loto.FixedNumbers.Length < 1)" @onclick="SaveCombinations">
+                    <div class="buttoncard @disabledClass(loto.SelectedNumbers.Length < 1 && loto.FixedNumbers.Length < 1)" @onclick="SalvaCombinacoes">
                         <div class="action-icon">
                             <i class="fas fa-save text-blue"></i>
                         </div>
@@ -151,7 +151,7 @@
                             @lotoLocalizer["Save"]
                         </div>
                     </div>
-                    <div class="buttoncard @disabledClass(Combinacoes.Count < 1)" @onclick="ClearAll">
+                    <div class="buttoncard @disabledClass(Combinacoes.Count < 1)" @onclick="LimpaTudo">
                         <div class="action-icon">
                             <i class="fas fa-print text-blue"></i>
                             <span class="badge position-absolute bottom-0 start-100 translate-middle">
@@ -288,28 +288,31 @@
     </div>
 </div>
 
-@if(OpenMessageBox)
+@if (OpenMessageBox)
 {
     <MessageBox Title=@messageBox.Title
                 BodyText=@messageBox.BodyText
                 ButtonAcceptText=@messageBox.ButtonAcceptText
                 ButtonCancelText=@messageBox.ButtonCancelText
                 Action=@messageBox.Action
-                OnClose="@OnCloseMessageBox"> 
+                OnClose="@OnCloseMessageBox">
     </MessageBox>
 }
 
-@if(OpenFileBox)
+@if (OpenFileBox)
 {
-    <OpenFile/>
+    <OpenFile />
 }
 
-@if(SaveFileBox)
+@if (OpenSaveFileBox)
 {
     <SaveFileAs Title=@fileManager.Title
                 FileExtension=@fileManager.FileExtension
                 SuggestedFileName=@fileManager.SuggestedFileName
-                FileDescription=@fileManager.FileDescription >
+                FileDescription=@fileManager.FileDescription
+                ButtonOpenText=@fileManager.ButtonOpenText
+                ButtonCancelText=@fileManager.ButtonCancelText
+                OnSelectFile="@OnSelectFile">
     </SaveFileAs>
 }
 
@@ -328,7 +331,7 @@
 
     private LotoFileOptions? fileManager { get; set; }
     private bool OpenFileBox { get; set; } = false;
-    private bool SaveFileBox { get; set; } = true;
+    private bool OpenSaveFileBox { get; set; } = false;
 
     private const int linhasPorPagina = 20;
     private int paginaAtual = 1;
@@ -390,7 +393,9 @@
 
     protected override void OnInitialized()
     {
+        fileManager = new();
         loto = new();
+
         quantidadeDeCombinacoes = 0;
         variableNumbers = 6;
         limitaCombinacoes = false;
@@ -398,13 +403,6 @@
         mantemCombinacoesAnteriores = false;
         geraCombinacoesAleatorias = false;
 
-        // TODO - Inicializa fileManager
-        fileManager = new();
-        fileManager.Title = "Save as";
-        fileManager.FileExtension = loto.LotoFileInfo.Extensao;
-        fileManager.SuggestedFileName = loto.LotoFileInfo.NomeSugerido;
-        fileManager.FileDescription = loto.LotoFileInfo.Descricao;
-        
         var uri = navigationManager.ToAbsoluteUri(navigationManager.Uri);
         if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("returnUrl", out var url))
         {
@@ -417,12 +415,12 @@
         OpenMessageBox = false;
         messageBox.Accepted = accepted;
         StateHasChanged();
-        if(accepted)
+        if (accepted)
         {
             switch (messageBox.Action)
             {
                 case MessageBoxAction.DeleteCombination:
-                    Combinacoes.Remove((Card) messageBox.Object);
+                    Combinacoes.Remove((Card)messageBox.Object);
                     ObtemPaginacao(paginaAtual, linhasPorPagina);
                     break;
 
@@ -439,17 +437,35 @@
         }
     }
 
+    private async Task OnSelectFile(SaveFileResponse fileResponse)
+    {
+        OpenSaveFileBox = false;
+        fileManager.Selected = fileResponse.Selected;
+        StateHasChanged();
+        if (fileResponse.Selected && !string.IsNullOrEmpty(fileResponse.FileName))
+        {
+            LotoFile lotoFile = new()
+                {
+                    LotoType = loto.LotoFileInfo.Nome,
+                    SelectedNumbers = LotoBase.ArrayToText(loto.SelectedNumbers, LotoType.MiniLoto),
+                    FixedNumbers = LotoBase.ArrayToText(loto.FixedNumbers, LotoType.MiniLoto),
+                    Combinations = Combinacoes
+                };
+            await fileService.SaveFileAsync(lotoFile, fileResponse.FileName);
+        }
+    }
+
     private string GetBtnNumberClass(int index)
     {
         return btnNumberClasses[loto.Numbers[index]];
     }
 
-    private void CreateSuggestions()
+    private void CriaSugestoes()
     {
         loto.CreateSuggestions(variableNumbers);
     }
 
-    private void ApplySuggestions()
+    private void AplicaSugestoes()
     {
         loto.ApplySuggestions();
     }
@@ -479,7 +495,7 @@
     {
         messageBox = new();
         messageBox.Action = MessageBoxAction.DeleteCombination;
-        messageBox.Object = card; 
+        messageBox.Object = card;
         messageBox.Title = @lotoLocalizer["ConfirmationRequired"];
         messageBox.BodyText = $"{@lotoLocalizer["ConfirmDelete"]} #{card.Id:000000}?";
         messageBox.ButtonAcceptText = @buttonLocalizer["Delete"];
@@ -501,7 +517,7 @@
         StateHasChanged();
     }
 
-    private void ClearAll()
+    private void LimpaTudo()
     {
         messageBox = new();
         messageBox.Action = MessageBoxAction.ClearAll;
@@ -653,30 +669,27 @@
             variableNumbers = loto.QuantityOfSelectedNumbers;
     }
 
-    private async Task SaveCombinations()
+    private async Task SalvaCombinacoes()
     {
         if (loto.SelectedNumbers.Length < 1 && loto.FixedNumbers.Length < 1)
             return;
-        var file = await jsRuntime.InvokeAsync<string>("saveFileAs", loto.LotoFileInfo.NomeSugerido, loto.LotoFileInfo.Descricao, loto.LotoFileInfo.Extensao);
-        if (!string.IsNullOrEmpty(file))
-        {
-            LotoFile lotoFile = new()
-                {
-                    LotoType = loto.LotoFileInfo.Nome,
-                    SelectedNumbers = LotoBase.ArrayToText(loto.SelectedNumbers, LotoType.MiniLoto),
-                    FixedNumbers = LotoBase.ArrayToText(loto.FixedNumbers, LotoType.MiniLoto),
-                    Combinations = Combinacoes
-                };
-            await fileService.SaveFileAsync(lotoFile, file);
-        }
+        fileManager = new();
+        fileManager.Title = lotoLocalizer["SaveMiniLoto"];
+        fileManager.FileExtension = loto.LotoFileInfo.Extensao;
+        fileManager.SuggestedFileName = loto.LotoFileInfo.NomeSugerido;
+        fileManager.FileDescription = loto.LotoFileInfo.Descricao;
+        fileManager.ButtonOpenText = buttonLocalizer["Save"];
+        fileManager.ButtonCancelText = buttonLocalizer["Cancel"];
+        OpenSaveFileBox = true;
+        StateHasChanged();
     }
 
-    private async Task LoadCombinationsFromFile(InputFileChangeEventArgs args)
+    private async Task CarregaDoArquivo(InputFileChangeEventArgs args)
     {
         LotoFile? lotoFile = await fileService.ReadFileAsync(args.File);
         if (lotoFile != null)
         {
-            ClearAll();
+            LimpaTudo();
             loto.SelectNumbers(lotoFile.SelectedNumbers);
             loto.FixNumbers(lotoFile.FixedNumbers);
             loto.Combinations = lotoFile.Combinations;

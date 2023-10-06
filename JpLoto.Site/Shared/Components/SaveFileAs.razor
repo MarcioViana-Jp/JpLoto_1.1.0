@@ -1,29 +1,35 @@
-﻿<script>
-.label {
-    width: 15rem;
-    height: 2.5rem;
-    border: 2px dashed;
-    border-radius: 5px;
-    display: block;
-    padding: 0.5em;
-    transition: border 300ms ease;
-    cursor: pointer;
-    text-align: center;
-}
-i{
-    display: block;
-    font-size: 42px;
-    padding-bottom: 16px;
-}
+﻿@inject IStringLocalizer<SaveFileResource> fileLocalizer
 
-.title {
-    transition: 200ms color;
-}
+<style>
+    .modal-body i {
+        /* display: inline-block; */
+        font-size: 4vh;
+    }
 
-.label:hover {
-    border: 2px solid;
-}
-</script>
+        .modal-body i:hover {
+            cursor: pointer;
+            box-shadow: 0 0 0 0.5vh white, 0 0 0 0.65vh #258cfb;
+        }
+    .title {
+        transition: 200ms color;
+    }
+    .file-picker {
+        width: 4vh;
+        height: 4vh;
+    }
+    .file-select {
+        height: 5vh;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .file-name {
+        border: 1px solid lightgray;
+        border-radius: 5px;
+        position: relative;
+        bottom: 0.5vh;
+    }
+</style>
 
 <div class="modal fade show border-radius-lg" tabindex="-1"
      id="messageBoxModal" style="display:block;">
@@ -37,15 +43,17 @@ i{
                 </div>
             }
             <div class="modal-body">
-                <p class="text-xs">Inform the file name or select an existing file to update:</p>
-                <label for="filePicker" class="label">
-                    <i class="fa fa-file-text-o"></i>
-                    <InputText class="text-xs bg-white w-auto ms-2 me-2 p-2" @bind-Value="fileName"></InputText>
-                    <span class="text-xs">@FileExtension</span>
-                    <InputFile id="filePicker" class="invisible" OnChange="async (e) => await LoadFile(e)"></InputFile>
-                </label>
-                <p class="text-xs text-dimgray">Note: files can be saved in 'Download' directory only.</p>
-                @if(!string.IsNullOrEmpty(errorMessage))
+                <p class="text-xs mt-3 mb-3">@fileLocalizer["SelectFileText"]</p>
+                <div class="file-select">
+                    <label for="filePicker" class="label file-picker">
+                        <i class="fa fa-file-text-o"></i>
+                        <InputFile id="filePicker" class="invisible" OnChange="async (e) => await LoadFile(e)"></InputFile>
+                    </label>
+                    <InputText id="fileName" class="text-xs bg-white w-auto ms-1 me-0 p-2 file-name" @bind-Value="fileName"></InputText>
+                    <label id="fileExtension" class="text-xs m-0">@FileExtension </label>
+                </div>
+                <p class="text-xs text-info mt-2">@fileLocalizer["DownloadFolderOnly"]</p>
+                @if (!string.IsNullOrEmpty(errorMessage))
                 {
                     <p class="text-xs text-danger">@errorMessage</p>
                 }
@@ -74,24 +82,27 @@ i{
     [Parameter]
     public string? ButtonCancelText { get; set; }
     [Parameter]
-    public EventCallback<bool> OnClose { get; set; }
+    public EventCallback<SaveFileResponse> OnSelectFile { get; set; }
 
     private string errorMessage { get; set; } = string.Empty;
     private string fileName { get; set; } = string.Empty;
+    private string fileNameFull { get; set; } = string.Empty;
 
     protected override void OnInitialized()
     {
         fileName = SuggestedFileName ?? string.Empty;
+        var bo = ButtonOpenText;
+        var bc = ButtonCancelText;
     }
 
     private async Task ModalCancel()
     {
-        await OnClose.InvokeAsync(false);
+        await OnSelectFile.InvokeAsync(new SaveFileResponse { Selected = false, FileName = string.Empty });
     }
 
     private async Task ModalOk()
     {
-        await OnClose.InvokeAsync(true);
+        await OnSelectFile.InvokeAsync(new SaveFileResponse { Selected = true, FileName = fileName + FileExtension});
     }
 
     private async Task LoadFile(InputFileChangeEventArgs e)
@@ -104,7 +115,7 @@ i{
         }
         else
         {
-            errorMessage = "Tipo de arquivo invalido.";
+            errorMessage = @fileLocalizer["InvalidFileType"];
         }
     }
 

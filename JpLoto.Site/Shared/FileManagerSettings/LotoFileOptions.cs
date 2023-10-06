@@ -8,4 +8,5 @@ public class LotoFileOptions
     public string? FileExtension { get; set; }
     public string? ButtonOpenText { get; set; } = "Open";
     public string? ButtonCancelText { get; set; } = "Cancel";
+    public bool Selected { get; set; } = false;
 }
