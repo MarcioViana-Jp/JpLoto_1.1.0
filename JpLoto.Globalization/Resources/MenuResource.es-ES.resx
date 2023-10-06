@@ -168,6 +168,15 @@
   <data name="NotRegistered" xml:space="preserve">
     <value>No estás registrado?</value>
   </data>
+  <data name="OpenLoto6" xml:space="preserve">
+    <value>Abrir Loto 6</value>
+  </data>
+  <data name="OpenLoto7" xml:space="preserve">
+    <value>Abrir Loto 7</value>
+  </data>
+  <data name="OpenMiniLoto" xml:space="preserve">
+    <value>Abrir Mini Loto</value>
+  </data>
   <data name="Pricing" xml:space="preserve">
     <value>Precios de Apuestas</value>
   </data>

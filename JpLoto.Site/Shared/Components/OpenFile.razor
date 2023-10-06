@@ -1,4 +1,40 @@
-﻿<div class="modal fade show border-radius-lg" tabindex="-1"
+﻿@inject IStringLocalizer<FileResource> fileLocalizer
+
+<style>
+    .modal-body i {
+        font-size: 4vh;
+    }
+
+        .modal-body i:hover {
+            cursor: pointer;
+            box-shadow: 0 0 0 0.5vh white, 0 0 0 0.65vh #258cfb;
+        }
+
+    .title {
+        transition: 200ms color;
+    }
+
+    .file-picker {
+        width: 4vh;
+        height: 4vh;
+    }
+
+    .file-select {
+        height: 5vh;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .file-name {
+        border: 1px solid lightgray;
+        border-radius: 5px;
+        position: relative;
+        bottom: 0.5vh;
+    }
+</style>
+
+<div class="modal fade show border-radius-lg" tabindex="-1"
      id="messageBoxModal" style="display:block;">
     <div class="modal-dialog">
         <div class="modal-content bg-paleyellow shadow-card">
@@ -10,20 +46,23 @@
                 </div>
             }
             <div class="modal-body">
-                <p class="text-xs">@BodyText</p>
+                <p class="text-xs mt-3 mb-3">@fileLocalizer["OpenFileText"]</p>
+                <div class="file-select">
+                    <label for="filePicker" class="label file-picker">
+                        <i class="fa fa-file-text-o"></i>
+                        <InputFile id="filePicker" class="invisible" OnChange="async (e) => await LoadFile(e)"></InputFile>
+                    </label>
+                    <InputText disabled class="text-xs bg-white w-auto ms-1 me-0 p-2 file-name" @bind-Value="fileName">
+                    </InputText>
+                </div>
+                @if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    <p class="text-xs text-danger">@errorMessage</p>
+                }
             </div>
             <div class="modal-footer border-0">
-                @if (Action == MessageBoxAction.Delete || Action == MessageBoxAction.DeleteAll || Action == MessageBoxAction.ClearAll ||
-                Action == MessageBoxAction.DeleteCombination || Action == MessageBoxAction.DeleteRecycledCombination)
-                {
-                    <button type="button" class="btn btn-outline-dark text-xs" @onclick="@ModalCancel" data-bs-dismiss="modal">@ButtonCancelText</button>
-                    <button type="button" class="btn btn-danger text-xs" @onclick="@ModalOk">@ButtonAcceptText</button>
-                }
-                else
-                {
-                    <button type="button" class="btn btn-outline-dark text-xs" @onclick="@ModalCancel" data-bs-dismiss="modal">@ButtonCancelText</button>
-                    <button type="button" class="btn btn-info text-xs" @onclick="@ModalOk">@ButtonAcceptText</button>
-                }
+                <button type="button" class="btn btn-outline-dark file-button" @onclick="@ModalCancel" data-bs-dismiss="modal">@ButtonCancelText</button>
+                <button type="button" class="btn btn-info text-xs file-button" @onclick="@ModalOk">@ButtonOpenText</button>
             </div>
         </div>
     </div>
@@ -35,20 +74,62 @@
     [Parameter]
     public string? Title { get; set; }
     [Parameter]
-    public string? BodyText { get; set; }
+    public string? SuggestedFileName { get; set; }
     [Parameter]
-    public string? ButtonAcceptText { get; set; }
+    public string? FileDescription { get; set; }
+    [Parameter]
+    public string? FileExtension { get; set; }
+    [Parameter]
+    public string? ButtonOpenText { get; set; }
     [Parameter]
     public string? ButtonCancelText { get; set; }
     [Parameter]
-    public EventCallback<bool> OnClose { get; set; }
+    public EventCallback<OpenFileResponse> OnOpenFile { get; set; }
+
+    private string errorMessage { get; set; } = string.Empty;
+    private IBrowserFile JplFile { get; set; }
+    private string fileName { get; set; } = string.Empty;
+
+    private InputText inputForFocus;
+
+    protected override void OnInitialized()
+    {
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (inputForFocus?.Element != null)
+        {
+            await inputForFocus.Element.Value.FocusAsync();
+        }
+    }
 
     private async Task ModalCancel()
     {
-        await OnClose.InvokeAsync(false);
+        await OnOpenFile.InvokeAsync(new OpenFileResponse { Open = false });
     }
+
     private async Task ModalOk()
     {
-        await OnClose.InvokeAsync(true);
+        if (!string.IsNullOrEmpty(fileName))
+            await OnOpenFile.InvokeAsync(new OpenFileResponse { Open = true, File = JplFile });
     }
+
+    private async Task LoadFile(InputFileChangeEventArgs e)
+    {
+        errorMessage = string.Empty;
+        if (e.File.Name.Contains(FileExtension))
+        {
+            fileName = e.File.Name;
+            JplFile = e.File;
+            StateHasChanged();
+        }
+        else
+        {
+            errorMessage = @fileLocalizer["InvalidFileType"];
+            fileName = string.Empty;
+            StateHasChanged();
+        }
+    }
+
 }

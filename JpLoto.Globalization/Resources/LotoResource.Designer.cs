@@ -601,6 +601,33 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ロト6フィルタを開く.
+        /// </summary>
+        public static string OpenLoto6 {
+            get {
+                return ResourceManager.GetString("OpenLoto6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ロト7フィルタを開く.
+        /// </summary>
+        public static string OpenLoto7 {
+            get {
+                return ResourceManager.GetString("OpenLoto7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ミニロトフィルタを開く.
+        /// </summary>
+        public static string OpenMiniLoto {
+            get {
+                return ResourceManager.GetString("OpenMiniLoto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 操作でエラーが発生しました.
         /// </summary>
         public static string OperationError {

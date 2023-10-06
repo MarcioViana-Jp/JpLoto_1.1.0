@@ -1,8 +1,7 @@
-﻿@inject IStringLocalizer<SaveFileResource> fileLocalizer
+﻿@inject IStringLocalizer<FileResource> fileLocalizer
 
 <style>
     .modal-body i {
-        /* display: inline-block; */
         font-size: 4vh;
     }
 
@@ -43,13 +42,14 @@
                 </div>
             }
             <div class="modal-body">
-                <p class="text-xs mt-3 mb-3">@fileLocalizer["SelectFileText"]</p>
+                <p class="text-xs mt-3 mb-3">@fileLocalizer["SaveFileText"]</p>
                 <div class="file-select">
                     <label for="filePicker" class="label file-picker">
                         <i class="fa fa-file-text-o"></i>
                         <InputFile id="filePicker" class="invisible" OnChange="async (e) => await LoadFile(e)"></InputFile>
                     </label>
-                    <InputText id="fileName" class="text-xs bg-white w-auto ms-1 me-0 p-2 file-name" @bind-Value="fileName"></InputText>
+                    <InputText class="text-xs bg-white w-auto ms-1 me-0 p-2 file-name" @bind-Value="fileName" @ref=inputForFocus >
+                    </InputText>
                     <label id="fileExtension" class="text-xs m-0">@FileExtension </label>
                 </div>
                 <p class="text-xs text-info mt-2">@fileLocalizer["DownloadFolderOnly"]</p>
@@ -59,8 +59,8 @@
                 }
             </div>
             <div class="modal-footer border-0">
-                <button type="button" class="btn btn-outline-dark text-xs" @onclick="@ModalCancel" data-bs-dismiss="modal">@ButtonCancelText</button>
-                <button type="button" class="btn btn-info text-xs" @onclick="@ModalOk">@ButtonOpenText</button>
+                <button type="button" class="btn btn-outline-dark file-button" @onclick="@ModalCancel" data-bs-dismiss="modal">@ButtonCancelText</button>
+                <button type="button" class="btn btn-info text-xs file-button" @onclick="@ModalOk">@ButtonSaveText</button>
             </div>
         </div>
     </div>
@@ -78,7 +78,7 @@
     [Parameter]
     public string? FileExtension { get; set; }
     [Parameter]
-    public string? ButtonOpenText { get; set; }
+    public string? ButtonSaveText { get; set; }
     [Parameter]
     public string? ButtonCancelText { get; set; }
     [Parameter]
@@ -86,13 +86,22 @@
 
     private string errorMessage { get; set; } = string.Empty;
     private string fileName { get; set; } = string.Empty;
-    private string fileNameFull { get; set; } = string.Empty;
+
+    private InputText inputForFocus;
 
     protected override void OnInitialized()
     {
         fileName = SuggestedFileName ?? string.Empty;
-        var bo = ButtonOpenText;
+        var bo = ButtonSaveText;
         var bc = ButtonCancelText;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (inputForFocus?.Element != null)
+        {
+            await inputForFocus.Element.Value.FocusAsync();
+        }
     }
 
     private async Task ModalCancel()
@@ -102,7 +111,8 @@
 
     private async Task ModalOk()
     {
-        await OnSelectFile.InvokeAsync(new SaveFileResponse { Selected = true, FileName = fileName + FileExtension});
+        if(!string.IsNullOrEmpty(fileName))
+            await OnSelectFile.InvokeAsync(new SaveFileResponse { Selected = true, FileName = fileName + FileExtension});
     }
 
     private async Task LoadFile(InputFileChangeEventArgs e)
@@ -112,10 +122,13 @@
         {
             fileName = e.File.Name;
             fileName = fileName.Replace(FileExtension, "");
+            StateHasChanged();
         }
         else
         {
             errorMessage = @fileLocalizer["InvalidFileType"];
+            fileName = string.Empty;
+            StateHasChanged();
         }
     }
 

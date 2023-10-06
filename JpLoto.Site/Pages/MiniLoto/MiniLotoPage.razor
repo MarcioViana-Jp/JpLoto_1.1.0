@@ -58,7 +58,7 @@
                     <div class="buttoncard @disabledClass(loto.QuantityOfSelectedNumbers < 1 &&
                                                           loto.QuantityOfFixedNumbers < 1 &&
                                                           loto.QuantityOfBlockedNumbers < 1)"
-                    @onclick="LimpaTudo">
+                                                          @onclick="(args) => LimpaTudo(true)">
                         <div class="action-icon">
                             <i class="fas fa-times text-red"></i>
                             @* <span class="badge"><i class="fas fa-times text-red"></i></span> *@
@@ -67,14 +67,13 @@
                             @lotoLocalizer["ClearAll"]
                         </div>
                     </div>
-                    <div class="buttoncard" onclick="document.getElementById('inputFileOpen').click()">
+                    <div class="buttoncard" @onclick="CarregaDoArquivo">
                         <div class="action-icon">
                             <i class="fas fa-file-alt text-blue"></i>
                         </div>
                         <div class="buttoncard-text font-10">
                             @lotoLocalizer["Load"]
                         </div>
-                        <InputFile id="inputFileOpen" hidden OnChange="CarregaDoArquivo" />
                     </div>
                 </div>
                 <div class="options-zone">
@@ -130,7 +129,7 @@
                 <div class="options-zone justify-content-center mt-2">
                     <button class="btn btn-primary"
                             disabled="@(loto.QuantityOfSelectedNumbers < variableNumbers || loto.QuantityOfSelectedNumbers < loto.NumbersPerCard)"
-                    @onclick="CreateCombinations">
+                    @onclick="CriaCombinacoes">
                         @buttonLocalizer["GenerateCombinations"]
                     </button>
                 </div>
@@ -151,7 +150,7 @@
                             @lotoLocalizer["Save"]
                         </div>
                     </div>
-                    <div class="buttoncard @disabledClass(Combinacoes.Count < 1)" @onclick="LimpaTudo">
+                    <div class="buttoncard @disabledClass(Combinacoes.Count < 1)" @onclick="(args) => LimpaTudo(true)">
                         <div class="action-icon">
                             <i class="fas fa-print text-blue"></i>
                             <span class="badge position-absolute bottom-0 start-100 translate-middle">
@@ -301,7 +300,14 @@
 
 @if (OpenFileBox)
 {
-    <OpenFile />
+    <OpenFile Title=@fileManager.Title
+              FileExtension=@fileManager.FileExtension
+              SuggestedFileName=@fileManager.SuggestedFileName
+              FileDescription=@fileManager.FileDescription
+              ButtonOpenText=@fileManager.ButtonOpenText
+              ButtonCancelText=@fileManager.ButtonCancelText
+              OnOpenFile="@OnOpenFile">
+    </OpenFile>
 }
 
 @if (OpenSaveFileBox)
@@ -310,7 +316,7 @@
                 FileExtension=@fileManager.FileExtension
                 SuggestedFileName=@fileManager.SuggestedFileName
                 FileDescription=@fileManager.FileDescription
-                ButtonOpenText=@fileManager.ButtonOpenText
+                ButtonSaveText=@fileManager.ButtonSaveText
                 ButtonCancelText=@fileManager.ButtonCancelText
                 OnSelectFile="@OnSelectFile">
     </SaveFileAs>
@@ -329,7 +335,7 @@
     private MessageBoxOptions? messageBox { get; set; }
     private bool OpenMessageBox { get; set; } = false;
 
-    private LotoFileOptions? fileManager { get; set; }
+    private FileManagerOptions? fileManager { get; set; }
     private bool OpenFileBox { get; set; } = false;
     private bool OpenSaveFileBox { get; set; } = false;
 
@@ -455,6 +461,23 @@
         }
     }
 
+    private async Task OnOpenFile(OpenFileResponse fileResponse)
+    {
+        OpenFileBox = false;
+        fileManager.Selected = fileResponse.Open;
+        StateHasChanged();
+
+        LotoFile? lotoFile = await fileService.ReadFileAsync(fileResponse.File);
+        if (lotoFile != null)
+        {
+            LimpaTudo(false);
+            loto.SelectNumbers(lotoFile.SelectedNumbers);
+            loto.FixNumbers(lotoFile.FixedNumbers);
+            loto.Combinations = lotoFile.Combinations;
+            LoadCombinations(loto.Combinations);
+        }
+    }
+
     private string GetBtnNumberClass(int index)
     {
         return btnNumberClasses[loto.Numbers[index]];
@@ -517,19 +540,26 @@
         StateHasChanged();
     }
 
-    private void LimpaTudo()
+    private void LimpaTudo(bool requireConfirmation = true)
     {
         messageBox = new();
         messageBox.Action = MessageBoxAction.ClearAll;
-        messageBox.Title = @lotoLocalizer["ConfirmationRequired"];
-        messageBox.BodyText = $"{@lotoLocalizer["ConfirmClearAll"]}?";
-        messageBox.ButtonAcceptText = @buttonLocalizer["ClearAll"];
-        messageBox.ButtonCancelText = @buttonLocalizer["Cancel"];
-        OpenMessageBox = true;
+        if (requireConfirmation)
+        {
+            messageBox.Title = @lotoLocalizer["ConfirmationRequired"];
+            messageBox.BodyText = $"{@lotoLocalizer["ConfirmClearAll"]}?";
+            messageBox.ButtonAcceptText = @buttonLocalizer["ClearAll"];
+            messageBox.ButtonCancelText = @buttonLocalizer["Cancel"];
+            OpenMessageBox = true;
+        }
+        else
+        {
+            OnCloseMessageBox(true);
+        }
         StateHasChanged();
     }
 
-    private void CreateCombinations()
+    private void CriaCombinacoes()
     {
         var response = loto.CreateCombinations((int)quantidadeDeCombinacoes, mantemCombinacoesAnteriores, geraCombinacoesAleatorias);
         LoadCombinations(response.Combinations);
@@ -678,23 +708,23 @@
         fileManager.FileExtension = loto.LotoFileInfo.Extensao;
         fileManager.SuggestedFileName = loto.LotoFileInfo.NomeSugerido;
         fileManager.FileDescription = loto.LotoFileInfo.Descricao;
-        fileManager.ButtonOpenText = buttonLocalizer["Save"];
+        fileManager.ButtonSaveText = buttonLocalizer["Save"];
         fileManager.ButtonCancelText = buttonLocalizer["Cancel"];
         OpenSaveFileBox = true;
         StateHasChanged();
     }
 
-    private async Task CarregaDoArquivo(InputFileChangeEventArgs args)
+    private async Task CarregaDoArquivo()
     {
-        LotoFile? lotoFile = await fileService.ReadFileAsync(args.File);
-        if (lotoFile != null)
-        {
-            LimpaTudo();
-            loto.SelectNumbers(lotoFile.SelectedNumbers);
-            loto.FixNumbers(lotoFile.FixedNumbers);
-            loto.Combinations = lotoFile.Combinations;
-            LoadCombinations(loto.Combinations);
-        }
+        fileManager = new();
+        fileManager.Title = lotoLocalizer["OpenMiniLoto"];
+        fileManager.FileExtension = loto.LotoFileInfo.Extensao;
+        fileManager.SuggestedFileName = loto.LotoFileInfo.NomeSugerido;
+        fileManager.FileDescription = loto.LotoFileInfo.Descricao;
+        fileManager.ButtonOpenText = buttonLocalizer["Open"];
+        fileManager.ButtonCancelText = buttonLocalizer["Cancel"];
+        OpenFileBox = true;
+        StateHasChanged();
     }
 
     private void ConfigurePrinting()

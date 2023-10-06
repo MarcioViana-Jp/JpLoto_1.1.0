@@ -118,12 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DownloadFolderOnly" xml:space="preserve">
-    <value>Importante: os arquivos sempre serão salvos na pasta download.</value>
+    <value>重要: ファイルは常にダウンロード フォルダーに保存されます。</value>
   </data>
   <data name="InvalidFileType" xml:space="preserve">
-    <value>Tipo de arquivo inválido</value>
+    <value>無効なファイルタイプ</value>
   </data>
-  <data name="SelectFileText" xml:space="preserve">
-    <value>Informe um nome de arquivo ou selecione um arquivo existente para atualizar:</value>
+  <data name="OpenFileText" xml:space="preserve">
+    <value>ファイルを選択してください</value>
+  </data>
+  <data name="SaveFileText" xml:space="preserve">
+    <value>ファイル名を記入してまたは更新する既存のファイルを選択して下さい</value>
   </data>
 </root>

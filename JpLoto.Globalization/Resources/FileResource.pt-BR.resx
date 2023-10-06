@@ -118,12 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DownloadFolderOnly" xml:space="preserve">
-    <value>Important: files will always be saved in the downloads folder.</value>
+    <value>Importante: os arquivos sempre serão salvos na pasta download.</value>
   </data>
   <data name="InvalidFileType" xml:space="preserve">
-    <value>Invalid file type</value>
+    <value>Tipo de arquivo inválido</value>
   </data>
-  <data name="SelectFileText" xml:space="preserve">
-    <value>Inform a file name or select an existing file to update:</value>
+  <data name="OpenFileText" xml:space="preserve">
+    <value>Selecione um arquivo</value>
+  </data>
+  <data name="SaveFileText" xml:space="preserve">
+    <value>Informe um nome de arquivo ou selecione um arquivo existente para atualizar:</value>
   </data>
 </root>

@@ -297,6 +297,15 @@
   <data name="OddNumbers" xml:space="preserve">
     <value>奇数</value>
   </data>
+  <data name="OpenLoto6" xml:space="preserve">
+    <value>ロト6フィルタを開く</value>
+  </data>
+  <data name="OpenLoto7" xml:space="preserve">
+    <value>ロト7フィルタを開く</value>
+  </data>
+  <data name="OpenMiniLoto" xml:space="preserve">
+    <value>ミニロトフィルタを開く</value>
+  </data>
   <data name="OperationError" xml:space="preserve">
     <value>操作でエラーが発生しました</value>
   </data>

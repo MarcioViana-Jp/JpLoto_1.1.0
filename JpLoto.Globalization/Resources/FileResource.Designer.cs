@@ -22,14 +22,14 @@ namespace JpLoto.Globalization.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class SaveFileResource {
+    public class FileResource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal SaveFileResource() {
+        internal FileResource() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace JpLoto.Globalization.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JpLoto.Globalization.Resources.SaveFileResource", typeof(SaveFileResource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JpLoto.Globalization.Resources.FileResource", typeof(FileResource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -79,11 +79,20 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ファイルを選択してください.
+        /// </summary>
+        public static string OpenFileText {
+            get {
+                return ResourceManager.GetString("OpenFileText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ファイル名を記入してまたは更新する既存のファイルを選択して下さい.
         /// </summary>
-        public static string SelectFileText {
+        public static string SaveFileText {
             get {
-                return ResourceManager.GetString("SelectFileText", resourceCulture);
+                return ResourceManager.GetString("SaveFileText", resourceCulture);
             }
         }
     }

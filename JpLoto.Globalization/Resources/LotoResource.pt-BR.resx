@@ -297,6 +297,15 @@
   <data name="OddNumbers" xml:space="preserve">
     <value>Números impares</value>
   </data>
+  <data name="OpenLoto6" xml:space="preserve">
+    <value>Abrir Loto 6</value>
+  </data>
+  <data name="OpenLoto7" xml:space="preserve">
+    <value>Abrir Loto 7</value>
+  </data>
+  <data name="OpenMiniLoto" xml:space="preserve">
+    <value>Abrir Mini Loto</value>
+  </data>
   <data name="OperationError" xml:space="preserve">
     <value>Falha na operação. Tente novamente</value>
   </data>

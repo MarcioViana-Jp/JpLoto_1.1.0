@@ -187,6 +187,15 @@ namespace JpLoto.Globalization.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 開く.
+        /// </summary>
+        public static string Open {
+            get {
+                return ResourceManager.GetString("Open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 保存.
         /// </summary>
         public static string Save {

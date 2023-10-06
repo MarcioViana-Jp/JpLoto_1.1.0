@@ -51,10 +51,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>PrintResource.resx</DependentUpon>
     </Compile>
-    <Compile Update="Resources\SaveFileResource.Designer.cs">
+    <Compile Update="Resources\FileResource.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>SaveFileResource.resx</DependentUpon>
+      <DependentUpon>FileResource.resx</DependentUpon>
     </Compile>
     <Compile Update="Resources\UserDetailResource.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -168,18 +168,18 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>PrintResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\SaveFileResource.en-US.resx">
+    <EmbeddedResource Update="Resources\FileResource.en-US.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\SaveFileResource.es-ES.resx">
+    <EmbeddedResource Update="Resources\FileResource.es-ES.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\SaveFileResource.pt-BR.resx">
+    <EmbeddedResource Update="Resources\FileResource.pt-BR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\SaveFileResource.resx">
+    <EmbeddedResource Update="Resources\FileResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>SaveFileResource.Designer.cs</LastGenOutput>
+      <LastGenOutput>FileResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\UserDetailResource.en-US.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
