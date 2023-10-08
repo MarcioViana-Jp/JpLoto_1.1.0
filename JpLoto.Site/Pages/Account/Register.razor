@@ -10,46 +10,46 @@
     <section>
         <div class="page-header align-items-start min-vh-80" style="background-image: url('site_images/backgrounds/lottery-3846567_640.webp.jpg');">
             <span class="mask bg-gradient-dark opacity-6"></span>
-            <div class="container my-auto mb-7">
+            <div class="container ctn-register my-auto mb-7">
                 <div class="row">
                     <div class="col-lg-4 col-md-8 col-12 mx-auto">
                         <div class="card mt-7 z-index-0 fadeIn3 fadeInBottom">
                             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                                <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
-                                    <h5 class="text-white font-weight-bolder text-center mt-2 mb-0">@authLocalizer["_REGISTER_TITLE"]</h5>
+                                <div class="bg-gradient-primary shadow-primary border-radius-lg py-1 pe-1">
+                                    <h6 class="text-white font-weight-bolder text-center mt-2 mb-0">@authLocalizer["_REGISTER_TITLE"]</h6>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <EditForm Model="registerRequest" OnValidSubmit="HandleRegister">
                                     <DataAnnotationsValidator />
                                     <div class="input-group input-group-outline mt-2">
-                                        <label for="email" class="form-label text-xs">@authLocalizer["Email"]</label>
-                                        <InputText id="email" type="email" style="text-align:center;" @bind-Value="registerRequest.Email" class="form-control my-2" />
+                                        <label for="email" class="form-label font-8 mt-1">@authLocalizer["Email"]</label>
+                                        <InputText id="email" type="email" style="text-align:center;" @bind-Value="registerRequest.Email" class="form-control my-2 font-10" />
                                     </div>
-                                    <ValidationMessage For="@(() => registerRequest.Email)" class="text-xs text-danger" />
+                                    <ValidationMessage For="@(() => registerRequest.Email)" class="font-9 text-danger" />
                                     <div class="input-group input-group-outline mt-2">
-                                        <label for="Password" class="form-label text-xs">@authLocalizer["Password"]</label>
-                                        <InputText id="Password" type="password" style="text-align:center;" @bind-Value="registerRequest.Password" class="form-control my-2" />
+                                        <label for="Password" class="form-label font-8 mt-1">@authLocalizer["Password"]</label>
+                                        <InputText id="Password" type="password" style="text-align:center;" @bind-Value="registerRequest.Password" class="form-control my-2 font-10" />
                                     </div>
-                                    <ValidationMessage For="@(() => registerRequest.Password)" class="text-xs text-danger" />
+                                    <ValidationMessage For="@(() => registerRequest.Password)" class="font-9 text-danger" />
                                     <div class="input-group input-group-outline mt-2">
-                                        <label for="ConfirmPassword" class="form-label text-xs">@authLocalizer["ConfirmPassword"]</label>
-                                        <InputText id="ConfirmPassword" type="password" style="text-align:center;" @bind-Value="registerRequest.ConfirmPassword" class="form-control my-2" />
+                                        <label for="ConfirmPassword" class="form-label font-8 mt-1">@authLocalizer["ConfirmPassword"]</label>
+                                        <InputText id="ConfirmPassword" type="password" style="text-align:center;" @bind-Value="registerRequest.ConfirmPassword" class="form-control my-2 font-10" />
                                     </div>
-                                    <ValidationMessage For="@(() => registerRequest.ConfirmPassword)" class="text-xs text-danger" />
+                                    <ValidationMessage For="@(() => registerRequest.ConfirmPassword)" class="font-9 text-danger" />
                                     <div class="form-check form-check-info text-start mt-2 ps-0">
-                                        <input class="form-check-input" type="checkbox" @bind-value="acceptsTermsAndConditions" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">@authLocalizer["TermsAndConditionsAgreement"]</label>
+                                        <InputCheckbox class="form-check-input font-12" type="checkbox" @bind-Value="acceptsTermsAndConditions" id="flexCheckDefault" />
+                                        <label class="form-check-label font-8" for="flexCheckDefault">@authLocalizer["TermsAndConditionsAgreement"]</label>
                                     </div>
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0" disabled="@(!acceptsTermsAndConditions)">@authLocalizer["Register"]</button>
                                     </div>
-                                    <p class="mt-4 text-xs text-center">
+                                    <p class="mt-4 font-8 text-center">
                                         @authLocalizer["AlreadyRegistered"]?
-                                        <a href="/login" class="text-xs text-primary text-gradient font-weight-bold">@authLocalizer["Login"]</a>
+                                        <a href="/login" class="font-8 text-primary text-gradient font-weight-bold">@authLocalizer["Login"]</a>
                                     </p>
-                                    <p class="mt-1 text-xs text-center">
-                                        <a href="@returnUrl" class="text-xs text-primary text-gradient font-weight-bold">@authLocalizer["ClickHereToReturn"]</a>
+                                    <p class="mt-1 font-8 text-center">
+                                        <a href="@returnUrl" class="font-8 text-primary text-gradient font-weight-bold">@authLocalizer["ClickHereToReturn"]</a>
                                     </p>
                                 </EditForm>
                                 <div class="mt-2">
@@ -57,7 +57,7 @@
                                     {
                                         foreach (var msg in errorMessages)
                                         {
-                                            <label class="text-danger text-xs">@msg</label>
+                                            <label class="text-danger font-9">@msg</label>
                                             <br />
                                         }
                                     }

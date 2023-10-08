@@ -20,6 +20,8 @@ public static class NativeInjectorConfig
             .AddDefaultTokenProviders();
 
         services.AddScoped<IIdentityService, IdentityService>();
+        services.AddScoped<IPaymentService, PaymentService>();
+
         services.AddScoped<ILoto6ResultRepository, Loto6ResultRepository>();
         services.AddScoped<ILoto7ResultRepository, Loto7ResultRepository>();
 

@@ -33,6 +33,7 @@ builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IAppConfigService, AppConfigService>();
 builder.Services.AddScoped<IConfigurationService, ConfigurationService>();
+builder.Services.AddScoped<ICheckoutService, CheckoutService>();
 builder.Services.AddScoped<IFileService, FileService>();
 
 builder.Services.AddScoped<ILoto6ResultService, Loto6ResultService>();

@@ -17,7 +17,7 @@
         <div class="sidenav-header">
             <div class="d-flex align-items-center align-content-between">
                 <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-                <a class="navbar-brand m-0" href="/" @onclick="NavbarTogglerHandler"> @* target="_blank" *@
+                <a class="navbar-brand m-0" href="/" @onclick="NavbarTogglerHandler">
                     <img src="site_images/logos/jpllogo_60x10_wr.png" style="width: 100px;" class="navbar-brand-img" alt="main_logo">
                     <span class="font-weight-bold text-white jploto_version p-1">1.1</span>
                 </a>
@@ -54,12 +54,12 @@
         <CookieConsent />
 
         <!-- Navbar -->
-        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
+        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-0 shadow-none border-radius-xl" id="navbarBlur" data-scroll="true">
             <div class="container-fluid py-1 px-3">
-                <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+                <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4 pe-3" id="navbar">
                     <h6 class="navbar-nav justify-content-start font-weight-bolder mb-0" hidden><span>JP Loto 1.1</span></h6>
                     <ul class="navbar-nav justify-content-end">                        
-                        <li class="nav-item d-xl-none ps-3 d-flex align-items-center me-2" @onclick="NavbarTogglerHandler">
+                        <li class="nav-item d-xl-none ps-2 d-flex align-items-center me-2" @onclick="NavbarTogglerHandler">
                              <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
                                 <div class="sidenav-toggler-inner">
                                     <i class="sidenav-toggler-line"></i>
@@ -68,23 +68,27 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="nav-item d-xl-none ps-3 d-flex align-items-center me-auto">
+                        <li class="nav-item d-xl-none d-flex align-items-center ps-2 me-auto">
                             <a href="/" class="text-red text-lg font-weight-bold p-0">JPLoto 1.1</a>
                         </li>
                         <CultureSelector />
                         <AuthorizeView>
                             <Authorized>
-                                <li class="nav-item d-flex align-items-center">
+                                <li class="nav-item d-flex align-items-center me-auto">
                                     <a href="/logout" class="nav-link text-body font-weight-bold px-0">
-                                        <i class="fa fa-sign-out me-sm-1"></i>
+                                        <i class="fa fa-sign-out me-sm-1 font-16"></i>
                                         <span class="d-sm-inline d-none font-10">@menuLocalizer["Logout"]</span>
                                     </a>
                                 </li>
                             </Authorized>
                             <NotAuthorized>
-                                <div class="d-inline-flex m-0 p-0 align-items-center justify-content-center">
-                                    <a class="btn btn-outline-primary mt-0 mb-0 h-70 w-110 pt-1 pb-1" href="/login">@menuLocalizer["Login"]</a>
-                                    <a class="btn bg-gradient-primary mt-0 mb-0 h-70 w-110 pt-1 pb-1 ms-3" href="/register">@menuLocalizer["New"]</a>
+                                <div class="d-inline-flex w-1 ms-4 me-2 p-0 align-items-center justify-content-center">
+                                    <a class="nav-link mt-0 mb-0 pt-1 pb-1" href="/login">
+                                        <i class="fa fa-sign-in font-16"></i>
+                                    </a>
+                                    <a class="nav-link mt-0 mb-0 pt-1 pb-1 me-auto" href="/register">
+                                        <i class="fa fa-user-plus font-16"></i>
+                                    </a>
                                 </div>
                             </NotAuthorized>
                         </AuthorizeView>

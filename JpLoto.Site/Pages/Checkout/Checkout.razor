@@ -1,0 +1,26 @@
+﻿@page "/checkout"
+@page "/checkout/{planCode:string}"
+@page "/checkout/{planId:int}"
+
+@inject ICheckoutService checkoutService
+@inject NavigationManager navigationManager
+@inject IStringLocalizer<AuthResource> authLocalizer
+
+<h3>Checkout</h3>
+
+@code {
+    [Parameter]
+    public int? planId { get; set; }
+    [Parameter]
+    public string? planCode { get; set; }
+
+    private readonly string[] PlanCodes = new string[3] { "FREE30", "LUCKY6", "LUCKY12" };
+    private readonly int[] Prices = new int[3] { 0, 500, 750 };
+    private CheckoutRequest request { get; set; }
+
+    private async Task PlaceOrder()
+    {
+        var url = await checkoutService.PlaceOrder(request);
+        navigationManager.NavigateTo(url);
+    }
+}
